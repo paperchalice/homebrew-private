@@ -11,6 +11,11 @@ class QtDeclarative < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-declarative-6.0.2"
+    sha256 cellar: :any, big_sur: "dea53ebb8fea1640796ea7f7c94ecdaf6c7278909295bfa8035592fab9187d7c"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
