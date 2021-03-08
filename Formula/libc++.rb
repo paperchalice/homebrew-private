@@ -11,6 +11,11 @@ class Libcxx < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-11.1.0"
+    sha256 cellar: :any, big_sur: "a310ff4b7a2555a0a2852f8045d56f761ec396fe353749e46bed32a9d943ff34"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
