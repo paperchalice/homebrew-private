@@ -11,6 +11,11 @@ class Libunwind < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-11.1.0"
+    sha256 cellar: :any, big_sur: "8373ad17eb4331c6dcd1f272876e8c9c0f8e022f882337a81b33ae2b24f29523"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
