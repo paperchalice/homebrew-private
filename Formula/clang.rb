@@ -36,7 +36,7 @@ class Clang < Formula
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
       #{HOMEBREW_PREFIX}/include
-    ].join ";"
+    ].join ":"
 
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
@@ -65,6 +65,16 @@ class Clang < Formula
   end
 
   test do
-    system "echo"
+    ENV.delete "CPATH"
+    (testpath/"test.c").write <<~EOS
+      #include <stdio.h>
+      int main(int argc, char *argv[])
+      {
+        printf("Hello World!\\n");
+        return 0;
+      }
+    EOS
+    system bin/"clang", "test.c", "-o", "test"
+    assert_equal "Hello World!", shell_output("./test").chomp
   end
 end
