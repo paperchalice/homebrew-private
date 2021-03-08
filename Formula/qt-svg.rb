@@ -11,6 +11,11 @@ class QtSvg < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-svg-6.0.2"
+    sha256 cellar: :any, big_sur: "cea364b77c1333e87c8f7f3d14b7111df5141110888bedff85de480751a10d15"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
