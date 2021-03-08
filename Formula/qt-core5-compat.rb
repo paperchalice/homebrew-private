@@ -11,6 +11,11 @@ class QtCore5Compat < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-core5-compat-6.0.2"
+    sha256 cellar: :any, big_sur: "60c502c4df1fb3d20a866fefa77fd360d4b1e9e71763c4ed409151f20fbf8bc4"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
