@@ -4,6 +4,7 @@ class LlvmCore < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz"
   sha256 "ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5"
   license "Apache-2.0" => { with: "LLVM-exception" }
+  revision 1
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -46,7 +47,8 @@ class LlvmCore < Formula
       -DCMAKE_CXX_STANDARD=17
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
 
-      -DLLVM_BUILD_LLVM_C_DYLIB=ON
+      -DLLVM_BUILD_LLVM_DYLIB=OFF
+      -DLLVM_LINK_LLVM_DYLIB=OFF
       -DLLVM_ENABLE_EH=ON
       -DLLVM_ENABLE_FFI=ON
       -DLLVM_ENABLE_LIBCXX=ON
