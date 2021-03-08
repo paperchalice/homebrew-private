@@ -5,6 +5,11 @@ class LlvmCore < Formula
   sha256 "ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-11.1.0"
+    sha256 cellar: :any, big_sur: "f70a2784d192477ef42300e335aad4b780a97f2f361b8250b2a929b819a7edf5"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "python" => :build
