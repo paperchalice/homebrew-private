@@ -11,6 +11,11 @@ class Clang < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-11.1.0"
+    sha256 cellar: :any, big_sur: "edbf069890c18a9250db2158411650ab9f34fb07cc774a9d9672d03f056fc51a"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
