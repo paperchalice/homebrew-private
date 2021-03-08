@@ -6,8 +6,8 @@ class QtBase < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
   bottle do
-    root_url "https://dl.bintray.com/paperchalice/dev-bottle"
-    sha256 cellar: :any, big_sur: "b152e9f838490c5c5db5273b62b64e1b09ac2081f99bde3808ba7ddcc44ea3ad"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.0.2"
+    sha256 cellar: :any, big_sur: "7a452ce7ed4546e68ab63160328e043286e1ec2b0cabe6ede4684b36fbfd65d3"
   end
 
   depends_on "cmake" => [:build, :test]
