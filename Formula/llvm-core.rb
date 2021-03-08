@@ -4,6 +4,12 @@ class LlvmCore < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz"
   sha256 "ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5"
   license "Apache-2.0" => { with: "LLVM-exception" }
+  head "https://github.com/llvm/llvm-project.git", branch: "main"
+
+  livecheck do
+    url :homepage
+    regex(/LLVM (\d+\.\d+\.\d+)/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-11.1.0"
