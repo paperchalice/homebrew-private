@@ -30,6 +30,19 @@ class Libunwind < Formula
   end
 
   test do
-    system "echo"
+    clang = Formula["clang"]
+    (testpath/"main.c").write <<~EOS
+      #include <assert.h>
+      #include <libunwind.h>
+
+      int main(int argc, char* argv[]) {
+        unw_context_t context;
+        int ret = unw_getcontext(&context);
+        assert(ret == UNW_ESUCCESS);
+        return 0;
+      }
+    EOS
+    system ENV.cc, "main.c"
+    system "./a.out"
   end
 end
