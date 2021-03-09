@@ -5,6 +5,11 @@ class QtTools < Formula
   sha256 "465c3edf370db4df8e41a72ae35a6bcb2d7677210669f1934089de565af4f8e9"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.0.2"
+    sha256 cellar: :any, big_sur: "3d9256d65f2192e57d1c2855a83d27447b0a50566100b7bd9f6153db78bc358e"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
