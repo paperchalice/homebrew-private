@@ -30,7 +30,6 @@ class Libunwind < Formula
   end
 
   test do
-    clang = Formula["clang"]
     (testpath/"main.c").write <<~EOS
       #include <assert.h>
       #include <libunwind.h>
