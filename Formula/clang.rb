@@ -71,7 +71,6 @@ class Clang < Formula
   end
 
   test do
-    ENV.delete "CPATH"
     (testpath/"test.c").write <<~EOS
       #include <stdio.h>
       int main(int argc, char *argv[])
@@ -80,7 +79,7 @@ class Clang < Formula
         return 0;
       }
     EOS
-    system bin/"clang", "test.c", "-o", "test"
-    assert_equal "Hello World!", shell_output("./test").chomp
+    system bin/"clang", "test.c"
+    assert_match "Hello World!", shell_output("./a.out")
   end
 end
