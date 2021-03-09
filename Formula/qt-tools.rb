@@ -1,0 +1,69 @@
+class QtTools < Formula
+  desc "Qt utilities"
+  homepage "https://www.qt.io/"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qttools-everywhere-src-6.0.2.tar.xz"
+  sha256 "465c3edf370db4df8e41a72ae35a6bcb2d7677210669f1934089de565af4f8e9"
+  license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+
+  depends_on "cmake" => [:build, :test]
+  depends_on "ninja" => :build
+
+  depends_on "clang"
+  depends_on "qt-base"
+
+  def install
+    clang_libs = %w[
+      clangHandleCXX
+      clangBasic
+      clangLex
+      clangFrontend
+      clangTooling
+      clangSerialization
+      clangAST
+      LLVMSupport
+    ].join ";"
+    inreplace buildpath/"cmake/FindWrapLibClang.cmake",
+      'set(__qt_clang_genex "$<IF:${__qt_clang_genex_condition},clang-cpp;LLVM,clangHandleCXX>")',
+      "set(__qt_clang_genex \"${__qt_clang_genex};#{clang_libs}\")"
+
+    args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+      -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -DCMAKE_STAGING_PREFIX=#{prefix}
+    ]
+
+    system "cmake", "-G", "Ninja", ".", *args
+    system "ninja"
+    system "ninja", "install"
+
+    # Some config scripts will only find Qt in a "Frameworks" folder
+    frameworks.install_symlink Dir["#{lib}/*.framework"]
+
+    Pathname.glob("#{lib}/*.framework/Headers") do |path|
+      include.install_symlink path => path.parent.basename(".framework")
+    end
+
+    libexec.mkpath
+    Pathname.glob("#{bin}/*.app") do |app|
+      mv app, libexec
+      bin.write_exec_script "#{libexec/app.stem}.app/Contents/MacOS/#{app.stem}"
+    end
+  end
+
+  test do
+    # test `qtpaths`
+    assert_equal HOMEBREW_PREFIX.to_s, `qtpaths --install-prefix`.strip
+
+    # test `qtdoc`
+    (testpath/"test.qdocconf").write <<~EOS
+      project = test
+      outputdir   = html
+      headerdirs  = .
+      sourcedirs  = .
+      exampledirs = .
+      imagedirs   = .
+    EOS
+    system bin/"qdoc", testpath/"test.qdocconf"
+    assert_predicate testpath/"html/test.index", :exist?
+  end
+end
