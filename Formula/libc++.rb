@@ -48,6 +48,24 @@ class Libcxx < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"main.cpp").write <<~EOS
+      #include <iostream>
+      #include <vector>
+      int main() {
+        std::vector<int> vec = {1, 2, 3};
+        for(const auto &i : vec) {
+          std::cout << vec[0] << std::endl;
+        }
+        return 0;
+      }
+    EOS
+    args = %W[
+      -std=c++17
+      -nostdlibinc
+      -I#{include}/c++/v1
+      -L#{lib}
+    ]
+    system ENV.cxx, "main.cpp", *args
+    assert_match "#{opt_lib}/libc++.1.dylib", shell_output("otool -L a.out")
   end
 end
