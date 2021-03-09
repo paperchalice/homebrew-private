@@ -4,7 +4,7 @@ class Clang < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang-11.1.0.src.tar.xz"
   sha256 "0a8288f065d1f57cb6d96da4d2965cbea32edc572aa972e466e954d17148558b"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  revision 2
+  revision 3
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -54,6 +54,8 @@ class Clang < Formula
       -DCLANG_DEFAULT_UNWINDLIB=libunwind
       -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
       -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
+      -DCLANG_LINK_CLANG_DYLIB=OFF
+
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
       -DENABLE_EXPERIMENTAL_NEW_PASS_MANAGER=ON
 
