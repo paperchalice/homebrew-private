@@ -5,6 +5,11 @@ class QtImageformats < Formula
   sha256 "b0379ba6bbefbc48ed3ef8a1d8812531bd671362f74e0cffa6adf67bb1139206"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-imageformats-6.0.2"
+    sha256 cellar: :any, big_sur: "dc4268d9115344bd3996b39600f62f5776e4e95ef50534975641de9a2887ec1f"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
