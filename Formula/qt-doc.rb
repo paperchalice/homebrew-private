@@ -5,6 +5,11 @@ class QtDoc < Formula
   sha256 "476108d92506d93d5df227f275d653abba57b3b1694afbf2965e0c74e8c0a5a8"
   license "GFDL-1.3-only"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.0.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "bcc91de45fa162c44c0039113add8ac9ae584241778e5a8dac8648f630d21d4c"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "qt-tools" => :build
