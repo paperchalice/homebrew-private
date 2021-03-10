@@ -11,6 +11,11 @@ class Mlir < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-11.1.0"
+    sha256 cellar: :any, big_sur: "dffee6f243e14166849563ce14075e2bb13a307c333d7aad1029a49d8973ba4c"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
