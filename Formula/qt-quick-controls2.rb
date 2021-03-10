@@ -5,6 +5,11 @@ class QtQuickControls2 < Formula
   sha256 "aaed15e55d828e9b0fd3845e98e551402361b9c05f5643fab6cc6f6262024dca"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-controls2-6.0.2"
+    sha256 cellar: :any, big_sur: "4f79bd8cff55450a96e565806b8c45fbb9d3668629872c0a482df6649af39a3d"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
