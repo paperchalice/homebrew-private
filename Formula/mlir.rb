@@ -61,6 +61,72 @@ class Mlir < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION #{Formula["cmake"].version})
+      project(standalone-dialect LANGUAGES CXX C)
+      
+      set(CMAKE_BUILD_WITH_INSTALL_NAME_DIR ON)
+      
+      set(CMAKE_CXX_STANDARD 14 CACHE STRING "C++ standard to conform to")
+      
+      find_package(MLIR REQUIRED CONFIG)
+      
+      message(STATUS "Using MLIRConfig.cmake in: ${MLIR_DIR}")
+      message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
+      
+      set(LLVM_RUNTIME_OUTPUT_INTDIR ${CMAKE_BINARY_DIR}/bin)
+      set(LLVM_LIBRARY_OUTPUT_INTDIR ${CMAKE_BINARY_DIR}/lib)
+      set(MLIR_BINARY_DIR ${CMAKE_BINARY_DIR})
+      
+      list(APPEND CMAKE_MODULE_PATH "${MLIR_CMAKE_DIR}")
+      list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
+      include(TableGen)
+      include(AddLLVM)
+      include(AddMLIR)
+      include(HandleLLVMOptions)
+      
+      include_directories(${LLVM_INCLUDE_DIRS})
+      include_directories(${MLIR_INCLUDE_DIRS})
+      link_directories(${LLVM_BUILD_LIBRARY_DIR})
+      add_definitions(${LLVM_DEFINITIONS})
+
+      set(LLVM_LINK_COMPONENTS
+        Support
+      )
+
+      get_property(dialect_libs GLOBAL PROPERTY MLIR_DIALECT_LIBS)
+      get_property(translation_libs GLOBAL PROPERTY MLIR_TRANSLATION_LIBS)
+
+      add_llvm_executable(standalone-translate
+        standalone-translate.cpp
+        )
+      llvm_update_compile_flags(standalone-translate)
+      target_link_libraries(standalone-translate
+        PRIVATE
+        ${dialect_libs}
+        ${translation_libs}
+        MLIRIR
+        MLIRParser
+        MLIRPass
+        MLIRSPIRV
+        MLIRTranslation
+        MLIRSupport
+        )
+    EOS
+
+    (testpath/"standalone-translate.cpp").write <<~EOS
+      #include "mlir/InitAllTranslations.h"
+      #include "mlir/Support/LogicalResult.h"
+      #include "mlir/Translation.h"
+      
+      int main(int argc, char **argv) {
+        mlir::registerAllTranslations();
+        return 0;
+      }
+    EOS
+
+    system "cmake", "."
+    system "make"
+    system "./bin/standalone-translate"
   end
 end
