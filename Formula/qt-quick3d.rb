@@ -5,6 +5,11 @@ class QtQuick3d < Formula
   sha256 "72a8c4fe8d22dcbd6309935ee4365f998e3e8cc2c44e5537068f99be1214e907"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick3d-6.0.2"
+    sha256 cellar: :any, big_sur: "a1f7eae1187028b5ef6989a224d1d93f86d64431bbd5d4c95cb91cc872d0d27a"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
