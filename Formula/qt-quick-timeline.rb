@@ -5,6 +5,11 @@ class QtQuickTimeline < Formula
   sha256 "7a2c01567d95ba1048ad44edfae9322bbef47fc268e92c50c0619078056d4df1"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-timeline-6.0.2"
+    sha256 cellar: :any, big_sur: "eaea5bbfd8328f8b55ce64cf97413996fc9a98c516076bc7e2118c6593523432"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
