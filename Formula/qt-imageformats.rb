@@ -73,7 +73,7 @@ class QtImageformats < Formula
       }
     EOS
 
-    # system "cmake", "."
+    system "cmake", "."
     # system "make"
     # system "./test"
 
