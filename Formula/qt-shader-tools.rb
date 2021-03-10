@@ -5,6 +5,11 @@ class QtShaderTools < Formula
   sha256 "fbc824cbe900a5dbae13b7534213c9eac6666aaa03cb203ef243c78aeb6b8eeb"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.0.2"
+    sha256 cellar: :any, big_sur: "e75da80d2d56f871aa2da0b10ba0a93d0ca48ce224f04582b181d2983fad3ddf"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
