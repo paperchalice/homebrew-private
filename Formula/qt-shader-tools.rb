@@ -55,7 +55,7 @@ class QtShaderTools < Formula
       }
     EOS
 
-    # system bin/"qsb", "-o", "./shader.frag.qsb", "./shader.frag"
-    # assert_predicate "./shader.frag.qsb", :exist?
+    system bin/"qsb", "-o", "shader.frag.qsb", "shader.frag"
+    assert_predicate testpath/"shader.frag.qsb", :exist?
   end
 end
