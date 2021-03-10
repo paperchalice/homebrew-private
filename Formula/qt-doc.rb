@@ -4,6 +4,12 @@ class QtDoc < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.0/submodules/qtdoc-everywhere-src-6.0.0.tar.xz"
   sha256 "476108d92506d93d5df227f275d653abba57b3b1694afbf2965e0c74e8c0a5a8"
   license "GFDL-1.3-only"
+  head "https://code.qt.io/qt/qtdoc.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.0.0"

@@ -4,6 +4,12 @@ class QtShaderTools < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtshadertools-everywhere-src-6.0.2.tar.xz"
   sha256 "fbc824cbe900a5dbae13b7534213c9eac6666aaa03cb203ef243c78aeb6b8eeb"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.0.2"

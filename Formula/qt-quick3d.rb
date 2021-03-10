@@ -4,6 +4,12 @@ class QtQuick3d < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtquick3d-everywhere-src-6.0.2.tar.xz"
   sha256 "72a8c4fe8d22dcbd6309935ee4365f998e3e8cc2c44e5537068f99be1214e907"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  head "https://code.qt.io/qt/qtquick3d.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick3d-6.0.2"

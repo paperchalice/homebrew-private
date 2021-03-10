@@ -4,6 +4,12 @@ class QtTranslations < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qttranslations-everywhere-src-6.0.2.tar.xz"
   sha256 "6dcdcb8f03f4ca360618dd7422fb87c48b91a26b9e5e5e6f9917c047dbb8ad14"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  head "https://code.qt.io/qt/qttranslations.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.0.2"

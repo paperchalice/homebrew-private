@@ -4,6 +4,12 @@ class QtQuickTimeline < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtquicktimeline-everywhere-src-6.0.2.tar.xz"
   sha256 "7a2c01567d95ba1048ad44edfae9322bbef47fc268e92c50c0619078056d4df1"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  head "https://code.qt.io/qt/qtquicktimeline.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-timeline-6.0.2"

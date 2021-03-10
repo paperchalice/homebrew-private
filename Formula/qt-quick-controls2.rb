@@ -4,6 +4,12 @@ class QtQuickControls2 < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtquickcontrols2-everywhere-src-6.0.2.tar.xz"
   sha256 "aaed15e55d828e9b0fd3845e98e551402361b9c05f5643fab6cc6f6262024dca"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  head "https://code.qt.io/qt/qtquickcontrols2.git", branch: "dev"
+
+  livecheck do
+    url :head
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-controls2-6.0.2"
