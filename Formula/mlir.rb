@@ -16,7 +16,7 @@ class Mlir < Formula
     sha256 cellar: :any, big_sur: "dffee6f243e14166849563ce14075e2bb13a307c333d7aad1029a49d8973ba4c"
   end
 
-  depends_on "cmake" => :build
+  depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
   depends_on "llvm-core"
