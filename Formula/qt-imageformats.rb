@@ -68,23 +68,23 @@ class QtImageformats < Formula
       int main(int argc, char *argv[])
       {
         const auto &list = QImageReader::supportedImageFormats();
+        qDebug() << list;
         for(const char* fmt:{"bmp", "cur", "gif", "heic", "heif",
           "icns", "ico", "jp2", "jpeg", "jpg", "pbm", "pgm", "png",
-          "ppm", "svg", "svgz", "tga", "tif", "tiff", "wbmp", "webp",
-          "xbm", "xpm"}) {
+          "ppm", "tga", "tif", "tiff", "wbmp", "webp", "xbm", "xpm"}) {
           Q_ASSERT(list.contains(fmt));
         }
         return 0;
       }
     EOS
 
-    system "cmake", "."
-    # system "make"
-    # system "./test"
+    system "cmake", ".", "-DCMAKE_BUILD_TYPE=Debug"
+    system "make"
+    system "./test"
 
     ENV.delete "CPATH"
-    # system "qmake", "./test.pro"
-    # system "make"
-    # system "./test"
+    system "qmake", "./test.pro"
+    system "make"
+    system "./test"
   end
 end
