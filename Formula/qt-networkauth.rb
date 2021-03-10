@@ -5,6 +5,11 @@ class QtNetworkauth < Formula
   sha256 "05b66ef42f3e6bf4cf5f36744db8483f9a57dbc7bd9ecc9ba81e7ca99b0a37e6"
   license "GPL-3.0-only"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-networkauth-6.0.2"
+    sha256 cellar: :any, big_sur: "22f3ea6a2f52a463398846014cd6c020144e1c93f745aeae2aa0a458b4b83004"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
