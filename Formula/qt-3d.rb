@@ -27,6 +27,12 @@ class Qt3d < Formula
     system "cmake", "-G", "Ninja", ".", *args
     system "ninja"
     system "ninja", "install"
+
+    frameworks.install_symlink Dir["#{lib}/*.framework"]
+
+    Pathname.glob("#{lib}/*.framework/Headers") do |path|
+      include.install_symlink path => path.parent.basename(".framework")
+    end
   end
 
   test do
