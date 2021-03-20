@@ -54,12 +54,10 @@ class QtIos < Formula
       -examplesdir share/qt/examples
       -testsdir share/qt/tests
 
-      -libproxy
       -no-feature-relocatable
-      -system-sqlite
     ]
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
+    cmake_args = std_cmake_args + %w[
       -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY
 
       -DINSTALL_MKSPECSDIR=share/qt/mkspecs
