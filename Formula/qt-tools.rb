@@ -4,6 +4,7 @@ class QtTools < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qttools-everywhere-src-6.0.2.tar.xz"
   sha256 "465c3edf370db4df8e41a72ae35a6bcb2d7677210669f1934089de565af4f8e9"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  revision 1
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
   livecheck do
@@ -23,16 +24,18 @@ class QtTools < Formula
   depends_on "qt-base"
 
   def install
+    inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
+      'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
+
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      CMAKE_EXE_LINKER_FLAGS=-undefined dynamic_lookup
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
 
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", ".", "--parallel"
+    system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
