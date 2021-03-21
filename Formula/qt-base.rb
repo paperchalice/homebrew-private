@@ -44,8 +44,6 @@ class QtBase < Formula
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
-      -DICU_ROOT=#{Formula["icu4c"].opt_prefix}
-
       -DCMAKE_FIND_FRAMEWORK=FIRST
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
