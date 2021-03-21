@@ -23,21 +23,8 @@ class QtTools < Formula
   depends_on "qt-base"
 
   def install
-    clang_libs = %w[
-      clangHandleCXX
-      clangBasic
-      clangLex
-      clangFrontend
-      clangTooling
-      clangSerialization
-      clangAST
-      LLVMSupport
-    ].join ";"
-    inreplace buildpath/"cmake/FindWrapLibClang.cmake",
-      'set(__qt_clang_genex "$<IF:${__qt_clang_genex_condition},clang-cpp;LLVM,clangHandleCXX>")',
-      "set(__qt_clang_genex \"${__qt_clang_genex};#{clang_libs}\")"
-
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      CMAKE_EXE_LINKER_FLAGS=-undefined dynamic_lookup
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_STAGING_PREFIX=#{prefix}
