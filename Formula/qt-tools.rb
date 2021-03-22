@@ -18,14 +18,13 @@ class QtTools < Formula
   end
 
   depends_on "cmake" => [:build, :test]
+  depends_on "llvm" => :build
   depends_on "ninja" => :build
 
-  depends_on "clang"
   depends_on "qt-base"
 
   def install
-    inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
-      'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
+    inreplace "cmake/FindWrapLibClang.cmake", "${__qt_clang_genex_condition}", "0"
 
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
