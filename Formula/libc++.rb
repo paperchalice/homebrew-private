@@ -20,7 +20,7 @@ class Libcxx < Formula
   depends_on "ninja" => :build
 
   depends_on "compiler-rt"
-  depends_on "libunwind"
+  depends_on "paperchalice/private/libunwind"
 
   def install
     cd "libcxx" do
