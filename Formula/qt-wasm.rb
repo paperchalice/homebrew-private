@@ -13,6 +13,8 @@ class QtWasm < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  keg_only "sdk"
+
   depends_on "cmake" => [:build, :test]
   depends_on "emscripten" => :build
   depends_on "ninja" => :build
