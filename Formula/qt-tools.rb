@@ -18,9 +18,9 @@ class QtTools < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "llvm" => :build
   depends_on "ninja" => :build
 
+  depends_on "llvm"
   depends_on "qt-base"
 
   def install
@@ -50,13 +50,13 @@ class QtTools < Formula
       bin.write_exec_script "#{libexec/app.stem}.app/Contents/MacOS/#{app.stem}"
     end
 
-    llvm = Formula["llvm"]
-    llvm_prefix = llvm.prefix llvm.version
-    llvm_prefix += "_#{llvm.revision}" if llvm.revision.positive?
-    %w[qdoc lupdate].each do |file|
-      MachO::Tools.change_install_name(bin/file, "#{llvm_prefix}/lib/libclang.dylib",
-      "#{MacOS::CLT::PKG_PATH}/usr/lib/libclang.dylib")
-    end
+    # llvm = Formula["llvm"]
+    # llvm_prefix = llvm.prefix llvm.version
+    # llvm_prefix += "_#{llvm.revision}" if llvm.revision.positive?
+    # %w[qdoc lupdate].each do |file|
+    #   MachO::Tools.change_install_name(bin/file, "#{llvm_prefix}/lib/libclang.dylib",
+    #   "#{MacOS::CLT::PKG_PATH}/usr/lib/libclang.dylib")
+    # end
   end
 
   test do
