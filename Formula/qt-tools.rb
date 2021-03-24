@@ -52,10 +52,11 @@ class QtTools < Formula
 
     llvm = Formula["llvm"]
     llvm_prefix = llvm.prefix llvm.version
-    if llvm.revision > 0
-      llvm_prefix = "#{llvm_prefix}_#{llvm.revision}"
+    llvm_prefix += "_#{llvm.revision}" if llvm.revision.positive?
+    %w[qdoc lupdate].each do |file|
+      MachO::Tools.change_install_name(bin/file, "#{llvm_prefix}/lib/libclang.dylib",
+      "#{MacOS::CLT::PKG_PATH}/usr/lib/libclang.dylib")
     end
-    MachO::Tools.change_install_name("#{llvm_prefix}/lib/libclang.dylib", "#{MacOS::CLT::PKG_PATH}/usr/lib/libclang.dylib")
   end
 
   test do
