@@ -18,14 +18,13 @@ class QtTools < Formula
   end
 
   depends_on "cmake" => [:build, :test]
+  depends_on "llvm" => :build
   depends_on "ninja" => :build
 
-  depends_on "clang"
   depends_on "qt-base"
 
   def install
-    inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
-      'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
+    inreplace "cmake/FindWrapLibClang.cmake", "${__qt_clang_genex_condition}", "0"
 
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
@@ -50,6 +49,13 @@ class QtTools < Formula
       mv app, libexec
       bin.write_exec_script "#{libexec/app.stem}.app/Contents/MacOS/#{app.stem}"
     end
+
+    llvm = Formula["llvm"]
+    llvm_prefix = llvm.prefix llvm.version
+    if llvm.revision > 0
+      llvm_prefix = "#{llvm_prefix}_#{llvm.revision}"
+    end
+    MachO::Tools.change_install_name("#{llvm_prefix}/lib/libclang.dylib", "#{MacOS::CLT::PKG_PATH}/usr/lib/libclang.dylib")
   end
 
   test do
