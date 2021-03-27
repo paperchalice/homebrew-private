@@ -32,6 +32,7 @@ class QtBase < Formula
   depends_on "libpng"
   depends_on "libproxy"
   depends_on "pcre2"
+  depends_on "sqlite"
   depends_on "zstd"
 
   uses_from_macos "cups"
