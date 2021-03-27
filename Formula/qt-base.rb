@@ -38,7 +38,6 @@ class QtBase < Formula
   uses_from_macos "cups"
   uses_from_macos "krb5"
   uses_from_macos "perl"
-  uses_from_macos "sqlite"
   uses_from_macos "zlib"
 
   def install
