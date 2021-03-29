@@ -5,6 +5,11 @@ class QtIos < Formula
   sha256 "67a076640647783b95a907d2231e4f34cec69be5ed338c1c1b33124cadf10bdf"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.2"
+    sha256 big_sur: "46ccc8e06e389ca02457a752b88a77bcfa8b50568fd3867cb53530ddd7aa69ec"
+  end
+
   keg_only "cross tool"
 
   depends_on "cmake" => [:build, :test]
