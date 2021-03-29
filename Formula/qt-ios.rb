@@ -36,7 +36,6 @@ class QtIos < Formula
       -DINSTALL_EXAMPLESDIR=share/qt/examples
     ]
 
-    # system "cmake", "-G", "Ninja", ".", *cmake_args
     system "./configure", "-xplatform", "macx-ios-clang", "--",
       *cmake_args
     system "ninja"
