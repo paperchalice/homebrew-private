@@ -31,8 +31,6 @@ class QtIos < Formula
 
   def install
     ENV.prepend "PATH", "/usr/bin"
-    # TODO: dev is "qmake/qmakelibraryinfo.cpp"
-    inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_OSX_SYSROOT"]||s["CMAKE_FIND_FRAMEWORK"] } + %w[
       -DCMAKE_FIND_FRAMEWORK=FIRST
