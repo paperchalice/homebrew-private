@@ -1,5 +1,5 @@
 class QtIos < Formula
-  desc "qt for iOS"
+  desc "Qt for iOS"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtbase-everywhere-src-6.0.2.tar.xz"
   sha256 "991a0e4e123104e76563067fcfa58602050c03aba8c8bb0c6198347c707817f1"
