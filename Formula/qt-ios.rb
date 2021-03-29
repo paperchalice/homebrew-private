@@ -19,7 +19,7 @@ class QtIos < Formula
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_FIND_FRAMEWORK"] } + %W[
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_OSX_SYSROOT"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
       -DCMAKE_FIND_FRAMEWORK=FIRST
       -DCMAKE_SYSTEM_NAME=iOS
       -DQT_HOST_PATH=#{Formula["qt"].prefix}
@@ -36,7 +36,9 @@ class QtIos < Formula
       -DINSTALL_EXAMPLESDIR=share/qt/examples
     ]
 
-    system "cmake", "-G", "Ninja", ".", *cmake_args
+    # system "cmake", "-G", "Ninja", ".", *cmake_args
+    system "./configure", "-xplatform", "macx-ios-clang", "--",
+      *cmake_args
     system "ninja"
     system "ninja", "install"
 
