@@ -10,9 +10,9 @@ class QtIos < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
-  depends_on :xcode
-
+  
   depends_on "qt"
+  depends_on :xcode
 
   def install
     ENV.prepend "PATH", "/usr/bin"
