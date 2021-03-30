@@ -1,4 +1,4 @@
-class QtWatchOS < Formula
+class QtWatchos < Formula
   desc "Qt for watchOS"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.0/6.0.2/single/qt-everywhere-src-6.0.2.tar.xz"
