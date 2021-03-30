@@ -10,14 +10,17 @@ class QtIos < Formula
     sha256 big_sur: "46ccc8e06e389ca02457a752b88a77bcfa8b50568fd3867cb53530ddd7aa69ec"
   end
 
-  keg_only "cross tool"
+  keg_only "this is Qt SDK for iOS"
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
-  depends_on "qt" => :build
 
+  depends_on "python@3.9"
+  depends_on "qt"
   depends_on :xcode
+
+  uses_from_macos "perl"
 
   resource "qtimageformats" do
     url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.2/qtimageformats-everywhere-src-6.0.2.tar.xz"
@@ -39,15 +42,6 @@ class QtIos < Formula
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_OSX_SYSROOT"]||s["CMAKE_FIND_FRAMEWORK"] } + %w[
       -DCMAKE_FIND_FRAMEWORK=FIRST
-
-      -DINSTALL_TESTSDIR=share/qt/tests
-      -DINSTALL_QMLDIR=share/qt/qml
-      -DINSTALL_PLUGINSDIR=share/qt/plugins
-      -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
-      -DINSTALL_DOCDIR=share/doc/qt
-      -DINSTALL_MKSPECSDIR=share/qt/mkspecs
-      -DINSTALL_TRANSLATIONSDIR=share/qt/translations
-      -DINSTALL_EXAMPLESDIR=share/qt/examples
     ]
 
     system "./configure", "-xplatform", "macx-ios-clang",
@@ -56,7 +50,9 @@ class QtIos < Formula
     system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
-    prefix.install bin/"target_qt.conf"
+    libexec.install bin/"target_qt.conf"
+    libexec.install bin/"qmake"
+    bin.write_exec_script libexec/"qmake"
   end
 
   test do

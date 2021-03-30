@@ -90,6 +90,12 @@ class QtBase < Formula
     end
 
     prefix.install prefix/"opt/qt-base/libexec"
+    libexec.install bin/"qmake"
+    bin.write_exec_script libexec/"qmake"
+    (libexec/"qt#{version.major}.conf").write <<~EOS
+      [Paths]
+      Prefix = #{HOMEBREW_PREFIX}
+    EOS
     rm_rf prefix/"opt"
   end
 
