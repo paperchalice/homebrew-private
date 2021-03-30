@@ -57,6 +57,28 @@ class QtIos < Formula
   end
 
   test do
-    system "echo"
+    ENV.delete "CPATH"
+    (testpath/"test.pro").write <<~EOS
+      QT       += core
+      TARGET = test
+      CONFIG   += console
+      CONFIG   -= app_bundle
+      TEMPLATE = app
+      SOURCES += main.cpp
+    EOS
+
+    (testpath/"main.cpp").write <<~EOS
+      #include <QCoreApplication>
+
+      int main(int argc, char *argv[])
+      {
+        QCoreApplication a(argc, argv);
+        return 0;
+      }
+    EOS
+
+    system bin/"qmake", "test.pro"
+    system 'xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+    assert_predicate testpath/"Release-iphoneos/test.app", :exist?
   end
 end
