@@ -77,7 +77,8 @@ class QtTvos < Formula
     EOS
 
     system bin/"qmake", "test.pro"
-    system 'xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+    cmd = 'xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
+    system cmd
     assert_predicate testpath/"Release-iphoneos/test.app", :exist?
   end
 end
