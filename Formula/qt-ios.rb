@@ -7,8 +7,8 @@ class QtIos < Formula
   revision 1
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.2"
-    sha256 big_sur: "46ccc8e06e389ca02457a752b88a77bcfa8b50568fd3867cb53530ddd7aa69ec"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.2_1"
+    sha256 big_sur: "60f23617add7f15215016a0053a5e9524869df69f0635ce5356ac4d4e3dbe84f"
   end
 
   keg_only "this is Qt SDK for iOS"
