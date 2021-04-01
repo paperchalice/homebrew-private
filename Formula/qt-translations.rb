@@ -12,8 +12,8 @@ class QtTranslations < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.0.2"
-    sha256 cellar: :any_skip_relocation, big_sur: "7ce71f4191e3389b71e86a53802e645bb8f31d42e592e1d145d2c349fab09c1e"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.0.3"
+    sha256 cellar: :any_skip_relocation, big_sur: "92c187d5ed631e6e89f5d5e1aaab67ca65cbaa08d9ed1c134f3ea80d25db04df"
   end
 
   depends_on "cmake" => :build
