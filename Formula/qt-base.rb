@@ -1,10 +1,9 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qtbase-everywhere-src-6.0.2.tar.xz"
-  sha256 "991a0e4e123104e76563067fcfa58602050c03aba8c8bb0c6198347c707817f1"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qtbase-everywhere-src-6.0.3.tar.xz"
+  sha256 "1a45b61c2a349964625c50e3ea40cbb309e269762dd0786397e0e18e7e10d394"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
-  revision 1
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
   livecheck do
@@ -20,7 +19,7 @@ class QtBase < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
-  depends_on xcode: :build # for xcodebuild to get version
+  depends_on xcode: [:build, :test] # for xcodebuild to get version
 
   depends_on "dbus"
   depends_on "double-conversion"
@@ -32,25 +31,22 @@ class QtBase < Formula
   depends_on "libpng"
   depends_on "libproxy"
   depends_on "pcre2"
-  depends_on "sqlite"
   depends_on "zstd"
 
   uses_from_macos "cups"
   uses_from_macos "krb5"
   uses_from_macos "perl"
+  uses_from_macos "sqlite"
   uses_from_macos "zlib"
 
   def install
-    # TODO: dev is "qmake/qmakelibraryinfo.cpp"
-    inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
-
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
       -DCMAKE_FIND_FRAMEWORK=FIRST
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
 
-      -DINSTALL_LIBEXECDIR=opt/qt-base/libexec
+      -DINSTALL_LIBEXECDIR=share/qt/libexec
       -DINSTALL_TESTSDIR=share/qt/tests
       -DINSTALL_QMLDIR=share/qt/qml
       -DINSTALL_PLUGINSDIR=share/qt/plugins
@@ -58,7 +54,6 @@ class QtBase < Formula
       -DINSTALL_DOCDIR=share/doc/qt
       -DINSTALL_MKSPECSDIR=share/qt/mkspecs
       -DINSTALL_TRANSLATIONSDIR=share/qt/translations
-      -DINSTALL_SYSCONFDIR=#{etc}
       -DINSTALL_EXAMPLESDIR=share/qt/examples
 
       -DFEATURE_pkg_config=ON
@@ -72,8 +67,8 @@ class QtBase < Formula
     ]
 
     system "cmake", "-G", "Ninja", ".", *cmake_args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
 
@@ -89,19 +84,23 @@ class QtBase < Formula
       include.install_symlink path => path.parent.basename(".framework")
     end
 
-    prefix.install prefix/"opt/qt-base/libexec"
     libexec.install bin/"qmake"
-    bin.write_exec_script libexec/"qmake"
     (libexec/"qt#{version.major}.conf").write <<~EOS
       [Paths]
       Prefix = #{HOMEBREW_PREFIX}
+      Plugins = share/qt/plugins
+      Qml2Imports = share/qt/qml
+      Translations = share/qt/translations
+      Imports = share/qt/imports
+      Documentation = share/doc
+      Examples = share/qt/examples
+      LibraryExecutables = share/qt/libexec
+      Tests = share/qt/tests
     EOS
-    rm_rf prefix/"opt"
+    bin.install_symlink libexec/"qmake"
   end
 
   test do
-    assert_equal HOMEBREW_PREFIX.to_s, shell_output("qmake -query QT_INSTALL_PREFIX").strip
-
     (testpath/"CMakeLists.txt").write <<~EOS
       cmake_minimum_required(VERSION #{Formula["cmake"].version})
 
@@ -145,11 +144,10 @@ class QtBase < Formula
       }
     EOS
 
-    system "cmake", testpath
-    system "make"
+    system "cmake", "."
+    system "cmake", "--build", "."
     assert_equal "Hello World!", shell_output("#{testpath}/test 2>&1").strip
 
-    ENV.delete "CPATH"
     system bin/"qmake", testpath/"test.pro"
     system "make"
     assert_equal "Hello World!", shell_output("#{testpath}/test 2>&1").strip
