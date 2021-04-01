@@ -105,7 +105,7 @@ class Qt < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    with_env("QT_PLUGIN_PATH" => share/"qt/plugins") do
+    with_env("QT_PLUGIN_PATH" => pkgshare/"plugins") do
       system "cmake", "--build", ".", "-t", "docs"
       system "cmake", "--build", ".", "-t", "install_docs"
     end
