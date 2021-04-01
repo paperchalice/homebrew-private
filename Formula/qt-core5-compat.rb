@@ -12,8 +12,8 @@ class QtCore5Compat < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-core5-compat-6.0.2"
-    sha256 cellar: :any, big_sur: "60c502c4df1fb3d20a866fefa77fd360d4b1e9e71763c4ed409151f20fbf8bc4"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-core5-compat-6.0.3"
+    sha256 cellar: :any, big_sur: "7911835b07720a3e0145f78800d744cccbcfe791c9599f9f7ee08947bd9d5c94"
   end
 
   depends_on "cmake" => [:build, :test]
