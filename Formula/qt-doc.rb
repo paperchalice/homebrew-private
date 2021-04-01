@@ -65,8 +65,6 @@ class QtDoc < Formula
 
       -DINSTALL_MKSPECSDIR=share/qt/mkspecs
       -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
-
-      -DFEATURE_pkg_config=ON
     ]
 
     system "./configure", *config_args, "--", *cmake_args
