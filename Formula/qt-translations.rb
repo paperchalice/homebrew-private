@@ -27,8 +27,8 @@ class QtTranslations < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do

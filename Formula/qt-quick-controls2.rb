@@ -18,6 +18,7 @@ class QtQuickControls2 < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on xcode: :test
 
   depends_on "qt-declarative"
 
@@ -28,8 +29,8 @@ class QtQuickControls2 < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
@@ -87,11 +88,9 @@ class QtQuickControls2 < Formula
     EOS
 
     system "cmake", "."
-    system "make"
+    system "cmake", "--build", "."
     system "./test"
 
-    # Work around "error: no member named 'signbit' in the global namespace"
-    ENV.delete "CPATH"
     system "qmake", "./test.pro"
     system "make"
     system "./test"

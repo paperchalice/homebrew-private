@@ -18,6 +18,7 @@ class Qt3d < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on xcode: :test
 
   depends_on "qt-quick3d"
 
@@ -31,8 +32,8 @@ class Qt3d < Formula
       -DTEST_assimp=ON
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     frameworks.install_symlink Dir["#{lib}/*.framework"]
 
@@ -86,9 +87,8 @@ class Qt3d < Formula
     EOS
 
     system "cmake", "."
-    system "make"
+    system "cmake", "--build", "."
 
-    ENV.delete "CPATH"
     system "qmake", "./test.pro"
     system "make"
   end

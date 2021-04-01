@@ -35,7 +35,7 @@ class QtTools < Formula
     ]
 
     system "cmake", "-G", "Ninja", ".", *args
-    system "cmake", "--build", ".", "--parallel"
+    system "cmake", "--build", "."
     system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder

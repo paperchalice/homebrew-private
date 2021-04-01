@@ -18,6 +18,7 @@ class QtNetworkauth < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on xcode: :test
 
   depends_on "qt-base"
 
@@ -28,8 +29,8 @@ class QtNetworkauth < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
@@ -87,9 +88,8 @@ class QtNetworkauth < Formula
     EOS
 
     system "cmake", "."
-    system "make"
+    system "cmake", "--build", "."
 
-    ENV.delete "CPATH"
     system "qmake", "test.pro"
     system "make"
   end

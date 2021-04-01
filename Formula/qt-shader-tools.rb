@@ -28,8 +28,8 @@ class QtShaderTools < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]

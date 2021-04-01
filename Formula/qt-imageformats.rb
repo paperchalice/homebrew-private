@@ -18,6 +18,7 @@ class QtImageformats < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on xcode: :test
 
   depends_on "jasper"
   depends_on "libtiff"
@@ -31,8 +32,8 @@ class QtImageformats < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do
@@ -85,10 +86,9 @@ class QtImageformats < Formula
     EOS
 
     system "cmake", ".", "-DCMAKE_BUILD_TYPE=Debug"
-    system "make"
+    system "cmake", "--build", "."
     system "./test"
 
-    ENV.delete "CPATH"
     system "qmake", "./test.pro"
     system "make"
     system "./test"

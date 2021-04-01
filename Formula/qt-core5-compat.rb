@@ -18,6 +18,7 @@ class QtCore5Compat < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on xcode: :test
 
   depends_on "qt-base"
 
@@ -28,8 +29,8 @@ class QtCore5Compat < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
     system "cmake", "-G", "Ninja", ".", *args
-    system "ninja"
-    system "ninja", "install"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
@@ -91,8 +92,6 @@ class QtCore5Compat < Formula
     system "make"
     system "./test"
 
-    # Work around "error: no member named 'signbit' in the global namespace"
-    ENV.delete "CPATH"
     system "qmake", testpath/"test.pro"
     system "make"
     system "./test"
