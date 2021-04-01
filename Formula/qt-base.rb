@@ -12,8 +12,8 @@ class QtBase < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.0.2"
-    sha256 cellar: :any, big_sur: "7b23043643144cfbf479fc2ac209c7a4c6b79060326b99f4d11bbaabdafbd1a0"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.0.3"
+    sha256 cellar: :any, big_sur: "8bbdda71ddf58ed9d7007af6033f3c8985238bf48659c655e11dcff923e4c1e1"
   end
 
   depends_on "cmake" => [:build, :test]
