@@ -1,8 +1,8 @@
 class QtCore5Compat < Formula
   desc "Qt module contains unsupported Qt 5 APIs"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qt5compat-everywhere-src-6.0.2.tar.xz"
-  sha256 "863d86ea4641776af3757d231717fbdd996edb533d7e64560470d4589b398567"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qt5compat-everywhere-src-6.0.3.tar.xz"
+  sha256 "b0e32cd9f3ca9028f5882dc18dafacfd50d723efbc9c0570e85600f13293b90f"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qt5compat.git", branch: "dev"
 
