@@ -52,7 +52,6 @@ class QtDoc < Formula
       -examplesdir share/qt/examples
       -testsdir share/qt/tests
 
-      -libproxy
       -no-feature-relocatable
       -system-sqlite
     ]
@@ -68,8 +67,6 @@ class QtDoc < Formula
       -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
 
       -DFEATURE_pkg_config=ON
-      -DFEATURE_qt3d_system_assimp=ON
-      -DTEST_assimp=ON
     ]
 
     system "./configure", *config_args, "--", *cmake_args
