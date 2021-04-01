@@ -89,14 +89,15 @@ class QtBase < Formula
     (libexec/"qt#{version.major}.conf").write <<~EOS
       [Paths]
       Prefix = #{HOMEBREW_PREFIX}
+      Documentation = share/doc/qt
+      LibraryExecutables = share/qt/libexec
       Plugins = share/qt/plugins
+      Imports = share/qt/imports
       Qml2Imports = share/qt/qml
       Translations = share/qt/translations
-      Imports = share/qt/imports
-      Documentation = share/doc
       Examples = share/qt/examples
-      LibraryExecutables = share/qt/libexec
       Tests = share/qt/tests
+      Settings = /Library/Preferences/Qt
     EOS
   end
 
