@@ -31,7 +31,7 @@ class QtTools < Formula
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
       -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_MODULE_LINKER_FLAGS-L/usr/lib
+      -DCMAKE_MODULE_LINKER_FLAGS=-L/usr/lib
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_STAGING_PREFIX=#{prefix}
