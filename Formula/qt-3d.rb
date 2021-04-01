@@ -20,7 +20,8 @@ class Qt3d < Formula
   depends_on "ninja" => :build
   depends_on xcode: :test
 
-  depends_on "qt-quick3d"
+  depends_on "qt-declarative"
+  depends_on "qt-shader-tools"
 
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
