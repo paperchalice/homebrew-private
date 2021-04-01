@@ -111,9 +111,9 @@ class Qt < Formula
 
     system "./configure", *config_args, "--", *cmake_args
     system "cmake", "--build", "."
+    system "cmake", "--install", "."
     system "cmake", "--build", ".", "-t", "docs"
     system "cmake", "--build", ".", "-t", "install_docs"
-    system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
 
