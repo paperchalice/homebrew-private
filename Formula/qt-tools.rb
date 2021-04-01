@@ -1,8 +1,8 @@
 class QtTools < Formula
   desc "Qt utilities"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.2/submodules/qttools-everywhere-src-6.0.2.tar.xz"
-  sha256 "465c3edf370db4df8e41a72ae35a6bcb2d7677210669f1934089de565af4f8e9"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qttools-everywhere-src-6.0.3.tar.xz"
+  sha256 "632f12f767b4cdd6943c04b37cc718044bc5a5f811aabd7198fd66ff6c072b27"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   revision 1
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
@@ -22,6 +22,7 @@ class QtTools < Formula
 
   depends_on "clang"
   depends_on "qt-base"
+  depends_on "qt-declarative"
 
   def install
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
