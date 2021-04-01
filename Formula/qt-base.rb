@@ -85,7 +85,7 @@ class QtBase < Formula
     end
 
     libexec.install bin/"qmake"
-    bin.install_symlink libexec/"qmake"
+    bin.write_exec_script libexec/"qmake"
     (libexec/"qt#{version.major}.conf").write <<~EOS
       [Paths]
       Prefix = #{HOMEBREW_PREFIX}
