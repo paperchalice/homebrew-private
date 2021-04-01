@@ -40,6 +40,9 @@ class QtBase < Formula
   uses_from_macos "zlib"
 
   def install
+    # TODO: dev is "qmake/qmakelibraryinfo.cpp"
+    inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
+
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
       -DCMAKE_FIND_FRAMEWORK=FIRST
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
@@ -83,22 +86,6 @@ class QtBase < Formula
     Pathname.glob("#{lib}/*.framework/Headers") do |path|
       include.install_symlink path => path.parent.basename(".framework")
     end
-
-    libexec.install bin/"qmake"
-    bin.write_exec_script libexec/"qmake"
-    (libexec/"qt#{version.major}.conf").write <<~EOS
-      [Paths]
-      Prefix = #{HOMEBREW_PREFIX}
-      Documentation = share/doc/qt
-      LibraryExecutables = share/qt/libexec
-      Plugins = share/qt/plugins
-      Imports = share/qt/imports
-      Qml2Imports = share/qt/qml
-      Translations = share/qt/translations
-      Examples = share/qt/examples
-      Tests = share/qt/tests
-      Settings = /Library/Preferences/Qt
-    EOS
   end
 
   test do
