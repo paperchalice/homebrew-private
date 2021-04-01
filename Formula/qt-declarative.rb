@@ -21,6 +21,8 @@ class QtDeclarative < Formula
 
   depends_on "python"
   depends_on "qt-base"
+  depends_on "qt-shader-tools"
+  depends_on "qt-svg"
 
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
