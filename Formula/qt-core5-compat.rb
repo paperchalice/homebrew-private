@@ -88,8 +88,8 @@ class QtCore5Compat < Formula
       }
     EOS
 
-    system "cmake", testpath
-    system "make"
+    system "cmake", "."
+    system "cmake", "--build", "."
     system "./test"
 
     system "qmake", testpath/"test.pro"
