@@ -43,8 +43,7 @@ class QtBase < Formula
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
-      -DCMAKE_FIND_FRAMEWORK=FIRST
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
