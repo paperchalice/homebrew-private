@@ -38,39 +38,17 @@ class QtDoc < Formula
   def install
     resources.each { |addition| addition.stage buildpath/addition.name }
 
-    config_args = %W[
-      -release
-
-      -prefix #{HOMEBREW_PREFIX}
-      -extprefix #{prefix}
-
-      -libexecdir share/qt/libexec
-      -plugindir share/qt/plugins
-      -qmldir share/qt/qml
-      -docdir share/doc/qt
-      -translationdir share/qt/translations
-      -examplesdir share/qt/examples
-      -testsdir share/qt/tests
-
-      -no-feature-relocatable
-      -system-sqlite
-    ]
-
-    # TODO: remove `-DFEATURE_qt3d_system_assimp=ON`
-    # and `-DTEST_assimp=ON` when Qt 6.2 is released.
-    # See https://bugreports.qt.io/browse/QTBUG-91537
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -DCMAKE_FIND_FRAMEWORK=FIRST
-
-      -DINSTALL_MKSPECSDIR=share/qt/mkspecs
-      -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
+      -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
 
-    system "./configure", *config_args, "--", *cmake_args
-    system "cmake", "--build", ".", "-t", "docs"
-    system "cmake", "--build", ".", "-t", "install_docs"
-  end
+    cd "qtdoc" do
+      system "cmake", "-G", "Ninja", ".", *args
+      system "cmake", "--build", ".", "-t", "docs"
+      system "cmake", "--build", ".", "-t", "install_docs"
+    end
 
   test do
     assert_predicate share/"doc/qt", :exist?
