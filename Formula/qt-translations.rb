@@ -29,6 +29,10 @@ class QtTranslations < Formula
     system "cmake", "-G", "Ninja", ".", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
+
+    Pathname.glob(share/"qt/translations/*_zh_CN.qm") do |trans|
+      (share/"qt/translations").install_symlink trans => "#{trans.basename("_zh_CN.qm")}_zh_Hans_CN.qm"
+    end
   end
 
   test do
