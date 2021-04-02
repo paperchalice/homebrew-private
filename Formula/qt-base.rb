@@ -42,6 +42,7 @@ class QtBase < Formula
   def install
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
+    inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
