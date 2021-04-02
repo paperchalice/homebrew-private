@@ -4,7 +4,6 @@ class QtTools < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qttools-everywhere-src-6.0.3.tar.xz"
   sha256 "632f12f767b4cdd6943c04b37cc718044bc5a5f811aabd7198fd66ff6c072b27"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
-  revision 1
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
   livecheck do
@@ -13,7 +12,7 @@ class QtTools < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.0.3_1"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.0.3"
     sha256 cellar: :any, big_sur: "e8a5a659e69084ed48b472724b2ba44f66e33d3b00eb675feaa60c568764bdd0"
   end
 
