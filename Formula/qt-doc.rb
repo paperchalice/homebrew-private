@@ -49,6 +49,7 @@ class QtDoc < Formula
       system "cmake", "--build", ".", "-t", "docs"
       system "cmake", "--build", ".", "-t", "install_docs"
     end
+  end
 
   test do
     assert_predicate share/"doc/qt", :exist?
