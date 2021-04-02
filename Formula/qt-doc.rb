@@ -18,8 +18,7 @@ class QtDoc < Formula
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
-
-  depends_on "qt-tools"
+  depends_on "qt-tools" => :build
 
   resource "qtimageformats" do
     url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtimageformats-everywhere-src-6.0.3.tar.xz"
@@ -74,8 +73,10 @@ class QtDoc < Formula
   end
 
   def postinstall
-    Pathname.glob(share/"doc/qt/*.qch") do |qch|
-      system "Assistant", "-register", qch
+    if Formula["qt-tools"].linked?
+      Pathname.glob(share/"doc/qt/*.qch") do |qch|
+        system "Assistant", "-register", qch
+      end
     end
   end
 
