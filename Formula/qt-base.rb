@@ -16,7 +16,7 @@ class QtBase < Formula
     sha256 cellar: :any, big_sur: "8bbdda71ddf58ed9d7007af6033f3c8985238bf48659c655e11dcff923e4c1e1"
   end
 
-  depends_on "cmake" => [:build, :test]
+  depends_on "cmake" => [:build, :test, :recommended]
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
   depends_on xcode: [:build, :test] # for xcodebuild to get version
