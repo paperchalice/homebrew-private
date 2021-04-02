@@ -44,10 +44,11 @@ class QtBase < Formula
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || ||s["CMAKE_FIND_FRAMEWORK"] } + %W[
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
+      -DCMAKE_FIND_FRAMEWORK=FIRST
 
       -DINSTALL_LIBEXECDIR=share/qt/libexec
       -DINSTALL_TESTSDIR=share/qt/tests
