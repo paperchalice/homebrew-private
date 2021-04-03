@@ -1,10 +1,9 @@
 class QtIos < Formula
   desc "Qt for iOS"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.2/single/qt-everywhere-src-6.0.2.tar.xz"
-  sha256 "67a076640647783b95a907d2231e4f34cec69be5ed338c1c1b33124cadf10bdf"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/single/qt-everywhere-src-6.0.3.tar.xz"
+  sha256 "ca4a97439443dd0b476a47b284ba772c3b1b041a9eef733e26a789490993a0e3"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
-  revision 1
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.2_1"
@@ -16,25 +15,25 @@ class QtIos < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
+  depends_on "qt" => :build
 
-  depends_on "qt"
   depends_on :xcode
 
   uses_from_macos "perl"
 
   resource "qtimageformats" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.2/qtimageformats-everywhere-src-6.0.2.tar.xz"
-    sha256 "b0379ba6bbefbc48ed3ef8a1d8812531bd671362f74e0cffa6adf67bb1139206"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtimageformats-everywhere-src-6.0.3.tar.xz"
+    sha256 "327580b5a5b9a8d75e869c0eaa7ff34881bbde4e4ccc51d07a59e96054136837"
   end
 
   resource "qt3d" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.2/qt3d-everywhere-src-6.0.2.tar.xz"
-    sha256 "ff6434da878062aea612a9d7323bd615c2f232c4462c26323f1a5511aac6db89"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qt3d-everywhere-src-6.0.3.tar.xz"
+    sha256 "470f95c559b68cc8faa982c1ca7ff83054d6802f7b2a0c1d960a155b92080cf9"
   end
 
   resource "qtnetworkauth" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.2/qtnetworkauth-everywhere-src-6.0.2.tar.xz"
-    sha256 "05b66ef42f3e6bf4cf5f36744db8483f9a57dbc7bd9ecc9ba81e7ca99b0a37e6"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtnetworkauth-everywhere-src-6.0.3.tar.xz"
+    sha256 "124bf433e2c5418e900a5947d4ceb128ee179f514eddcea33924f0b695be64ed"
   end
 
   def install
@@ -45,7 +44,7 @@ class QtIos < Formula
     ]
 
     system "./configure", "-xplatform", "macx-ios-clang",
-      "-qt-host-path", Formula["qt"].prefix.to_s, "--", *cmake_args
+      "-qt-host-path", Formula["qt"].prefix, "--", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
@@ -56,7 +55,6 @@ class QtIos < Formula
   end
 
   test do
-    ENV.delete "CPATH"
     (testpath/"test.pro").write <<~EOS
       QT       += core
       TARGET = test
@@ -77,8 +75,6 @@ class QtIos < Formula
     EOS
 
     system bin/"qmake", "test.pro"
-    cmd = 'xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO'
-    system cmd
-    assert_predicate testpath/"Release-iphoneos/test.app", :exist?
+    assert_predicate testpath/"test.xcodeproj", :exist?
   end
 end
