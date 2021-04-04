@@ -6,8 +6,8 @@ class QtIos < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.2_1"
-    sha256 big_sur: "60f23617add7f15215016a0053a5e9524869df69f0635ce5356ac4d4e3dbe84f"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-ios-6.0.3"
+    sha256 big_sur: "80b388d53f8c940f63eb74b6371baddb29122fde8f57c908bdc01863ed7c2484"
   end
 
   keg_only "this is Qt SDK for iOS"
