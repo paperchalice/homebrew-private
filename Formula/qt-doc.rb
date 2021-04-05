@@ -68,8 +68,8 @@ class QtDoc < Formula
     ]
 
     system "./configure", *config_args, "--", *cmake_args
-    system "cmake", "--build", ".", "-t", "docs"
-    system "cmake", "--build", ".", "-t", "install_docs"
+    system "cmake", "--build", ".", "-t", "qch_docs"
+    system "cmake", "--build", ".", "-t", "install_qch_docs"
   end
 
   def postinstall
