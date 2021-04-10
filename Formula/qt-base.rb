@@ -49,6 +49,7 @@ class QtBase < Formula
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
       -DQT_LIBINFIX=iOS
+      -DBUILD_SHARED_LIBS=OFF
 
       -DINSTALL_LIBEXECDIR=share/qt/libexec
       -DINSTALL_TESTSDIR=share/qt/tests
