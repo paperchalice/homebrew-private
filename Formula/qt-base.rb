@@ -48,6 +48,7 @@ class QtBase < Formula
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
+      -DQT_LIBINFIX=iOS
 
       -DINSTALL_LIBEXECDIR=share/qt/libexec
       -DINSTALL_TESTSDIR=share/qt/tests
