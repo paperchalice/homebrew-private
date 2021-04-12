@@ -1,11 +1,11 @@
-class QtIos < Formula
-  desc "Qt for iOS"
+class QtWatchos < Formula
+  desc "Qt for watchOS"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.0/6.0.3/single/qt-everywhere-src-6.0.3.tar.xz"
   sha256 "ca4a97439443dd0b476a47b284ba772c3b1b041a9eef733e26a789490993a0e3"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
-  keg_only "this is the SDK of Qt for iOS"
+  keg_only "this is the SDK of Qt for watchOS"
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
@@ -32,14 +32,14 @@ class QtIos < Formula
   end
 
   def install
-    # cmake cannot recognizes iOS SDK when using shims cc
+    # cmake cannot recognizes watchOS SDK when using shims cc
     ENV.prepend "PATH", "/usr/bin:"
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_OSX_SYSROOT"]||s["CMAKE_FIND_FRAMEWORK"] } + %w[
       -DCMAKE_FIND_FRAMEWORK=FIRST
     ]
 
-    system "./configure", "-xplatform", "macx-ios-clang",
+    system "./configure", "-xplatform", "macx-watchos-clang",
       "-qt-host-path", Formula["qt"].prefix, "--", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
