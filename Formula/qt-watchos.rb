@@ -45,7 +45,6 @@ class QtWatchos < Formula
     system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
-    libexec.install bin/"target_qt.conf"
     libexec.install bin/"qmake"
     bin.write_exec_script libexec/"qmake"
   end
