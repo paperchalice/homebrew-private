@@ -32,7 +32,6 @@ class QtWatchos < Formula
   end
 
   def install
-    rm_rf "qttools"
     # cmake cannot recognizes watchOS SDK when using shims cc
     ENV.prepend "PATH", "/usr/bin:"
 
@@ -46,8 +45,11 @@ class QtWatchos < Formula
     system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
-    libexec.install bin/"qmake"
-    bin.write_exec_script libexec/"qmake"
+
+    mkdir libexec
+    Pathname.glob("#{bin}/*.app") do |app|
+      mv app, libexec
+    end
   end
 
   test do
