@@ -32,6 +32,7 @@ class QtWatchos < Formula
   end
 
   def install
+    rm_rf "qttools"
     # cmake cannot recognizes watchOS SDK when using shims cc
     ENV.prepend "PATH", "/usr/bin:"
 
