@@ -37,7 +37,6 @@ class Openj9 < Formula
       --with-boot-jdk=#{Formula["openjdk"].prefix}
       --with-boot-jdk-jvmargs=#{java_options}
       --with-native-debug-symbols=none
-      --with-sysroot=#{MacOS.sdk_path}
     ]
 
     system "bash", "./configure", *config_args
