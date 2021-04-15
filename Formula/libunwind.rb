@@ -12,8 +12,8 @@ class Libunwind < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-11.1.0"
-    sha256 cellar: :any, big_sur: "8373ad17eb4331c6dcd1f272876e8c9c0f8e022f882337a81b33ae2b24f29523"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-12.0.0"
+    sha256 cellar: :any, big_sur: "6dbebe9fb98153f1a0c1c1912c19e8432494586470423b077e8e51c1227c5f15"
   end
 
   depends_on "cmake" => :build
