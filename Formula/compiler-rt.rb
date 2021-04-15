@@ -1,9 +1,9 @@
 class CompilerRt < Formula
   desc "Highly tuned implementations of the low-level code generator support routines"
   homepage "https://compiler-rt.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/compiler-rt-11.1.0.src.tar.xz"
-  sha256 "def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274"
-  license "Apache-2.0"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
+  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -28,8 +28,8 @@ class CompilerRt < Formula
 
     mkdir "build" do
       system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
-      system "ninja"
-      system "ninja", "install"
+      system "cmake", "--build", "."
+      system "cmake", "--install", "."
     end
   end
 
