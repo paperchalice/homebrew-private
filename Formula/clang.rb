@@ -30,7 +30,7 @@ class Clang < Formula
   end
 
   def install
-    resource("clang-tools-extra").stage buildpath/"tools/extra"
+    resource("clang-tools-extra").stage buildpath/"clang-tools-extra"
 
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
@@ -56,8 +56,6 @@ class Clang < Formula
       -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
       -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
       -DCLANG_LINK_CLANG_DYLIB=OFF
-
-      -DLLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath/"tools/extra"}
 
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
     ]
