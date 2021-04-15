@@ -1,8 +1,8 @@
 class CompilerRt < Formula
   desc "Highly tuned implementations of the low-level code generator support routines"
   homepage "https://compiler-rt.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/compiler-rt-12.0.0.src.tar.xz"
+  sha256 "85a8cd0a62413eaa0457d8d02f8edac38c4dc0c96c00b09dc550260c23268434"
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
