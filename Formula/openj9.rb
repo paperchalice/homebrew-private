@@ -26,6 +26,7 @@ class Openj9 < Formula
 
   def install
     java_options = ENV.delete("_JAVA_OPTIONS")
+    ENV.prepend "PATH", "/usr/bin:"
 
     openj9_args = %w[
       -openj9-branch=v0.25.0-release
