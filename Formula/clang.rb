@@ -12,8 +12,8 @@ class Clang < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-11.1.0_3"
-    sha256 cellar: :any, big_sur: "b337a812317cd3baf863a7a3780116dcc64499fea778740cf5d23a192443a138"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-12.0.0"
+    sha256 cellar: :any, big_sur: "d6fed8366491b851726522193f782366a4eba949c8fb2669c8f950beea545b13"
   end
 
   depends_on "cmake" => :build
