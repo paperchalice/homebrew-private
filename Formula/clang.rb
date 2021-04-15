@@ -31,6 +31,7 @@ class Clang < Formula
 
   def install
     resource("clang-tools-extra").stage buildpath/"clang-tools-extra"
+    resource("clang-tools-extra").stage buildpath/"tools/extra"
 
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
