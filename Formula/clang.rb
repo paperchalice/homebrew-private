@@ -57,8 +57,9 @@ class Clang < Formula
       -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
       -DCLANG_LINK_CLANG_DYLIB=OFF
 
+      -DLLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath/"tools/extra"}
+
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
-      -DENABLE_EXPERIMENTAL_NEW_PASS_MANAGER=ON
     ]
 
     mkdir "build" do
