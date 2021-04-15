@@ -31,7 +31,8 @@ class Clang < Formula
 
   def install
     resource("clang-tools-extra").stage buildpath/"tools/extra"
-    ln_s "tools/extra", "clang-tools-extra"
+    inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
+      "../clang-tools-extra", "tools/extra"
 
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
