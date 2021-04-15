@@ -1,10 +1,9 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-11.1.0.src.tar.xz"
-  sha256 "ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-12.0.0.src.tar.xz"
+  sha256 "49dc47c8697a1a0abd4ee51629a696d7bfe803662f2a7252a3b16fc75f3a8b50"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  revision 1
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -19,7 +18,6 @@ class LlvmCore < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
-  depends_on "python" => :build
 
   depends_on "libffi"
 
@@ -31,14 +29,6 @@ class LlvmCore < Formula
   def install
     ENV.libcxx if ENV.compiler == :clang
     ENV.permit_arch_flags
-    targets = %w[
-      host
-      X86
-      AArch64
-      ARM
-      RISCV
-      WebAssembly
-    ].join ";"
 
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
@@ -59,7 +49,6 @@ class LlvmCore < Formula
       -DLLVM_INSTALL_UTILS=ON
       -DLLVM_ENABLE_Z3_SOLVER=OFF
       -DLLVM_OPTIMIZED_TABLEGEN=ON
-      -DLLVM_TARGETS_TO_BUILD=#{targets}
       -DLLVM_USE_NEW_PM=ON
       -DFFI_INCLUDE_DIR=#{Formula["libffi"].opt_lib}/libffi-#{Formula["libffi"].version}/include
       -DFFI_LIBRARY_DIR=#{Formula["libffi"].opt_lib}
@@ -68,8 +57,8 @@ class LlvmCore < Formula
 
     mkdir "build" do
       system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
-      system "ninja"
-      system "ninja", "install"
+      system "cmake", "--build", "."
+      system "cmake", "--install", "."
     end
   end
 
