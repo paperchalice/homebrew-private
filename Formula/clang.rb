@@ -1,10 +1,9 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang-11.1.0.src.tar.xz"
-  sha256 "0a8288f065d1f57cb6d96da4d2965cbea32edc572aa972e466e954d17148558b"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-12.0.0.src.tar.xz"
+  sha256 "e26e452e91d4542da3ebbf404f024d3e1cbf103f4cd110c26bf0a19621cca9ed"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  revision 3
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
@@ -20,19 +19,16 @@ class Clang < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
-  depends_on "libc++"
+  depends_on "libc++" => :recommended
   depends_on "llvm-core"
 
   resource "clang-tools-extra" do
-    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang-tools-extra-11.1.0.src.tar.xz"
-    sha256 "76707c249de7a9cde3456b960c9a36ed9bbde8e3642c01f0ef61a43d61e0c1a2"
+    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-tools-extra-12.0.0.src.tar.xz"
+    sha256 "ad41e0b527a65ade95c1ba690a5434cefaab4a2daa1be307caaa1e8541fe6d5c"
   end
 
   def install
     resource("clang-tools-extra").stage buildpath/"tools/extra"
-
-    # Ensure use system libc++
-    ENV["LDFLAGS"] = "-L/usr/lib"
 
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
@@ -46,6 +42,9 @@ class Clang < Formula
       -DBUILD_SHARED_LIBS=ON
       -DCMAKE_CXX_STANDARD=17
 
+      -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
+      -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
+
       -DC_INCLUDE_DIRS=#{include_dirs}
       -DCLANG_DEFAULT_STD_C=c17
       -DCLANG_DEFAULT_STD_CXX=cxx17
@@ -58,15 +57,12 @@ class Clang < Formula
 
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
       -DENABLE_EXPERIMENTAL_NEW_PASS_MANAGER=ON
-
-      -DLLVM_ENABLE_EH=ON
-      -DLLVM_ENABLE_RTTI=ON
     ]
 
     mkdir "build" do
       system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
-      system "ninja"
-      system "ninja", "install"
+      system "cmake", "--build", "."
+      system "cmake", "--install", "."
     end
   end
 
