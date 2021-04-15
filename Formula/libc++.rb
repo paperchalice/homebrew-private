@@ -64,9 +64,9 @@ class Libcxx < Formula
       -nostdlibinc
       -I#{include}/c++/v1
       -L#{lib}
+      -lc++abi
     ]
-    # system ENV.cxx, "main.cpp", *args
-    # assert_match "#{opt_lib}/libc++.1.dylib", shell_output("otool -L a.out")
-    system "echo", *args
+    system ENV.cxx, "main.cpp", *args
+    assert_match "#{opt_lib}/libc++.1.dylib", shell_output("otool -L a.out")
   end
 end
