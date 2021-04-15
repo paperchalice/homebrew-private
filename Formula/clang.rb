@@ -19,8 +19,9 @@ class Clang < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
-  depends_on "libc++" => :recommended
   depends_on "llvm-core"
+
+  depends_on "libc++" => :recommended
 
   resource "clang-tools-extra" do
     url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-tools-extra-12.0.0.src.tar.xz"
