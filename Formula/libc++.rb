@@ -1,8 +1,8 @@
 class Libcxx < Formula
   desc "LLVM C++ standard library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/llvm-project-11.1.0.src.tar.xz"
-  sha256 "74d2529159fd118c3eac6f90107b5611bccc6f647fdea104024183e8d5e25831"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
+  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
@@ -33,8 +33,8 @@ class Libcxx < Formula
       ]
       mkdir "build" do
         system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
-        system "ninja"
-        system "ninja", "install"
+        system "cmake", "--build", "."
+        system "cmake", "--install", "."
       end
     end
 
