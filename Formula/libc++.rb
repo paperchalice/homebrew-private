@@ -12,8 +12,8 @@ class Libcxx < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-11.1.0"
-    sha256 cellar: :any, big_sur: "a310ff4b7a2555a0a2852f8045d56f761ec396fe353749e46bed32a9d943ff34"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-12.0.0"
+    sha256 cellar: :any, big_sur: "eae40212b97bd5e2d87012269014de0cbfca9c6062d92539b6e2e1ac13aba790"
   end
 
   depends_on "cmake" => :build
