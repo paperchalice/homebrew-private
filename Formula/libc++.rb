@@ -68,5 +68,6 @@ class Libcxx < Formula
     ]
     # system ENV.cxx, "main.cpp", *args
     # assert_match "#{opt_lib}/libc++.1.dylib", shell_output("otool -L a.out")
+    system "echo", *args
   end
 end
