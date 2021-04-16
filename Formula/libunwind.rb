@@ -19,7 +19,7 @@ class Libunwind < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } +  %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
       -DCMAKE_BUILD_TYPE=MinSizeRel
     ]
 
