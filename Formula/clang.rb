@@ -17,7 +17,6 @@ class Clang < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "ninja" => :build
   depends_on "python" => :build
 
   depends_on "llvm-core"
@@ -40,12 +39,10 @@ class Clang < Formula
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
-    args = %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DBUILD_SHARED_LIBS=ON
+      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_CXX_STANDARD=17
-
-      -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
       -DC_INCLUDE_DIRS=#{include_dirs}
       -DCLANG_DEFAULT_STD_C=c17
@@ -61,7 +58,7 @@ class Clang < Formula
     ]
 
     mkdir "build" do
-      system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
+      system "cmake", "..", *(std_cmake_args + args)
       system "cmake", "--build", "."
       system "cmake", "--install", "."
     end
