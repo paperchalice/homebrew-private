@@ -60,6 +60,6 @@ class Libcxx < Formula
       -lc++abi
     ]
     system ENV.cxx, "main.cpp", *args
-    assert_match "#{opt_lib}/libc++.1.dylib", shell_output("otool -L a.out")
+    assert_includes MachO::Tools.dylibs("a.out"), "#{opt_lib}/libc++.1.dylib"
   end
 end
