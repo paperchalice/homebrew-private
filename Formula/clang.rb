@@ -22,8 +22,6 @@ class Clang < Formula
 
   depends_on "llvm-core"
 
-  depends_on "libc++" => :recommended
-
   resource "clang-tools-extra" do
     url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-tools-extra-12.0.0.src.tar.xz"
     sha256 "ad41e0b527a65ade95c1ba690a5434cefaab4a2daa1be307caaa1e8541fe6d5c"
