@@ -18,16 +18,18 @@ class QtShaderTools < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on "perl" => :build
 
   depends_on "qt-base"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
+      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
-    system "cmake", "-G", "Ninja", ".", *args
+    system "cmake", ".", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 

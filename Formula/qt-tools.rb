@@ -18,6 +18,7 @@ class QtTools < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
+  depends_on "perl" => :build
 
   depends_on "clang"
   depends_on "qt-base"
@@ -27,7 +28,8 @@ class QtTools < Formula
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
-    args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+    args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
+      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
       -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
       -DCMAKE_MODULE_LINKER_FLAGS=-L/usr/lib
@@ -36,7 +38,7 @@ class QtTools < Formula
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
 
-    system "cmake", "-G", "Ninja", ".", *args
+    system "cmake", ".", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 

@@ -16,8 +16,8 @@ class QtBase < Formula
     sha256 cellar: :any, big_sur: "3fcdd04054a62e1458f1682c1354d644d1907359e455e8e82c0c5e6258567253"
   end
 
-  depends_on "cmake" => [:build, :test, :recommended]
-  depends_on "ninja" => :build
+  depends_on "cmake"      => [:build, :test, :recommended]
+  depends_on "perl"       => :build
   depends_on "pkg-config" => :build
   depends_on xcode: [:build, :test] # for xcodebuild to get version
 
@@ -35,7 +35,6 @@ class QtBase < Formula
 
   uses_from_macos "cups"
   uses_from_macos "krb5"
-  uses_from_macos "perl"
   uses_from_macos "sqlite"
   uses_from_macos "zlib"
 
@@ -44,7 +43,8 @@ class QtBase < Formula
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
+      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
@@ -69,7 +69,7 @@ class QtBase < Formula
       -DINPUT_sqlite=system
     ]
 
-    system "cmake", "-G", "Ninja", ".", *cmake_args
+    system "cmake", ".", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
