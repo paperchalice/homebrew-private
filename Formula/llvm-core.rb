@@ -31,8 +31,9 @@ class LlvmCore < Formula
 
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
-    args = %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DBUILD_SHARED_LIBS=ON
+      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_CXX_STANDARD=17
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
 
