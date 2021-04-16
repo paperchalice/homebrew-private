@@ -23,7 +23,7 @@ class Libcxx < Formula
   depends_on "paperchalice/private/libunwind"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } +  %W[
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel
 
       -DLIBCXX_CXX_ABI=libcxxabi
