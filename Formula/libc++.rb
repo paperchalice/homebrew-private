@@ -20,6 +20,7 @@ class Libcxx < Formula
   depends_on "ninja" => :build
 
   depends_on "compiler-rt"
+  depends_on "libc++abi"
   depends_on "paperchalice/private/libunwind"
 
   def install
@@ -33,14 +34,6 @@ class Libcxx < Formula
       ]
       mkdir "build" do
         system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
-        system "cmake", "--build", "."
-        system "cmake", "--install", "."
-      end
-    end
-
-    cd "libcxxabi" do
-      mkdir "build" do
-        system "cmake", "-G", "Ninja", "..", *std_cmake_args
         system "cmake", "--build", "."
         system "cmake", "--install", "."
       end
