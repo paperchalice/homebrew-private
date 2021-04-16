@@ -11,6 +11,11 @@ class Libcxxabi < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++abi-12.0.0"
+    sha256 cellar: :any, big_sur: "bc1c541e8b055a67b5c05bf3c41c0efcf42d9848d2cbbf7ef656da2e87f3f61e"
+  end
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "python" => :build
