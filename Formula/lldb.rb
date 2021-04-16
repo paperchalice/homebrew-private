@@ -26,8 +26,6 @@ class Lldb < Formula
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
       -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_CXX_STANDARD=17
-      -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
       -DLLDB_BUILD_FRAMEWORK=ON
     ]
