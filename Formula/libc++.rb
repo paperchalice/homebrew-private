@@ -17,23 +17,25 @@ class Libcxx < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "ninja" => :build
 
   depends_on "compiler-rt"
   depends_on "libc++abi"
   depends_on "paperchalice/private/libunwind"
 
   def install
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } +  %W[
+      -DCMAKE_BUILD_TYPE=MinSizeRel
+
+      -DLIBCXX_CXX_ABI=libcxxabi
+      -DLIBCXXABI_USE_LLVM_UNWINDER:BOOL=ON
+      -DLIBCXX_INSTALL_HEADER_PREFIX=#{prefix}/
+      -DLIBCXX_INSTALL_PREFIX=#{prefix}/
+      -DLIBCXX_USE_COMPILER_RT:BOOL=ON
+    ]
+
     cd "libcxx" do
-      args = %W[
-        -DLIBCXX_CXX_ABI=libcxxabi
-        -DLIBCXXABI_USE_LLVM_UNWINDER:BOOL=ON
-        -DLIBCXX_INSTALL_HEADER_PREFIX=#{prefix}/
-        -DLIBCXX_INSTALL_PREFIX=#{prefix}/
-        -DLIBCXX_USE_COMPILER_RT:BOOL=ON
-      ]
       mkdir "build" do
-        system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
+        system "cmake", *args
         system "cmake", "--build", "."
         system "cmake", "--install", "."
       end
