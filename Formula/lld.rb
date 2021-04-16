@@ -18,6 +18,7 @@ class Lld < Formula
   def install
     args = %w[
       -DBUILD_SHARED_LIBS=ON
+      -DCMAKE_CXX_STANDARD=17
     ]
     mkdir "build" do
       system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
