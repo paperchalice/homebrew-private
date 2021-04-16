@@ -56,7 +56,7 @@ class LlvmCore < Formula
     ]
 
     mkdir "build" do
-      system "cmake", "..", *(std_cmake_args + args)
+      system "cmake", "..", *args
       system "cmake", "--build", "."
       system "cmake", "--install", "."
     end
