@@ -17,7 +17,6 @@ class LlvmCore < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "ninja" => :build
 
   depends_on "libffi"
 
@@ -56,7 +55,7 @@ class LlvmCore < Formula
     ]
 
     mkdir "build" do
-      system "cmake", "-G", "Ninja", "..", *(std_cmake_args + args)
+      system "cmake", "..", *(std_cmake_args + args)
       system "cmake", "--build", "."
       system "cmake", "--install", "."
     end
