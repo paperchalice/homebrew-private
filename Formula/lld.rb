@@ -6,7 +6,7 @@ class Lld < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
-    url :homepage
+    url "https://llvm.org/"
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
