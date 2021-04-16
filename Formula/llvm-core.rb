@@ -17,6 +17,8 @@ class LlvmCore < Formula
   end
 
   depends_on "cmake" => [:build, :test]
+  depends_on "python" => :build
+  depends_on "swig" => :build
 
   depends_on "libffi"
 
