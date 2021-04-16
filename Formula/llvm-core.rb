@@ -13,7 +13,7 @@ class LlvmCore < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-12.0.0"
-    sha256 cellar: :any, big_sur: "9084a0d3121d824811e7611a1b458a0a8d4535221eefdc5a4931a7d713aa39d0"
+    sha256 cellar: :any, big_sur: "349244ca092e3a447fc82a4f9afdd84b31fa5e334509d583782b782bb58c2f72"
   end
 
   depends_on "cmake" => [:build, :test]
