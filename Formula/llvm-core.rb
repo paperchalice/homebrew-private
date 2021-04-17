@@ -28,9 +28,6 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
-    ENV.libcxx if ENV.compiler == :clang
-    ENV.permit_arch_flags
-
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
