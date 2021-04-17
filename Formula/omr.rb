@@ -9,8 +9,13 @@ class Omr < Formula
   depends_on "libpng" => :test
 
   def install
+    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
+      -DCMAKE_BUILD_TYPE=MinSizeRel
+      -DOMR_DDR=ON
+    ]
+
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "cmake", "..", *args
       system "cmake", "--build", "."
       system "cmake", "--install", "."
     end
