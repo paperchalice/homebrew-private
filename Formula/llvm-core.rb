@@ -52,8 +52,6 @@ class LlvmCore < Formula
       -DLLVM_ENABLE_Z3_SOLVER=OFF
       -DLLVM_OPTIMIZED_TABLEGEN=ON
       -DLLVM_USE_NEW_PM=ON
-      -DFFI_INCLUDE_DIR=#{Formula["libffi"].opt_lib}/libffi-#{Formula["libffi"].version}/include
-      -DFFI_LIBRARY_DIR=#{Formula["libffi"].opt_lib}
       -DLLVM_CREATE_XCODE_TOOLCHAIN=OFF
     ]
 
