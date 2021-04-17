@@ -36,6 +36,7 @@ class Mlir < Formula
         system "cmake", "..", *args
         system "cmake", "--build", "."
         system "cmake", "--install", "."
+        prefix.install "bin"
       end
     end
   end
