@@ -19,7 +19,6 @@ class QtBase < Formula
   depends_on "cmake"      => [:build, :test, :recommended]
   depends_on "perl"       => :build
   depends_on "pkg-config" => :build
-  depends_on xcode: [:build, :test] # for xcodebuild to get version
 
   depends_on "dbus"
   depends_on "double-conversion"
