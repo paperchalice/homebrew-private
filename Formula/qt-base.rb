@@ -66,7 +66,7 @@ class QtBase < Formula
       -DFEATURE_sql_mysql=OFF
       -DFEATURE_relocatable=OFF
 
-      -DINPUT_sqlite=system
+      -DFEATURE_system_sqlite=ON
     ]
 
     system "cmake", ".", *cmake_args
