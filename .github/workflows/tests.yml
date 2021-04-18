@@ -28,6 +28,7 @@ jobs:
         run: brew install-bundler-gems
 
       - run: brew test-bot --only-cleanup-before
+      - run: sed -i '' "s/\/\^\-g.d\?\$\/, //g" /usr/local/Homebrew/Library/Homebrew/shims/super/cc
 
       - run: brew test-bot --only-setup
 
