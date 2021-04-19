@@ -25,6 +25,7 @@ class Libcxx < Formula
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel
+      -DCMAKE_INSTALL_RPATH=@loader_path/../lib
 
       -DLIBCXX_CXX_ABI=libcxxabi
       -DLIBCXXABI_USE_LLVM_UNWINDER:BOOL=ON
@@ -59,7 +60,6 @@ class Libcxx < Formula
       -nostdlibinc
       -I#{include}/c++/v1
       -L#{lib}
-      -lc++abi
     ]
     system ENV.cxx, "main.cpp", *args
     assert_includes MachO::Tools.dylibs("a.out"), "#{opt_lib}/libc++.1.dylib"
