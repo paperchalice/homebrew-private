@@ -23,10 +23,9 @@ class Libcxx < Formula
   depends_on "paperchalice/private/libunwind"
 
   def install
-    Formula["libc++abi"].lib
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_SHARED_LINKER_FLAGS=-undefined dynamic_lookup
+      -DCMAKE_SHARED_LINKER_FLAGS=-reexport-lc++abi
 
       -DLIBCXX_CXX_ABI=libcxxabi
       -DLIBCXXABI_USE_LLVM_UNWINDER=ON
