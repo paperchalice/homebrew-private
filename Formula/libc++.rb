@@ -28,10 +28,10 @@ class Libcxx < Formula
       -DCMAKE_INSTALL_RPATH=@loader_path/../lib
 
       -DLIBCXX_CXX_ABI=libcxxabi
-      -DLIBCXXABI_USE_LLVM_UNWINDER:BOOL=ON
+      -DLIBCXXABI_USE_LLVM_UNWINDER=ON
       -DLIBCXX_INSTALL_HEADER_PREFIX=#{prefix}/
       -DLIBCXX_INSTALL_PREFIX=#{prefix}/
-      -DLIBCXX_USE_COMPILER_RT:BOOL=ON
+      -DLIBCXX_USE_COMPILER_RT=ON
     ]
 
     cd "libcxx" do
