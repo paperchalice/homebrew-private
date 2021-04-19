@@ -26,7 +26,7 @@ class Libcxx < Formula
     Formula["libc++abi"].lib
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_INSTALL_RPATH=#{Formula["libc++abi"].lib}
+      -DCMAKE_INSTALL_RPATH=#{Formula["libc++abi"].lib};@loader_path/../lib
 
       -DLIBCXX_CXX_ABI=libcxxabi
       -DLIBCXXABI_USE_LLVM_UNWINDER=ON
