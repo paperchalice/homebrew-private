@@ -36,7 +36,7 @@ class Libcxx < Formula
 
     cd "libcxx" do
       mkdir "build" do
-        system "cmake", *args
+        system "cmake", "..", *args
         system "cmake", "--build", "."
         system "cmake", "--install", "."
       end
