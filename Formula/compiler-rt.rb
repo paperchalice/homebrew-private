@@ -41,6 +41,6 @@ class CompilerRt < Formula
       return 0;
     }
     EOS
-    system ENV.cc, "-c", "test.c"
+    system ENV.cc, "test.c"
   end
 end
