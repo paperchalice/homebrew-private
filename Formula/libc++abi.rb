@@ -34,6 +34,14 @@ class Libcxxabi < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.c").write <<~EOS
+    void __cxa_end_catch();
+    int main(void) {
+      __cxa_end_catch();
+      return 0;
+    }
+    EOS
+    system ENV.cc, "test.c", "-L#{lib}", "-lc++abi"
+    assert_includes MachO::Tools.dylibs("a.out"), "#{opt_lib}/libc++abi.1.dylib"
   end
 end
