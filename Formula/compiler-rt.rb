@@ -34,6 +34,13 @@ class CompilerRt < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.c").write <<~EOS
+    double __floatundidf(int a);
+    int main(void) {
+      __floatundidf(0);
+      return 0;
+    }
+    EOS
+    system ENV.cc, "-c", "test.c"
   end
 end
