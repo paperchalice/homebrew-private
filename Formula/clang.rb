@@ -46,14 +46,15 @@ class Clang < Formula
       -DCMAKE_CXX_STANDARD=17
 
       -DC_INCLUDE_DIRS=#{include_dirs}
+      -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
+      -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
       -DCLANG_DEFAULT_STD_C=c17
       -DCLANG_DEFAULT_STD_CXX=cxx17
       -DCLANG_DEFAULT_CXX_STDLIB=libc++
       -DCLANG_DEFAULT_RTLIB=compiler-rt
       -DCLANG_DEFAULT_UNWINDLIB=libunwind
-      -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
-      -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
       -DCLANG_LINK_CLANG_DYLIB=OFF
+      -DCLANG_RESOURCE_DIR=../../../lib/clang/#{version}
 
       -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
     ]
