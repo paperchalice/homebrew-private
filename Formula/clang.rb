@@ -19,7 +19,6 @@ class Clang < Formula
   depends_on "cmake" => :build
   depends_on "python" => :build
 
-  depends_on "compiler-rt"
   depends_on "llvm-core"
 
   resource "clang-tools-extra" do
