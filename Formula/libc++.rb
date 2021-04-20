@@ -25,7 +25,7 @@ class Libcxx < Formula
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-reexport-lc++abi,-reexport-lunwind
+      -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-reexport-lc++abi
 
       -DLIBCXX_CXX_ABI=libcxxabi
       -DLIBCXXABI_USE_LLVM_UNWINDER=ON
