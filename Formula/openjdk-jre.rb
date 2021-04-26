@@ -43,7 +43,7 @@ class OpenjdkJre < Formula
     system "make", "mac-legacy-jre-bundle", "-j"
 
     jdk = Dir["build/*/images/jre-bundle/*"].first
-    libexec.install jdk
+    libexec.install jdk => "openjdk.jre"
   end
 
   test do
