@@ -28,6 +28,7 @@ class OpenjdkJre < Formula
 
     args = %W[
       --with-boot-jdk=#{boot_jdk}/Contents/Home
+      --with-jvm-variants=client
       --with-native-debug-symbols=none
       --with-vendor-bug-url=#{tap.issues_url}
       --with-vendor-name=#{tap.user}
@@ -35,14 +36,14 @@ class OpenjdkJre < Formula
       --with-vendor-version-string=#{tap.user}
       --with-vendor-vm-bug-url=#{tap.issues_url}
       --with-version-build=#{revision}
-      --enable-dtrace
       --with-sysroot=#{MacOS.sdk_path}
     ]
 
+    system "ls", "build/macosx-x86_64-client-release"
     system "sh", "./configure", *args
     system "make", "mac-legacy-jre-bundle", "-j"
 
-    jdk = Dir["build/*/images/jdk-bundle/*"].first
+    jdk = Dir["build/*/images/jre-bundle/*"].first
     libexec.install jdk
   end
 
