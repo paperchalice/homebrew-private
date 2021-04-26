@@ -24,6 +24,8 @@ class QtImageformats < Formula
   depends_on "qt-base"
   depends_on "webp"
 
+  uses_from_macos "zlib"
+
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
       -DCMAKE_BUILD_TYPE=MinSizeRel

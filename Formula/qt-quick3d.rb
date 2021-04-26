@@ -20,6 +20,7 @@ class QtQuick3d < Formula
   depends_on "perl" => :build
 
   depends_on "assimp"
+  depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"
 

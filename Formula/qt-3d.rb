@@ -19,6 +19,7 @@ class Qt3d < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "perl" => :build
 
+  depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"
 

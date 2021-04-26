@@ -20,6 +20,7 @@ class QtCore5Compat < Formula
   depends_on "perl" => :build
 
   depends_on "qt-base"
+  depends_on "qt-declarative"
 
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
