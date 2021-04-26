@@ -12,6 +12,11 @@ class OpenjdkJre < Formula
     regex(/>\s*?jdk[._-]v?(\d+(?:\.\d+)*)-ga\s*?</i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/openjdk-jre-16.0.1"
+    sha256 cellar: :any, big_sur: "dcaefb62d511b97dc06a5a8c3b0970ff6168393e3d3b038a175998ff2b83139f"
+  end
+
   keg_only :shadowed_by_macos
 
   depends_on "autoconf" => :build
