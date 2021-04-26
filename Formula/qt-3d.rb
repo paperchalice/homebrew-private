@@ -17,9 +17,7 @@ class Qt3d < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "ninja" => :build
   depends_on "perl" => :build
-  depends_on xcode: :test
 
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"

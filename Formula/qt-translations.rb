@@ -17,7 +17,6 @@ class QtTranslations < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "ninja" => :build
   depends_on "qt-tools" => :build
 
   def install
@@ -26,7 +25,7 @@ class QtTranslations < Formula
       -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -DCMAKE_STAGING_PREFIX=#{prefix}
     ]
-    system "cmake", "-G", "Ninja", ".", *args
+    system "cmake", ".", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 

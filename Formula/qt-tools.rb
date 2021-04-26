@@ -17,7 +17,6 @@ class QtTools < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "ninja" => :build
   depends_on "perl" => :build
 
   depends_on "clang"
