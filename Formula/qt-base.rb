@@ -20,6 +20,7 @@ class QtBase < Formula
   depends_on "perl"       => :build
   depends_on "pkg-config" => :build
 
+  depends_on "brotli"
   depends_on "dbus"
   depends_on "double-conversion"
   depends_on "freetype"
