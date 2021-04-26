@@ -35,11 +35,11 @@ class CompilerRt < Formula
 
   test do
     (testpath/"test.c").write <<~EOS
-    double __floatundidf(int a);
-    int main(void) {
-      __floatundidf(0);
-      return 0;
-    }
+      double __floatundidf(int a);
+      int main(void) {
+        __floatundidf(0);
+        return 0;
+      }
     EOS
     system ENV.cc, "test.c"
   end
