@@ -39,7 +39,6 @@ class OpenjdkJre < Formula
       --with-sysroot=#{MacOS.sdk_path}
     ]
 
-    system "ls", "build/macosx-x86_64-client-release"
     system "sh", "./configure", *args
     system "make", "mac-legacy-jre-bundle", "-j"
 
