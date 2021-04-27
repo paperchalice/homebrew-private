@@ -11,6 +11,14 @@ jobs:
         os: [macos-11.0]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Use my fork Homebrew
+        run: |
+          pushd /usr/local/Homebrew
+          git remote add paperchalice git@github.com:paperchalice/brew.git
+          git fetch paperchalice
+          git checkout main
+          popd
+
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
