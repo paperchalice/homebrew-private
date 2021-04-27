@@ -87,8 +87,7 @@ class Openj9Jre < Formula
     ENV["CMAKE_CONFIG_TYPE"] = "Release"
 
     system "bash", "./configure", *config_args
-    system "make", "all", "-j"
-    system "make", "mac-legacy-jre-bundle", "-j"
+    system "make", "legacy-jre-image", "-j"
 
     jre = Dir["build/*/images/jre-bundle/*"].first
     libexec.install jre => "openj9.jre"
