@@ -34,7 +34,7 @@ jobs:
       - name: Use my fork Homebrew
         run: |
           pushd /usr/local/Homebrew
-          git remote add paperchalice https://github.com/paperchalice/homebrew-core.git
+          git remote add paperchalice https://github.com/paperchalice/brew.git
           git fetch paperchalice
           git checkout main
           git rebase master
