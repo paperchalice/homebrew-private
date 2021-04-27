@@ -19,7 +19,15 @@ class OpenjdkJre < Formula
 
   keg_only :shadowed_by_macos
 
-  depends_on "autoconf" => :build
+  depends_on "autoconf"   => :build
+  depends_on "pkg-config" => :build
+
+  depends_on "fontconfig"
+  depends_on "giflib"
+  depends_on "harfbuzz"
+  depends_on "jpeg"
+  depends_on "libpng"
+  depends_on "little-cms2"
 
   resource "boot-jdk" do
     url "https://github.com/AdoptOpenJDK/openjdk16-binaries/releases/download/jdk-16.0.1%2B9/OpenJDK16U-jdk_x64_mac_hotspot_16.0.1_9.tar.gz"
@@ -27,12 +35,11 @@ class OpenjdkJre < Formula
   end
 
   def install
-    boot_jdk = Pathname.pwd/"boot-jdk"
-    resource("boot-jdk").stage boot_jdk
-    ENV.delete("_JAVA_OPTIONS")
+    resource("boot-jdk").stage buildpath/"boot-jdk"
+    ENV.delete "_JAVA_OPTIONS"
 
     args = %W[
-      --with-boot-jdk=#{boot_jdk}/Contents/Home
+      --with-boot-jdk=#{buildpath}/boot-jdk/Contents/Home
       --with-jvm-variants=client
       --with-native-debug-symbols=none
       --with-vendor-bug-url=#{tap.issues_url}
@@ -42,16 +49,24 @@ class OpenjdkJre < Formula
       --with-vendor-vm-bug-url=#{tap.issues_url}
       --with-version-build=#{revision}
       --with-sysroot=#{MacOS.sdk_path}
+
+      --with-giflib=system
+      --with-harfbuzz=system
+      --with-lcms=system
+      --with-libjpeg=system
+      --with-libpng=system
+      --with-zlib=system
     ]
 
     system "sh", "./configure", *args
     system "make", "mac-legacy-jre-bundle", "-j"
 
-    jdk = Dir["build/*/images/jre-bundle/*"].first
-    libexec.install jdk => "openjdk.jre"
+    jre = Dir["build/*/images/jre-bundle/*"].first
+    libexec.install jre => "openjdk.jre"
+    bin.install_symlink Dir[libexec/"openjdk.jre/Contents/Home/bin/*"]
   end
 
   test do
-    system "echo"
+    system bin/"java", "-version"
   end
 end
