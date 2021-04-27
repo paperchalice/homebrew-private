@@ -17,6 +17,7 @@ jobs:
           git remote add paperchalice git@github.com:paperchalice/brew.git
           git fetch paperchalice
           git checkout main
+          git rebase master
           popd
 
       - name: Set up Homebrew
