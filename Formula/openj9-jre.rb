@@ -66,7 +66,7 @@ class Openj9Jre < Formula
 
     config_args = %W[
       --with-boot-jdk=#{buildpath}/boot-jdk/Contents/Home
-      --with-jvm-variants=client
+      --with-jvm-variants=server
       --with-native-debug-symbols=none
       --with-vendor-bug-url=#{tap.issues_url}
       --with-vendor-name=#{tap.user}
