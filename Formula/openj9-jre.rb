@@ -89,9 +89,8 @@ class Openj9Jre < Formula
     system "bash", "./configure", *config_args
     system "make", "legacy-jre-image", "-j"
 
-    jre = Dir["build/*/images/jre-bundle/*"].first
+    jre = Dir["build/*/images/*"].first
     libexec.install jre => "openj9.jre"
-    rm_rf Dir.glob(libexec/"openj9.jre/Contents/Home/**/*.dSYM")
     bin.install_symlink Dir[libexec/"openj9.jre/Contents/Home/bin/*"]
   end
 
