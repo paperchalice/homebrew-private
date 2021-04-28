@@ -15,6 +15,11 @@ class Openj9Jre < Formula
     regex(/^openj9-(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/openj9-jre-0.26.0"
+    sha256 cellar: :any, big_sur: "3d7805afe584b7bafc3b532e80039e0265a28d3fe300120f453d3047aa48ccd2"
+  end
+
   keg_only :shadowed_by_macos
 
   depends_on "autoconf" => :build
