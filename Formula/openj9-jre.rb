@@ -89,8 +89,8 @@ class Openj9Jre < Formula
     system "bash", "./configure", *config_args
     system "make", "mac-legacy-jre-bundle", "-j"
 
-    jre = Dir["build/*/images/*"]
-    libexec.install jre
+    jre = Dir["build/*/images/jre-bundle/*"].first
+    libexec.install jre => "openj9.jre"
     rm_rf Dir.glob(libexec/"**/*.dSYM")
   end
 
