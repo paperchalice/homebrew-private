@@ -28,6 +28,8 @@ class Clang < Formula
 
   def install
     resource("clang-tools-extra").stage buildpath/"tools/extra"
+    # avoid building libclang-cpp
+    inreplace "tools/CMakeLists.txt", "add_clang_subdirectory(clang-shlib)", ""
     inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
       "../clang-tools-extra", "tools/extra"
 
@@ -40,29 +42,30 @@ class Clang < Formula
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
     args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
-      -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_CXX_STANDARD=17
+      -D BUILD_SHARED_LIBS=ON
+      -D CMAKE_BUILD_TYPE=MinSizeRel
+      -D CMAKE_CXX_STANDARD=17
 
-      -DC_INCLUDE_DIRS=#{include_dirs}
-      -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
-      -DCLANG_CONFIG_FILE_USER_DIR=#{config_trick}
-      -DCLANG_DEFAULT_STD_C=c17
-      -DCLANG_DEFAULT_STD_CXX=cxx17
-      -DCLANG_DEFAULT_CXX_STDLIB=libc++
-      -DCLANG_DEFAULT_RTLIB=compiler-rt
-      -DCLANG_DEFAULT_UNWINDLIB=libunwind
-      -DCLANG_LINK_CLANG_DYLIB=OFF
-      -DCLANG_RESOURCE_DIR=../../../lib/clang/#{version}
+      -D C_INCLUDE_DIRS=#{include_dirs}
+      -D CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
+      -D CLANG_CONFIG_FILE_USER_DIR=#{config_trick}
+      -D CLANG_DEFAULT_STD_C=c17
+      -D CLANG_DEFAULT_STD_CXX=cxx17
+      -D CLANG_DEFAULT_CXX_STDLIB=libc++
+      -D CLANG_DEFAULT_RTLIB=compiler-rt
+      -D CLANG_DEFAULT_UNWINDLIB=libunwind
+      -D CLANG_LINK_CLANG_DYLIB=OFF
+      -D CLANG_RESOURCE_DIR=../../../lib/clang/#{version}
 
-      -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
+      -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
+
+      -S .
+      -B build
     ]
 
-    mkdir "build" do
-      system "cmake", "..", *args
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+    system "cmake", *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
