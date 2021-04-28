@@ -62,8 +62,15 @@ class OpenjdkJre < Formula
     system "make", "mac-legacy-jre-bundle", "-j"
 
     jre = Dir["build/*/images/jre-bundle/*"].first
-    libexec.install jre => "openjdk.jre"
-    bin.install_symlink Dir[libexec/"openjdk.jre/Contents/Home/bin/*"]
+    libexec.install jre => "openjdk.jre.bundle"
+    bin.install_symlink Dir[libexec/"openjdk.jre.bundle/Contents/Home/bin/*"]
+  end
+
+  def caveats
+    <<~EOS
+      For the system Java wrappers to find this JDK, symlink it with
+        sudo ln -sfn #{opt_libexec}/openjdk.jre.bundle /Library/Java/JavaVirtualMachines/openjdk.jre.bundle
+    EOS
   end
 
   test do

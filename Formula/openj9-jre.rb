@@ -95,18 +95,19 @@ class Openj9Jre < Formula
     system "make", "mac-legacy-jre-bundle", "-j"
 
     jre = Dir["build/*/images/jre-bundle/*"].first
-    libexec.install jre => "openj9.jre"
+    libexec.install jre => "openj9.jre.bundle"
     rm_rf Dir.glob(libexec/"**/*.dSYM")
+    bin.install_symlink Dir[libexec/"openj9.jre.bundle/Contents/Home/bin/*"]
   end
 
   def caveats
     <<~EOS
       For the system Java wrappers to find this JDK, symlink it with
-        sudo ln -sfn #{opt_libexec}/openj9.jre /Library/Java/JavaVirtualMachines/openj9.jre
+        sudo ln -sfn #{opt_libexec}/openj9.jre.bundle /Library/Java/JavaVirtualMachines/openj9.jre.bundle
     EOS
   end
 
   test do
-    system "echo"
+    system bin/"java", "-version"
   end
 end
