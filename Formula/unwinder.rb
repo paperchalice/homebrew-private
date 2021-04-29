@@ -11,6 +11,11 @@ class Unwinder < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unwinder-12.0.0"
+    sha256 cellar: :any, big_sur: "ebbc29f67421c02a38a8d1f6e711a07dc9d27f21a2de09b429ac44f14b672aac"
+  end
+
   depends_on "cmake" => :build
 
   depends_on "compiler-rt"
