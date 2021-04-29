@@ -1,4 +1,4 @@
-class Libunwind < Formula
+class Unwinder < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
@@ -11,17 +11,12 @@ class Libunwind < Formula
     regex(/LLVM (\d+\.\d+\.\d+)/i)
   end
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-12.0.0"
-    sha256 cellar: :any, big_sur: "6dbebe9fb98153f1a0c1c1912c19e8432494586470423b077e8e51c1227c5f15"
-  end
-
   depends_on "cmake" => :build
+
+  depends_on "compiler-rt"
 
   def install
     args = std_cmake_args+ %w[
-      -D CMAKE_BUILD_TYPE=MinSizeRel
-
       -D LIBUNWIND_USE_COMPILER_RT=ON
 
       .
