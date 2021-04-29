@@ -28,7 +28,7 @@ class Libunwind < Formula
     ]
 
     cd "libunwind"
-    system "cmake",  *args
+    system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
   end
