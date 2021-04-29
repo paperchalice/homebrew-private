@@ -21,7 +21,6 @@ class Lld < Formula
 
   def install
     args = std_cmake_args+ %w[
-      -D CMAKE_BUILD_TYPE=MinSizeRel
       -D CMAKE_CXX_STANDARD=17
 
       -S .
