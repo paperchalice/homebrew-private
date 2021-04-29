@@ -20,7 +20,7 @@ class Libcxxabi < Formula
   depends_on "python" => :build
 
   depends_on "compiler-rt"
-  depends_on "paperchalice/private/libunwind"
+  depends_on "unwinder"
 
   def install
     args = std_cmake_args+ %w[

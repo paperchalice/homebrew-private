@@ -20,7 +20,7 @@ class Libcxx < Formula
 
   depends_on "compiler-rt"
   depends_on "libc++abi"
-  depends_on "paperchalice/private/libunwind"
+  depends_on "unwinder"
 
   def install
     args = std_cmake_args + %W[
