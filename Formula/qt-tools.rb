@@ -24,13 +24,11 @@ class QtTools < Formula
   depends_on "qt-declarative"
 
   def install
+    ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
     args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
-      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
-      -D CMAKE_MODULE_LINKER_FLAGS=-L/usr/lib
       -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
