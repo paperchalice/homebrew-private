@@ -27,17 +27,18 @@ class QtTools < Formula
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
-    args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_EXE_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_MODULE_LINKER_FLAGS=-L/usr/lib
-      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
-      -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -DCMAKE_STAGING_PREFIX=#{prefix}
+    args =std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_MODULE_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_STAGING_PREFIX=#{prefix}
+
+      .
     ]
 
-    system "cmake", ".", *args
+    system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 

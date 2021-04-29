@@ -30,33 +30,33 @@ class LlvmCore < Formula
   def install
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
-      -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_CXX_STANDARD=17
-      -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
+    args = std_cmake_args+ %W[
+      -D BUILD_SHARED_LIBS=ON
+      -D CMAKE_CXX_STANDARD=17
+      -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
 
-      -DLLVM_BUILD_LLVM_DYLIB=OFF
-      -DLLVM_LINK_LLVM_DYLIB=OFF
-      -DLLVM_ENABLE_EH=ON
-      -DLLVM_ENABLE_FFI=ON
-      -DLLVM_ENABLE_LIBCXX=ON
-      -DLLVM_ENABLE_MODULES=ON
-      -DLLVM_ENABLE_RTTI=ON
-      -DLLVM_INCLUDE_DOCS=OFF
-      -DLLVM_INCLUDE_TESTS=OFF
-      -DLLVM_INSTALL_UTILS=ON
-      -DLLVM_ENABLE_Z3_SOLVER=OFF
-      -DLLVM_OPTIMIZED_TABLEGEN=ON
-      -DLLVM_USE_NEW_PM=ON
-      -DLLVM_CREATE_XCODE_TOOLCHAIN=OFF
+      -D LLVM_BUILD_LLVM_DYLIB=OFF
+      -D LLVM_LINK_LLVM_DYLIB=OFF
+      -D LLVM_ENABLE_EH=ON
+      -D LLVM_ENABLE_FFI=ON
+      -D LLVM_ENABLE_LIBCXX=ON
+      -D LLVM_ENABLE_MODULES=ON
+      -D LLVM_ENABLE_RTTI=ON
+      -D LLVM_INCLUDE_DOCS=OFF
+      -D LLVM_INCLUDE_TESTS=OFF
+      -D LLVM_INSTALL_UTILS=ON
+      -D LLVM_ENABLE_Z3_SOLVER=OFF
+      -D LLVM_OPTIMIZED_TABLEGEN=ON
+      -D LLVM_USE_NEW_PM=ON
+      -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
+
+      -S .
+      -B build
     ]
 
-    mkdir "build" do
-      system "cmake", "..", *args
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+    system "cmake", *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do

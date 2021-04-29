@@ -41,9 +41,8 @@ class Clang < Formula
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
+    args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_BUILD_TYPE=MinSizeRel
       -D CMAKE_CXX_STANDARD=17
 
       -D C_INCLUDE_DIRS=#{include_dirs}

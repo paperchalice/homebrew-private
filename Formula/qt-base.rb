@@ -43,33 +43,35 @@ class QtBase < Formula
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
-      -DCMAKE_STAGING_PREFIX=#{prefix}
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      -D CMAKE_BUILD_TYPE=MinSizeRel
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+      -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      -DINSTALL_LIBEXECDIR=share/qt/libexec
-      -DINSTALL_TESTSDIR=share/qt/tests
-      -DINSTALL_QMLDIR=share/qt/qml
-      -DINSTALL_PLUGINSDIR=share/qt/plugins
-      -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
-      -DINSTALL_DOCDIR=share/doc/qt
-      -DINSTALL_MKSPECSDIR=share/qt/mkspecs
-      -DINSTALL_TRANSLATIONSDIR=share/qt/translations
-      -DINSTALL_EXAMPLESDIR=share/qt/examples
+      -D INSTALL_LIBEXECDIR=share/qt/libexec
+      -D INSTALL_TESTSDIR=share/qt/tests
+      -D INSTALL_QMLDIR=share/qt/qml
+      -D INSTALL_PLUGINSDIR=share/qt/plugins
+      -D INSTALL_DESCRIPTIONSDIR=share/qt/modules
+      -D INSTALL_DOCDIR=share/doc/qt
+      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
+      -D INSTALL_TRANSLATIONSDIR=share/qt/translations
+      -D INSTALL_EXAMPLESDIR=share/qt/examples
 
-      -DFEATURE_pkg_config=ON
-      -DFEATURE_libproxy=ON
-      -DFEATURE_sql_odbc=OFF
-      -DFEATURE_sql_psql=OFF
-      -DFEATURE_sql_mysql=OFF
-      -DFEATURE_relocatable=OFF
+      -D FEATURE_pkg_config=ON
+      -D FEATURE_libproxy=ON
+      -D FEATURE_sql_odbc=OFF
+      -D FEATURE_sql_psql=OFF
+      -D FEATURE_sql_mysql=OFF
+      -D FEATURE_relocatable=OFF
 
-      -DFEATURE_system_sqlite=ON
+      -D FEATURE_system_sqlite=ON
+
+      .
     ]
 
-    system "cmake", ".", *cmake_args
+    system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 

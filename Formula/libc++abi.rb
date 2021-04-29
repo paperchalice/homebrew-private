@@ -19,18 +19,21 @@ class Libcxxabi < Formula
   depends_on "cmake" => :build
   depends_on "python" => :build
 
+  depends_on "compiler-rt"
+  depends_on "paperchalice/private/libunwind"
+
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
+    args = std_cmake_args+ %w[
+      -D LIBCXXABI_USE_LLVM_UNWINDER=ON
+      -D LIBCXXABI_USE_COMPILER_RT=ON
+
+      .
     ]
 
-    cd "libcxxabi" do
-      mkdir "build" do
-        system "cmake", "..", *args
-        system "cmake", "--build", "."
-        system "cmake", "--install", "."
-      end
-    end
+    cd "libcxxabi"
+    system "cmake", *args
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do

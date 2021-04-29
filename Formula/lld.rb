@@ -20,16 +20,17 @@ class Lld < Formula
   depends_on "llvm-core"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
-      -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_CXX_STANDARD=17
+    args = std_cmake_args+ %w[
+      -D CMAKE_BUILD_TYPE=MinSizeRel
+      -D CMAKE_CXX_STANDARD=17
+
+      -S .
+      -B build
     ]
-    mkdir "build" do
-      system "cmake", "..", *(std_cmake_args + args)
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+
+    system "cmake", *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do

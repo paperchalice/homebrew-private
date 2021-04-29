@@ -60,11 +60,11 @@ class QtDoc < Formula
     # and `-DTEST_assimp=ON` when Qt 6.2 is released.
     # See https://bugreports.qt.io/browse/QTBUG-91537
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
-      -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -DCMAKE_FIND_FRAMEWORK=FIRST
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_FIND_FRAMEWORK=FIRST
 
-      -DINSTALL_MKSPECSDIR=share/qt/mkspecs
-      -DINSTALL_DESCRIPTIONSDIR=share/qt/modules
+      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
+      -D INSTALL_DESCRIPTIONSDIR=share/qt/modules
     ]
 
     system "./configure", *config_args, "--", *cmake_args

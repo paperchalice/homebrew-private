@@ -20,17 +20,16 @@ class CompilerRt < Formula
   depends_on "llvm-core" => :build
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %W[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_CXX_STANDARD=17
-      -DCMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
+    args = std_cmake_args + %W[
+      -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
+
+      .
     ]
 
-    mkdir "build" do
-      system "cmake", "..", *args
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+    system "cmake", *args
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do

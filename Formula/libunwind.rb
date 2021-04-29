@@ -19,17 +19,18 @@ class Libunwind < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
+    args = std_cmake_args+ %w[
+      -D CMAKE_BUILD_TYPE=MinSizeRel
+
+      -D LIBUNWIND_USE_COMPILER_RT=ON
+
+      .
     ]
 
-    cd "libunwind" do
-      mkdir "build" do
-        system "cmake", "..", *args
-        system "cmake", "--build", "."
-        system "cmake", "--install", "."
-      end
-    end
+    cd "libunwind"
+    system "cmake",  *args
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do

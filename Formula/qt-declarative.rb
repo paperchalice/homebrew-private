@@ -25,13 +25,12 @@ class QtDeclarative < Formula
   depends_on "qt-svg"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] || s["CMAKE_BUILD_TYPE"] } + %W[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
-      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
-      -DCMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -DCMAKE_STAGING_PREFIX=#{prefix}
+    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
+      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      -DPython_ROOT_DIR=#{Formula["python"].opt_prefix}
+      -D Python_ROOT_DIR=#{Formula["python"].opt_prefix}
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."

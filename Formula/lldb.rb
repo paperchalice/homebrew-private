@@ -28,17 +28,18 @@ class Lldb < Formula
   uses_from_macos "zlib"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
-      -DCMAKE_BUILD_TYPE=MinSizeRel
+    args = std_cmake_args+ %w[
       -DCMAKE_CXX_STANDARD=17
 
       -DLLDB_BUILD_FRAMEWORK=ON
+
+      -S .
+      -B build
     ]
-    mkdir "build" do
-      system "cmake", "..", *(std_cmake_args + args)
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+
+    system "cmake", *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do

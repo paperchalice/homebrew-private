@@ -25,9 +25,8 @@ class Mlir < Formula
   end
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_BUILD_TYPE"] } + %w[
+    args = std_cmake_args+ %w[
       -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_BUILD_TYPE=MinSizeRel
       -DCMAKE_CXX_STANDARD=17
     ]
 
