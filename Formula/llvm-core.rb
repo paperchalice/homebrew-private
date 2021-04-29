@@ -20,9 +20,8 @@ class LlvmCore < Formula
   depends_on "python" => :build
   depends_on "swig" => :build
 
-  depends_on "libffi"
-
   uses_from_macos "libedit"
+  uses_from_macos "libffi"
   uses_from_macos "libxml2"
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
