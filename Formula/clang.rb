@@ -41,7 +41,7 @@ class Clang < Formula
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
-    rc_dir = (HOMEBREW_PREFIX/"lib/clang#{version}").relative_path_from prefix
+    rc_dir = (HOMEBREW_PREFIX/"lib/clang/#{version}").relative_path_from prefix
     args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
