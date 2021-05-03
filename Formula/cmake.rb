@@ -46,7 +46,7 @@ class Cmake < Formula
       --sphinx-build=#{Formula["sphinx-doc"].opt_bin}/sphinx-build
       --sphinx-html
       --sphinx-man
-      --with-qt
+      --qt-gui
     ]
     on_macos do
       args += %w[
