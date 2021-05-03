@@ -20,8 +20,8 @@ class Cmake < Formula
     sha256 cellar: :any_skip_relocation, mojave:        "a60610090a757e36e9799be128d8404330ebd79e6d1e19fe3926dbcb95fd8e3c"
   end
 
-  depends_on "sphinx-doc" => :build
   depends_on "qt@5" => :build
+  depends_on "sphinx-doc" => :build
 
   uses_from_macos "ncurses"
 
