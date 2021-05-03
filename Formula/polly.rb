@@ -17,19 +17,24 @@ class Polly < Formula
 
   depends_on "cmake" => :build
 
+  depends_on "isl"
   depends_on "llvm-core"
 
   def install
+    mkdir_p "include/isl"
+    cp "lib/External/isl/include/isl/isl-noexceptions.h", "include/isl/isl-noexceptions.h"
     args = std_cmake_args+ %w[
       -DBUILD_SHARED_LIBS=ON
       -DCMAKE_CXX_STANDARD=17
+
+      -S .
+      -B build
     ]
 
-    mkdir "build" do
-      system "cmake", "..", *args
-      system "cmake", "--build", "."
-      system "cmake", "--install", "."
-    end
+    system "cmake", *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
+    (include/"isl").install "include/isl/isl-noexceptions.h"
   end
 
   test do
