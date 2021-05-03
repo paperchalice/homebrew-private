@@ -48,7 +48,7 @@ class Cmake < Formula
     system "make"
     system "make", "install"
 
-    libexec.install bin/"CMake.app"
+    libexec.install prefix/"CMake.app"
     bin.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake" => "cmake-gui"
     system "macdeployqt", libexec/"CMake.app"
   end
