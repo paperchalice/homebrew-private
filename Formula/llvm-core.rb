@@ -4,7 +4,6 @@ class LlvmCore < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-12.0.0.src.tar.xz"
   sha256 "49dc47c8697a1a0abd4ee51629a696d7bfe803662f2a7252a3b16fc75f3a8b50"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   livecheck do
     url :homepage

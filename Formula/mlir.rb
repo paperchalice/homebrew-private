@@ -5,11 +5,6 @@ class Mlir < Formula
   sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  livecheck do
-    url "https://llvm.org/"
-    regex(/LLVM (\d+\.\d+\.\d+)/i)
-  end
-
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-12.0.0"
     sha256 cellar: :any, big_sur: "353571030a55c946eaba584c74b1f629c0feff44aae2994b09259f8d69cfc8f6"

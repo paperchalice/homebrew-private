@@ -4,12 +4,6 @@ class Clang < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-12.0.0.src.tar.xz"
   sha256 "e26e452e91d4542da3ebbf404f024d3e1cbf103f4cd110c26bf0a19621cca9ed"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  head "https://github.com/llvm/llvm-project.git", branch: "main"
-
-  livecheck do
-    url "https://llvm.org/"
-    regex(/LLVM (\d+\.\d+\.\d+)/i)
-  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-12.0.0"

@@ -5,11 +5,6 @@ class Lldb < Formula
   sha256 "14bcc0f55644df1a50ae9830e1f1751a7b3f633fb8605ee50e685a3db0c705ed"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  livecheck do
-    url "https://llvm.org/"
-    regex(/LLVM (\d+\.\d+\.\d+)/i)
-  end
-
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/lldb-12.0.0"
     sha256 cellar: :any, big_sur: "68fb3162dd7af581c2d0bc779fdeac5347f6a2ef7ba3fd62f2c3b2236bd24ad1"

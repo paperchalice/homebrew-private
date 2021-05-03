@@ -4,12 +4,6 @@ class CompilerRt < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/compiler-rt-12.0.0.src.tar.xz"
   sha256 "85a8cd0a62413eaa0457d8d02f8edac38c4dc0c96c00b09dc550260c23268434"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  head "https://github.com/llvm/llvm-project.git", branch: "main"
-
-  livecheck do
-    url "https://llvm.org/"
-    regex(/LLVM (\d+\.\d+\.\d+)/i)
-  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/compiler-rt-12.0.0"
