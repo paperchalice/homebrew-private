@@ -47,9 +47,9 @@ class QtBase < Formula
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -D CMAKE_STAGING_PREFIX=#{prefix}
+      -D CMAKE_SYSROOT=#{MacOS.sdk_path}
 
       -D INSTALL_LIBEXECDIR=share/qt/libexec
       -D INSTALL_TESTSDIR=share/qt/tests
