@@ -16,9 +16,11 @@ class QtDoc < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "70e83bc35efa2db032e4d6fd81d65611771d8e255d14bf70388264ab07914519"
   end
 
-  depends_on "cmake" => :build
-  depends_on "ninja" => :build
-  depends_on "qt-tools" => :build
+  depends_on "cmake"      => :build
+  depends_on "ninja"      => :build
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
+  depends_on "python"     => :build
 
   resource "qtimageformats" do
     url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtimageformats-everywhere-src-6.0.3.tar.xz"
@@ -36,6 +38,7 @@ class QtDoc < Formula
   end
 
   def install
+    inreplace "qtbase/cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
     resources.each { |addition| addition.stage buildpath/addition.name }
 
     config_args = %W[
@@ -59,9 +62,8 @@ class QtDoc < Formula
     # TODO: remove `-DFEATURE_qt3d_system_assimp=ON`
     # and `-DTEST_assimp=ON` when Qt 6.2 is released.
     # See https://bugreports.qt.io/browse/QTBUG-91537
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"]||s["CMAKE_FIND_FRAMEWORK"] } + %W[
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-      -D CMAKE_FIND_FRAMEWORK=FIRST
 
       -D INSTALL_MKSPECSDIR=share/qt/mkspecs
       -D INSTALL_DESCRIPTIONSDIR=share/qt/modules
