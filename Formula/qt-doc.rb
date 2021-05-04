@@ -1,7 +1,7 @@
 class QtDoc < Formula
   desc "Qt Documentation"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/single/qt-everywhere-src-6.0.3.tar.xz"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.4/single/qt-everywhere-src-6.0.4.tar.xz"
   sha256 "ca4a97439443dd0b476a47b284ba772c3b1b041a9eef733e26a789490993a0e3"
   license "GFDL-1.3-only"
   head "https://code.qt.io/qt/qtdoc.git", branch: "dev"
@@ -23,17 +23,17 @@ class QtDoc < Formula
   depends_on "python"     => :build
 
   resource "qtimageformats" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtimageformats-everywhere-src-6.0.3.tar.xz"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qtimageformats-everywhere-src-6.0.4.tar.xz"
     sha256 "327580b5a5b9a8d75e869c0eaa7ff34881bbde4e4ccc51d07a59e96054136837"
   end
 
   resource "qt3d" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qt3d-everywhere-src-6.0.3.tar.xz"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qt3d-everywhere-src-6.0.4.tar.xz"
     sha256 "470f95c559b68cc8faa982c1ca7ff83054d6802f7b2a0c1d960a155b92080cf9"
   end
 
   resource "qtnetworkauth" do
-    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qtnetworkauth-everywhere-src-6.0.3.tar.xz"
+    url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qtnetworkauth-everywhere-src-6.0.4.tar.xz"
     sha256 "124bf433e2c5418e900a5947d4ceb128ee179f514eddcea33924f0b695be64ed"
   end
 

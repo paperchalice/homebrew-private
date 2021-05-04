@@ -1,7 +1,7 @@
 class QtQuickControls2 < Formula
   desc "Next generation user interface controls based on Qt Quick"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qtquickcontrols2-everywhere-src-6.0.3.tar.xz"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.4/submodules/qtquickcontrols2-everywhere-src-6.0.4.tar.xz"
   sha256 "511bdfbf6f573b0460424bf582fe935382e870812f8b47aebf2b80fd54e48b85"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtquickcontrols2.git", branch: "dev"

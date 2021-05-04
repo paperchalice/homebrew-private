@@ -1,7 +1,7 @@
 class Qt3d < Formula
   desc "3D Lib"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qt3d-everywhere-src-6.0.3.tar.xz"
+  url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qt3d-everywhere-src-6.0.4.tar.xz"
   sha256 "470f95c559b68cc8faa982c1ca7ff83054d6802f7b2a0c1d960a155b92080cf9"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qt3d.git", branch: "dev"
