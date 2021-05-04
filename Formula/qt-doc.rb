@@ -22,6 +22,7 @@ class QtDoc < Formula
   depends_on "perl"       => :build
   depends_on "pkg-config" => :build
   depends_on "python"     => :build
+  depends_on "qt-tools"   => :build
 
   resource "qt3d" do
     url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qt3d-everywhere-src-6.0.4.tar.xz"
