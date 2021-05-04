@@ -96,6 +96,6 @@ class QtBase < Formula
   end
 
   test do
-    systen "echo"
+    system "echo"
   end
 end
