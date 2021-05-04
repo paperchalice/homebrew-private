@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qtbase-everywhere-src-6.0.3.tar.xz"
-  sha256 "1a45b61c2a349964625c50e3ea40cbb309e269762dd0786397e0e18e7e10d394"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.4/submodules/qtbase-everywhere-src-6.0.4.tar.xz"
+  sha256 "c42757932d7cb264a043cc2a0eed30774d938f63db67bfff11d8e319c0c8799a"
   license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
@@ -17,6 +17,7 @@ class QtBase < Formula
   end
 
   depends_on "cmake"      => [:build, :test, :recommended]
+  depends_on "ninja"      => :build
   depends_on "perl"       => :build
   depends_on "pkg-config" => :build
 
@@ -39,6 +40,8 @@ class QtBase < Formula
   uses_from_macos "zlib"
 
   def install
+    ENV.permit_arch_flags
+    ENV.deparallelize
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
@@ -58,16 +61,19 @@ class QtBase < Formula
       -D INSTALL_TRANSLATIONSDIR=share/qt/translations
       -D INSTALL_EXAMPLESDIR=share/qt/examples
 
-      -D FEATURE_pkg_config=ON
       -D FEATURE_libproxy=ON
+      -D FEATURE_pkg_config=ON
+      -D FEATURE_reduce_exports=ON
+      -D FEATURE_reduce_relocations=ON
+      -D FEATURE_relocatable=OFF
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
       -D FEATURE_sql_mysql=OFF
-      -D FEATURE_relocatable=OFF
 
       -D FEATURE_system_sqlite=ON
 
-      .
+      -S .
+      -G Ninja
     ]
 
     system "cmake", *cmake_args
