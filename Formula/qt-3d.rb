@@ -17,7 +17,6 @@ class Qt3d < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "ninja" => :build
   depends_on "perl" => :build
 
   depends_on "qt-base"
@@ -29,10 +28,6 @@ class Qt3d < Formula
       -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
-
-      -D FEATURE_qt3d_system_assimp=ON
-      -D TEST_assimp=ON
-      -G Ninja
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
