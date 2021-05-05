@@ -65,16 +65,6 @@ class Qt3d < Formula
       target_link_libraries(test PRIVATE Qt6::Core Qt6::3DCore)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core 3dcore
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <Qt3DCore>
@@ -89,8 +79,5 @@ class Qt3d < Formula
 
     system "cmake", "."
     system "cmake", "--build", "."
-
-    system "qmake", "./test.pro"
-    system "make"
   end
 end

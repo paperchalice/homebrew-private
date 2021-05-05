@@ -64,16 +64,6 @@ class QtNetworkauth < Formula
       target_link_libraries(test PRIVATE Qt6::Core Qt6::Network Qt6::NetworkAuth)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core network networkauth
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <QtNetworkAuth>
@@ -88,8 +78,5 @@ class QtNetworkauth < Formula
 
     system "cmake", "."
     system "cmake", "--build", "."
-
-    system "qmake", "test.pro"
-    system "make"
   end
 end

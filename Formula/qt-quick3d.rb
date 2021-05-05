@@ -68,16 +68,6 @@ class QtQuick3d < Formula
       target_link_libraries(test PRIVATE Qt6::Widgets Qt6::Quick3D)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core quick3d
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <QtQuick3D>
@@ -91,10 +81,6 @@ class QtQuick3d < Formula
 
     system "cmake", testpath
     system "cmake", "--build", "."
-    system "./test"
-
-    system "qmake", testpath/"test.pro"
-    system "make"
     system "./test"
   end
 end

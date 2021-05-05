@@ -66,16 +66,6 @@ class QtCore5Compat < Formula
       target_link_libraries(test PRIVATE Qt6::Widgets Qt6::Core5Compat)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core core5compat
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <QtCore5Compat/QLinkedList>
@@ -90,10 +80,6 @@ class QtCore5Compat < Formula
 
     system "cmake", "."
     system "cmake", "--build", "."
-    system "./test"
-
-    system "qmake", testpath/"test.pro"
-    system "make"
     system "./test"
   end
 end

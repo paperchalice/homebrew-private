@@ -66,16 +66,6 @@ class QtQuickControls2 < Formula
       target_link_libraries(test PRIVATE Qt6::Widgets Qt6::QuickControls2)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core quick quickcontrols2
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <QtQuickControls2/QtQuickControls2>
@@ -89,10 +79,6 @@ class QtQuickControls2 < Formula
 
     system "cmake", "."
     system "cmake", "--build", "."
-    system "./test"
-
-    system "qmake", "./test.pro"
-    system "make"
     system "./test"
   end
 end
