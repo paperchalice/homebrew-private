@@ -12,8 +12,8 @@ class QtTools < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.0.3"
-    sha256 cellar: :any, big_sur: "c5122c5a6d1b509db78b64ca53ef45be1c694d3d66b49bf2dbb727cfefe726ed"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.0.4"
+    sha256 cellar: :any, big_sur: "0e4423f6460f17eb5365d039bf7a054df8e12e2450ceb972b6dff74f6cb3406d"
   end
 
   depends_on "cmake" => [:build, :test]
