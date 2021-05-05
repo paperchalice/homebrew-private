@@ -85,8 +85,6 @@ class QtBase < Formula
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
 
-    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", /.*set.__qt_initial_.*/, ""
-
     # The pkg-config files installed suggest that headers can be found in the
     # `include` directory. Make this so by creating symlinks from `include` to
     # the Frameworks' Headers folders.
@@ -96,6 +94,34 @@ class QtBase < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION #{Formula["cmake"].version})
+      project(test VERSION 1.0.0 LANGUAGES CXX)
+      set(CMAKE_CXX_STANDARD 17)
+      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+      set(CMAKE_AUTOMOC ON)
+      set(CMAKE_AUTORCC ON)
+      set(CMAKE_AUTOUIC ON)
+      find_package(Qt6 COMPONENTS Widgets REQUIRED)
+      add_executable(test
+          main.cpp
+      )
+      target_link_libraries(test PRIVATE Qt6::Widgets)
+    EOS
+
+    (testpath/"main.cpp").write <<~EOS
+      #include <QCoreApplication>
+      #include <QDebug>
+      int main(int argc, char *argv[])
+      {
+        QCoreApplication a(argc, argv);
+        qDebug() << "Hello World!";
+        return 0;
+      }
+    EOS
+
+    system "cmake", testpath
+    system "cmake", "--build", "."
+    assert_equal "Hello World!", shell_output("#{testpath}/test 2>&1").strip
   end
 end
