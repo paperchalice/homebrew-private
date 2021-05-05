@@ -69,16 +69,6 @@ class QtSvg < Formula
       target_link_libraries(test PRIVATE Qt6::Widgets Qt6::Svg)
     EOS
 
-    (testpath/"test.pro").write <<~EOS
-      QT       += core svg
-      QT       -= gui
-      TARGET = test
-      CONFIG   += console
-      CONFIG   -= app_bundle
-      TEMPLATE = app
-      SOURCES += main.cpp
-    EOS
-
     (testpath/"main.cpp").write <<~EOS
       #include <QCoreApplication>
       #include <QtSvg/QtSvg>
@@ -93,10 +83,6 @@ class QtSvg < Formula
 
     system "cmake", testpath
     system "cmake", "--build", "."
-    system "./test"
-
-    system "qmake", testpath/"test.pro"
-    system "make"
     system "./test"
   end
 end
