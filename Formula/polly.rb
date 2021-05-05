@@ -19,20 +19,23 @@ class Polly < Formula
     mkdir_p "include/isl"
     cp "lib/External/isl/include/isl/isl-noexceptions.h", "include/isl/isl-noexceptions.h"
     args = std_cmake_args+ %w[
-      -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_CXX_STANDARD=17
+      -D BUILD_SHARED_LIBS=ON
+      -D CMAKE_CXX_STANDARD=17
+
+      -D POLLY_BUNDLED_ISL=OFF
 
       -S .
-      -B build
     ]
 
     system "cmake", *args
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
-    (include/"isl").install "include/isl/isl-noexceptions.h"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do
+    (testpath/"test.cpp").write <<~EOF
+      #include <polly/>
+    EOF
     system "echo"
   end
 end
