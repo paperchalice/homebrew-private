@@ -29,6 +29,7 @@ class Qt3d < Formula
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
+      -D FEATURE_qt3d_simd_avx2=ON
       -D FEATURE_qt3d_system_assimp=ON
       -D TEST_assimp=ON
     ]
