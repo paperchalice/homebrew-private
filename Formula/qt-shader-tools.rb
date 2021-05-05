@@ -1,8 +1,8 @@
 class QtShaderTools < Formula
   desc "Provide the producer functionality for the shader pipeline"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.3/submodules/qtshadertools-everywhere-src-6.0.3.tar.xz"
-  sha256 "3649696a5148bdebff1917ed49b9fe2a7c1533d9351cbe371aa7e6ae303e00c1"
+  url "https://download.qt.io/official_releases/qt/6.0/6.0.4/submodules/qtshadertools-everywhere-src-6.0.4.tar.xz"
+  sha256 "05b88f93c6348599e0fe512a615baa3527a564ec703ae60ad9d824be18468f77"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
 
@@ -12,8 +12,8 @@ class QtShaderTools < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.0.3"
-    sha256 cellar: :any, big_sur: "1ad6b163cf18a80849dace26a4a9fe3596448053c7459f9257cc1cd89ade2a05"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.0.4"
+    sha256 cellar: :any, big_sur: "a9d9835a72a6fb05781fc69bc2a3c6d93e01c4f210292fd4c2f2c5d960ceb903"
   end
 
   depends_on "cmake" => [:build, :test]
