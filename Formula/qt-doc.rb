@@ -12,8 +12,8 @@ class QtDoc < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.0.3"
-    sha256 cellar: :any_skip_relocation, big_sur: "70e83bc35efa2db032e4d6fd81d65611771d8e255d14bf70388264ab07914519"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.0.4"
+    sha256 cellar: :any_skip_relocation, big_sur: "78e5cf49969febee5d68c9e96118ebcd931b58defb5ae5d6a5aa1c3c8e75793e"
   end
 
   depends_on "cmake"      => :build
