@@ -1,8 +1,8 @@
 class Qt3d < Formula
   desc "3D Lib"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.3/qt3d-everywhere-src-6.0.3.tar.xz"
-  sha256 "470f95c559b68cc8faa982c1ca7ff83054d6802f7b2a0c1d960a155b92080cf9"
+  url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qt3d-everywhere-src-6.0.4.tar.xz"
+  sha256 "d6970593f4ab2d94c7beedf217ce4456c69f647251aa661a7de3a6ccf1b618ff"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qt3d.git", branch: "dev"
 
@@ -12,13 +12,15 @@ class Qt3d < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-3d-6.0.3"
-    sha256 cellar: :any, big_sur: "f3609ce82639a4317b22c8610169ccaff198068792653fe06bfe772f98475622"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-3d-6.0.4"
+    sha256 cellar: :any, big_sur: "d6ff72205080bb60731b1ad139091ca8cc5581638e85636140fc0c815073e32c"
   end
 
   depends_on "cmake" => [:build, :test]
+  depends_on "ninja" => :build
   depends_on "perl" => :build
 
+  depends_on "assimp"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"
