@@ -4,6 +4,7 @@ class QtShaderTools < Formula
   url "https://download.qt.io/official_releases/qt/6.0/6.0.4/submodules/qtshadertools-everywhere-src-6.0.4.tar.xz"
   sha256 "05b88f93c6348599e0fe512a615baa3527a564ec703ae60ad9d824be18468f77"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  revision 1
   head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
 
   livecheck do
