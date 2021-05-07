@@ -43,6 +43,7 @@ class QtBase < Formula
     ENV.permit_arch_flags
     ENV.deparallelize
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
+    inreplace "CMakeLists.txt", "FATAL_ERROR", ""
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
