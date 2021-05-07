@@ -1,8 +1,8 @@
 class QtDeclarative < Formula
   desc "Qt Quick2"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.0/6.0.4/submodules/qtdeclarative-everywhere-src-6.0.4.tar.xz"
-  sha256 "7a0ae6ad72e2b828b2ce3b9a4e7ef58c85aa6a9da892a4e09fa09134eee3e976"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtdeclarative-everywhere-src-6.1.0.tar.xz"
+  sha256 "e6f64314b8d54d7b541f52827b4e795317b17c3b7f39ad5210b8dbf343b75bda"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtdeclarative.git", branch: "dev"
 
