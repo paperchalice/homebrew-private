@@ -16,7 +16,7 @@ class QtPs < Formula
   depends_on "pkg-config" => :build
 
   depends_on "percona-server"
-  depends_on "qt"
+  depends_on "qt-base"
 
   conflicts_with "qt-mysql", "qt-mariadb",
     because: "qt-mysql, qt-mariadb, and qt-percona-server install the same binaries"
