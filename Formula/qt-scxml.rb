@@ -11,6 +11,11 @@ class QtScxml < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-scxml-6.1.0"
+    sha256 cellar: :any, big_sur: "bdd0607ea5c30da25a86bbb8aa6d47053a7a8e0a2f8542e7ac84def4a36195be"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "perl" => :build
 
