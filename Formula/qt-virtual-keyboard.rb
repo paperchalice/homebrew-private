@@ -6,6 +6,11 @@ class QtVirtualKeyboard < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtvirtualkeyboard.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-virtual-keyboard-6.1.0"
+    sha256 cellar: :any, big_sur: "da3d6c8d337c66dcf598280b8dea15c4f62f487631a371ab7d8b4260d6abbdce"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "perl" => :build
 
