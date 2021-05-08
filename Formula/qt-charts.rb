@@ -11,6 +11,11 @@ class QtCharts < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-charts-6.1.0"
+    sha256 cellar: :any, big_sur: "d56aee2ea0abb348c43c6c4f6644f1248952e15be9943c208ee07a3cd67e7090"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "perl" => :build
 
