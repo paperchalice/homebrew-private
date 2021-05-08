@@ -1,8 +1,8 @@
 class QtImageformats < Formula
   desc "Qt additional image formats support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/additional_libraries/6.0/6.0.4/qtimageformats-everywhere-src-6.0.4.tar.xz"
-  sha256 "c284b2eb413a7cf62ba7168c693b7498539fc41dfd9f29dd3ce5c5b46d8d1073"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtimageformats-everywhere-src-6.1.0.tar.xz"
+  sha256 "34e63786d31d0c5dcc13a4b37d31002efb53244e48a8c2f0fafdd81e8d28575a"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtimageformats.git", branch: "dev"
 
