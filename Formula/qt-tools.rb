@@ -28,7 +28,7 @@ class QtTools < Formula
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      .
+      -S .
     ]
 
     system "cmake", *args
