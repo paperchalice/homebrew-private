@@ -52,14 +52,11 @@ class QtBase < Formula
       -D CMAKE_STAGING_PREFIX=#{prefix}
       -D CMAKE_SYSROOT=#{MacOS.sdk_path}
 
-      -D INSTALL_LIBEXECDIR=share/qt/libexec
+      -D INSTALL_DATADIR=share/qt
+      -D INSTALL_ARCHDATADIR=share/qt
+      
       -D INSTALL_TESTSDIR=share/qt/tests
-      -D INSTALL_QMLDIR=share/qt/qml
-      -D INSTALL_PLUGINSDIR=share/qt/plugins
-      -D INSTALL_DESCRIPTIONSDIR=share/qt/modules
-      -D INSTALL_DOCDIR=share/doc/qt
       -D INSTALL_MKSPECSDIR=share/qt/mkspecs
-      -D INSTALL_TRANSLATIONSDIR=share/qt/translations
       -D INSTALL_EXAMPLESDIR=share/qt/examples
 
       -D FEATURE_libproxy=ON
