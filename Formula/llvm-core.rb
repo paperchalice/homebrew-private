@@ -24,9 +24,9 @@ class LlvmCore < Formula
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
+  patch :DATA
+
   def install
-    inreplace "tools/llvm-config/llvm-config.cpp",
-      "GetExecutablePath(argv[0])", %Q("#{HOMEBREW_PREFIX}/bin/llvm-config")
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
     args = std_cmake_args+ %W[
@@ -93,3 +93,10 @@ class LlvmCore < Formula
     system "./test"
   end
 end
+
+__END__
+--- a/lib/Support/Unix/Path.inc
++++ b/lib/Support/Unix/Path.inc
+@@ -202 +202 @@
+-      return link_path;
++      return exe_path;
