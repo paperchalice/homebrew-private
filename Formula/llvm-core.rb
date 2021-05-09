@@ -26,6 +26,8 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
+    inreplace "tools/llvm-config/llvm-config.cpp",
+      "GetExecutablePath(argv[0])", %Q("#{HOMEBREW_PREFIX}/bin/llvm-config")
     #-DLLVM_BUILD_LLVM_DYLIB=ON
     #-DLLVM_LINK_LLVM_DYLIB=ON
     args = std_cmake_args+ %W[
