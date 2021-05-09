@@ -35,7 +35,6 @@ class Clang < Formula
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
-    rc_dir = (HOMEBREW_PREFIX/"lib/clang/#{version}").relative_path_from prefix
     args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
@@ -49,7 +48,6 @@ class Clang < Formula
       -D CLANG_DEFAULT_RTLIB=compiler-rt
       -D CLANG_DEFAULT_UNWINDLIB=libunwind
       -D CLANG_LINK_CLANG_DYLIB=OFF
-      -D CLANG_RESOURCE_DIR=#{rc_dir}
 
       -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
 
