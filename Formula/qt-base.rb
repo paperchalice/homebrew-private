@@ -55,9 +55,9 @@ class QtBase < Formula
       -D INSTALL_DATADIR=share/qt
       -D INSTALL_ARCHDATADIR=share/qt
       
-      -D INSTALL_TESTSDIR=share/qt/tests
-      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
       -D INSTALL_EXAMPLESDIR=share/qt/examples
+      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
+      -D INSTALL_TESTSDIR=share/qt/tests
 
       -D FEATURE_libproxy=ON
       -D FEATURE_pkg_config=ON
