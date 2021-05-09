@@ -15,9 +15,8 @@ class LlvmCore < Formula
     sha256 cellar: :any, big_sur: "349244ca092e3a447fc82a4f9afdd84b31fa5e334509d583782b782bb58c2f72"
   end
 
-  depends_on "cmake" => [:build, :test]
+  depends_on "cmake"  => [:build, :test]
   depends_on "python" => :build
-  depends_on "swig" => :build
 
   uses_from_macos "libedit"
   uses_from_macos "libffi"
