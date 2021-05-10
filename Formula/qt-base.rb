@@ -79,6 +79,7 @@ class QtBase < Formula
     system "cmake", "--install", "."
 
     rm bin/"qt-cmake-private-install.cmake"
+    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]
