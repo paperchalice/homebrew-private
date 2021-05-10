@@ -30,6 +30,10 @@ class Clang < Formula
     inreplace "tools/CMakeLists.txt", "add_clang_subdirectory(clang-shlib)", ""
     inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
       "../clang-tools-extra", "tools/extra"
+    # add `-L /usr/local/lib`
+    inreplace "lib/Driver/ToolChains/Darwin.cpp",
+      "Args.AddAllArgs(CmdArgs, options::OPT_L);",
+      (%Q{CmdArgs.push_back("-L#{HOMEBREW_PREFIX}/lib");\n} + "Args.AddAllArgs(CmdArgs, options::OPT_L);")
 
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
