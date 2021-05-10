@@ -28,7 +28,6 @@ class Qt3d < Formula
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
-      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -D FEATURE_qt3d_simd_avx2=ON
