@@ -88,8 +88,8 @@ class LlvmCore < Formula
         return 0;
       }
     EOS
-    system "cmake", "."
-    system "make"
+    system "cmake", "-S", "."
+    system "cmake", "--build", "."
     system "./test"
   end
 end
