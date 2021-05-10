@@ -10,8 +10,11 @@ class Clang < Formula
     sha256 cellar: :any, big_sur: "9b539bd5a10175426da848c4bc4faa150b552b41f7ef9c4c772999bfb2ddf833"
   end
 
-  depends_on "cmake" => :build
-  depends_on "python" => :build
+  depends_on "cmake"       => :build
+  depends_on "compiler-rt" => :build
+  depends_on "libc++"      => :build
+  depends_on "python"      => :build
+  depends_on "unwinder"    => :build
 
   depends_on "llvm-core"
 
@@ -35,9 +38,12 @@ class Clang < Formula
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
+    py_ver = Language::Python.major_minor_version("python3")
     args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
       -D C_INCLUDE_DIRS=#{include_dirs}
       -D CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
@@ -48,6 +54,7 @@ class Clang < Formula
       -D CLANG_DEFAULT_RTLIB=compiler-rt
       -D CLANG_DEFAULT_UNWINDLIB=libunwind
       -D CLANG_LINK_CLANG_DYLIB=OFF
+      -D CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
 
       -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
 
