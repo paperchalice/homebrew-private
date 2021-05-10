@@ -38,6 +38,38 @@ class QtDatavis3d < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION #{Formula["cmake"].version})
+
+      project(test_project VERSION 1.0.0 LANGUAGES CXX)
+
+      set(CMAKE_CXX_STANDARD 17)
+      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+      set(CMAKE_AUTOMOC ON)
+      set(CMAKE_AUTORCC ON)
+      set(CMAKE_AUTOUIC ON)
+
+      find_package(Qt6 COMPONENTS Core DataVisualization Gui Widgets)
+
+      add_executable(test
+          main.cpp
+      )
+
+      target_link_libraries(test PRIVATE Qt6::Widgets Qt::DataVisualization)
+    EOS
+
+    (testpath/"main.cpp").write <<~EOS
+      #include <QtWidgets/QApplication>
+      #include <QtDataVisualization/Q3DSurface>
+      int main(int argc, char *argv[]) {
+        QApplication a(argc, argv);
+
+        return 0;
+      }
+    EOS
+
+    system "cmake", "."
+    system "cmake", "--build", "."
   end
 end
