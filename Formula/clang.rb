@@ -38,6 +38,7 @@ class Clang < Formula
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
       #{HOMEBREW_PREFIX}/include
+      #{HOMEBREW_PREFIX}/Frameworks
     ].join ":"
 
     # use ld because atom based lld is work in progress
