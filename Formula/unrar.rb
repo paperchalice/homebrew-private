@@ -10,6 +10,11 @@ class Unrar < Formula
     regex(/href=.*?unrarsrc[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unrar-6.0.5"
+    sha256 cellar: :any, big_sur: "99d73e41774d599d375c9efc099c0ed43e3e3e5ef49536bc5e95a66a98d1a89e"
+  end
+
   def install
     # upstream doesn't particularly care about their unix targets,
     # so we do the dirty work of renaming their shared objects to
