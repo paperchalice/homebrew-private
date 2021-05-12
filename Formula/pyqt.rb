@@ -7,6 +7,13 @@ class Pyqt < Formula
   sha256 "9b45df6c404d7297598b91378d1e3f9bdf0970553ebb53c192a9051576098f9b"
   license "GPL-3.0-only"
 
+  bottle do
+    sha256 arm64_big_sur: "61444a7551a7bddf664aab92a43cfeecb59f050a9fe80d0822843ca5ec432bef"
+    sha256 big_sur:       "e175afb8de06d947e4926bcea2590acd41c8a763353863d92895a226588ca44f"
+    sha256 catalina:      "fddc360c28607fca03d74f6cc091f958a2243f34b9aeb1888c055df7712fea0c"
+    sha256 mojave:        "cdb9e6b67c56f66953beae5c5882bd718dfdf17c7a77036d7aadf3c86a4f676d"
+  end
+
   depends_on "python@3.9"
   depends_on "qt"
 
@@ -63,25 +70,24 @@ class Pyqt < Formula
   end
 
   def install
-    python = Formula["python@3.9"]
-
     build_venv = virtualenv_create(buildpath/"build_venv", "python3")
     %w[sip packaging pyparsing toml pyqt-builder].each { |p| build_venv.pip_install p }
     ENV.append_path "PATH", buildpath/"build_venv/bin"
 
-    site_packages = prefix/Language::Python.site_packages("python3")
     # HACK: there is no option to set the plugindir
     inreplace "project.py", "builder.qt_configuration['QT_INSTALL_PLUGINS']", "'#{share}/qt/plugins'"
 
+    site_packages = prefix/Language::Python.site_packages("python3")
     args = %W[
       --target-dir #{site_packages}
       --scripts-dir #{bin}
       --confirm-license
     ]
     system "sip-install", *args
+    Dir[bin/"*"].each { |s| inreplace s, /(?<=exec ).+(?= -m)/, Formula["python@3.9"].opt_bin/"python3" }
 
     resource("PyQt6-sip").stage do
-      system python.bin/"python3", *Language::Python.setup_install_args(prefix)
+      system "python3", *Language::Python.setup_install_args(prefix)
     end
 
     %w[3d charts datavis networkauth].each do |p|
@@ -94,14 +100,21 @@ class Pyqt < Formula
   end
 
   test do
-    # system bin/"pyuic#{version.major}", "-V"
-    # system bin/"pylupdate#{version.major}", "-V"
+    system bin/"pyuic#{version.major}", "-V"
+    system bin/"pylupdate#{version.major}", "-V"
 
     system Formula["python@3.9"].opt_bin/"python3", "-c", "import PyQt#{version.major}"
     # TODO: add additional libraries in future: Position, Multimedia
     %w[
+      3DAnimation
+      3DCore
+      3DExtras
+      3DInput
+      3DLogic
+      3DRender
       Gui
       Network
+      NetworkAuth
       Quick
       Svg
       Widgets
