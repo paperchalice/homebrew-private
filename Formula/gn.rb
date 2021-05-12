@@ -6,6 +6,11 @@ class Gn < Formula
   version "1.0.0"
   license "0BSD"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gn-1.0.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "efee53db5825b39650cdb2d8e4cff23d00b7ab29790ae49a06b7a2ecce1d26d8"
+  end
+
   depends_on "ninja"
   depends_on "python"
 
