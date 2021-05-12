@@ -45,25 +45,8 @@ class Openmodelica < Formula
     sha256 "0f794a01481227b4c58a4c57c3f37035962de3955b9878f78207d0d3ebfbce09"
   end
 
-  # Implement external function evaluation with libffi
-  patch do
-    url "https://github.com/OpenModelica/OpenModelica/commit/cf3a725b80887bf52e84af1884492cdbb870161f.patch?full_index=1"
-    sha256 "f1d0fa11cee8b38a4c5eb6e1e6f10ff5e63db53958acdeb280cfdd8b7e87e519"
-  end
-
-  # attempt to fix MacOS builds
-  patch do
-    url "https://github.com/OpenModelica/OpenModelica/commit/65bb214bd59e6ab6610e0d390b252c24409a5abc.patch?full_index=1"
-    sha256 "cea5c51f88e1b55c73065f64cae8c85e3bf9450f2e6167f155eb07757e0cf4de"
-  end
-
-  # more fixes for MacOS
-  patch do
-    url "https://github.com/OpenModelica/OpenModelica/commit/ed8ef0a961b7cba917305e58e4a53d08126d58a0.patch?full_index=1"
-    sha256 "c4c66fc0a7320aeee26d1d94df2d973f78798d3cdc5a8e47a1bd5d1275c1dada"
-  end
-
   def install
+    inreplace "OMCompiler/Makefile.common", "find", "gfind"
     ENV.append_to_cflags "-I#{MacOS.sdk_path_if_needed}/usr/include/ffi"
     args = %W[
       --prefix=#{prefix}
