@@ -94,8 +94,8 @@ class Pyqt < Formula
   end
 
   test do
-    system bin/"pyuic#{version.major}", "-V"
-    system bin/"pylupdate#{version.major}", "-V"
+    # system bin/"pyuic#{version.major}", "-V"
+    # system bin/"pylupdate#{version.major}", "-V"
 
     system Formula["python@3.9"].opt_bin/"python3", "-c", "import PyQt#{version.major}"
     # TODO: add additional libraries in future: Position, Multimedia
