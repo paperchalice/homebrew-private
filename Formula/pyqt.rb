@@ -86,10 +86,8 @@ class Pyqt < Formula
 
     %w[3d charts datavis networkauth].each do |p|
       resource(p).stage do
-        open("pyproject.toml", "a") do |f|
-          f.puts "[tool.sip.project]"
-          f.puts "sip-include-dirs = [\"#{site_packages}/PyQt#{version.major}/bindings\"]"
-        end
+        inreplace "pyproject.toml", "[tool.sip.project]",
+          "[tool.sip.project]\nsip-include-dirs = [\"#{site_packages}/PyQt#{version.major}/bindings\"]\n"
         system "sip-install", "--target-dir", site_packages
       end
     end
