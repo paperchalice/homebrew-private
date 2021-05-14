@@ -20,11 +20,11 @@ class ClangNls < Formula
   end
 
   patch :p2 do
-    url "https://github.com/paperchalice/llvm-clang/commit/3b9df7adf1f210818ddc0168455e4862b2a4eca1.patch"
+    url "https://github.com/paperchalice/llvm-clang/commit/3b9df7adf1f210818ddc0168455e4862b2a4eca1.patch?full_index=1"
   end
 
   patch :p2 do
-    url "https://github.com/paperchalice/llvm-clang/commit/f17bfea9d59250f93bc0e58dace46d2bac68f692.patch"
+    url "https://github.com/paperchalice/llvm-clang/commit/f17bfea9d59250f93bc0e58dace46d2bac68f692.patch?full_index=1"
   end
 
   def install
