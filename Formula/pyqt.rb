@@ -7,6 +7,13 @@ class Pyqt < Formula
   sha256 "9b45df6c404d7297598b91378d1e3f9bdf0970553ebb53c192a9051576098f9b"
   license "GPL-3.0-only"
 
+  bottle do
+    sha256 arm64_big_sur: "61444a7551a7bddf664aab92a43cfeecb59f050a9fe80d0822843ca5ec432bef"
+    sha256 big_sur:       "e175afb8de06d947e4926bcea2590acd41c8a763353863d92895a226588ca44f"
+    sha256 catalina:      "fddc360c28607fca03d74f6cc091f958a2243f34b9aeb1888c055df7712fea0c"
+    sha256 mojave:        "cdb9e6b67c56f66953beae5c5882bd718dfdf17c7a77036d7aadf3c86a4f676d"
+  end
+
   depends_on "python@3.9"
   depends_on "qt"
 
@@ -19,6 +26,11 @@ class Pyqt < Formula
   resource "pyparsing" do
     url "https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz"
     sha256 "c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"
+  end
+
+  resource "pyqt-builder" do
+    url "https://files.pythonhosted.org/packages/12/29/af52add4755b7dbce928fe3df1b86a48d5c8bcd06e3333bf8f69ad19c1a5/PyQt-builder-1.10.0.tar.gz"
+    sha256 "86bd19fde83d92beaefacdeac1e26c6e1918c300ff78d7ec2a19973bf2cf21b5"
   end
 
   resource "sip" do
@@ -60,7 +72,7 @@ class Pyqt < Formula
   def install
     # prepare install environment
     venv = virtualenv_create(buildpath/"build_venv", python.bin/"python3")
-    %w[packaging pyparsing sip toml].each { |r| venv.pip_install resource r }
+    %w[packaging pyparsing pyqt-builder sip toml].each { |r| venv.pip_install resource r }
     ENV.append_path buildpath/"build_venv/bin"
 
     # HACK: there is no option to set the plugindir
