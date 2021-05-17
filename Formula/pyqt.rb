@@ -71,9 +71,9 @@ class Pyqt < Formula
 
   def install
     # prepare install environment
-    venv = virtualenv_create(buildpath/"build_venv", python.bin/"python3")
+    venv = virtualenv_create(buildpath/"build_venv", "python3")
     %w[packaging pyparsing pyqt-builder sip toml].each { |r| venv.pip_install resource r }
-    ENV.append_path buildpath/"build_venv/bin"
+    ENV.append_path "PATH", buildpath/"build_venv/bin"
 
     # HACK: there is no option to set the plugindir
     inreplace "project.py", "builder.qt_configuration['QT_INSTALL_PLUGINS']", "'#{share}/qt/plugins'"
