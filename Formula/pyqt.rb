@@ -60,9 +60,7 @@ class Pyqt < Formula
   def install
     # prepare install environment
     venv = virtualenv_create(buildpath/"build_venv", python.bin/"python3")
-    %w[packaging pyparsing sip toml] do |r|
-      venv.pip_install resource(r)
-    end
+    %w[packaging pyparsing sip toml].each { |r| venv.pip_install resource r }
     ENV.append_path buildpath/"build_venv/bin"
 
     # HACK: there is no option to set the plugindir
