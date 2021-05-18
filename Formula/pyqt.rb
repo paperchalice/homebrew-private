@@ -85,6 +85,7 @@ class Pyqt < Formula
       --confirm-license
     ]
     system "sip-install", *args
+    Dir[bin/"*"].each { |s| inreplace s, /(?<=exec ).+python3/, Formula["python@3.9"].opt_bin/"python3" }
 
     resource("PyQt6-sip").stage do
       system "python3", *Language::Python.setup_install_args(prefix)
