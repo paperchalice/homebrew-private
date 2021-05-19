@@ -129,7 +129,7 @@ class Gcc < Formula
       # otherwise updated load commands won't fit in the Mach-O header.
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
-      system "make", "install-strip"
+      system "make", "install"
     end
   end
 
