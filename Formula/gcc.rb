@@ -50,14 +50,6 @@ class Gcc < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
-  def version_suffix
-    if build.head?
-      "HEAD"
-    else
-      version.major.to_s
-    end
-  end
-
   resource "bootstrap_gcc" do
     url "https://phoenixnap.dl.sourceforge.net/project/gnuada/GNAT_GCC%20Mac%20OS%20X/11.1.0/native/gcc-11.1.0-x86_64-apple-darwin15.pkg"
     sha256 "d947b5db0576cb62942e5ce61f3ef53fb679f07b1adff7a4c0fa19a5e72a9532"
@@ -126,7 +118,7 @@ class Gcc < Formula
 
       # Ensure correct install names when linking against libgcc_s;
       # see discussion in https://github.com/Homebrew/legacy-homebrew/pull/34303
-      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", "#{HOMEBREW_PREFIX}/lib/gcc/#{version_suffix}"
+      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", "#{HOMEBREW_PREFIX}/lib/gcc"
     end
 
     mkdir "build" do
