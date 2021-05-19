@@ -64,17 +64,20 @@ class Gcc < Formula
   end
 
   def install
-    resource("bootstrap_gcc").stage do
-      system "pkgutil", "--expand-full", "gcc-11.1.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
+    if Hardware::CPU.intel?
+      resource("bootstrap_gcc").stage do
+        system "pkgutil", "--expand-full", "gcc-11.1.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
+      end
+      bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.1.0-x86_64-apple-darwin15.pkg/Payload"
+      inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
+      open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
+
+      ENV.append_path "PATH", bootstrap_gcc_prefix/"bin"
+      ENV["ADAC"] = bootstrap_gcc_prefix/"bin/gcc"
     end
-    bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.1.0-x86_64-apple-darwin15.pkg/Payload"
-    inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
-    open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
 
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
-    ENV.append_path "PATH", bootstrap_gcc_prefix/"bin"
-    ENV["ADAC"] = bootstrap_gcc_prefix/"bin/gcc"
     ENV.append_to_cflags "-Oz"
 
     # We avoiding building:
@@ -88,7 +91,6 @@ class Gcc < Formula
 
     args = %W[
       --prefix=#{prefix}
-      --libdir=#{lib}/gcc/#{version_suffix}
       --enable-nls
       --enable-host-shared
       --enable-checking=release
