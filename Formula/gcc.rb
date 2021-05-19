@@ -1,11 +1,6 @@
 class Gcc < Formula
   desc "GNU compiler collection"
   homepage "https://gcc.gnu.org/"
-
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-11.1.0"
-    sha256 big_sur: "e2e4f776bda312fa8514e99232d0dad7a4a027590c3f1f60c8cdae8604265dec"
-  end
   if Hardware::CPU.arm?
     # Branch from the Darwin maintainer of GCC with Apple Silicon support,
     # located at https://github.com/iains/gcc-darwin-arm64 and
@@ -27,6 +22,11 @@ class Gcc < Formula
     # but that does not work with the ARM-specific branch above
     url "https://ftp.gnu.org/gnu/gcc/gcc-11.1.0"
     regex(%r{href=.*?gcc[._-]v?(\d+(?:\.\d+)+)(?:/?["' >]|\.t)}i)
+  end
+
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-11.1.0"
+    sha256 big_sur: "e2e4f776bda312fa8514e99232d0dad7a4a027590c3f1f60c8cdae8604265dec"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
