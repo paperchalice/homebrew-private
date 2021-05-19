@@ -33,6 +33,8 @@ class Gcc < Formula
     end
   end
 
+  depends_on "python" => :build
+
   depends_on "gettext"
   depends_on "gmp"
   depends_on "isl"
