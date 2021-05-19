@@ -120,7 +120,7 @@ class Gcc < Formula
 
       # Ensure correct install names when linking against libgcc_s;
       # see discussion in https://github.com/Homebrew/legacy-homebrew/pull/34303
-      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", "#{HOMEBREW_PREFIX}/lib/gcc"
+      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", "#{HOMEBREW_PREFIX}/lib"
     end
 
     mkdir "build" do
