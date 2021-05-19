@@ -72,7 +72,6 @@ class Gcc < Formula
 
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
-    ENV.append_to_cflags "-Oz"
 
     # We avoiding building:
     #  - Go, currently not supported on macOS
