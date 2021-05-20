@@ -29,7 +29,7 @@ class Mlir < Formula
       mkdir "build" do
         system "cmake", "..", *args
         system "cmake", "--build", "."
-        system "cmake", "--install", "."
+        system "cmake", "--install", ".", "--strip"
         prefix.install "bin"
       end
     end

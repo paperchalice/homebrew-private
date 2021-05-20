@@ -36,7 +36,7 @@ class Qt3d < Formula
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
-    system "cmake", "--install", "."
+    system "cmake", "--install", ".", "--strip"
 
     frameworks.install_symlink Dir["#{lib}/*.framework"]
 

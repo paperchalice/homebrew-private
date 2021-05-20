@@ -76,7 +76,7 @@ class QtBase < Formula
 
     system "cmake", *cmake_args
     system "cmake", "--build", "."
-    system "cmake", "--install", "."
+    system "cmake", "--install", ".", "--strip"
 
     rm bin/"qt-cmake-private-install.cmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"

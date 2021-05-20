@@ -31,7 +31,7 @@ class QtQuick3d < Formula
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
-    system "cmake", "--install", "."
+    system "cmake", "--install", ".", "--strip"
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink Dir["#{lib}/*.framework"]

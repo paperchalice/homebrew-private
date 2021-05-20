@@ -23,7 +23,7 @@ class CompilerRt < Formula
 
     system "cmake", *args
     system "cmake", "--build", "."
-    system "cmake", "--install", "."
+    system "cmake", "--install", ".", "--strip"
   end
 
   test do
