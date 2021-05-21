@@ -11,6 +11,8 @@ class Clang < Formula
     sha256 cellar: :any, big_sur: "af17f5014a97bdafba488718d4b3b32b47123fd8829aa8982ddff1ac4c53bf46"
   end
 
+  pour_bottle? reason: :clt_required
+
   depends_on "cmake"       => :build
   depends_on "compiler-rt" => :build
   depends_on "libc++"      => :build
