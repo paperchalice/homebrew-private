@@ -31,7 +31,7 @@ class Gcc < Formula
 
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
-  pour_bottle? reason: :clt_required
+  pour_bottle? only_if: :clt_installed
 
   depends_on "python" => :build
 
