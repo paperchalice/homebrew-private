@@ -84,6 +84,7 @@ class Gcc < Formula
 
     args = %W[
       --prefix=#{prefix}
+      --libdir=#{lib}/gcc/#{version_suffix}
       --enable-nls
       --enable-host-shared
       --enable-checking=release
