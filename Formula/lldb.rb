@@ -35,7 +35,7 @@ class Lldb < Formula
 
     system "cmake", *args
     system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    system "cmake", "--install", "build", "--strip"
   end
 
   test do

@@ -54,7 +54,7 @@ class LlvmCore < Formula
 
     system "cmake", *args
     system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    system "cmake", "--install", "build", "--strip"
 
     site_package = Language::Python.site_packages("python3")
     (prefix/site_package).install "bindings/python/llvm"
