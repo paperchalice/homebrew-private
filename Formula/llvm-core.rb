@@ -19,10 +19,8 @@ class LlvmCore < Formula
   depends_on "cmake"  => [:build, :test]
   depends_on "python" => :build
 
-  uses_from_macos "libedit"
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
-  uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
   def install
@@ -57,6 +55,9 @@ class LlvmCore < Formula
     system "cmake", *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
+
+    site_package = Language::Python.site_packages("python3")
+    (prefix/site_package).install "bindings/python/llvm"
   end
 
   test do
