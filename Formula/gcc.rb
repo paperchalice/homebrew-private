@@ -34,6 +34,7 @@ class Gcc < Formula
   pour_bottle? only_if: :clt_installed
 
   depends_on "python" => :build
+  depends_on "texinfo" => :build
 
   depends_on "gettext"
   depends_on "gmp"
@@ -132,6 +133,8 @@ class Gcc < Formula
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
       system "make", "install"
+      system "make", "pdf"
+      system "make", "install-pdf"
     end
   end
 
