@@ -4,7 +4,7 @@ class Gn < Formula
   url "https://gn.googlesource.com/gn.git",
     revision: "39a87c0b36310bdf06b692c098f199a0d97fc810"
   version "1.0.0"
-  license "0BSD"
+  license "BSD-3-Clause"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gn-1.0.0"
