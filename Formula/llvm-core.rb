@@ -58,6 +58,7 @@ class LlvmCore < Formula
 
     site_package = Language::Python.site_packages("python3")
     (prefix/site_package).install "bindings/python/llvm"
+    elisp.install Dir["utils/emacs/*.el"]
   end
 
   test do
