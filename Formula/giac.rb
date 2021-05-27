@@ -24,7 +24,7 @@ class Giac < Formula
   uses_from_macos "libiconv"
 
   def install
-    ENV.append_to_cflags "-framework OpenGL -lintl -DHAVE_LIBMICROPYTHON -fpermissive"
+    ENV.append_to_cflags "-framework OpenGL -lintl -DHAVE_LIBMICROPYTHON -lmicropython -fpermissive"
     args = std_configure_args + %w[
       --enable-dl
       --enable-micropy=no
