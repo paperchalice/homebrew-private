@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-12.0.0.src.tar.xz"
+   sha256 "49dc47c8697a1a0abd4ee51629a696d7bfe803662f2a7252a3b16fc75f3a8b50"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -26,14 +26,12 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
-    cd "llvm"
     inreplace "lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
     ENV.append_to_cflags "-Oz"
 
     args = std_cmake_args+ %w[
       -D CMAKE_CXX_STANDARD=17
 
-      -D LLVM_ENABLE_PROJECTS=mlir
       -D LLVM_ENABLE_EH=OFF
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
