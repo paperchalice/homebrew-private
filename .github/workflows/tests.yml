@@ -23,15 +23,6 @@ jobs:
           key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
           restore-keys: ${{ runner.os }}-rubygems-
 
-      - name: Use my fork Homebrew
-        run: |
-          pushd /usr/local/Homebrew
-          git remote add paperchalice https://github.com/paperchalice/brew.git
-          git fetch paperchalice
-          git checkout main
-          git rebase master
-          popd
-
       - name: Install Homebrew Bundler RubyGems
         if: steps.cache.outputs.cache-hit != 'true'
         run: brew install-bundler-gems
@@ -41,6 +32,15 @@ jobs:
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
+
+      # - name: Use my fork Homebrew
+      #   run: |
+      #     pushd /usr/local/Homebrew
+      #     git remote add paperchalice https://github.com/paperchalice/brew.git
+      #     git fetch paperchalice
+      #     git checkout main
+      #     git rebase master
+      #     popd
 
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
