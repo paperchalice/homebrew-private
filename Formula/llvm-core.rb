@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-12.0.0.src.tar.xz"
-  sha256 "49dc47c8697a1a0abd4ee51629a696d7bfe803662f2a7252a3b16fc75f3a8b50"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
+  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -35,7 +35,9 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_EH=OFF
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
+      -D LLVM_ENABLE_LTO=Full
       -D LLVM_ENABLE_MODULES=ON
+      -D LLVM_ENABLE_PROJECTS=mlir
       -D LLVM_ENABLE_RTTI=OFF
       -D LLVM_INCLUDE_DOCS=OFF
       -D LLVM_INCLUDE_TESTS=OFF
