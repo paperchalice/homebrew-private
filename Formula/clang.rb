@@ -28,8 +28,10 @@ class Clang < Formula
 
   def install
     resource("clang-tools-extra").stage buildpath/"tools/extra"
+
     # avoid building libclang-cpp
     inreplace "tools/CMakeLists.txt", "add_clang_subdirectory(clang-shlib)", ""
+
     inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
       "../clang-tools-extra", "tools/extra"
     # add `-L /usr/local/lib`
