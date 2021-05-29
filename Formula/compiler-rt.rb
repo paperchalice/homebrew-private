@@ -17,6 +17,7 @@ class CompilerRt < Formula
     args = std_cmake_args + %W[
       -D CMAKE_CXX_STANDARD=17
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
+      -D COMPILER_RT_USE_BUILTINS_LIBRARY=ON
 
       .
     ]
