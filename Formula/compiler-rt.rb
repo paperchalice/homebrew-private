@@ -16,13 +16,18 @@ class CompilerRt < Formula
   def install
     args = std_cmake_args + %W[
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_CXX_FLAGS=-Oz
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
+      -D COMPILER_RT_ENABLE_IOS=OFF
+      -D COMPILER_RT_ENABLE_TVOS=OFF
+      -D COMPILER_RT_ENABLE_WATCHOS=OFF
       -D COMPILER_RT_USE_BUILTINS_LIBRARY=ON
 
       .
     ]
 
     ENV.permit_arch_flags
+    ENV.prepend "PATH", "/usr/bin:"
     system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
