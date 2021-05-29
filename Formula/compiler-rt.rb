@@ -27,7 +27,6 @@ class CompilerRt < Formula
     ]
 
     ENV.permit_arch_flags
-    ENV.prepend "PATH", "/usr/bin:"
     system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
