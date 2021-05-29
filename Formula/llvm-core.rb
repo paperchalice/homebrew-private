@@ -28,7 +28,6 @@ class LlvmCore < Formula
   def install
     cd "llvm"
     inreplace "lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
-    ENV.append_to_cflags "-Oz"
 
     args = std_cmake_args+ %w[
       -D BUILD_SHARED_LIBS=ON
