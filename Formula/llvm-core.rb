@@ -26,19 +26,20 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
+    cd "llvm"
     inreplace "lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
     ENV.append_to_cflags "-Oz"
 
     args = std_cmake_args+ %w[
+      -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
-      -D LLVM_ENABLE_EH=OFF
+      -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
-      -D LLVM_ENABLE_LTO=Full
       -D LLVM_ENABLE_MODULES=ON
       -D LLVM_ENABLE_PROJECTS=mlir
-      -D LLVM_ENABLE_RTTI=OFF
+      -D LLVM_ENABLE_RTTI=ON
       -D LLVM_INCLUDE_DOCS=OFF
       -D LLVM_INCLUDE_TESTS=OFF
       -D LLVM_INSTALL_UTILS=ON
