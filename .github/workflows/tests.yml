@@ -33,14 +33,14 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
-      # - name: Use my fork Homebrew
-      #   run: |
-      #     pushd /usr/local/Homebrew
-      #     git remote add paperchalice https://github.com/paperchalice/brew.git
-      #     git fetch paperchalice
-      #     git checkout main
-      #     git rebase master
-      #     popd
+      - name: Use my fork Homebrew
+        run: |
+          pushd /usr/local/Homebrew
+          git remote add paperchalice https://github.com/paperchalice/brew.git
+          git fetch paperchalice
+          git checkout main
+          git rebase master
+          popd
 
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
