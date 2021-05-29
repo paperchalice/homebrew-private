@@ -21,6 +21,7 @@ class CompilerRt < Formula
       .
     ]
 
+    ENV.permit_arch_flags
     system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
