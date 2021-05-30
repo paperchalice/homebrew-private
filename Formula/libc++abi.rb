@@ -21,13 +21,14 @@ class Libcxxabi < Formula
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON
       -D LIBCXXABI_USE_COMPILER_RT=ON
 
-      .
+      -S .
+      -B build
     ]
 
     cd "libcxxabi"
     system "cmake", *args
-    system "cmake", "--build", "."
-    system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build", "--strip"
   end
 
   test do

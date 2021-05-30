@@ -27,13 +27,14 @@ class Libcxx < Formula
       -D LIBCXX_INSTALL_PREFIX=#{prefix}/
       -D LIBCXX_USE_COMPILER_RT=ON
 
-      .
+      -S .
+      -B build
     ]
 
     cd "libcxx"
     system "cmake", *args
-    system "cmake", "--build", "."
-    system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build", "--strip"
   end
 
   test do
