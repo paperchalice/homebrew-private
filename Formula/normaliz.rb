@@ -5,6 +5,11 @@ class Normaliz < Formula
   sha256 "d085c64bebcb23e1c607ca1daff4551a9d38dd8f3dfbef4ef49670b58bb27f65"
   license "GPL-3.0-only"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/normaliz-3.8.10"
+    sha256 big_sur: "d68d468fb0e8579961af0f95e5b425a1809bb1cf50b47590602369cf2387a263"
+  end
+
   depends_on "flint"
   depends_on "gmp"
   depends_on "nauty"
