@@ -26,6 +26,8 @@ class Clang < Formula
     sha256 "ad41e0b527a65ade95c1ba690a5434cefaab4a2daa1be307caaa1e8541fe6d5c"
   end
 
+  patch :DATA
+
   def install
     resource("clang-tools-extra").stage buildpath/"tools/extra"
 
@@ -34,6 +36,7 @@ class Clang < Formula
 
     inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
       "../clang-tools-extra", "tools/extra"
+
     # add `-L /usr/local/lib`
     inreplace "lib/Driver/ToolChains/Darwin.cpp",
       "Args.AddAllArgs(CmdArgs, options::OPT_L);",
@@ -42,7 +45,6 @@ class Clang < Formula
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
       #{HOMEBREW_PREFIX}/include
-      #{HOMEBREW_PREFIX}/Frameworks
     ].join ":"
 
     # use ld because atom based lld is work in progress
@@ -90,3 +92,15 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
+
+__END__
+--- a/lib/Driver/ToolChains/Clang.cpp
++++ b/lib/Driver/ToolChains/Clang.cpp
+@@ -1332,6 +1332,9 @@ void Clang::AddPreprocessingOptions(Compilation &C, const JobAction &JA,
+       CmdArgs.push_back(C.getArgs().MakeArgString(sysroot));
+     }
+   }
++  CmdArgs.push_back("-I/usr/local/include");
++  CmdArgs.push_back("-F/usr/local/Frameworks");
+ 
+   // Parse additional include paths from environment variables.
