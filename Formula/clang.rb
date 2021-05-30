@@ -96,7 +96,7 @@ end
 __END__
 --- a/lib/Driver/ToolChains/Clang.cpp
 +++ b/lib/Driver/ToolChains/Clang.cpp
-@@ -1332,6 +1332,9 @@ void Clang::AddPreprocessingOptions(Compilation &C, const JobAction &JA,
+@@ -1332,6 +1332,8 @@ void Clang::AddPreprocessingOptions(Compilation &C, const JobAction &JA,
        CmdArgs.push_back(C.getArgs().MakeArgString(sysroot));
      }
    }
