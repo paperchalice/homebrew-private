@@ -38,6 +38,13 @@ class Flang < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"hello.f90").write <<~EOS
+      program hello
+      implicit none
+      write(*,*) 'Hello world!'
+      end program hello
+    EOS
+    system "flang", "hello.f90"
+    `./a.out`
   end
 end
