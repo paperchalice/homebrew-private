@@ -18,6 +18,9 @@ class Flang < Formula
     args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
+
       -D FLANG_BUILD_NEW_DRIVER=ON
       -D FLANG_INCLUDE_TESTS=OFF
       -S .
