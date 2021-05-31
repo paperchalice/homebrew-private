@@ -8,7 +8,6 @@ class Flang < Formula
 
   depends_on "cmake" => :build
 
-  depends_on "clang"
   depends_on "llvm-core"
 
   uses_from_macos "libxml2"
@@ -21,7 +20,7 @@ class Flang < Formula
       -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
       -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
-      -D FLANG_BUILD_NEW_DRIVER=ON
+      -D FLANG_BUILD_NEW_DRIVER=OFF
       -D FLANG_INCLUDE_TESTS=OFF
       -S .
       -B build
