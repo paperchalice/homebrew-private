@@ -6,6 +6,11 @@ class Flang < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/flang-12.0.0"
+    sha256 cellar: :any, big_sur: "8bdf10eae21a502c4103df0079d6824fe79232576a1845122ad4ae832b87e018"
+  end
+
   depends_on "cmake" => :build
 
   depends_on "llvm-core"
