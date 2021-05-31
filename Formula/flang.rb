@@ -45,6 +45,6 @@ class Flang < Formula
       end program hello
     EOS
     system "flang", "hello.f90"
-    `./a.out`
+    assert_match "Hello world!", `./a.out`
   end
 end
