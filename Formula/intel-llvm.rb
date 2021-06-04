@@ -8,13 +8,14 @@ class IntelLlvm < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "python" => :build
+  depends_on xcode: :build
 
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
   uses_from_macos "zlib"
 
   def install
-    system "python3", "buildbot/configure.py"
+    system "python3", "buildbot/configure.py", "--cmake_opt", "-DLLVM_LINK_LLVM_DYLIB=ON"
     system "python3", "buildbot/compile.py"
     system "cmake", "--install", "build", "--prefix", prefix
   end
