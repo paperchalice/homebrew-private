@@ -5,8 +5,8 @@ class IntelLlvm < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   depends_on "cmake"  => :build
-  depends_on "python" => :build
   depends_on "ninja" => :build
+  depends_on "python" => :build
 
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
