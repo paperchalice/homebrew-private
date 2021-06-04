@@ -15,7 +15,7 @@ class IntelLlvm < Formula
   uses_from_macos "zlib"
 
   def install
-    system "python3", "buildbot/configure.py", "--cmake-opt", "-DLLVM_LINK_LLVM_DYLIB=ON"
+    system "python3", "buildbot/configure.py", "--cmake-opt", '"-DLLVM_LINK_LLVM_DYLIB=ON"'
     system "python3", "buildbot/compile.py"
     system "cmake", "--install", "build", "--prefix", prefix
   end
