@@ -1,10 +1,10 @@
 class IntelLlvm < Formula
-  desc "Intel LLVM-based projects"
+  desc "LLVM-based projects"
   homepage "https://www.oneapi.com/"
   url "https://github.com/intel/llvm/archive/refs/tags/2020-12.tar.gz"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  depends_on "cmake"  => :build
+  depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "python" => :build
 
