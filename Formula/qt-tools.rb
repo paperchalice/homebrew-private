@@ -1,8 +1,8 @@
 class QtTools < Formula
   desc "Qt utilities"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qttools-everywhere-src-6.1.0.tar.xz"
-  sha256 "6263030c1120a30b0541d37b52dc0be0ea04bbb8d1695ec9648f0bd77e421f3e"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qttools-everywhere-src-6.1.1.tar.xz"
+  sha256 "cba8d9a836e83b7a5e6d068239635b261f7ca4a059992b2b66cd546380091273"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
