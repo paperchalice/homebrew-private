@@ -1,8 +1,8 @@
 class QtShaderTools < Formula
   desc "Provide the producer functionality for the shader pipeline"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtshadertools-everywhere-src-6.1.0.tar.xz"
-  sha256 "e391e2fb9dd4bd6b7fec0d6fd55817ca488a49d8e7f56b43655bea26167481e1"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtshadertools-everywhere-src-6.1.1.tar.xz"
+  sha256 "324a9f6f87d4e82c0b5f80e6301c7dbc47617dbe752f3e3726c141bd85855512"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
 
