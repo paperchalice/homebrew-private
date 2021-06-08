@@ -7,8 +7,8 @@ class QtVirtualKeyboard < Formula
   head "https://code.qt.io/qt/qtvirtualkeyboard.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-virtual-keyboard-6.1.0"
-    sha256 cellar: :any, big_sur: "da3d6c8d337c66dcf598280b8dea15c4f62f487631a371ab7d8b4260d6abbdce"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-virtual-keyboard-6.1.1"
+    sha256 cellar: :any, big_sur: "eb8c226510e4d40ed73bd2a570e2b5d79aa866176141b9bd720e94b453992a2e"
   end
 
   depends_on "cmake" => [:build, :test]
