@@ -1,8 +1,8 @@
 class QtNetworkauth < Formula
   desc "Qt network authentication"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtnetworkauth-everywhere-src-6.1.0.tar.xz"
-  sha256 "bae8a941e4b635a364bdc65ea814adfe75b20b06fce0888612f72fc1e81ebdd3"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtnetworkauth-everywhere-src-6.1.1.tar.xz"
+  sha256 "4e1b7f6584fe21e8a04ee6d9c5761e5858587e8bab01a522ee53f82dfd1efdd7"
   license "GPL-3.0-only"
   head "https://code.qt.io/qt/qtnetworkauth.git", branch: "dev"
 
@@ -12,8 +12,8 @@ class QtNetworkauth < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-networkauth-6.1.0"
-    sha256 cellar: :any, big_sur: "b0c3e6ceebc515e3e4ad01cd0d3633c40a1882031c8b30dacff3a21a745676df"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-networkauth-6.1.1"
+    sha256 cellar: :any, big_sur: "33a5a0363d02ed1d9e200f15cec3ca4cc28ad7b3dd26a9966474d5b8e00d28ff"
   end
 
   depends_on "cmake" => [:build, :test]

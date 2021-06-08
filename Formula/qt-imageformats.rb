@@ -1,8 +1,8 @@
 class QtImageformats < Formula
   desc "Qt additional image formats support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtimageformats-everywhere-src-6.1.0.tar.xz"
-  sha256 "34e63786d31d0c5dcc13a4b37d31002efb53244e48a8c2f0fafdd81e8d28575a"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtimageformats-everywhere-src-6.1.1.tar.xz"
+  sha256 "d7ee9d96ed6958241acde2b5d505f89d7dcfd710d0944b100ac6de203b0e107d"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtimageformats.git", branch: "dev"
 
@@ -12,8 +12,8 @@ class QtImageformats < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-imageformats-6.1.0"
-    sha256 cellar: :any, big_sur: "e72c958ce186c910a30a926b7035ed6bb09ab7142241b195d44bd484d41bf8aa"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-imageformats-6.1.1"
+    sha256 cellar: :any, big_sur: "4c85ec182deb8a2ced8be606e36d7e436de8390a1e23c8151910cec2f1fa13d8"
   end
 
   depends_on "cmake" => [:build, :test]
