@@ -12,8 +12,8 @@ class QtCharts < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-charts-6.1.0"
-    sha256 cellar: :any, big_sur: "d56aee2ea0abb348c43c6c4f6644f1248952e15be9943c208ee07a3cd67e7090"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-charts-6.1.1"
+    sha256 cellar: :any, big_sur: "71630c4d07c20cbdae1c0cac5c1592dc90fad6fb994620a46ec0acae3ccb111e"
   end
 
   depends_on "cmake" => [:build, :test]
