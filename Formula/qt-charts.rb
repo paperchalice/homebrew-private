@@ -1,8 +1,8 @@
 class QtCharts < Formula
   desc "State Machine Notation compiler and related tools"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.0/submodules/qtcharts-everywhere-src-6.1.0.tar.xz"
-  sha256 "8f70dc54b3f29eed91cf207db4185cef25f3d0bbc479059725c75c1895cddfcd"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtcharts-everywhere-src-6.1.1.tar.xz"
+  sha256 "a245b8e1b3edd22c5319d8cf0ee18f95901cfc39e4f94b34b59befffc17af60a"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtcharts.git", branch: "dev"
 
