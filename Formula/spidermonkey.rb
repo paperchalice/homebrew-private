@@ -12,6 +12,11 @@ class Spidermonkey < Formula
     regex(/\d+\.\d+\.\d+(?=esr)/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/spidermonkey-78.11.0"
+    sha256 cellar: :any, big_sur: "f662cce4a98381387b6d47f33e744b8921089190bb9a19c424f6e5a7e3758572"
+  end
+
   depends_on "autoconf@2.13" => :build
   depends_on "pkg-config"    => :build
   depends_on "python@3.9"    => :build
