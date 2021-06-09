@@ -21,8 +21,6 @@ class Spidermonkey < Formula
 
   uses_from_macos "libedit"
 
-  conflicts_with "narwhal", because: "both install a js binary"
-
   def install
     inreplace "build/moz.configure/toolchain.configure",
                 "sdk_max_version = Version('10.15.4')",
@@ -48,6 +46,7 @@ class Spidermonkey < Formula
       system "../js/src/configure", *args
       system "make"
       system "make", "install"
+      lib.install lib/"libjs_static.ajs" => "libjs_static.a"
     end
   end
 
