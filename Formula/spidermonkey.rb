@@ -3,7 +3,7 @@ class Spidermonkey < Formula
   homepage "https://spidermonkey.dev/"
   url "https://archive.mozilla.org/pub/firefox/releases/78.11.0esr/source/firefox-78.11.0esr.source.tar.xz"
   version "78.11.0"
-  sha256 "5ad54ac2b0368b9748e08756658eb988d65e5bb088d91baf43267486bcbf1d26"
+  sha256 "38394b5937be3839104b3a097d71987c06392d4d8be0d3004182f1d1fbfc577e"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
 
