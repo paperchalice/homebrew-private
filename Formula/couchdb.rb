@@ -35,8 +35,7 @@ class Couchdb < Formula
 
   def install
     spidermonkey = Formula["paperchalice/private/spidermonkey"]
-    ENV["CC"] = "gcc"
-    ENV["CXX"] = "g++"
+    ENV["HOMEBREW_CC"] = Formula["gcc"].bin/"gcc-#{Formula["gcc"].version.major}"
     system "./configure", "--spidermonkey-version", spidermonkey.version.major
     system "make", "release"
     # setting new database dir
