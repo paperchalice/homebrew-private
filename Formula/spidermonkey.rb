@@ -46,7 +46,7 @@ class Spidermonkey < Formula
       system "../js/src/configure", *args
       system "make"
       system "make", "install"
-      lib.install lib/"libjs_static.ajs" => "libjs_static.a"
+      rm lib/"libjs_static.ajs"
     end
   end
 
