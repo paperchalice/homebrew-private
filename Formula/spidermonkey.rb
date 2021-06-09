@@ -1,7 +1,8 @@
 class Spidermonkey < Formula
   desc "JavaScript-C Engine"
   homepage "https://spidermonkey.dev/"
-  url "https://firefoxci.taskcluster-artifacts.net/d0_mA8vTSm2vbnKjkn-_jQ/0/public/build/mozjs-78.11.0.tar.bz2"
+  url "https://archive.mozilla.org/pub/firefox/releases/78.11.0esr/source/firefox-78.11.0esr.source.tar.xz"
+  version "78.11.0"
   sha256 "5ad54ac2b0368b9748e08756658eb988d65e5bb088d91baf43267486bcbf1d26"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
