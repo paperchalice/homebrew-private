@@ -22,7 +22,7 @@ class Libprelude < Formula
       --without-perl
       --without-swig
       --without-python2
-      --with-python3=#{Formula["python@3.9"].opt_bin/"python3"}
+      --with-python3=python3
       --with-libgnutls-prefix=#{Formula["gnutls"].opt_prefix}
     ]
 
