@@ -20,7 +20,6 @@ class Spidermonkey < Formula
   uses_from_macos "libedit"
 
   def install
-    inreplace "build/moz.configure/bindgen.configure", "6.0", ""
     inreplace "build/moz.configure/toolchain.configure",
                 "sdk_max_version = Version('10.15.4')",
                 "sdk_max_version = Version('11.99')"
