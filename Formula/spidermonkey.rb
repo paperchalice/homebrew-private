@@ -41,7 +41,7 @@ class Spidermonkey < Formula
 
     cd "js/src"
     mkdir "brew_build" do
-      system "../js/src/configure", *args
+      system "../configure", *args
       system "make"
       system "make", "install"
       rm lib/"libjs_static.ajs"
