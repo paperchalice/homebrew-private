@@ -25,7 +25,7 @@ class Spidermonkey < Formula
     # upstream has removed the `sdk_max_version`
     inreplace "build/moz.configure/toolchain.configure",
                 "sdk_max_version = Version('10.14')",
-                "sdk_max_version = Version('11.99')",
+                "sdk_max_version = Version('11.99')"
 
     inreplace "config/rules.mk",
               "-install_name $(_LOADER_PATH)/$(SHARED_LIBRARY) ",
