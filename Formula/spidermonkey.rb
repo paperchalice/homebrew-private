@@ -6,7 +6,7 @@ class Spidermonkey < Formula
   # download the `mozjs-<version>.tar.xz`
   url "https://ftp.mozilla.org/pub/firefox/releases/68.9.0esr/source/firefox-68.9.0esr.source.tar.xz"
   version "68.9.0"
-  sha256 "50b930324d9e399279002ca90233d9555d67dba3a5f005d83539caee38adb252"
+  sha256 "935105e1a8a97d64daffb372690e2b566b5f07641f01470929dbbc82d20d4407"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
 
