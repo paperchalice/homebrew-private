@@ -4,15 +4,11 @@ class Spidermonkey < Formula
   # NOTE: fetch source from here: https://treeherder.mozilla.org/jobs?repo=mozilla-release
   # click on the first SM(pkg) link you see, then navigate to `Artifacts` sheet
   # download the `mozjs-<version>.tar.xz`
-  url "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OrV4RM3WTS6k2O3xbrLj1A/runs/0/artifacts/public/build/mozjs-89.0.0.tar.xz"
+  url "https://ftp.mozilla.org/pub/firefox/releases/68.9.0esr/source/firefox-68.9.0esr.source.tar.xz"
+  version "68.9.0"
   sha256 "50b930324d9e399279002ca90233d9555d67dba3a5f005d83539caee38adb252"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
-
-  livecheck do
-    url "https://ftp.mozilla.org/pub/firefox/releases/"
-    regex(/(\d+(?:\.\d+)+)/i)
-  end
 
   depends_on "autoconf@2.13" => :build
   depends_on "pkg-config"    => :build
@@ -25,11 +21,11 @@ class Spidermonkey < Formula
   uses_from_macos "libedit"
 
   def install
-    # TODO: remove this `inreplace` in future because
+    # TODO: remove this `inreplace` statement in future because
     # upstream has removed the `sdk_max_version`
     inreplace "build/moz.configure/toolchain.configure",
-                'sdk_max_version = Version("11.1")',
-                'sdk_max_version = Version("11.99")'
+                "sdk_max_version = Version('10.14')",
+                "sdk_max_version = Version('11.99')",
 
     inreplace "config/rules.mk",
               "-install_name $(_LOADER_PATH)/$(SHARED_LIBRARY) ",
