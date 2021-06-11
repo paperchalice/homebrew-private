@@ -26,7 +26,7 @@ class Spidermonkey < Formula
 
   def install
     inreplace "build/moz.configure/toolchain.configure",
-                "sdk_max_version = Version('10.15.4')",
+                "sdk_max_version = Version('11.1')",
                 "sdk_max_version = Version('11.99')"
 
     inreplace "config/rules.mk",
