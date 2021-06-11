@@ -26,22 +26,20 @@ class Spidermonkey < Formula
               "-install_name $(_LOADER_PATH)/$(SHARED_LIBRARY) ",
               "-install_name #{lib}/$(SHARED_LIBRARY) "
 
-    cd "js/src"
+    args = %W[
+      --prefix=#{prefix}
+      --enable-optimize
+      --enable-readline
+      --enable-release
+      --enable-shared-js
+      --disable-jemalloc
+      --with-intl-api
+      --with-system-icu
+      --with-system-nspr
+      --with-system-zlib
+    ]
     mkdir "obj" do
-      args = %W[
-        --prefix=#{prefix}
-        --enable-optimize
-        --enable-readline
-        --enable-release
-        --enable-shared-js
-        --disable-jemalloc
-        --with-intl-api
-        --with-system-icu
-        --with-system-nspr
-        --with-system-zlib
-      ]
-
-      system "../configure", *args
+      system "../js/src/configure", *args
       system "make"
       system "make", "install"
       rm lib/"libjs_static.ajs"
