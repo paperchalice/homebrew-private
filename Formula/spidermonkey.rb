@@ -1,8 +1,8 @@
 class Spidermonkey < Formula
   desc "JavaScript-C Engine"
   homepage "https://spidermonkey.dev/"
-  url "https://ftp.mozilla.org/pub/firefox/releases/89.0/source/firefox-89.0.source.tar.xz"
-  sha256 "db43d7d5796455051a5b847f6daa3423393803c9288c8b6d7f1186f5e2e0a90a"
+  url "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OrV4RM3WTS6k2O3xbrLj1A/runs/0/artifacts/public/build/mozjs-89.0.0.tar.xz"
+  sha256 "50b930324d9e399279002ca90233d9555d67dba3a5f005d83539caee38adb252"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
 
@@ -38,7 +38,9 @@ class Spidermonkey < Formula
       --with-system-nspr
       --with-system-zlib
     ]
-    mkdir "obj" do
+
+    cd "js/src"
+    mkdir "brew_build" do
       system "../js/src/configure", *args
       system "make"
       system "make", "install"
