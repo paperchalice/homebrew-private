@@ -5,7 +5,6 @@ class Spidermonkey < Formula
   # click on the first SM(pkg) link you see, then navigate to `Artifacts` sheet
   # download the `mozjs-<version>.tar.xz`
   url "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/RPc3WnqfRfK_CQdBKL8N_g/runs/0/artifacts/public/build/mozjs-78.11.0.tar.bz2"
-  version "78.11.0"
   sha256 "935105e1a8a97d64daffb372690e2b566b5f07641f01470929dbbc82d20d4407"
   license "MPL-1.1"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
