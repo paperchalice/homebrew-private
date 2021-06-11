@@ -25,9 +25,11 @@ class Spidermonkey < Formula
   uses_from_macos "libedit"
 
   def install
+    # TODO: remove this `inreplace` in future because
+    # upstream has removed the `sdk_max_version`
     inreplace "build/moz.configure/toolchain.configure",
-                "sdk_max_version = Version('11.1')",
-                "sdk_max_version = Version('11.99')"
+                'sdk_max_version = Version("11.1")',
+                'sdk_max_version = Version("11.99")'
 
     inreplace "config/rules.mk",
               "-install_name $(_LOADER_PATH)/$(SHARED_LIBRARY) ",
