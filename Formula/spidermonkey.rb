@@ -1,6 +1,9 @@
 class Spidermonkey < Formula
   desc "JavaScript-C Engine"
   homepage "https://spidermonkey.dev/"
+  # NOTE: fetch source from here: https://treeherder.mozilla.org/jobs?repo=mozilla-release
+  # click on the first SM(pkg) link you see, then navigate to `Artifacts` sheet
+  # download the `mozjs-<version>.tar.xz`
   url "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OrV4RM3WTS6k2O3xbrLj1A/runs/0/artifacts/public/build/mozjs-89.0.0.tar.xz"
   sha256 "50b930324d9e399279002ca90233d9555d67dba3a5f005d83539caee38adb252"
   license "MPL-1.1"
@@ -22,6 +25,10 @@ class Spidermonkey < Formula
   uses_from_macos "libedit"
 
   def install
+    inreplace "build/moz.configure/toolchain.configure",
+                "sdk_max_version = Version('10.15.4')",
+                "sdk_max_version = Version('11.99')"
+
     inreplace "config/rules.mk",
               "-install_name $(_LOADER_PATH)/$(SHARED_LIBRARY) ",
               "-install_name #{lib}/$(SHARED_LIBRARY) "
