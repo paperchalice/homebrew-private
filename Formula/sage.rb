@@ -52,6 +52,7 @@ class Sage < Formula
   uses_from_macos "zlib"
 
   def install
+    ENV.cxx11
     args = %W[
       --prefix=#{prefix}
     ]
