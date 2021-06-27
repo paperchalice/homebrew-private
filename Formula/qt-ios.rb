@@ -33,7 +33,7 @@ class QtIos < Formula
       #{Formula["qt"].prefix}
     ]
 
-    system "./configure", *config_args
+    system "./configure", *config_args, "--", *std_cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
