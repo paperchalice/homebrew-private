@@ -31,9 +31,10 @@ class QtIos < Formula
       wasm-emscripten
       -qt-host-path
       #{Formula["qt"].prefix}
+      -sysroot #{MacOS.sdk_path}
     ]
 
-    system "./configure", *config_args, "--", *std_cmake_args
+    system "./configure", *config_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
