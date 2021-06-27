@@ -24,6 +24,7 @@ class QtVirtualKeyboard < Formula
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
 
+      -D FEATURE_myscript=ON
       -D FEATURE_t9write=ON
       -D FEATURE_t9write_alphabetic=ON
       -D FEATURE_t9write_cjk=ON
