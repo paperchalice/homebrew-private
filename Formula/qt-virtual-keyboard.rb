@@ -14,6 +14,7 @@ class QtVirtualKeyboard < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "perl" => :build
 
+  depends_on "hunspell"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-svg"
@@ -22,6 +23,11 @@ class QtVirtualKeyboard < Formula
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
       -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -DCMAKE_STAGING_PREFIX=#{prefix}
+
+      -D FEATURE_t9write=ON
+      -D FEATURE_t9write_alphabetic=ON
+      -D FEATURE_t9write_cjk=ON
+      -D FEATURE_vkb_arrow_keynavigation=ON
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
