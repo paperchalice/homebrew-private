@@ -26,6 +26,8 @@ class IntelLlvm < Formula
   def install
     inreplace "opencl-aot/CMakeLists.txt", "v2020.06.16", "v2021.04.29"
     inreplace "sycl/CMakeLists.txt", "v2020.06.16", "v2021.04.29"
+    inreplace "sycl/plugins/level_zero/CMakeLists.txt", "CMAKE_ARGS",
+      "CMAKE_ARGS -DCMAKE_CXX_FLAGS=-DRTLD_DEEPBIND=0"
     inreplace "buildbot/compile.py", ")]", '), "--verbose"]'
     cd "buildbot" do
       system "python3", "./configure.py", "--no-werror"
