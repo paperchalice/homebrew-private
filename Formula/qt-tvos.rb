@@ -23,7 +23,7 @@ class QtTvos < Formula
 
     inreplace "qtbase/CMakeLists.txt", "FATAL_ERROR", ""
 
-    xplatform = "macx-tvos-clang"
+    xplatform = "macx-watchos-clang"
     config_args = %W[
       -release
       -prefix #{prefix}
@@ -57,6 +57,26 @@ class QtTvos < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.pro").write <<~EOS
+      QT       += core
+      TARGET = test
+      TEMPLATE = app
+      SOURCES += main.cpp
+    EOS
+
+    (testpath/"main.cpp").write <<~EOS
+      #undef QT_NO_DEBUG
+      #include <QCoreApplication>
+      #include <QDebug>
+      int main(int argc, char *argv[])
+      {
+        QCoreApplication a(argc, argv);
+        return 0;
+      }
+    EOS
+
+    system bin/"qmake"
+    system "make"
+    system "./test"
   end
 end
