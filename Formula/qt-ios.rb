@@ -80,7 +80,6 @@ class QtIos < Formula
     EOS
 
     system bin/"qmake"
-    system "make"
-    system "./test"
+    assert_predicate testpath/"test.xcodeproj", :exist?
   end
 end
