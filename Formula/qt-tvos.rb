@@ -36,7 +36,7 @@ class QtTvos < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    rm_rf bin/"*.app"
+    rm_rf Pathname.glob("#{bin}/*.app")
     rm bin/"qt-cmake-private-install.cmake"
     rm_rf bin/"target_qt.conf"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
@@ -76,7 +76,6 @@ class QtTvos < Formula
     EOS
 
     system bin/"qmake"
-    system "make"
-    system "./test"
+    assert_predicate testpath/"test.xcodeproj", :exist?
   end
 end
