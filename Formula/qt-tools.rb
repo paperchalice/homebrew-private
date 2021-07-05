@@ -7,8 +7,8 @@ class QtTools < Formula
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.1.1"
-    sha256 cellar: :any, big_sur: "6d298ca901a63a5ba0034b7ef9db545407c93b3893f9553c288c4613d7010167"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.1.2"
+    sha256 cellar: :any, big_sur: "415c19ef6ccc342f07ba4bcea3e40399ec15210e1e1f9b8e90567c52f4118c51"
   end
 
   depends_on "cmake" => [:build, :test]
