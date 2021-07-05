@@ -12,8 +12,8 @@ class QtDeclarative < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-declarative-6.1.1"
-    sha256 cellar: :any, big_sur: "dc985cb9b893a668c68c4240fbb8497944a05e9b4630d58dc538f0804563191f"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-declarative-6.1.2"
+    sha256 cellar: :any, big_sur: "68d42c31caa1a646347c0fe72fbe528e26be98332da2519b4f86088a83eda7ec"
   end
 
   depends_on "cmake" => [:build, :test]
