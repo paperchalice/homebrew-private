@@ -17,7 +17,7 @@ class QtShaderTools < Formula
   end
 
   depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "perl"  => :build
 
   depends_on "qt-base"
 
