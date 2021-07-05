@@ -10,11 +10,10 @@ class QtIos < Formula
   depends_on "cmake"      => [:build, :test]
   depends_on "ninja"      => :build
   depends_on "pkg-config" => :build
+  depends_on "qt"         => [:build, :test]
+  depends_on xcode:          [:build, :test]
 
-  depends_on "emscripten"
   depends_on "python@3.9"
-  depends_on "qt"
-  depends_on :xcode
 
   uses_from_macos "perl"
 

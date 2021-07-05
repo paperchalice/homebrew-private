@@ -10,10 +10,9 @@ class QtWatchos < Formula
   depends_on "cmake"      => [:build, :test]
   depends_on "ninja"      => :build
   depends_on "pkg-config" => :build
-  depends_on "qt"         => :build
+  depends_on "qt"         => [:build, :test]
   depends_on xcode:          [:build, :test]
 
-  depends_on "emscripten"
   depends_on "python@3.9"
 
   uses_from_macos "perl"
