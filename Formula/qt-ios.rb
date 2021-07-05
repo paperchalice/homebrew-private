@@ -29,19 +29,14 @@ class QtIos < Formula
       -release
       -prefix #{prefix}
       -xplatform #{xplatform}
-      -qt-host-path
-      #{Formula["qt"].prefix}
-      -no-feature-assistant
-      -no-feature-designer
-      -no-feature-pixeltool
-      -no-feature-linguist
+      -qt-host-path #{Formula["qt"].prefix}
     ]
 
     system "./configure", *config_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    rm bin/"*.app"
+    rm bin/"qmake#{version.major}"
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"target_qt.conf" if File.exist?(bin/"target_qt.conf")
     (libexec/"target_qt.conf").write <<~EOS
@@ -58,6 +53,7 @@ class QtIos < Formula
     EOS
     libexec.install bin/"qmake"
     bin.write_exec_script libexec/"qmake"
+    bin.install_symlink bin/"qmake" => "qmake#{version.major}"
   end
 
   test do

@@ -1,5 +1,5 @@
 class QtWatchos < Formula
-  desc "Qt for iOS"
+  desc "Qt for watchOS"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.1/6.1.1/single/qt-everywhere-src-6.1.1.tar.xz"
   sha256 "6ac937aae4c7b5a3eac90ea4d13f31ded9f78ebc93007bb919fae65c58c808c3"
@@ -10,11 +10,11 @@ class QtWatchos < Formula
   depends_on "cmake"      => [:build, :test]
   depends_on "ninja"      => :build
   depends_on "pkg-config" => :build
+  depends_on "qt"         => :build
+  depends_on xcode:          [:build, :test]
 
   depends_on "emscripten"
   depends_on "python@3.9"
-  depends_on "qt"
-  depends_on :xcode
 
   uses_from_macos "perl"
 
@@ -29,19 +29,14 @@ class QtWatchos < Formula
       -release
       -prefix #{prefix}
       -xplatform #{xplatform}
-      -qt-host-path
-      #{Formula["qt"].prefix}
-      -no-feature-assistant
-      -no-feature-designer
-      -no-feature-pixeltool
-      -no-feature-linguist
+      -qt-host-path #{Formula["qt"].prefix}
     ]
 
     system "./configure", *config_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    Pathname.glob("#{bin}/*.app") { |app| rm_rf app }
+    rm bin/"qmake#{version.major}"
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"target_qt.conf" if File.exist?(bin/"target_qt.conf")
     (libexec/"target_qt.conf").write <<~EOS
@@ -58,6 +53,7 @@ class QtWatchos < Formula
     EOS
     libexec.install bin/"qmake"
     bin.write_exec_script libexec/"qmake"
+    bin.install_symlink bin/"qmake" => "qmake#{version.major}"
   end
 
   test do
