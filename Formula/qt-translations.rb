@@ -1,8 +1,8 @@
 class QtTranslations < Formula
   desc "Translations for Qt Tools"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qttranslations-everywhere-src-6.1.1.tar.xz"
-  sha256 "6cf3d191335a6b3a64864e7ba41819e7be461d1d2861d643babe836f81d4c393"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qttranslations-everywhere-src-6.1.2.tar.xz"
+  sha256 "cf5dd3fed8f5f92f570c0d09bf635adbc7a40b748d48856a33109bc9c3781a1b"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttranslations.git", branch: "dev"
 
