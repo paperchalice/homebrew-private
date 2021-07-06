@@ -29,7 +29,7 @@ class LlvmCore < Formula
     cd "llvm"
     inreplace "lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
-    args = std_cmake_args+ %w[
+    args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
