@@ -1,8 +1,8 @@
 class QtNetworkauth < Formula
   desc "Qt network authentication"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtnetworkauth-everywhere-src-6.1.1.tar.xz"
-  sha256 "4e1b7f6584fe21e8a04ee6d9c5761e5858587e8bab01a522ee53f82dfd1efdd7"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qtnetworkauth-everywhere-src-6.1.2.tar.xz"
+  sha256 "a02740a3a2a90f011ba1eac342a4a09f6381b65bf5ed3fc41c0725fbeb7f9c60"
   license "GPL-3.0-only"
   head "https://code.qt.io/qt/qtnetworkauth.git", branch: "dev"
 
