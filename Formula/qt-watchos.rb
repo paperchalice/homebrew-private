@@ -35,7 +35,7 @@ class QtWatchos < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    rm bin/"qmake#{version.major}"
+    Pathname.glob("#{bin}/*.app") { |app| rm_rf app }
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"target_qt.conf" if File.exist?(bin/"target_qt.conf")
     (libexec/"target_qt.conf").write <<~EOS
@@ -52,7 +52,6 @@ class QtWatchos < Formula
     EOS
     libexec.install bin/"qmake"
     bin.write_exec_script libexec/"qmake"
-    bin.install_symlink bin/"qmake" => "qmake#{version.major}"
   end
 
   test do
