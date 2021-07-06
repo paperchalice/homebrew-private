@@ -5,6 +5,11 @@ class Libmng < Formula
   sha256 "4a462fdd48d4bc82c1d7a21106c8a18b62f8cc0042454323058e6da0dbb57dd3"
   license any_of: ["Zlib", "Libpng"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libmng-2.0.3"
+    sha256 cellar: :any, big_sur: "e986cb8f8298e16d2461d548a10c59e82579c015b84a551380b5ddae2b231e81"
+  end
+
   depends_on "pkg-config" => :build
 
   depends_on "jpeg"
