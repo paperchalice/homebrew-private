@@ -7,8 +7,8 @@ class QtDatavis3d < Formula
   head "https://code.qt.io/qt/qtdatavis3d.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-datavis3d-6.1.1"
-    sha256 cellar: :any, big_sur: "f97c07a7ce1e00432f810449cb4d3a7283f620a6c77074dabad6908e53a32add"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-datavis3d-6.1.2"
+    sha256 cellar: :any, big_sur: "9f7f906a5917a287c482211ff02c595205a0ab78411ae6c20786423fefe5a690"
   end
 
   depends_on "cmake" => [:build, :test]
