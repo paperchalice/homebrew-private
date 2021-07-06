@@ -23,7 +23,7 @@ module Homebrew
       new_url = url_template % name
       Utils::Inreplace.inreplace f.path, old_url.to_s, new_url
 
-      new_sha256 = URI.open("#{new_url}.mirrorlist").read.match(/[0-9a-f]{64}/)
+      new_sha256 = URI.parse("#{new_url}.mirrorlist").open().read.match(/[0-9a-f]{64}/)
       Utils::Inreplace.inreplace f.path, /sha256 "[0-9a-f]{64}"/, "sha256 \"#{new_sha256}\""
     end
   end
