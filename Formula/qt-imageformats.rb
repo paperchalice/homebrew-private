@@ -1,8 +1,8 @@
 class QtImageformats < Formula
   desc "Qt additional image formats support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtimageformats-everywhere-src-6.1.1.tar.xz"
-  sha256 "d7ee9d96ed6958241acde2b5d505f89d7dcfd710d0944b100ac6de203b0e107d"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qtimageformats-everywhere-src-6.1.2.tar.xz"
+  sha256 "958600ed4acf6cc5f74b77e97b4913f3127ccbaadcfce6c1942e775f9f4345a2"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtimageformats.git", branch: "dev"
 
@@ -20,6 +20,7 @@ class QtImageformats < Formula
   depends_on "perl" => :build
 
   depends_on "jasper"
+  depends_on "libmng"
   depends_on "libtiff"
   depends_on "qt-base"
   depends_on "webp"
