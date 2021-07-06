@@ -35,6 +35,7 @@ class QtWatchos < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
+    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
     Pathname.glob("#{bin}/*.app") { |app| rm_rf app }
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"target_qt.conf" if File.exist?(bin/"target_qt.conf")
