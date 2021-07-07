@@ -12,8 +12,8 @@ class QtQuickControls2 < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-controls2-6.1.1"
-    sha256 cellar: :any, big_sur: "427e87d0f20135ac9124d926eeb62b97eaeedc72346a22640056688282faa24a"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-controls2-6.1.2"
+    sha256 cellar: :any, big_sur: "5ceea6cf9cea3318b740e5c9da30b598ab1c18391696efb17cdb3cc4def6b096"
   end
 
   depends_on "cmake" => [:build, :test]
