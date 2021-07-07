@@ -12,8 +12,8 @@ class QtQuickTimeline < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-timeline-6.1.1"
-    sha256 cellar: :any, big_sur: "d20bcc279b11fa9e178ccf17832355acfdb2e22386286daf50dbee90b99d5a96"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-timeline-6.1.2"
+    sha256 cellar: :any, big_sur: "2a2dd08c93cd18c0e4872d86013eaf5ad85508d7cd1e9250af651ffae1afdddd"
   end
 
   depends_on "cmake" => [:build, :test]
