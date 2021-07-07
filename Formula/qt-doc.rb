@@ -6,8 +6,8 @@ class QtDoc < Formula
   license "GFDL-1.3-only"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.1.1"
-    sha256 cellar: :any_skip_relocation, big_sur: "802a5457f845339a49684507a5f47a61acaeef41e255e0c655b39e0803f08fab"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.1.2"
+    sha256 cellar: :any_skip_relocation, big_sur: "4828eea4445773639946e40541b605a5d30eeabb0530b9e69521b9f46357ad39"
   end
 
   depends_on "cmake"      => :build
