@@ -32,7 +32,6 @@ class QtDoc < Formula
       -libexecdir share/qt/libexec
       -plugindir share/qt/plugins
       -qmldir share/qt/qml
-
       -docdir share/doc/qt
 
       -no-feature-relocatable
