@@ -29,6 +29,10 @@ class QtDoc < Formula
       -extprefix #{prefix}
       -sysroot #{MacOS.sdk_path}
 
+      -libexecdir share/qt/libexec
+      -plugindir share/qt/plugins
+      -qmldir share/qt/qml
+
       -docdir share/doc/qt
 
       -no-feature-relocatable
