@@ -1,8 +1,8 @@
 class QtDoc < Formula
   desc "Qt Documentation"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/single/qt-everywhere-src-6.1.1.tar.xz"
-  sha256 "6ac937aae4c7b5a3eac90ea4d13f31ded9f78ebc93007bb919fae65c58c808c3"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/single/qt-everywhere-src-6.1.2.tar.xz"
+  sha256 "4b40f10eb188506656f13dbf067b714145047f41d7bf83f03b727fa1c7c4cdcb"
   license "GFDL-1.3-only"
 
   bottle do
@@ -29,13 +29,7 @@ class QtDoc < Formula
       -extprefix #{prefix}
       -sysroot #{MacOS.sdk_path}
 
-      -libexecdir share/qt/libexec
-      -plugindir share/qt/plugins
-      -qmldir share/qt/qml
       -docdir share/doc/qt
-      -translationdir share/qt/translations
-      -examplesdir share/qt/examples
-      -testsdir share/qt/tests
 
       -no-feature-relocatable
       -system-sqlite
@@ -44,10 +38,7 @@ class QtDoc < Formula
     # TODO: remove `-DFEATURE_qt3d_system_assimp=ON`
     # and `-DTEST_assimp=ON` when Qt 6.2 is released.
     # See https://bugreports.qt.io/browse/QTBUG-91537
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %w[
-      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
-      -D INSTALL_DESCRIPTIONSDIR=share/qt/modules
-    ]
+    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] }
 
     system "./configure", *config_args, "--", *cmake_args
     system "cmake", "--build", ".", "-t", "qch_docs"
