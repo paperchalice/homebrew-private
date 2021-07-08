@@ -1,8 +1,9 @@
 class Flang < Formula
   desc "Fortran front end for LLVM"
   homepage "http://flang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/flang-12.0.0.src.tar.xz"
-  sha256 "dc9420c9f55c6dde633f0f46fe3f682995069cc5247dfdef225cbdfdca79123a"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git"
 
@@ -27,11 +28,10 @@ class Flang < Formula
 
       -D FLANG_BUILD_NEW_DRIVER=OFF
       -D FLANG_INCLUDE_TESTS=OFF
-      -S .
+      -S flang
       -B build
     ]
 
-    cd "flang" if build.head?
     system "cmake", *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
