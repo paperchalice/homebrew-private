@@ -1,8 +1,9 @@
 class Lldb < Formula
   desc "Next generation, high-performance debugger"
   homepage "https://lldb.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/lldb-12.0.0.src.tar.xz"
-  sha256 "14bcc0f55644df1a50ae9830e1f1751a7b3f633fb8605ee50e685a3db0c705ed"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -29,7 +30,7 @@ class Lldb < Formula
 
       -DLLDB_BUILD_FRAMEWORK=ON
 
-      -S .
+      -S lldb
       -B build
     ]
 

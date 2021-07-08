@@ -1,8 +1,9 @@
 class Libcxx < Formula
   desc "LLVM C++ standard library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -27,7 +28,7 @@ class Libcxx < Formula
       -D LIBCXX_INSTALL_PREFIX=#{prefix}/
       -D LIBCXX_USE_COMPILER_RT=ON
 
-      -S .
+      -S libcxx
       -B build
     ]
 

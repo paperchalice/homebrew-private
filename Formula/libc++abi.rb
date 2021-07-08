@@ -1,8 +1,9 @@
 class Libcxxabi < Formula
   desc "C++ Standard Library Support"
   homepage "https://libcxxabi.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -21,7 +22,7 @@ class Libcxxabi < Formula
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON
       -D LIBCXXABI_USE_COMPILER_RT=ON
 
-      -S .
+      -S libcxxabi
       -B build
     ]
 
