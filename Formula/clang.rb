@@ -1,8 +1,9 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-12.0.0.src.tar.xz"
-  sha256 "e26e452e91d4542da3ebbf404f024d3e1cbf103f4cd110c26bf0a19621cca9ed"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -21,27 +22,21 @@ class Clang < Formula
 
   depends_on "llvm-core"
 
-  resource "clang-tools-extra" do
-    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/clang-tools-extra-12.0.0.src.tar.xz"
-    sha256 "ad41e0b527a65ade95c1ba690a5434cefaab4a2daa1be307caaa1e8541fe6d5c"
-  end
-
-  patch :DATA
-
   def install
-    resource("clang-tools-extra").stage buildpath/"tools/extra"
+    cd "clang"
+    ln_s buildpath/"clang-tools-extra", buildpath/"clang/tools/extra"
 
     # avoid building libclang-cpp
     inreplace "tools/CMakeLists.txt", "add_clang_subdirectory(clang-shlib)", ""
-
-    inreplace "tools/extra/clangd/quality/CompletionModel.cmake",
-      "../clang-tools-extra", "tools/extra"
 
     # add `-L /usr/local/lib`
     inreplace "lib/Driver/ToolChains/Darwin.cpp",
       "Args.AddAllArgs(CmdArgs, options::OPT_L);",
       (%Q{CmdArgs.push_back("-L#{HOMEBREW_PREFIX}/lib");\n} + "Args.AddAllArgs(CmdArgs, options::OPT_L);")
 
+    inreplace "lib/Driver/ToolChains/Clang.cpp",
+      "// Parse additional include paths from environment variables.",
+      "CmdArgs.push_back(\"-I#{HOMEBREW_PREFIX}/include\");CmdArgs.push_back(\"-F#{HOMEBREW_PREFIX}/Frameworks\");"
     include_dirs = %W[
       #{MacOS.sdk_path}/usr/include
       #{HOMEBREW_PREFIX}/include
@@ -92,15 +87,3 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
-
-__END__
---- a/lib/Driver/ToolChains/Clang.cpp
-+++ b/lib/Driver/ToolChains/Clang.cpp
-@@ -1332,6 +1332,8 @@ void Clang::AddPreprocessingOptions(Compilation &C, const JobAction &JA,
-       CmdArgs.push_back(C.getArgs().MakeArgString(sysroot));
-     }
-   }
-+  CmdArgs.push_back("-I/usr/local/include");
-+  CmdArgs.push_back("-F/usr/local/Frameworks");
- 
-   // Parse additional include paths from environment variables.
