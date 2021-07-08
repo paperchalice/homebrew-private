@@ -13,8 +13,7 @@ module Homebrew
     new_tag = "llvmorg-#{new_version}"
     old_tag = Formula["llvm-core"].stable.specs[:tag]
     old_rev = Formula["llvm-core"].stable.specs[:revision]
-    new_rev = URI.parse("https://github.com/llvm/llvm-project/releases/tag/#{new_tag}").open.read.match(/(?<=commit\/)\w{40}/).to_s
-    p new_rev
+    new_rev = URI.parse("https://github.com/llvm/llvm-project/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
     %w[
       llvm-core
       libc++ libc++abi compiler-rt polly

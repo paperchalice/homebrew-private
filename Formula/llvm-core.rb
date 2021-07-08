@@ -1,13 +1,14 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
-    url :homepage
-    regex(/LLVM (\d+\.\d+\.\d+)/i)
+    url :stable
+    regex(/^llvmorg-(\d+\.\d+\.\d+)$/i)
   end
 
   bottle do
@@ -26,7 +27,6 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
-    cd "llvm"
     inreplace "lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
     args = std_cmake_args + %w[
@@ -47,7 +47,7 @@ class LlvmCore < Formula
       -D LLVM_USE_NEW_PM=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
 
-      -S .
+      -S llvm
       -B build
     ]
 

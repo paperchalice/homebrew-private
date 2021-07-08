@@ -1,8 +1,9 @@
 class CompilerRt < Formula
   desc "Highly tuned implementations of the low-level code generator support routines"
   homepage "https://compiler-rt.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/compiler-rt-12.0.0.src.tar.xz"
-  sha256 "85a8cd0a62413eaa0457d8d02f8edac38c4dc0c96c00b09dc550260c23268434"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.0",
+    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -10,27 +11,26 @@ class CompilerRt < Formula
     sha256 cellar: :any, big_sur: "1e57935e601da3aa3129f40fdbc6abe58816205abe74b0e9fffbec95d73d86be"
   end
 
-  depends_on "cmake" => :build
+  depends_on "cmake"     => :build
   depends_on "llvm-core" => :build
 
   def install
     args = std_cmake_args + %W[
       -D CMAKE_CXX_STANDARD=17
-      -D CMAKE_CXX_FLAGS=-Oz
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
       -D COMPILER_RT_ENABLE_IOS=OFF
       -D COMPILER_RT_ENABLE_TVOS=OFF
       -D COMPILER_RT_ENABLE_WATCHOS=OFF
       -D COMPILER_RT_USE_BUILTINS_LIBRARY=ON
 
-      .
+      -S compiler-rt
+      -B build
     ]
 
     ENV.permit_arch_flags
-    ENV.prepend_path "PATH", "/usr/bin"
     system "cmake", *args
-    system "cmake", "--build", "."
-    system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build", "--strip"
   end
 
   test do
