@@ -8,7 +8,7 @@ module Homebrew
   module_function
 
   def upgrade_llvm
-    v = `brew livecheck llvm`
+    v = `brew livecheck llvm-core`
     new_version = Version.new(v.scan(/\d+(?:\.\d+)+/).last)
     new_tag = "llvmorg-#{new_version}"
     old_tag = Formula["llvm-core"].stable.specs[:tag]
