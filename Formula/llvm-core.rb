@@ -44,7 +44,6 @@ class LlvmCore < Formula
       -D LLVM_INSTALL_UTILS=ON
       -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
-      -D LLVM_USE_NEW_PM=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
 
       -S llvm
@@ -56,8 +55,8 @@ class LlvmCore < Formula
     system "cmake", "--install", "build", "--strip"
 
     site_package = Language::Python.site_packages("python3")
-    (prefix/site_package).install "bindings/python/llvm"
-    elisp.install Dir["utils/emacs/*.el"]
+    (prefix/site_package).install "llvm/bindings/python/llvm"
+    elisp.install Dir["llvm/utils/emacs/*.el"]
   end
 
   test do
