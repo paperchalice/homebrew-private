@@ -7,8 +7,8 @@ class Polly < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/polly-12.0.0"
-    sha256 cellar: :any, big_sur: "b796816b1ca1201dbbf7bb0f29727af022d414d34890a7635e9665639d4f111c"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/polly-12.0.1"
+    sha256 cellar: :any, big_sur: "7eab63a816a49f50eaf00ac5d0497fd23327be357b1bfb06808a9d76e3707b9b"
   end
 
   depends_on "cmake"      => :build
