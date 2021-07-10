@@ -26,7 +26,6 @@ class Libcxxabi < Formula
       -B build
     ]
 
-    cd "libcxxabi"
     system "cmake", *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
