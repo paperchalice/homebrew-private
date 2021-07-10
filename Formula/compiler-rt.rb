@@ -17,8 +17,7 @@ class CompilerRt < Formula
 
   def install
     args = std_cmake_args + %W[
-      -D CMAKE_CXX_STANDARD=17
-      -D CMAKE_CXX_FLAGS=-Oz
+      -D CMAKE_CXX_FLAGS=-w\ -std=c++14
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
       -D COMPILER_RT_ENABLE_IOS=ON
       -D COMPILER_RT_ENABLE_TVOS=OFF
@@ -29,9 +28,10 @@ class CompilerRt < Formula
       -B build
     ]
 
-    ENV.prepend "PATH", "/usr/bin:"
+    ENV.permit_arch_flags
+    ENV.delete "HOMEBREW_OPTFLAGS"
+
     system "cmake", *args
-    inreplace "build/CMakeCache.txt", ";armv7k", ""
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
   end
