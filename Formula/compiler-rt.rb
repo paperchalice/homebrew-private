@@ -23,7 +23,6 @@ class CompilerRt < Formula
       -D COMPILER_RT_ENABLE_IOS=ON
       -D COMPILER_RT_ENABLE_TVOS=OFF
       -D COMPILER_RT_ENABLE_WATCHOS=OFF
-      -D COMPILER_RT_USE_BUILTINS_LIBRARY=ON
 
       -S compiler-rt
       -B build
@@ -31,7 +30,7 @@ class CompilerRt < Formula
 
     ENV.permit_arch_flags
     ENV.delete "HOMEBREW_OPTFLAGS"
-
+    ENV.prepend "PATH", "/usr/bin:"
     system "cmake", *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
