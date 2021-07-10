@@ -13,6 +13,7 @@ class Flang < Formula
   end
 
   depends_on "cmake" => :build
+  depends_on "gcc"   => :test
 
   depends_on "llvm-core"
 
