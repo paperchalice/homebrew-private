@@ -8,7 +8,8 @@ class CompilerRt < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/compiler-rt-12.0.1"
-    sha256 cellar: :any, big_sur: "56ae098406910361e20d7fbfaad958952b4bff9db0121ac73d8e698917809342"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "526eaf684b508d67592081c1c1a0c35b34fd0993e63619ca13a55a3dbf6aa651"
   end
 
   depends_on "cmake"     => :build
