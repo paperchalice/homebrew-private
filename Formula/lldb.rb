@@ -39,7 +39,7 @@ class Lldb < Formula
 
     system "cmake", *args
     system "cmake", "--build", "build"
-    # system "cmake", "--install", "build"
+    # FIXME: system "cmake", "--install", "build"
     system "make", "-C", "build", "-i", "install"
   end
 
