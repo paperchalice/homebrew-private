@@ -18,6 +18,7 @@ class Lldb < Formula
   depends_on "llvm-core"
   depends_on "lua"
   depends_on "python"
+  depends_on "six"
   depends_on "xz"
 
   uses_from_macos "libedit"
@@ -32,6 +33,7 @@ class Lldb < Formula
       -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
       -D LLDB_BUILD_FRAMEWORK=ON
       -D LLDB_FRAMEWORK_INSTALL_DIR=Frameworks
+      -D LLDB_USE_SYSTEM_SIX=ON
 
       -S lldb
       -B build
@@ -39,8 +41,7 @@ class Lldb < Formula
 
     system "cmake", *args
     system "cmake", "--build", "build"
-    # FIXME: system "cmake", "--install", "build"
-    system "make", "-C", "build", "-i", "install"
+    system "make", "-C", "build", "install", "-i"
   end
 
   test do
