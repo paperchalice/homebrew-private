@@ -7,8 +7,8 @@ class Unwinder < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unwinder-12.0.0"
-    sha256 cellar: :any, big_sur: "ebbc29f67421c02a38a8d1f6e711a07dc9d27f21a2de09b429ac44f14b672aac"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unwinder-12.0.1"
+    sha256 cellar: :any, big_sur: "f2569bde4e938aa261f42460b0b117f4e21e7f1d80e06178abab2e1a49c08bf7"
   end
 
   depends_on "cmake" => :build
