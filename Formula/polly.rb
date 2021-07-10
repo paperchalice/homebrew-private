@@ -11,7 +11,8 @@ class Polly < Formula
     sha256 cellar: :any, big_sur: "b796816b1ca1201dbbf7bb0f29727af022d414d34890a7635e9665639d4f111c"
   end
 
-  depends_on "cmake" => :build
+  depends_on "cmake"      => :build
+  depends_on "pkg-config" => :build
 
   depends_on "isl"
   depends_on "llvm-core"
