@@ -2,8 +2,8 @@ class Lldb < Formula
   desc "Next generation, high-performance debugger"
   homepage "https://lldb.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.0",
-    revision: "d28af7c654d8db0b68c175db5ce212d74fb5e9bc"
+    tag:      "llvmorg-12.0.1",
+    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -18,6 +18,7 @@ class Lldb < Formula
   depends_on "llvm-core"
   depends_on "lua"
   depends_on "python"
+  depends_on "xz"
 
   uses_from_macos "libedit"
   uses_from_macos "libxml2"
@@ -30,6 +31,7 @@ class Lldb < Formula
 
       -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
       -D LLDB_BUILD_FRAMEWORK=ON
+      -D LLDB_FRAMEWORK_INSTALL_DIR=Frameworks
 
       -S lldb
       -B build
