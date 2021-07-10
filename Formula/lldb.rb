@@ -25,10 +25,11 @@ class Lldb < Formula
   uses_from_macos "zlib"
 
   def install
-    args = std_cmake_args+ %w[
-      -DCMAKE_CXX_STANDARD=17
+    args = std_cmake_args+ %W[
+      -D CMAKE_CXX_STANDARD=17
 
-      -DLLDB_BUILD_FRAMEWORK=ON
+      -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
+      -D LLDB_BUILD_FRAMEWORK=ON
 
       -S lldb
       -B build
