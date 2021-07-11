@@ -26,7 +26,7 @@ class LlvmCoreDev < Formula
   def install
     inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
-    args = std_cmake_args + %W[
+    args = std_cmake_args + %w[
       -D CMAKE_CXX_STANDARD=17
 
       -D LLVM_ENABLE_EH=ON
