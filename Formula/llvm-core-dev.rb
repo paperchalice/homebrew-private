@@ -18,7 +18,6 @@ class LlvmCoreDev < Formula
 
   depends_on "cmake"  => [:build, :test]
   depends_on "python" => :build
-  depends_on "z3"     => :build
 
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
@@ -39,10 +38,8 @@ class LlvmCoreDev < Formula
       -D LLVM_INCLUDE_DOCS=OFF
       -D LLVM_INCLUDE_TESTS=OFF
       -D LLVM_INSTALL_UTILS=ON
-      -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
-      -D Z3_LIBRARIES=#{Formula["z3"].lib}/libz3.a
 
       -S llvm
       -B build
