@@ -30,6 +30,7 @@ class Lldb < Formula
   def install
     args = std_cmake_args+ %W[
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_SHARED_LINKER_FLAGS=-Wl,-undefined\ dynamic_lookup
 
       -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
       -D LLDB_BUILD_FRAMEWORK=OFF
