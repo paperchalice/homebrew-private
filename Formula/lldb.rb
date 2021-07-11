@@ -31,7 +31,7 @@ class Lldb < Formula
       -D CMAKE_CXX_STANDARD=17
 
       -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
-      -D LLDB_BUILD_FRAMEWORK=ON
+      -D LLDB_BUILD_FRAMEWORK=OFF
       -D LLDB_FRAMEWORK_INSTALL_DIR=Frameworks
       -D LLDB_USE_SYSTEM_SIX=ON
 
@@ -41,7 +41,7 @@ class Lldb < Formula
 
     system "cmake", *args
     system "cmake", "--build", "build"
-    system "make", "-C", "build", "install", "-i"
+    system "cmake", "--install", "build"
   end
 
   test do
