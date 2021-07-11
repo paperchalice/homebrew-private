@@ -46,6 +46,6 @@ class Lldb < Formula
   end
 
   test do
-    system "echo"
+    system bin/"lldb", "--version"
   end
 end
