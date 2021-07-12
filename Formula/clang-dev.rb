@@ -6,6 +6,11 @@ class ClangDev < Formula
     revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-dev-12.0.1"
+    sha256 cellar: :any, big_sur: "110dc704519f376a92b4a23120572730b17c45b3fe22fe68e3f45027adaee4ae"
+  end
+
   pour_bottle? only_if: :clt_installed
 
   depends_on "cmake"          => :build
