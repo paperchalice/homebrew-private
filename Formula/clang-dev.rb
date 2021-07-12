@@ -11,7 +11,7 @@ class ClangDev < Formula
   depends_on "cmake"       => :build
   depends_on "compiler-rt" => :build
   depends_on "libc++"      => :build
-  depends_on "llvm-core-dev"   => :build
+  depends_on "llvm-core-dev" => :build
   depends_on "python"      => :build
   depends_on "unwinder"    => :build
 
