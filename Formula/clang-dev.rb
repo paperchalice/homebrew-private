@@ -8,13 +8,12 @@ class ClangDev < Formula
 
   pour_bottle? only_if: :clt_installed
 
-  depends_on "cmake"       => :build
-  depends_on "compiler-rt" => :build
-  depends_on "libc++"      => :build
-  depends_on "llvm-core-dev" => :build
-  depends_on "python"      => :build
-  depends_on "unwinder"    => :build
-
+  depends_on "cmake"          => :build
+  depends_on "compiler-rt"    => :build
+  depends_on "libc++"         => :build
+  depends_on "llvm-core-dev"  => :build
+  depends_on "python"         => :build
+  depends_on "unwinder"       => :build
 
   def install
     cd "clang"
