@@ -69,6 +69,15 @@ class ClangDev < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.c").write <<~EOS
+      #include <stdio.h>
+      int main(int argc, char *argv[])
+      {
+        printf("Hello World!\\n");
+        return 0;
+      }
+    EOS
+    system bin/"clang", "test.c"
+    assert_match "Hello World!", shell_output("./a.out")
   end
 end

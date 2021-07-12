@@ -29,6 +29,7 @@ class LlvmCoreDev < Formula
     args = std_cmake_args + %w[
       -D CMAKE_CXX_STANDARD=17
 
+      -D LLVM_ENABLE_PIC=OFF
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
