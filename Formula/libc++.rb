@@ -11,9 +11,9 @@ class Libcxx < Formula
     sha256 cellar: :any, big_sur: "8d849f05a2bbed53b1a45f2efc1632fa6e828003a88ad8ae68ce09cebaf6a156"
   end
 
-  depends_on "cmake" => :build
+  depends_on "cmake"       => :build
+  depends_on "compiler-rt" => :build
 
-  depends_on "compiler-rt"
   depends_on "libc++abi"
   depends_on "unwinder"
 

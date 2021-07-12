@@ -11,10 +11,10 @@ class Libcxxabi < Formula
     sha256 cellar: :any, big_sur: "e05be1057efaca7918f961b524582ec1e3cce8273362104cf030688d1af3d048"
   end
 
-  depends_on "cmake" => :build
-  depends_on "python" => :build
+  depends_on "cmake"       => :build
+  depends_on "python"      => :build
+  depends_on "compiler-rt" => :build
 
-  depends_on "compiler-rt"
   depends_on "unwinder"
 
   def install
