@@ -16,8 +16,9 @@ class LlvmCore < Formula
     sha256 cellar: :any, big_sur: "856462a59ffd35a7a5cb8193e28d729497667ad4c85cb6be329628c06664d796"
   end
 
-  depends_on "cmake"  => [:build, :test]
-  depends_on "python" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "python"     => :build
+  depends_on "sphinx-doc" => :build
 
   depends_on "z3"
 
@@ -32,6 +33,7 @@ class LlvmCore < Formula
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
+      -D LLVM_BUILD_DOCS=ON
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
@@ -44,6 +46,9 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
+      -D SPHINX_OUTPUT_MAN=ON
+      -D SPHINX_OUTPUT_HTML=OFF
+      -D SPHINX_WARNINGS_AS_ERRORS=OFF
 
       -S llvm
       -B build
