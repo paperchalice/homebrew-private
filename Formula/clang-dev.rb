@@ -57,6 +57,8 @@ class ClangDev < Formula
       -D CLANG_LINK_CLANG_DYLIB=OFF
       -D CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
 
+      -D LLVM_ENABLE_PIC=OFF
+
       -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
 
       -S .
