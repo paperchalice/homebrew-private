@@ -15,7 +15,7 @@ class Libclc < Formula
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
-      -S .
+      -S libclc
       -B build
     ]
 
