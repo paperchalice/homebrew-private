@@ -2,7 +2,7 @@ class SpirvLlvmTranslator < Formula
   desc "Tool and a library for bi-directional translation between SPIR-V and LLVM IR"
   homepage "https://github.com/KhronosGroup/SPIRV-LLVM-Translator"
   url "https://github.com/KhronosGroup/SPIRV-LLVM-Translator.git",
-    tag: "v12.0.0",
+    tag:      "v12.0.0",
     revision: "67d3e271a28287b2c92ecef2f5e98c49134e5946"
 
   depends_on "cmake" => :build
