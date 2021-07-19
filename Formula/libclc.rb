@@ -6,6 +6,11 @@ class Libclc < Formula
     revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libclc-12.0.1"
+    sha256 cellar: :any_skip_relocation, big_sur: "7f661d7a9f6fc36f2040296b7cc6e17103da94c87f6cbecbd7aea12aea85d06a"
+  end
+
   depends_on "clang"                 => :build
   depends_on "cmake"                 => :build
   depends_on "llvm-core"             => :build
