@@ -5,6 +5,11 @@ class SpirvLlvmTranslator < Formula
     tag:      "v12.0.0",
     revision: "67d3e271a28287b2c92ecef2f5e98c49134e5946"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/spirv-llvm-translator-12.0.0"
+    sha256 cellar: :any, big_sur: "b1e73d395f58b34b1abc4606d158fc2ba06151961398f18076fab9eb03d85009"
+  end
+
   depends_on "cmake" => :build
 
   depends_on "llvm-core"
