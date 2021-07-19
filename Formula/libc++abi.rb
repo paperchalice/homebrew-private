@@ -12,8 +12,8 @@ class Libcxxabi < Formula
   end
 
   depends_on "cmake"       => :build
-  depends_on "python"      => :build
   depends_on "compiler-rt" => :build
+  depends_on "python"      => :build
 
   depends_on "unwinder"
 
