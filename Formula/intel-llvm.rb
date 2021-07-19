@@ -33,7 +33,7 @@ class IntelLlvm < Formula
       -DBUILD_SHARED_LIBS=ON
       -DLLVM_TARGETS_TO_BUILD=host
       -DLLVM_EXTERNAL_PROJECTS=#{external_projects.join ";"}
-      -DLLVM_ENABLE_PROJECTS=clang;#{external_projects.join ";"}
+      -DLLVM_ENABLE_PROJECTS=clang;libcxx;libcxxabi;#{external_projects.join ";"}
       -DLLVM_EXTERNAL_SYCL_SOURCE_DIR=#{buildpath}/sycl
       -DLLVM_EXTERNAL_LLVM_SPIRV_SOURCE_DIR=#{buildpath}/llvm-spirv
       -DLLVM_EXTERNAL_XPTI_SOURCE_DIR=#{buildpath}/xpti
