@@ -6,8 +6,8 @@ class Libclc < Formula
     revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  depends_on "cmake"                 => :build
   depends_on "clang"                 => :build
+  depends_on "cmake"                 => :build
   depends_on "llvm-core"             => :build
   depends_on "spirv-llvm-translator" => :build
 
