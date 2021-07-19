@@ -4,6 +4,7 @@ class SpirvLlvmTranslator < Formula
   url "https://github.com/KhronosGroup/SPIRV-LLVM-Translator.git",
     tag:      "v12.0.0",
     revision: "67d3e271a28287b2c92ecef2f5e98c49134e5946"
+  license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/spirv-llvm-translator-12.0.0"
