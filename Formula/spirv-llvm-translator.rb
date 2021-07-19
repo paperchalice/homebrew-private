@@ -30,6 +30,6 @@ class SpirvLlvmTranslator < Formula
   end
 
   test do
-    system "echo"
+    system "llvm-spirv", "--version"
   end
 end
