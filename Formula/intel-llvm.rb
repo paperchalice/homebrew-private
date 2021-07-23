@@ -53,6 +53,7 @@ class IntelLlvm < Formula
       -DLLVM_INSTALL_UTILS=ON
       -DLLVM_ENABLE_Z3_SOLVER=OFF
       -DLLVM_OPTIMIZED_TABLEGEN=ON
+      -DDEFAULT_SYSROOT=#{MacOS.sdk_path}
       -DPACKAGE_VENDOR=#{tap.user}
       -DBUG_REPORT_URL=#{tap.issues_url}
       -DCLANG_VENDOR_UTI=org.#{tap.user.downcase}.clang
