@@ -11,12 +11,11 @@ class Gn < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "efee53db5825b39650cdb2d8e4cff23d00b7ab29790ae49a06b7a2ecce1d26d8"
   end
 
-  depends_on "ninja" => :build
-
-  depends_on "python"
+  depends_on "ninja"  => :build
+  depends_on "python" => :build
 
   def install
-    system "python", "build/gen.py"
+    system "python3", "build/gen.py"
     system "ninja", "-C", "out/", "gn"
     bin.install "out/gn"
   end
