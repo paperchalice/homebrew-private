@@ -60,7 +60,7 @@ class QtBase < Formula
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
       -D FEATURE_reduce_relocations=ON
-      -D FEATURE_relocatable=OFF
+      -D FEATURE_relocatable=ON
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
       -D FEATURE_sql_mysql=OFF
