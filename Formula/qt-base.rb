@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qtbase-everywhere-src-6.1.2.tar.xz"
-  sha256 "b9c4061c1c7999c42c315fc5b0f4f654067b4186066dd729bbcf1bdce8d781c8"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-beta1/submodules/qtbase-everywhere-src-6.2.0-beta1.tar.xz"
+  sha256 "a4f5ac54c2b9cfea02e68e1e4d64495e906461cd5e9ce50a2ad062ac1da0d2f1"
   license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
@@ -41,11 +41,7 @@ class QtBase < Formula
   uses_from_macos "zlib"
 
   def install
-    ENV.permit_arch_flags
-    ENV.deparallelize
-    # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "CMakeLists.txt", "FATAL_ERROR", ""
-    inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
