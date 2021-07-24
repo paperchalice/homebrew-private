@@ -31,6 +31,7 @@ class QtBase < Formula
   depends_on "libb2"
   depends_on "libpng"
   depends_on "libproxy"
+  depends_on "md4c"
   depends_on "pcre2"
   depends_on "zstd"
 
