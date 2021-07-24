@@ -97,6 +97,8 @@ class QtBase < Formula
   end
 
   test do
+    assert_equal HOMEBREW_PREFIX.to_s, `qmake -query QT_INSTALL_PREFIX`.strip
+
     (testpath/"CMakeLists.txt").write <<~EOS
       cmake_minimum_required(VERSION #{Formula["cmake"].version})
       project(test VERSION 1.0.0 LANGUAGES CXX)
