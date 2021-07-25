@@ -32,7 +32,6 @@ class Qt3d < Formula
 
       -D FEATURE_qt3d_simd_avx2=ON
       -D FEATURE_qt3d_system_assimp=ON
-      -D TEST_assimp=ON
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
