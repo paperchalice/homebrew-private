@@ -48,6 +48,7 @@ class QtBase < Formula
       -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
       -D CMAKE_STAGING_PREFIX=#{prefix}
       -D CMAKE_SYSROOT=#{MacOS.sdk_path}
+      -D CMAKE_INSTALL_RPATH=#{rpath}
 
       -D INSTALL_DATADIR=share/qt
       -D INSTALL_ARCHDATADIR=share/qt
