@@ -31,6 +31,12 @@ class Libclc < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"cos.cl").write <<~EOS
+      #include <clc/clc.h>
+      __kernel void foo(__global float4 *f) {
+        *f = cos(*f);
+      }
+    EOS
+    system ENV.cc, "-c", "cos.cl"
   end
 end

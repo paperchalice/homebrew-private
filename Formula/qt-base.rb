@@ -78,17 +78,11 @@ class QtBase < Formula
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"qmake"
     bin.install_symlink bin/"qmake#{version.major}" => "qmake"
-
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
 
-    # Some config scripts will only find Qt in a "Frameworks" folder
-    frameworks.install_symlink Dir["#{lib}/*.framework"]
-
-    # The pkg-config files installed suggest that headers can be found in the
-    # `include` directory. Make this so by creating symlinks from `include` to
-    # the Frameworks' Headers folders.
-    Pathname.glob("#{lib}/*.framework/Headers") do |path|
-      include.install_symlink path => path.parent.basename(".framework")
+    Pathname.glob(lib/"*.framework") do |f|
+      frameworks.install_symlink f
+      include.install_symlink f/"Headers" => f.basename
     end
   end
 

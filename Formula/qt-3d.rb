@@ -32,16 +32,14 @@ class Qt3d < Formula
 
       -D FEATURE_qt3d_simd_avx2=ON
       -D FEATURE_qt3d_system_assimp=ON
-      -D TEST_assimp=ON
     ]
     system "cmake", ".", *args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    frameworks.install_symlink Dir["#{lib}/*.framework"]
-
-    Pathname.glob("#{lib}/*.framework/Headers") do |path|
-      include.install_symlink path => path.parent.basename(".framework")
+    Pathname.glob(lib/"*.framework") do |f|
+      frameworks.install_symlink f
+      include.install_symlink f/"Headers" => f.basename
     end
   end
 

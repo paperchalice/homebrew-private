@@ -31,14 +31,9 @@ class QtScxml < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    # Some config scripts will only find Qt in a "Frameworks" folder
-    frameworks.install_symlink Dir[lib/"*.framework"]
-
-    # The pkg-config files installed suggest that headers can be found in the
-    # `include` directory. Make this so by creating symlinks from `include` to
-    # the Frameworks' Headers folders.
-    Pathname.glob("#{lib}/*.framework/Headers") do |path|
-      include.install_symlink path => path.parent.basename(".framework")
+    Pathname.glob(lib/"*.framework") do |f|
+      frameworks.install_symlink f
+      include.install_symlink f/"Headers" => f.basename
     end
   end
 
