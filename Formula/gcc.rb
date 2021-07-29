@@ -130,8 +130,6 @@ class Gcc < Formula
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
       system "make", "install"
-      system "make", "pdf"
-      system "make", "install-pdf"
     end
   end
 
