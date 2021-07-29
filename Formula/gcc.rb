@@ -24,7 +24,6 @@ class Gcc < Formula
   pour_bottle? only_if: :clt_installed
 
   depends_on "python" => :build
-  depends_on "texinfo" => :build
 
   depends_on "gettext"
   depends_on "gmp"
