@@ -42,6 +42,10 @@ jobs:
           git rebase master
           popd
 
+      - name: Install MacTeX
+        run: brew install mactex
+        if: github.event_name == 'pull_request'
+
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
 
