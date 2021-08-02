@@ -49,7 +49,6 @@ class Qmmp < Formula
   uses_from_macos "libiconv"
 
   def install
-    inreplace "src/qmmp/CMakeLists.txt", "Qt6::Widgets", "Qt6::Widgets iconv"
     cmake_args = std_cmake_args + %w[
       -DUSE_SKINNED=ON
       -DUSE_ENCA=ON
@@ -59,11 +58,10 @@ class Qmmp < Formula
       -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup
 
       -S .
-      -B build
     ]
     system "cmake", *cmake_args
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do
