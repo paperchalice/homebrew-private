@@ -49,7 +49,8 @@ class Qmmp < Formula
   uses_from_macos "libiconv"
 
   def install
-    cmake_args = std_cmake_args + %w[
+    cmake_args = std_cmake_args + %W[
+      -DCMAKE_STAGING_PREFIX=#{prefix}
       -DUSE_SKINNED=ON
       -DUSE_ENCA=ON
       -DUSE_QMMP_DIALOG=ON
