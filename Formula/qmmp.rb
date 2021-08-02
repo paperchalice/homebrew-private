@@ -56,6 +56,7 @@ class Qmmp < Formula
       -DUSE_QMMP_DIALOG=ON
       -DCMAKE_EXE_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup
       -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup
+      -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup
 
       -S .
       -B build
