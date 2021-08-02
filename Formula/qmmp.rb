@@ -4,12 +4,6 @@ class Qmmp < Formula
   url "https://qmmp.ylsoftware.com/files/qmmp/2.0/qmmp-2.0.0.tar.bz2"
   sha256 "c631d69c8bfcd77746bb94e2fc4cb7186d16cd29598de08d9771a45c212c6519"
   license "GPL-2.0-or-later"
-  head "https://svn.code.sf.net/p/qmmp-dev/code"
-
-  livecheck do
-    url :stable
-    regex(%r{url=.*?/qmmp[._-]v?(\d+(?:\.\d+)+)\.t}i)
-  end
 
   depends_on "cmake"      => :build
   depends_on "pkg-config" => :build
@@ -33,6 +27,7 @@ class Qmmp < Formula
   depends_on "libsoxr"
   depends_on "libvorbis"
   depends_on "libxcb"
+  depends_on "libxmp"
   depends_on "mad"
   depends_on "mplayer"
   depends_on "musepack"
@@ -48,6 +43,11 @@ class Qmmp < Formula
   uses_from_macos "curl"
   uses_from_macos "libiconv"
 
+  resource "qmmp-plugin-pack" do
+    url "https://qmmp.ylsoftware.com/files/qmmp-plugin-pack/2.0/qmmp-plugin-pack-2.0.0.tar.bz2"
+    sha256 "dd10362e42804e604d216a79e9a8b1d4851be0da72d7c6ee0ad9ddb1166f69dc"
+  end
+
   def install
     cmake_args = std_cmake_args + %W[
       -DCMAKE_STAGING_PREFIX=#{prefix}
@@ -60,9 +60,17 @@ class Qmmp < Formula
 
       -S .
     ]
+
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
+
+    ENV.append_path "PKG_CONFIG_PATH", lib/"pkgconfig"
+    resource("qmmp-plugin-pack").stage do
+      system "cmake", ".", *std_cmake_args
+      system "cmake", "--build", "."
+      system "cmake", "--install", "."
+    end
   end
 
   test do
