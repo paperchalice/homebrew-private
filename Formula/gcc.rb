@@ -131,6 +131,15 @@ class Gcc < Formula
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
       system "make", "install"
     end
+
+    %w[gcc gcc-ar gcc-nm gcc-ranlib gfortran gdc c++ g++].each do |x|
+      rm bin/x
+      bin.install_symlink bin/"x86_64-apple-darwin20-#{x}" => x
+    end
+    rm bin/"x86_64-apple-darwin20-gcc"
+    rm bin/"x86_64-apple-darwin20-c++"
+    bin.install_symlink bin/"x86_64-apple-darwin20-gcc-#{version}" => "x86_64-apple-darwin20-gcc"
+    bin.install_symlink bin/"x86_64-apple-darwin20-c++" => "x86_64-apple-darwin20-g++"
   end
 
   test do
