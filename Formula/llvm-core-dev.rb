@@ -34,6 +34,7 @@ class LlvmCoreDev < Formula
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
+      -D LLVM_ENABLE_LTO=Thin
       -D LLVM_ENABLE_MODULES=ON
       -D LLVM_ENABLE_PROJECTS=mlir
       -D LLVM_ENABLE_RTTI=ON
