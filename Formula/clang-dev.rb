@@ -41,6 +41,7 @@ class ClangDev < Formula
     # -DCLANG_DEFAULT_LINKER=lld
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
     py_ver = Language::Python.major_minor_version("python3")
+    ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
     args = std_cmake_args + %W[
       -D CMAKE_CXX_STANDARD=17
       -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
