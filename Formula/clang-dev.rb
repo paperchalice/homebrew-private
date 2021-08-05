@@ -8,7 +8,8 @@ class ClangDev < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-dev-12.0.1"
-    sha256 cellar: :any, big_sur: "110dc704519f376a92b4a23120572730b17c45b3fe22fe68e3f45027adaee4ae"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "93f47175c359a0c4a245fcdf50daf4fc1392b8fe1fae05c4fe49c2fbd4bf154b"
   end
 
   pour_bottle? only_if: :clt_installed
