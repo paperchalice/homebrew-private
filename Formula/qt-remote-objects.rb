@@ -1,4 +1,4 @@
-class QtRemoteObjects< Formula
+class QtRemoteObjects < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtremoteobjects-everywhere-src-6.1.1.tar.xz"
