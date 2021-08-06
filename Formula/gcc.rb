@@ -132,14 +132,18 @@ class Gcc < Formula
       system "make", "install"
     end
 
+    triple = (libexec/"gcc").children[0].stem
+
     %w[gcc gcc-ar gcc-nm gcc-ranlib gfortran gdc c++ g++].each do |x|
       rm bin/x
-      bin.install_symlink bin/"x86_64-apple-darwin20-#{x}" => x
+      bin.install_symlink bin/"#{triple}-#{x}" => x
     end
-    rm bin/"x86_64-apple-darwin20-gcc"
-    rm bin/"x86_64-apple-darwin20-c++"
-    bin.install_symlink bin/"x86_64-apple-darwin20-gcc-#{version}" => "x86_64-apple-darwin20-gcc"
-    bin.install_symlink bin/"x86_64-apple-darwin20-c++" => "x86_64-apple-darwin20-g++"
+    rm bin/"#{triple}-gcc"
+    rm bin/"#{triple}-c++"
+    bin.install_symlink bin/"#{triple}-gcc-#{version}" => "#{triple}-gcc"
+    bin.install_symlink bin/"#{triple}-g++" => "#{triple}-c++"
+
+    lib.install_symlink Pathname.glob(lib/"gcc/#{version_suffix}/lib*")
   end
 
   test do
