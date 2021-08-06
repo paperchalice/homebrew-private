@@ -17,7 +17,7 @@ module Homebrew
       imageformats location lottie multimedia networkauth quick-controls2
       quick-timeline quick3d remote-objects scxml sensors
       serial-bus serial-port shader-tools svg tools translations web-channel
-      web-sockets web-view
+      web-sockets web-view web-engine
     ].each do |c|
       f = Formula["qt-#{c}"]
       old_url = f.stable.url
