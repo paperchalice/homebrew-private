@@ -7,13 +7,20 @@ class QtWebEngine < Formula
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
   depends_on "cmake" => [:build, :test]
+  depends_on "ninja" => :build
   depends_on "perl"  => :build
 
+  depends_on "node"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-location"
   depends_on "qt-tools"
   depends_on "qt-web-channel"
+  depends_on "snappy"
+
+  uses_from_macos "bison" => :build
+  uses_from_macos "flex"  => :build
+  uses_from_macos "gperf" => :build
 
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
