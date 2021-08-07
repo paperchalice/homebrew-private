@@ -19,7 +19,6 @@ class QtVirtualKeyboard < Formula
   depends_on "libxcb"
   depends_on "qt-base"
   depends_on "qt-declarative"
-  depends_on "qt-quick-controls2"
   depends_on "qt-svg"
 
   def install
