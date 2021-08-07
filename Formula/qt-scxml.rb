@@ -16,8 +16,9 @@ class QtScxml < Formula
     sha256 cellar: :any, big_sur: "feb0cc52cac10ae08c96e99f70b4b3574fe1ff8bd64fd94375815ba00f7cdb74"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"

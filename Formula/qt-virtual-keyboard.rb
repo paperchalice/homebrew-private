@@ -11,8 +11,9 @@ class QtVirtualKeyboard < Formula
     sha256 cellar: :any, big_sur: "eb8c226510e4d40ed73bd2a570e2b5d79aa866176141b9bd720e94b453992a2e"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "hunspell"
   depends_on "qt-base"

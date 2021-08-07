@@ -16,8 +16,9 @@ class QtQuickControls2 < Formula
     sha256 cellar: :any, big_sur: "5ceea6cf9cea3318b740e5c9da30b598ab1c18391696efb17cdb3cc4def6b096"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-declarative"
   depends_on "qt-imageformats"

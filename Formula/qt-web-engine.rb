@@ -6,21 +6,35 @@ class QtWebEngine < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "ninja" => :build
-  depends_on "perl"  => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "ninja"      => :build
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
+  depends_on "ffmpeg"
+  depends_on "icu4c"
+  depends_on "libevent"
+  depends_on "libvpx"
+  depends_on "little-cms2"
+  depends_on "minizip"
   depends_on "node"
+  depends_on "opus"
+  depends_on "protobuf"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-location"
   depends_on "qt-tools"
   depends_on "qt-web-channel"
+  depends_on "re2"
   depends_on "snappy"
 
   uses_from_macos "bison" => :build
   uses_from_macos "flex"  => :build
   uses_from_macos "gperf" => :build
+
+  uses_from_macos "libxml2"
+  uses_from_macos "libxslt"
+  uses_from_macos "zlib"
 
   def install
     args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[

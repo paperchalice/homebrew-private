@@ -16,8 +16,9 @@ class QtCharts < Formula
     sha256 cellar: :any, big_sur: "58fc4ac04686002371aeb9f22e0e4a19b221a63b20ee28eb63cb9c7c393088b3"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"

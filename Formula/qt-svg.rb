@@ -16,8 +16,9 @@ class QtSvg < Formula
     sha256 cellar: :any, big_sur: "3bc5129fadd5df79b93acfe6883ce13f799ec626f5cc0c9b44aaec00574d9577"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
 

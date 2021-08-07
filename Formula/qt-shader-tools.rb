@@ -17,8 +17,9 @@ class QtShaderTools < Formula
     sha256 cellar: :any, big_sur: "d32cc84a72af0bcb05aa078aabadb0533f94d2c9c0cdb975e6a3811bcf41a40d"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl"  => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
 

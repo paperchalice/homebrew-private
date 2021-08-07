@@ -6,8 +6,9 @@ class QtRemoteObjects < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtremoteobjects.git", branch: "dev"
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl"  => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"

@@ -16,8 +16,9 @@ class QtImageformats < Formula
     sha256 cellar: :any, big_sur: "61df33154ee1760b61a35237780bf32f4d2677cf0f7f04621105b0dec232cf05"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "jasper"
   depends_on "libmng"

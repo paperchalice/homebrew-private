@@ -16,8 +16,9 @@ class QtQuick3d < Formula
     sha256 cellar: :any, big_sur: "d6b3338914cd907ba7b112ab2676d15afc64c1096dfb42b0324d2cb7d5273275"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "assimp"
   depends_on "qt-base"

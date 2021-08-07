@@ -11,8 +11,9 @@ class QtTools < Formula
     sha256 cellar: :any, big_sur: "415c19ef6ccc342f07ba4bcea3e40399ec15210e1e1f9b8e90567c52f4118c51"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "clang"
   depends_on "qt-base"

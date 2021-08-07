@@ -16,8 +16,9 @@ class QtNetworkauth < Formula
     sha256 cellar: :any, big_sur: "bf7eaa44bcc513ca9e8721722df1b7a06a444766563a2944afd5596a360b8679"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
 

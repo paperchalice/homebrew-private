@@ -16,8 +16,9 @@ class QtQuickTimeline < Formula
     sha256 cellar: :any, big_sur: "2a2dd08c93cd18c0e4872d86013eaf5ad85508d7cd1e9250af651ffae1afdddd"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"

@@ -16,8 +16,9 @@ class QtDeclarative < Formula
     sha256 cellar: :any, big_sur: "68d42c31caa1a646347c0fe72fbe528e26be98332da2519b4f86088a83eda7ec"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "python"
   depends_on "qt-base"

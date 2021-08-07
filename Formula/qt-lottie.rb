@@ -11,8 +11,9 @@ class QtLottie < Formula
     sha256 cellar: :any, big_sur: "6827fe3db3afa8a4205975dc5e45f2501516f96f455c0e3f1d7fb98495f799c8"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"

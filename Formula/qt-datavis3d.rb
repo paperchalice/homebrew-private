@@ -11,8 +11,9 @@ class QtDatavis3d < Formula
     sha256 cellar: :any, big_sur: "9f7f906a5917a287c482211ff02c595205a0ab78411ae6c20786423fefe5a690"
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "perl" => :build
+  depends_on "cmake"      => [:build, :test]
+  depends_on "perl"       => :build
+  depends_on "pkg-config" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"
