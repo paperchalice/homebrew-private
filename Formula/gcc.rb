@@ -16,7 +16,8 @@ class Gcc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-11.2.0"
-    sha256 big_sur: "b9e223934d90314ce48e81dcc66c92752d42914ccedf40a015365db49304d61d"
+    rebuild 1
+    sha256 big_sur: "cd939c17a035c75eeec38b14338326228bd02d6426e4793669dab6f71e4814ad"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
@@ -132,14 +133,18 @@ class Gcc < Formula
       system "make", "install"
     end
 
+    triple = (libexec/"gcc").children[0].stem
+
     %w[gcc gcc-ar gcc-nm gcc-ranlib gfortran gdc c++ g++].each do |x|
       rm bin/x
-      bin.install_symlink bin/"x86_64-apple-darwin20-#{x}" => x
+      bin.install_symlink bin/"#{triple}-#{x}" => x
     end
-    rm bin/"x86_64-apple-darwin20-gcc"
-    rm bin/"x86_64-apple-darwin20-c++"
-    bin.install_symlink bin/"x86_64-apple-darwin20-gcc-#{version}" => "x86_64-apple-darwin20-gcc"
-    bin.install_symlink bin/"x86_64-apple-darwin20-c++" => "x86_64-apple-darwin20-g++"
+    rm bin/"#{triple}-gcc"
+    rm bin/"#{triple}-c++"
+    bin.install_symlink bin/"#{triple}-gcc-#{version}" => "#{triple}-gcc"
+    bin.install_symlink bin/"#{triple}-g++" => "#{triple}-c++"
+
+    lib.install_symlink Pathname.glob(lib/"gcc/#{version_suffix}/lib*")
   end
 
   test do
