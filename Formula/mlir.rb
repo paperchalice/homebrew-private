@@ -1,8 +1,9 @@
 class Mlir < Formula
   desc "Multi-Level Intermediate Representation"
   homepage "https://mlir.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.0/llvm-project-12.0.0.src.tar.xz"
-  sha256 "9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628"
+  url "https://github.com/llvm/llvm-project.git",
+    tag:      "llvmorg-12.0.1",
+    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -20,19 +21,19 @@ class Mlir < Formula
   end
 
   def install
-    args = std_cmake_args+ %w[
+    cd "mlir"
+
+    cmake_args = std_cmake_args+ %w[
       -DBUILD_SHARED_LIBS=ON
       -DCMAKE_CXX_STANDARD=17
+
+      -S .
+      -B build
     ]
 
-    cd "mlir" do
-      mkdir "build" do
-        system "cmake", "..", *args
-        system "cmake", "--build", "."
-        system "cmake", "--install", ".", "--strip"
-        prefix.install "bin"
-      end
-    end
+    system "cmake", *cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
