@@ -29,6 +29,11 @@ class LlvmCore < Formula
   def install
     inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
+    cd "llvm/docs" do
+      system "make", "-f", "Makefile.sphinx", "SPHINXOPTS=-t builder-man", "man"
+      man1.install Pathname.glob("_build/man/*")
+    end
+
     args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
@@ -46,9 +51,6 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
-      -D SPHINX_OUTPUT_MAN=ON
-      -D SPHINX_OUTPUT_HTML=OFF
-      -D SPHINX_WARNINGS_AS_ERRORS=OFF
 
       -S llvm
       -B build
