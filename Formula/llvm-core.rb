@@ -35,6 +35,10 @@ class LlvmCore < Formula
       man1.install Pathname.glob("_build/man/*")
     end
 
+    cd "llvm/utils/lit" do
+      system "python3", *Language::Python.setup_install_args(prefix)
+    end
+
     args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
@@ -47,7 +51,7 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_PROJECTS=mlir
       -D LLVM_ENABLE_RTTI=ON
       -D LLVM_INCLUDE_DOCS=OFF
-      -D LLVM_INCLUDE_TESTS=ON
+      -D LLVM_INCLUDE_TESTS=OFF
       -D LLVM_INSTALL_UTILS=ON
       -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
@@ -64,6 +68,10 @@ class LlvmCore < Formula
     site_package = Language::Python.site_packages("python3")
     (prefix/site_package).install "llvm/bindings/python/llvm"
     elisp.install Dir["llvm/utils/emacs/*.el"]
+    # Install Vim plugins
+    %w[ftdetect ftplugin indent syntax].each do |dir|
+      (share/"vim/vimfiles"/dir).install Dir["llvm/utils/vim"/dir]
+    end
   end
 
   test do
