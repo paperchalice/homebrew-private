@@ -70,7 +70,7 @@ class LlvmCore < Formula
     elisp.install Dir["llvm/utils/emacs/*.el"]
     # Install Vim plugins
     %w[ftdetect ftplugin indent syntax].each do |dir|
-      (share/"vim/vimfiles"/dir).install Dir["llvm/utils/vim/#{dir}"]
+      (share/"vim/vimfiles"/dir).install Dir["llvm/utils/vim/#{dir}/*.vim"]
     end
   end
 
