@@ -6,11 +6,6 @@ class Mlir < Formula
     revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-12.0.0"
-    sha256 cellar: :any, big_sur: "353571030a55c946eaba584c74b1f629c0feff44aae2994b09259f8d69cfc8f6"
-  end
-
   depends_on "cmake" => :build
 
   depends_on "llvm-core"
