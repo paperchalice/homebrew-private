@@ -17,6 +17,7 @@ class Clang < Formula
   depends_on "compiler-rt" => :build
   depends_on "libc++"      => :build
   depends_on "python"      => :build
+  depends_on "sphinx-doc"  => :build
   depends_on "unwinder"    => :build
 
   depends_on "llvm-core"
@@ -41,6 +42,11 @@ class Clang < Formula
       #{HOMEBREW_PREFIX}/include
     ].join ":"
 
+    cd "docs" do
+      system "make", "-f", "Makefile.sphinx", "man"
+      man1.install Pathname.glob("_build/man/*")
+    end
+
     # use ld because atom based lld is work in progress
     # -DCLANG_DEFAULT_LINKER=lld
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
@@ -49,6 +55,8 @@ class Clang < Formula
     args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
+      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
       -D C_INCLUDE_DIRS=#{include_dirs}
       -D CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
