@@ -16,11 +16,10 @@ class QtTranslations < Formula
   depends_on "qt-tools" => :build
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      .
+      -S .
     ]
     system "cmake", *args
     system "cmake", "--build", "."

@@ -14,11 +14,12 @@ class QtLocation < Formula
   depends_on "qt-declarative"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -DCMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
       -DCMAKE_STAGING_PREFIX=#{prefix}
+
+      -S .
     ]
-    system "cmake", ".", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 

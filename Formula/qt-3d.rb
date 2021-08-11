@@ -26,13 +26,13 @@ class Qt3d < Formula
   depends_on "qt-shader-tools"
 
   def install
-    args = std_cmake_args(HOMEBREW_PREFIX) + %W[
+    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -D FEATURE_qt3d_simd_avx2=ON
       -D FEATURE_qt3d_system_assimp=ON
     ]
-    system "cmake", ".", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
