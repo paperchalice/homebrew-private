@@ -48,8 +48,7 @@ class QtBase < Formula
     inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
-    cmake_args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
       -D CMAKE_SYSROOT=#{MacOS.sdk_path}
 
@@ -83,7 +82,7 @@ class QtBase < Formula
     bin.install_symlink bin/"qmake#{version.major}" => "qmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
 
-    Pathname.glob(lib/"*.framework") do |f|
+    Dir[lib/"*.framework"] do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.basename
     end

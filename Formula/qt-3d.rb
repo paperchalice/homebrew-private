@@ -26,8 +26,7 @@ class Qt3d < Formula
   depends_on "qt-shader-tools"
 
   def install
-    args = std_cmake_args.reject { |s| s["CMAKE_INSTALL_PREFIX"] } + %W[
-      -D CMAKE_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
+    args = std_cmake_args(HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -D FEATURE_qt3d_simd_avx2=ON
@@ -37,7 +36,7 @@ class Qt3d < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    Pathname.glob(lib/"*.framework") do |f|
+    Dir[lib/"*.framework"] do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.basename
     end
