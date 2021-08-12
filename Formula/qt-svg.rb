@@ -30,7 +30,7 @@ class QtSvg < Formula
 
       -S .
     ]
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
