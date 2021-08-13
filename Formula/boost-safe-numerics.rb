@@ -5,6 +5,11 @@ class BoostSafeNumerics < Formula
     tag:      "boost-1.77.0",
     revision: "d61e5ad30e96c0652b53ce83c7858c15d322cbbf"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-safe-numerics-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "80f2fa3810ee2ba70ca41ef26c86df3384a5d8cffc852517ee2b0ce0c2a14548"
+  end
+
   def install
     prefix.install "include"
   end
