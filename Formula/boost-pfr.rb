@@ -5,6 +5,11 @@ class BoostPfr < Formula
     tag:      "boost-1.77.0",
     revision: "da12b52759ea52c3e2341690f208fea898643bbb"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-pfr-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "985b4da437b291cc6f7f32ffc347db9b370a03ade2a051755d28f6c64e0a1ee2"
+  end
+
   def install
     prefix.install "include"
   end
