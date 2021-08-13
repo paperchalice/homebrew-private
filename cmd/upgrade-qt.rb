@@ -11,15 +11,12 @@ module Homebrew
     v = `brew livecheck qt`
     new_version = Version.new(v.scan(/\d+(?:\.\d+)+/).last)
 
+    repo = Pathname.new(`brew --repo paperchalice/private`).dirname/"homebrew-private"
+    qts = Pathname.glob(repo/"Formula/qt-*").map { |f| f.basename(".rb").to_s }
+
     url_template = "https://download.qt.io/official_releases/qt/#{new_version.major}.#{new_version.minor}/#{new_version}/submodules/qt%s-everywhere-src-#{new_version}.tar.xz"
-    %w[
-      3d base charts connectivity datavis3d declarative
-      imageformats location lottie multimedia networkauth quick-controls2
-      quick-timeline quick3d remote-objects scxml sensors
-      serial-bus serial-port shader-tools svg tools translations web-channel
-      web-sockets web-view web-engine
-    ].each do |c|
-      f = Formula["qt-#{c}"]
+    qts.each do |c|
+      f = Formula[c]
       old_url = f.stable.url
       name = old_url.match(/(?<=qt)[a-z0-9]+/)
       new_url = url_template % name
