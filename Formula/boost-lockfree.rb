@@ -5,6 +5,11 @@ class BoostLockfree < Formula
     tag:      "boost-1.77.0",
     revision: "66f66c977038cb8a316bfc242de1843df9302613"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-lockfree-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "eb7f525c783091f392abf0e0af929b8e3826e5dd959fcd474c967ae9dca4dba1"
+  end
+
   def install
     prefix.install "include"
   end
