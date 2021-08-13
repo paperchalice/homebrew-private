@@ -5,6 +5,11 @@ class BoostStlInterfaces < Formula
     tag:      "boost-1.77.0",
     revision: "89840c0531e55b21172e4c824ad7bfb58c41e6fb"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-stl-interfaces-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "0ad51a15e515e54f76d8bd78627149e2757af84971595b3aaae2199394132e82"
+  end
+
   def install
     prefix.install "include"
   end
