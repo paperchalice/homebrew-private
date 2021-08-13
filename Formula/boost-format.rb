@@ -5,6 +5,11 @@ class BoostFormat < Formula
     tag:      "boost-1.77.0",
     revision: "c1170a6d546b36f9399f3983fad0994e8f946d8f"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-format-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "f5ed96583f1f5bbc1291042eb6a0c8b27f225607d4af1177f497b630603ce6fc"
+  end
+
   def install
     prefix.install "include"
   end
