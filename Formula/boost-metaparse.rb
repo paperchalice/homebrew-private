@@ -5,6 +5,11 @@ class BoostMetaparse < Formula
     tag:      "boost-1.77.0",
     revision: "ca629d1438c6ba50a705b2aede918b527caecf7d"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-metaparse-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "750a43bc2445ff2ab3edf2a6700de44d217447c31ffe69a3379eab6147eda0b5"
+  end
+
   def install
     prefix.install "include"
   end
