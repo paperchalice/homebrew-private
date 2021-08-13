@@ -5,6 +5,11 @@ class BoostSignals2 < Formula
     tag:      "boost-1.77.0",
     revision: "4a51d6e47230123d413cbecb19eb94f195301b8e"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-signals2-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "1b05ef0253dec7913f73f8cfb1c93e8a86d3467f8a8541035424264b057b6969"
+  end
+
   def install
     prefix.install "include"
   end
