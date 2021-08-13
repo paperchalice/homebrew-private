@@ -5,6 +5,11 @@ class BoostQvm < Formula
     tag:      "boost-1.77.0",
     revision: "cdc1a96133ef1db9405e0f5a27f4aa9213d627b4"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-qvm-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "6dfdfb21b1b944e126a9f84b4d1efe47f99158dba528166d7c4b49e816b7df86"
+  end
+
   def install
     prefix.install "include"
   end
