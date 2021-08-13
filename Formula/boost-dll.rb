@@ -5,6 +5,11 @@ class BoostDll < Formula
     tag:      "boost-1.77.0",
     revision: "ac134827f348b33dcdc3814b42cff57c2e792aad"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-dll-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "fcad1d366ef53252ff81836f2bc2b637c41933e386721d0b82bdd329bcd11fc1"
+  end
+
   def install
     prefix.install "include"
   end
