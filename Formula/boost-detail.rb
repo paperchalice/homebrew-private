@@ -5,6 +5,11 @@ class BoostDetail < Formula
     tag:      "boost-1.77.0",
     revision: "a01fe6d57b906edf0400daebfb5ea88bb4582f44"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-detail-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "8f661886848d0cff042a8a3c50cf714fb2c60b2fb2cbdb6e78956b1ec1547989"
+  end
+
   def install
     prefix.install "include"
   end
