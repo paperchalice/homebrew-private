@@ -5,6 +5,11 @@ class BoostPolygon < Formula
     tag:      "boost-1.77.0",
     revision: "8ba35b57c1436c4b36f7544aadd78c2b24acc7db"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-polygon-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "14ea1da95f43ac9b6823f6e62b2a25c7970b17680cad2040e9be01254bc4e1b1"
+  end
+
   def install
     prefix.install "include"
   end
