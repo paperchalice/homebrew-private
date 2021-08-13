@@ -5,6 +5,11 @@ class BoostForeach < Formula
     tag:      "boost-1.77.0",
     revision: "cc2f75ae30492b9de69b3b692f5c59afcb7dea5e"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-foreach-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "c0165ab5720915642257f784c6cdc45561720b5a3c83944efa16c781d3c0cb39"
+  end
+
   def install
     prefix.install "include"
   end
