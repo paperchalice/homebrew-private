@@ -5,6 +5,11 @@ class BoostPolyCollection < Formula
     tag:      "boost-1.77.0",
     revision: "0b8bfc4cff012d0f23049fc5a0009ac4abadceb4"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-poly-collection-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "d9ab5c0f72ef482ab52731675e93d0012762dafa305192eb2b2950cd0272a9ec"
+  end
+
   def install
     prefix.install "include"
   end
