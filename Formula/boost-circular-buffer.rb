@@ -5,6 +5,11 @@ class BoostCircularBuffer < Formula
     tag:      "boost-1.77.0",
     revision: "d4fbf446b903fb6651b56bbd5931a9b902ef962c"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-circular-buffer-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "872d43d85e39dd52d54b002d65d3a1d5c0ba51ea5ecf8ba7566d26a0123caaff"
+  end
+
   def install
     prefix.install "include"
   end
