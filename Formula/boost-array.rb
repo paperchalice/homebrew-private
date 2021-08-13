@@ -5,6 +5,11 @@ class BoostArray < Formula
     tag:      "boost-1.77.0",
     revision: "63f83dc350b654172ad04cc719daea0f3643f83c"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-array-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "f2e13751ac0005d954c33a4ef98207cd0291e75878ee1e77f613abe9c68b34ce"
+  end
+
   def install
     prefix.install "include"
   end
