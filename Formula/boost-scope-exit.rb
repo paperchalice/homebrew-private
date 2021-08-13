@@ -5,6 +5,11 @@ class BoostScopeExit < Formula
     tag:      "boost-1.77.0",
     revision: "60baaae454b2da887a31cf939e22015b6263c9e4"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-scope-exit-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "477e2bf3ef81b02faf55c8fd6f67e640860714342647905fd3e3933248c51415"
+  end
+
   def install
     prefix.install "include"
   end
