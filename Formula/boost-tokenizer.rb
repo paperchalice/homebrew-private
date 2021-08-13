@@ -5,6 +5,11 @@ class BoostTokenizer < Formula
     tag:      "boost-1.77.0",
     revision: "f0857f042d96b5dd04ad5c2561f7006cddbdcde5"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-tokenizer-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "0fae1999ecba641910651298beedbb09c4a0f36bd0da22c4a55668e75fdd9be8"
+  end
+
   def install
     prefix.install "include"
   end
