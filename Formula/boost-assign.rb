@@ -5,6 +5,11 @@ class BoostAssign < Formula
     tag:      "boost-1.77.0",
     revision: "e764ac1ca08daa46b4609a99895fe4874b8dc53b"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-assign-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "2214777c6f14f02c176ee23ec6c0a3cd6d4b550b507816725afbd1f62b1ef9ac"
+  end
+
   def install
     prefix.install "include"
   end
