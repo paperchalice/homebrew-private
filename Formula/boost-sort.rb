@@ -5,6 +5,11 @@ class BoostSort < Formula
     tag:      "boost-1.77.0",
     revision: "72a3ae870c59980dadd757f5f63e6be16ab61c1b"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-sort-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "04a56f6c18207c7758ba1ce270376df3c051d3563be5e366bdd458e9d3b93797"
+  end
+
   def install
     prefix.install "include"
   end
