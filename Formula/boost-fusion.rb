@@ -5,6 +5,11 @@ class BoostFusion < Formula
     tag:      "boost-1.77.0",
     revision: "500e4c120ff2f2414ec225a2a42eb1a665c79956"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-fusion-1.77.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "8c406b8ec2f146685479c975669beacd3daac4f3f86107156c216290a47c0c5d"
+  end
+
   def install
     prefix.install "include"
   end
