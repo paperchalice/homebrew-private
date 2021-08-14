@@ -5,6 +5,11 @@ class BoostDateTime < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-date-time-1.77.0"
+    sha256 cellar: :any, big_sur: "a3e19a30c035d8c2ad9888556cedcb0e09395481024e8c3085942741b683bd8a"
+  end
+
   depends_on "boost-config" => :build
 
   def install
