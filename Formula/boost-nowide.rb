@@ -6,6 +6,12 @@ class BoostNowide < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-nowide-1.77.0"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "41677d007e3a4b3f246b4f879fc91c32857a19610d8400f0372d46e2fb0d1326"
+  end
+
   depends_on "boost-config" => :build
 
   def install
