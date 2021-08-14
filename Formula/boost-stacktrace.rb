@@ -5,6 +5,11 @@ class BoostStacktrace < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-stacktrace-1.77.0"
+    sha256 cellar: :any, big_sur: "579940a4200d58d8724fa8a3e4e4b310b3202c3d7f424485fe383a6452e88c78"
+  end
+
   depends_on "boost-config" => :build
 
   def install
