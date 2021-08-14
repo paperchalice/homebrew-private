@@ -7,7 +7,8 @@ class BoostIostreams < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-iostreams-1.77.0"
-    sha256 cellar: :any, big_sur: "f07d9ed9e758a08d6a0d28744ca055ae9a8a105158aa4e1d46e7b243989b999e"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "002cf24e152b9c2db6f4b0609dfec4ae47b485e98dde12c2c3ddc3ca319e274d"
   end
 
   depends_on "boost-config" => :build
