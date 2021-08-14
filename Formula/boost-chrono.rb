@@ -5,6 +5,11 @@ class BoostChrono < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-chrono-1.77.0"
+    sha256 cellar: :any, big_sur: "4ff0eaf97cf891babf139f543b06a1fa6b74161a5f6625256aa1fe8588d17ba1"
+  end
+
   depends_on "boost-config" => :build
 
   def install
