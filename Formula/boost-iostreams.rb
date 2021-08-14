@@ -11,6 +11,9 @@ class BoostIostreams < Formula
   end
 
   depends_on "boost-config" => :build
+  depends_on "pkg-config"   => :build
+
+  depends_on "zstd"
 
   uses_from_macos "bzip2"
   uses_from_macos "zlib"
