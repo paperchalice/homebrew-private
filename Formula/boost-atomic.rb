@@ -1,5 +1,5 @@
 class BoostAtomic < Formula
-  desc "Awesome library from Boost"
+  desc "Atomic data types and operations"
   homepage "https://boost.org/libs/atomic/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
@@ -11,12 +11,15 @@ class BoostAtomic < Formula
     sha256 cellar: :any, big_sur: "aefbaf7b076b7ac122fa968132fc508d1e3bb4d9d5dfcb8cd45cfbdda72fcfff"
   end
 
+  depends_on "boost-config" => :build
+
   def install
     system "./bootstrap.sh"
     system "./b2", "--with-atomic", "stage"
 
-    %w[boost_headers Boost].each { |d| rm_rf "stage/lib/cmake/#{d}-#{version}" }
-    rm "stage/lib/cmake/BoostDetectToolset-#{version}.cmake"
+    bc = Formula["boost-config"]
+    Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
+
     prefix.install "stage/lib"
     prefix.install "libs/atomic/include"
   end
