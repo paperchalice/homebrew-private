@@ -5,6 +5,11 @@ class BoostSystem < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-system-1.77.0"
+    sha256 cellar: :any, big_sur: "a765f0ff4d07883a5ae0af536f27ed272bb6599f56d95db8a9e7aa3728f5937b"
+  end
+
   depends_on "boost-config" => :build
 
   def install
