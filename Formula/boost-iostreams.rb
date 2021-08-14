@@ -5,6 +5,11 @@ class BoostIostreams < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-iostreams-1.77.0"
+    sha256 cellar: :any, big_sur: "f07d9ed9e758a08d6a0d28744ca055ae9a8a105158aa4e1d46e7b243989b999e"
+  end
+
   depends_on "boost-config" => :build
 
   uses_from_macos "bzip2"
