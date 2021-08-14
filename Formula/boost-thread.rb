@@ -1,5 +1,5 @@
 class BoostThread < Formula
-  desc "Awesome library from Boost"
+  desc "Multiple threads of execution with shared data in portable C++ code"
   homepage "https://boost.org/libs/thread/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
