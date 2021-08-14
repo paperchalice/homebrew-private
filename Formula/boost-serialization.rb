@@ -5,6 +5,11 @@ class BoostSerialization < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-serialization-1.77.0"
+    sha256 cellar: :any, big_sur: "435b4c1b365737aad159b68667aea8f1a0bab2605078b243b9784b0efd664cbc"
+  end
+
   depends_on "boost-config" => :build
 
   def install
