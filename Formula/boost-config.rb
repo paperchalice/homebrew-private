@@ -13,10 +13,9 @@ class BoostConfig < Formula
 
   def install
     system "./bootstrap.sh"
-    system "./b2", "--with-atomic", "stage"
+    system "./b2", "--with-headers", "stage"
 
-    rm_rf "stage/lib/cmake/boost_atomic-#{version}"
-    lib.install "stage/lib/cmake"
+    prefix.install "stage/lib"
     prefix.install "libs/config/include"
   end
 
