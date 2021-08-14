@@ -7,7 +7,8 @@ class BoostAtomic < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-atomic-1.77.0"
-    sha256 cellar: :any, big_sur: "9cf1a1814602697f63c7141660ec95835ffd38b04a7af354568260754aed83a8"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "aefbaf7b076b7ac122fa968132fc508d1e3bb4d9d5dfcb8cd45cfbdda72fcfff"
   end
 
   def install
