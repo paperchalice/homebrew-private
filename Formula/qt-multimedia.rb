@@ -26,7 +26,7 @@ class QtMultimedia < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    Dir[lib/"*.framework"] do |f|
+    Pathname.glob(lib/"*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.basename
     end
