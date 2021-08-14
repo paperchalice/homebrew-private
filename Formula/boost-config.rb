@@ -1,9 +1,9 @@
 class BoostConfig < Formula
   desc "Awesome library from Boost"
   homepage "https://boost.org/libs/config/"
-  url "https://github.com/boostorg/config.git",
+  url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
-    revision: "088b79a0ca751932010f82d3f95457c8b483fb9b"
+    revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-config-1.77.0"
@@ -11,7 +11,12 @@ class BoostConfig < Formula
   end
 
   def install
-    prefix.install "include"
+    system "./bootstrap.sh"
+    system "./b2", "--with-atomic", "stage"
+
+    rm_rf "stage/lib/cmake/boost_atomic-#{version}"
+    lib.install "stage/lib/cmake"
+    prefix.install "libs/config/include"
   end
 
   test do
