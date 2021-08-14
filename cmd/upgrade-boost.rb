@@ -16,7 +16,7 @@ module Homebrew
 
     boosts.each do |c|
       f = Formula[c]
-      url = f.stable.url.delete_suffix(".git")
+      # url = f.stable.url.delete_suffix(".git")
       # new_rev = URI.parse("#{url}/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
       Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
       Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
