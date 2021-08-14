@@ -7,7 +7,8 @@ class BoostConfig < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-config-1.77.0"
-    sha256 cellar: :any_skip_relocation, big_sur: "230e96f6c23e8dc50d71777703ba3b9ad9bfd984d0e24100156b1d9494c35886"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, big_sur: "e2c1c97d60a0109f8a7b89f0d4c2bc0b759569d65d9ab8a74b21f84af1104c8a"
   end
 
   def install
