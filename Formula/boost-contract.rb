@@ -5,6 +5,11 @@ class BoostContract < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-contract-1.77.0"
+    sha256 cellar: :any, big_sur: "973572d0a175473b4423ae87c2a762518a72bdc7844426f7a1cf07073e538cc4"
+  end
+
   depends_on "boost-config" => :build
 
   def install
