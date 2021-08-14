@@ -14,7 +14,7 @@ class BoostSerialization < Formula
 
   def install
     system "./bootstrap.sh"
-    system "./b2", "--with-serialization", "stage"
+    system "./b2", "--with-serialization", "cxxflags=-std=c++14", "stage"
 
     bc = Formula["boost-config"]
     Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }

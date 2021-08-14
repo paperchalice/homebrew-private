@@ -9,7 +9,7 @@ class BoostThread < Formula
 
   def install
     system "./bootstrap.sh"
-    system "./b2", "--with-thread", "stage"
+    system "./b2", "--with-thread", "cxxflags=-std=c++14", "stage"
 
     bc = Formula["boost-config"]
     Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }

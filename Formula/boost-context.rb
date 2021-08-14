@@ -14,7 +14,7 @@ class BoostContext < Formula
 
   def install
     system "./bootstrap.sh"
-    system "./b2", "--with-context", "stage"
+    system "./b2", "--with-context", "cxxflags=-std=c++14", "stage"
 
     bc = Formula["boost-config"]
     Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
