@@ -1,9 +1,9 @@
 class BoostMath < Formula
   desc "Awesome library from Boost"
   homepage "https://boost.org/libs/math/"
-  url "https://github.com/boostorg/boost.git",
-    tag:      "boost-1.77.0",
-    revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
+  url "https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2"
+  sha256 "fc9f85fc030e233142908241af7a846e60630aa7388de9a5fafb1f3a26840854"
+  license "BSL-1.0"
 
   depends_on "boost-config" => :build
 
@@ -15,7 +15,7 @@ class BoostMath < Formula
     Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
 
     prefix.install "stage/lib"
-    prefix.install "libs/math/include"
+    %w[math cstdfloat.hpp math_fwd.hpp].each { |h| (include/"boost").install "boost/#{h}"}
   end
 
   test do
