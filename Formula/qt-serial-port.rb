@@ -24,7 +24,7 @@ class QtSerialPort < Formula
 
     Pathname.glob(lib/"*.framework") do |f|
       frameworks.install_symlink f
-      include.install_symlink f/"Headers" => f.basename
+      include.install_symlink f/"Headers" => f.stem
     end
   end
 
