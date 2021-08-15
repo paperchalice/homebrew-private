@@ -12,7 +12,10 @@ class BoostAtomic < Formula
     sha256 cellar: :any, big_sur: "aefbaf7b076b7ac122fa968132fc508d1e3bb4d9d5dfcb8cd45cfbdda72fcfff"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-assert"        => :test
+  depends_on "boost-config"        => :test
+  depends_on "boost-static-assert" => :test
+  depends_on "boost-type-traits"   => :test
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
@@ -32,7 +35,9 @@ class BoostAtomic < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <boost/atomic.hpp>
       int main() {
+        boost::atomic<int> n{0};
         return 0;
       }
     EOS
