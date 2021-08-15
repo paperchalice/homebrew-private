@@ -20,6 +20,15 @@ class BoostConfig < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.cpp").write <<~EOS
+      #include <boost/version.hpp>
+      #include <iostream>
+      int main() {
+        std::cout << BOOST_LIB_VERSION << std::endl;
+        return 0;
+      }
+    EOS
+    system ENV.cxx, "test.cpp"
+    system "./a.out"
   end
 end
