@@ -19,7 +19,7 @@ class BoostWave < Formula
     system "./bootstrap.sh"
     system "./b2", "--with-#{boost_name}", "cxxflags=-std=c++14", "stage"
 
-    %w[config chrono filesystem thread].each do |d|
+    %w[atomic config chrono filesystem thread].each do |d|
       f = Formula["boost-#{d}"]
       Pathname.glob(f.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
       Pathname.glob(f.lib/"lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
