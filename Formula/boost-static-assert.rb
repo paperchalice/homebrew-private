@@ -10,11 +10,22 @@ class BoostStaticAssert < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "d9b2d26b91d423626a4eece882982a355c594406b6b1d133f0b765d61720cabc"
   end
 
+  depends_on "boost-config" => :test
+
   def install
     prefix.install "include"
   end
 
   test do
-    system "echo"
+    (testpath/"test.cpp").write <<~EOS
+      #include <boost/static_assert.hpp>
+      int main() {
+        BOOST_STATIC_ASSERT(0 == 0);
+        return 0;
+      }
+    EOS
+
+    system ENV.cxx, "-std=c++14", "test.cpp"
+    system "./a.out"
   end
 end
