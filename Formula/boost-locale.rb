@@ -6,6 +6,12 @@ class BoostLocale < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-locale-1.77.0"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "070eec433d5c2d15c9327056d11128f51a911871e6b8c24037e563df2550ed92"
+  end
+
   depends_on "boost-atomic" => :build
   depends_on "boost-config" => :build
 
