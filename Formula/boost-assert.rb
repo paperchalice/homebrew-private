@@ -4,6 +4,7 @@ class BoostAssert < Formula
   url "https://github.com/boostorg/assert.git",
     tag:      "boost-1.77.0",
     revision: "6aabfebae6d4acf996fe711de4e9b444ad88c17d"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-assert-1.77.0"

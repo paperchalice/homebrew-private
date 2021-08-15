@@ -4,6 +4,7 @@ class BoostAtomic < Formula
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-atomic-1.77.0"

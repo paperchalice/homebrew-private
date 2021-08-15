@@ -4,6 +4,7 @@ class BoostAlign < Formula
   url "https://github.com/boostorg/align.git",
     tag:      "boost-1.77.0",
     revision: "0790cd45c8e05b1b59fffbc948b6bcb26eb6a2aa"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-align-1.77.0"

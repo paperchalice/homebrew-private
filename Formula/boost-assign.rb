@@ -4,6 +4,7 @@ class BoostAssign < Formula
   url "https://github.com/boostorg/assign.git",
     tag:      "boost-1.77.0",
     revision: "e764ac1ca08daa46b4609a99895fe4874b8dc53b"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-assign-1.77.0"

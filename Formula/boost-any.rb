@@ -4,6 +4,7 @@ class BoostAny < Formula
   url "https://github.com/boostorg/any.git",
     tag:      "boost-1.77.0",
     revision: "ab9349aaa419b9ea53b5bc5cbe633690b376b8f5"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-any-1.77.0"

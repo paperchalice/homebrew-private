@@ -4,6 +4,7 @@ class BoostAsio < Formula
   url "https://github.com/boostorg/asio.git",
     tag:      "boost-1.77.0",
     revision: "71431fcedeaf04be372c9d2c357be164c2742c43"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-asio-1.77.0"

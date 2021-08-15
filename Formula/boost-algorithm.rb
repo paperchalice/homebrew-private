@@ -4,6 +4,7 @@ class BoostAlgorithm < Formula
   url "https://github.com/boostorg/algorithm.git",
     tag:      "boost-1.77.0",
     revision: "3b3bd8d3db43915c74d574ff36b4d945b6fc7917"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-algorithm-1.77.0"

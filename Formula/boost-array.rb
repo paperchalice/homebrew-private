@@ -4,6 +4,7 @@ class BoostArray < Formula
   url "https://github.com/boostorg/array.git",
     tag:      "boost-1.77.0",
     revision: "63f83dc350b654172ad04cc719daea0f3643f83c"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-array-1.77.0"
