@@ -16,17 +16,19 @@ class BoostThread < Formula
   depends_on "boost-atomic"
 
   def install
-    system "./bootstrap.sh"
-    system "./b2", "--with-thread", "cxxflags=-std=c++14", "stage"
+    boost_name = name.delete_prefix("boost-").sub("-", "_")
 
-    %w[config atomic].each do |d|
+    system "./bootstrap.sh"
+    system "./b2", "--with-#{boost_name}", "cxxflags=-std=c++14", "stage"
+
+    %w[config].each do |d|
       f = Formula["boost-#{d}"]
       Pathname.glob(f.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
       Pathname.glob(f.lib/"lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
     end
 
     prefix.install "stage/lib"
-    prefix.install "libs/thread/include"
+    prefix.install "libs/#{boost_name}/include"
 
     Pathname.glob(lib/shared_library("*")).each { |l| MachO::Tools.add_rpath(l, rpath) }
   end

@@ -14,14 +14,19 @@ class BoostAtomic < Formula
   depends_on "boost-config" => :build
 
   def install
-    system "./bootstrap.sh"
-    system "./b2", "--with-atomic", "cxxflags=-std=c++14", "stage"
+    boost_name = name.delete_prefix("boost-").sub("-", "_")
 
-    bc = Formula["boost-config"]
-    Pathname.glob(bc.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
+    system "./bootstrap.sh"
+    system "./b2", "--with-#{boost_name}", "cxxflags=-std=c++14", "stage"
+
+    %w[config].each do |d|
+      f = Formula["boost-#{d}"]
+      Pathname.glob(f.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
+      Pathname.glob(f.lib/"lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
+    end
 
     prefix.install "stage/lib"
-    prefix.install "libs/atomic/include"
+    prefix.install "libs/#{boost_name}/include"
   end
 
   test do
