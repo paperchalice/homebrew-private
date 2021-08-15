@@ -7,8 +7,8 @@ class BoostThread < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-thread-1.77.0"
-    rebuild 1
-    sha256 cellar: :any, big_sur: "15e73c5b1ea26278180dcb65103ac1a26da4a08c34eeafd89fa4140c783c274d"
+    rebuild 2
+    sha256 cellar: :any, big_sur: "1b082f7a4d9bdcda66f678184f2c178a6b54255292b15133eb9131bc798a7279"
   end
 
   depends_on "boost-config" => :build
