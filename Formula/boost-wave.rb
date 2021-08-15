@@ -6,6 +6,12 @@ class BoostWave < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-wave-1.77.0"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "f66cb73eceb28edde429fddf7c77dc66b8b4fec014c7cce7490e7ba71934432b"
+  end
+
   depends_on "boost-atomic" => :build
   depends_on "boost-config" => :build
 
