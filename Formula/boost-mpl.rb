@@ -10,6 +10,8 @@ class BoostMpl < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "04bafe7ee4edaf0195ecc08ea2eeb9fd73c35ca1fa80cd6a52eca4e4a2b6f537"
   end
 
+  depends_on "boost-preprocessor"
+
   def install
     prefix.install "include"
   end

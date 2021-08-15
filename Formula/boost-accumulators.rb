@@ -1,5 +1,5 @@
 class BoostAccumulators < Formula
-  desc "Awesome library from Boost"
+  desc "Library for incremental statistical computation"
   homepage "https://boost.org/libs/accumulators/"
   url "https://github.com/boostorg/accumulators.git",
     tag:      "boost-1.77.0",
@@ -11,8 +11,10 @@ class BoostAccumulators < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "42a3b13709ef85b159ba67e7cddbb4b8939ce2df42d551e46503a34146c6da08"
   end
 
-  depends_on "boost-config" => :test
-  depends_on "boost-mpl"    => :test
+  depends_on "boost-config"
+  depends_on "boost-mpl"
+  depends_on "boost-preprocessor"
+  depends_on "boost-type-traits"
 
   def install
     prefix.install "include"
