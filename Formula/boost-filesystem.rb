@@ -7,7 +7,8 @@ class BoostFilesystem < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-filesystem-1.77.0"
-    sha256 cellar: :any, big_sur: "c7d79af3b484a4994bc44c4fcc39078419d28eb9214213697850983bba0189fb"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "ab6c3178972fec789ad4e1815cfd7acd40b4ca8be255fc5396d4a78831708895"
   end
 
   depends_on "boost-config" => :build
