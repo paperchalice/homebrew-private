@@ -1,5 +1,5 @@
 class BoostMpl < Formula
-  desc "Awesome library from Boost"
+  desc "General-purpose, high-level C++ template metaprogramming framework"
   homepage "https://boost.org/libs/mpl/"
   url "https://github.com/boostorg/mpl.git",
     tag:      "boost-1.77.0",
@@ -10,13 +10,22 @@ class BoostMpl < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "04bafe7ee4edaf0195ecc08ea2eeb9fd73c35ca1fa80cd6a52eca4e4a2b6f537"
   end
 
-  depends_on "boost-preprocessor"
+  depends_on "boost-config"       => :test
+  depends_on "boost-preprocessor" => :test
 
   def install
     prefix.install "include"
   end
 
   test do
-    system "echo"
+    (testpath/"test.cpp").write <<~EOS
+      #include <boost/mpl/bool.hpp>
+      int main() {
+        mpl_::bool_<true> b;
+        return 0;
+      }
+    EOS
+    system ENV.cxx, "test.cpp"
+    system "./a.out"
   end
 end
