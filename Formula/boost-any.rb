@@ -16,6 +16,13 @@ class BoostAny < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.cpp").write <<~EOS
+      int main() {
+        return 0;
+      }
+    EOS
+
+    system ENV.cxx, "-std=c++14", "test.cpp"
+    system "./a.out"
   end
 end
