@@ -11,12 +11,18 @@ class BoostAlgorithm < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "7a2ff94f97b1ad309daea8a39b30a2949b11a0b630f4b14f975891001a09de8c"
   end
 
+  depends_on "boost-config"      => :test
+  depends_on "boost-core"        => :test
+  depends_on "boost-type-traits" => :test
+
   def install
     prefix.install "include"
   end
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <boost/algorithm/algorithm.hpp>
+
       int main() {
         return 0;
       }
