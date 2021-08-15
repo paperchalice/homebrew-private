@@ -6,6 +6,12 @@ class BoostTypeErasure < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-type-erasure-1.77.0"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "e9fa3d30a86a10502e28007e0f92da86598b87a8bd173b1674d6cd35e75e5b32"
+  end
+
   depends_on "boost-atomic" => :build
   depends_on "boost-config" => :build
 
