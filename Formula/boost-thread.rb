@@ -5,6 +5,12 @@ class BoostThread < Formula
     tag:      "boost-1.77.0",
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-thread-1.77.0"
+    rebuild 3
+    sha256 cellar: :any, big_sur: "ec372cbd516c9ee4827469f6620abec72587346ee9132003740a743e001bbc14"
+  end
+
   depends_on "boost-config" => :build
 
   depends_on "boost-atomic"
