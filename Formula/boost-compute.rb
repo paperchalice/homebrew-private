@@ -4,6 +4,7 @@ class BoostCompute < Formula
   url "https://github.com/boostorg/compute.git",
     tag:      "boost-1.77.0",
     revision: "36c89134d4013b2e5e45bc55656a18bd6141995a"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-compute-1.77.0"

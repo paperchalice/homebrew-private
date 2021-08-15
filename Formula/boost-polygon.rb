@@ -4,6 +4,7 @@ class BoostPolygon < Formula
   url "https://github.com/boostorg/polygon.git",
     tag:      "boost-1.77.0",
     revision: "8ba35b57c1436c4b36f7544aadd78c2b24acc7db"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-polygon-1.77.0"

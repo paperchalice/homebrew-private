@@ -4,6 +4,7 @@ class BoostMultiIndex < Formula
   url "https://github.com/boostorg/multi_index.git",
     tag:      "boost-1.77.0",
     revision: "2bbf21cfc9fd8a782aa445eec178dbc15986e761"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-multi-index-1.77.0"

@@ -4,6 +4,7 @@ class BoostCore < Formula
   url "https://github.com/boostorg/core.git",
     tag:      "boost-1.77.0",
     revision: "f4b3d5dba6f86caaf96e45901655a954b2ff68b4"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-core-1.77.0"

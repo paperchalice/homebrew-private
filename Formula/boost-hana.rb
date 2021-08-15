@@ -4,6 +4,7 @@ class BoostHana < Formula
   url "https://github.com/boostorg/hana.git",
     tag:      "boost-1.77.0",
     revision: "5c28aad03b6e157452d8623802d70dc95a7b57b6"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-hana-1.77.0"

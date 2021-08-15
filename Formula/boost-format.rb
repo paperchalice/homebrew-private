@@ -4,6 +4,7 @@ class BoostFormat < Formula
   url "https://github.com/boostorg/format.git",
     tag:      "boost-1.77.0",
     revision: "c1170a6d546b36f9399f3983fad0994e8f946d8f"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-format-1.77.0"

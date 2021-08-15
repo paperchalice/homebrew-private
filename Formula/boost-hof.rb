@@ -4,6 +4,7 @@ class BoostHof < Formula
   url "https://github.com/boostorg/hof.git",
     tag:      "boost-1.77.0",
     revision: "0cd9c34d658fb58484002bb81fb5aff2c0be5599"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-hof-1.77.0"

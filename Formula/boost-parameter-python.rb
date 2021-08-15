@@ -4,6 +4,7 @@ class BoostParameterPython < Formula
   url "https://github.com/boostorg/parameter_python.git",
     tag:      "boost-1.77.0",
     revision: "787d8d38d9fd49c34a757b20361f8042dd5ac820"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-parameter-python-1.77.0"

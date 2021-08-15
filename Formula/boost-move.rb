@@ -4,6 +4,7 @@ class BoostMove < Formula
   url "https://github.com/boostorg/move.git",
     tag:      "boost-1.77.0",
     revision: "6ab49a8d82909ffa6675325832f3e5f45f1bbb51"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-move-1.77.0"

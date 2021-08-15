@@ -4,6 +4,7 @@ class BoostTypeIndex < Formula
   url "https://github.com/boostorg/type_index.git",
     tag:      "boost-1.77.0",
     revision: "a3c6a957eeaf1612eb34b013ec13e67d4c279a41"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-type-index-1.77.0"

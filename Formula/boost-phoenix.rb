@@ -4,6 +4,7 @@ class BoostPhoenix < Formula
   url "https://github.com/boostorg/phoenix.git",
     tag:      "boost-1.77.0",
     revision: "15500aec2187ab59e51d05addab0fdba7e788dbb"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-phoenix-1.77.0"

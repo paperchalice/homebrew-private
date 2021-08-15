@@ -4,6 +4,7 @@ class BoostTokenizer < Formula
   url "https://github.com/boostorg/tokenizer.git",
     tag:      "boost-1.77.0",
     revision: "f0857f042d96b5dd04ad5c2561f7006cddbdcde5"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-tokenizer-1.77.0"

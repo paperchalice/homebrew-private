@@ -4,6 +4,7 @@ class BoostConceptCheck < Formula
   url "https://github.com/boostorg/concept_check.git",
     tag:      "boost-1.77.0",
     revision: "e34c735a1a6902de0d3e20ea58cfd8f101702458"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-concept-check-1.77.0"

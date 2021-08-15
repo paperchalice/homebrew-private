@@ -4,6 +4,7 @@ class BoostDll < Formula
   url "https://github.com/boostorg/dll.git",
     tag:      "boost-1.77.0",
     revision: "ac134827f348b33dcdc3814b42cff57c2e792aad"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-dll-1.77.0"

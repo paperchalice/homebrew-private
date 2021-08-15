@@ -4,6 +4,7 @@ class BoostOdeint < Formula
   url "https://github.com/boostorg/odeint.git",
     tag:      "boost-1.77.0",
     revision: "db8f91a51da630957d6bfa1ff87be760b0be97a6"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-odeint-1.77.0"

@@ -4,6 +4,7 @@ class BoostPolyCollection < Formula
   url "https://github.com/boostorg/poly_collection.git",
     tag:      "boost-1.77.0",
     revision: "0b8bfc4cff012d0f23049fc5a0009ac4abadceb4"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-poly-collection-1.77.0"

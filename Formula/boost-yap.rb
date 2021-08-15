@@ -4,6 +4,7 @@ class BoostYap < Formula
   url "https://github.com/boostorg/yap.git",
     tag:      "boost-1.77.0",
     revision: "262624ac36652d1354e6b2ee38a79f2bc9a66cae"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-yap-1.77.0"

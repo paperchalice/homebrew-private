@@ -4,6 +4,7 @@ class BoostHistogram < Formula
   url "https://github.com/boostorg/histogram.git",
     tag:      "boost-1.77.0",
     revision: "90a58d03ee4a1eafb66ecfb642bb9344256cd17e"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-histogram-1.77.0"

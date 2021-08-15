@@ -4,6 +4,7 @@ class BoostStaticString < Formula
   url "https://github.com/boostorg/static_string.git",
     tag:      "boost-1.77.0",
     revision: "6978da552efcf9a4394c747553ea75f53e3af832"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-static-string-1.77.0"

@@ -4,6 +4,7 @@ class BoostBeast < Formula
   url "https://github.com/boostorg/beast.git",
     tag:      "boost-1.77.0",
     revision: "710cc53331f197f6f17e8c38454c09df68e43c03"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-beast-1.77.0"

@@ -4,6 +4,7 @@ class BoostIcl < Formula
   url "https://github.com/boostorg/icl.git",
     tag:      "boost-1.77.0",
     revision: "e6c06ddee1e2320f11c4ec5cd2661c4abe9bca53"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-icl-1.77.0"

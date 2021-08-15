@@ -4,6 +4,7 @@ class BoostBind < Formula
   url "https://github.com/boostorg/bind.git",
     tag:      "boost-1.77.0",
     revision: "34a3ee580c88d623c6bc9fe91460ef414dabfbe6"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-bind-1.77.0"

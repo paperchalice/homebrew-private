@@ -4,6 +4,7 @@ class BoostIo < Formula
   url "https://github.com/boostorg/io.git",
     tag:      "boost-1.77.0",
     revision: "7392d7274c3743e605bf58076566c258617833ed"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-io-1.77.0"

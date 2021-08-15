@@ -4,6 +4,7 @@ class BoostBimap < Formula
   url "https://github.com/boostorg/bimap.git",
     tag:      "boost-1.77.0",
     revision: "85f0f02537d71794a415ef4b992629b2edebfbff"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-bimap-1.77.0"

@@ -4,6 +4,7 @@ class BoostLockfree < Formula
   url "https://github.com/boostorg/lockfree.git",
     tag:      "boost-1.77.0",
     revision: "66f66c977038cb8a316bfc242de1843df9302613"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-lockfree-1.77.0"

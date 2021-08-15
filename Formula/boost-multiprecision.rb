@@ -4,6 +4,7 @@ class BoostMultiprecision < Formula
   url "https://github.com/boostorg/multiprecision.git",
     tag:      "boost-1.77.0",
     revision: "e7c501f72462e0bf40c3ee4bbde990fc5aa0101c"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-multiprecision-1.77.0"

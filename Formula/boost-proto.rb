@@ -4,6 +4,7 @@ class BoostProto < Formula
   url "https://github.com/boostorg/proto.git",
     tag:      "boost-1.77.0",
     revision: "7f924934689b940f3a72212ab0f714ec6fd6e34b"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-proto-1.77.0"

@@ -4,6 +4,7 @@ class BoostFunctionTypes < Formula
   url "https://github.com/boostorg/function_types.git",
     tag:      "boost-1.77.0",
     revision: "895335874d67987ada0d8bf6ca1725e70642ed49"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-function-types-1.77.0"

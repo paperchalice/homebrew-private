@@ -4,6 +4,7 @@ class BoostUnits < Formula
   url "https://github.com/boostorg/units.git",
     tag:      "boost-1.77.0",
     revision: "45787015dd8c11653eb988260acf05c4af9d42e5"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-units-1.77.0"

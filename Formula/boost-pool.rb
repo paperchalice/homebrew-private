@@ -4,6 +4,7 @@ class BoostPool < Formula
   url "https://github.com/boostorg/pool.git",
     tag:      "boost-1.77.0",
     revision: "b516ac5b82571902ced902394b30d38b7d8182f0"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-pool-1.77.0"

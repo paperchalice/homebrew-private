@@ -4,6 +4,7 @@ class BoostLeaf < Formula
   url "https://github.com/boostorg/leaf.git",
     tag:      "boost-1.77.0",
     revision: "f94d964d49f0babd73066be7b4d98bc28777c28e"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-leaf-1.77.0"

@@ -4,6 +4,7 @@ class BoostSort < Formula
   url "https://github.com/boostorg/sort.git",
     tag:      "boost-1.77.0",
     revision: "72a3ae870c59980dadd757f5f63e6be16ab61c1b"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-sort-1.77.0"

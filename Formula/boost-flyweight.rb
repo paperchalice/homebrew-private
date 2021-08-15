@@ -4,6 +4,7 @@ class BoostFlyweight < Formula
   url "https://github.com/boostorg/flyweight.git",
     tag:      "boost-1.77.0",
     revision: "af4fd3e8eb532099cec51bb6f199029b65e7998d"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-flyweight-1.77.0"

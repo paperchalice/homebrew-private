@@ -4,6 +4,7 @@ class BoostUtility < Formula
   url "https://github.com/boostorg/utility.git",
     tag:      "boost-1.77.0",
     revision: "375382e1e6c677c7849e894675251db353ab9186"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-utility-1.77.0"

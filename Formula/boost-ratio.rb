@@ -4,6 +4,7 @@ class BoostRatio < Formula
   url "https://github.com/boostorg/ratio.git",
     tag:      "boost-1.77.0",
     revision: "00073b7d5896603b2036a334253dc9784285355c"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-ratio-1.77.0"

@@ -4,6 +4,7 @@ class BoostMpl < Formula
   url "https://github.com/boostorg/mpl.git",
     tag:      "boost-1.77.0",
     revision: "341748e4cb534f41fa3d0e34748f2771f5427123"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-mpl-1.77.0"

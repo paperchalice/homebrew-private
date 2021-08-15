@@ -4,6 +4,7 @@ class BoostForeach < Formula
   url "https://github.com/boostorg/foreach.git",
     tag:      "boost-1.77.0",
     revision: "cc2f75ae30492b9de69b3b692f5c59afcb7dea5e"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-foreach-1.77.0"

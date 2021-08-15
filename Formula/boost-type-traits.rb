@@ -4,6 +4,7 @@ class BoostTypeTraits < Formula
   url "https://github.com/boostorg/type_traits.git",
     tag:      "boost-1.77.0",
     revision: "bfce306637e2a58af4b7bbc881a919dafb7d195b"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-type-traits-1.77.0"

@@ -4,6 +4,7 @@ class BoostStaticAssert < Formula
   url "https://github.com/boostorg/static_assert.git",
     tag:      "boost-1.77.0",
     revision: "392199f6b14ee64260afde27a1c3f876c4bd4843"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-static-assert-1.77.0"

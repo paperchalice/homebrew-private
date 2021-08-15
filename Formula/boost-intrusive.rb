@@ -4,6 +4,7 @@ class BoostIntrusive < Formula
   url "https://github.com/boostorg/intrusive.git",
     tag:      "boost-1.77.0",
     revision: "f44b0102b4ee9acf7b0304b3f5b27dde02297202"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-intrusive-1.77.0"

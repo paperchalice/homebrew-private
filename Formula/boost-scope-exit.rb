@@ -4,6 +4,7 @@ class BoostScopeExit < Formula
   url "https://github.com/boostorg/scope_exit.git",
     tag:      "boost-1.77.0",
     revision: "60baaae454b2da887a31cf939e22015b6263c9e4"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-scope-exit-1.77.0"

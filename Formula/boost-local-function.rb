@@ -4,6 +4,7 @@ class BoostLocalFunction < Formula
   url "https://github.com/boostorg/local_function.git",
     tag:      "boost-1.77.0",
     revision: "bbe7bf9e997c674195a59f8f628c0cef45c6166c"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-local-function-1.77.0"

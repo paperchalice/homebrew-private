@@ -4,6 +4,7 @@ class BoostQvm < Formula
   url "https://github.com/boostorg/qvm.git",
     tag:      "boost-1.77.0",
     revision: "cdc1a96133ef1db9405e0f5a27f4aa9213d627b4"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-qvm-1.77.0"

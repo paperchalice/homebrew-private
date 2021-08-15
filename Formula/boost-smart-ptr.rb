@@ -4,6 +4,7 @@ class BoostSmartPtr < Formula
   url "https://github.com/boostorg/smart_ptr.git",
     tag:      "boost-1.77.0",
     revision: "72221d1da0ada73871ff5e0f8e60fe5ecbd7a296"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-smart-ptr-1.77.0"

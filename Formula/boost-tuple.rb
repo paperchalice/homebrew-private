@@ -4,6 +4,7 @@ class BoostTuple < Formula
   url "https://github.com/boostorg/tuple.git",
     tag:      "boost-1.77.0",
     revision: "ec4f3b23c21581656f6241903e723e7fde761993"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-tuple-1.77.0"

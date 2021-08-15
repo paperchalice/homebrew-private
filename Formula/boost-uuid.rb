@@ -4,6 +4,7 @@ class BoostUuid < Formula
   url "https://github.com/boostorg/uuid.git",
     tag:      "boost-1.77.0",
     revision: "eaa4be7b96c99ad56effc351aa44d0bef04da5a3"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-uuid-1.77.0"

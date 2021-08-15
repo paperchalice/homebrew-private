@@ -4,6 +4,7 @@ class BoostLexicalCast < Formula
   url "https://github.com/boostorg/lexical_cast.git",
     tag:      "boost-1.77.0",
     revision: "934858fbdc86aead9831e579dc11575c579f577d"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-lexical-cast-1.77.0"

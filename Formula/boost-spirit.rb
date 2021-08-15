@@ -4,6 +4,7 @@ class BoostSpirit < Formula
   url "https://github.com/boostorg/spirit.git",
     tag:      "boost-1.77.0",
     revision: "eeb2f2052f4ae7f77bca1bef24916c558832be83"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-spirit-1.77.0"

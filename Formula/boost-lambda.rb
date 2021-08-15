@@ -4,6 +4,7 @@ class BoostLambda < Formula
   url "https://github.com/boostorg/lambda.git",
     tag:      "boost-1.77.0",
     revision: "4007043b545d3a834abaeaf141bb7dbd88c975cc"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-lambda-1.77.0"

@@ -4,6 +4,7 @@ class BoostTypeof < Formula
   url "https://github.com/boostorg/typeof.git",
     tag:      "boost-1.77.0",
     revision: "46c7a05f826fc020ee88210ea2a5cd9278b930ab"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-typeof-1.77.0"

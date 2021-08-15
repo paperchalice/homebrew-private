@@ -4,6 +4,7 @@ class BoostPredef < Formula
   url "https://github.com/boostorg/predef.git",
     tag:      "boost-1.77.0",
     revision: "e3a87328f415c61766838e1f5367885251b46e93"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-predef-1.77.0"

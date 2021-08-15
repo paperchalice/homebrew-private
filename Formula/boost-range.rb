@@ -4,6 +4,7 @@ class BoostRange < Formula
   url "https://github.com/boostorg/range.git",
     tag:      "boost-1.77.0",
     revision: "88c6199aedf8bbb5a6a8966e534f9de99943cde2"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-range-1.77.0"

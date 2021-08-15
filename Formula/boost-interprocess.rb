@@ -4,6 +4,7 @@ class BoostInterprocess < Formula
   url "https://github.com/boostorg/interprocess.git",
     tag:      "boost-1.77.0",
     revision: "7b2a37e614833f5fc7ab7d10df20aa11bc583bed"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-interprocess-1.77.0"

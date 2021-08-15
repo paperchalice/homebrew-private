@@ -4,6 +4,7 @@ class BoostStlInterfaces < Formula
   url "https://github.com/boostorg/stl_interfaces.git",
     tag:      "boost-1.77.0",
     revision: "89840c0531e55b21172e4c824ad7bfb58c41e6fb"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-stl-interfaces-1.77.0"

@@ -4,6 +4,7 @@ class BoostVmd < Formula
   url "https://github.com/boostorg/vmd.git",
     tag:      "boost-1.77.0",
     revision: "34cad2c1a574d445812c7c2432d3a5a5c843b412"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-vmd-1.77.0"

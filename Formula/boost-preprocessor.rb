@@ -4,6 +4,7 @@ class BoostPreprocessor < Formula
   url "https://github.com/boostorg/preprocessor.git",
     tag:      "boost-1.77.0",
     revision: "d4e82d7d3f2e2adbe280966ac51ce8f9372f5a44"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-preprocessor-1.77.0"

@@ -4,6 +4,7 @@ class BoostProcess < Formula
   url "https://github.com/boostorg/process.git",
     tag:      "boost-1.77.0",
     revision: "b2a96a3e139ae42ea2bcb80cc58f108494a995c5"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-process-1.77.0"

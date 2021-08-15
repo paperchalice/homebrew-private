@@ -4,6 +4,7 @@ class BoostFusion < Formula
   url "https://github.com/boostorg/fusion.git",
     tag:      "boost-1.77.0",
     revision: "500e4c120ff2f2414ec225a2a42eb1a665c79956"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-fusion-1.77.0"

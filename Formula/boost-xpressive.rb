@@ -4,6 +4,7 @@ class BoostXpressive < Formula
   url "https://github.com/boostorg/xpressive.git",
     tag:      "boost-1.77.0",
     revision: "4679fbd23f962bfa78d44acf5fa48f6f790642c0"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-xpressive-1.77.0"

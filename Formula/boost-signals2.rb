@@ -4,6 +4,7 @@ class BoostSignals2 < Formula
   url "https://github.com/boostorg/signals2.git",
     tag:      "boost-1.77.0",
     revision: "4a51d6e47230123d413cbecb19eb94f195301b8e"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-signals2-1.77.0"

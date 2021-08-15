@@ -4,6 +4,7 @@ class BoostCompatibility < Formula
   url "https://github.com/boostorg/compatibility.git",
     tag:      "boost-1.77.0",
     revision: "47ce71af6b018764c9ba74c0bfcb4f3151b81aa7"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-compatibility-1.77.0"

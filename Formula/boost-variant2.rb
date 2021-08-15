@@ -4,6 +4,7 @@ class BoostVariant2 < Formula
   url "https://github.com/boostorg/variant2.git",
     tag:      "boost-1.77.0",
     revision: "4153a535a0fa8eb4d18abc262fcf2ae834601261"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-variant2-1.77.0"

@@ -4,6 +4,7 @@ class BoostThrowException < Formula
   url "https://github.com/boostorg/throw_exception.git",
     tag:      "boost-1.77.0",
     revision: "95e02ea52b8525ecf34dbf1e7fae34af09986b8a"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-throw-exception-1.77.0"

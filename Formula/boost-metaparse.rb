@@ -4,6 +4,7 @@ class BoostMetaparse < Formula
   url "https://github.com/boostorg/metaparse.git",
     tag:      "boost-1.77.0",
     revision: "ca629d1438c6ba50a705b2aede918b527caecf7d"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-metaparse-1.77.0"

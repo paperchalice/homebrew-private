@@ -4,6 +4,7 @@ class BoostRational < Formula
   url "https://github.com/boostorg/rational.git",
     tag:      "boost-1.77.0",
     revision: "564623136417068916495e2b24737054d607347c"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-rational-1.77.0"

@@ -4,6 +4,7 @@ class BoostConversion < Formula
   url "https://github.com/boostorg/conversion.git",
     tag:      "boost-1.77.0",
     revision: "1a2e4fd8efae1d6c5db40e52d553fe56a82299c9"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-conversion-1.77.0"

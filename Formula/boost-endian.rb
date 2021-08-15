@@ -4,6 +4,7 @@ class BoostEndian < Formula
   url "https://github.com/boostorg/endian.git",
     tag:      "boost-1.77.0",
     revision: "14dd63931211782a2169c8146e459afe20f92239"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-endian-1.77.0"

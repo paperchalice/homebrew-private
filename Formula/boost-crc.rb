@@ -4,6 +4,7 @@ class BoostCrc < Formula
   url "https://github.com/boostorg/crc.git",
     tag:      "boost-1.77.0",
     revision: "c80e31f78a248e33480ced76c4b03a0b71a5c4db"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-crc-1.77.0"

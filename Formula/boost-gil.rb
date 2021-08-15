@@ -4,6 +4,7 @@ class BoostGil < Formula
   url "https://github.com/boostorg/gil.git",
     tag:      "boost-1.77.0",
     revision: "e3e779cc69af4905e4910c06f7e9417c2563e362"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-gil-1.77.0"

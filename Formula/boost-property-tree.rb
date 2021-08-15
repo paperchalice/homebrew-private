@@ -4,6 +4,7 @@ class BoostPropertyTree < Formula
   url "https://github.com/boostorg/property_tree.git",
     tag:      "boost-1.77.0",
     revision: "d30ff9404bd6af5cc8922a177865e566f4846b19"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-property-tree-1.77.0"

@@ -4,6 +4,7 @@ class BoostInteger < Formula
   url "https://github.com/boostorg/integer.git",
     tag:      "boost-1.77.0",
     revision: "8fd622545f3e303f467526442a8765290e735778"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-integer-1.77.0"

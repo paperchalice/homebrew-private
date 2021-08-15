@@ -4,6 +4,7 @@ class BoostPfr < Formula
   url "https://github.com/boostorg/pfr.git",
     tag:      "boost-1.77.0",
     revision: "da12b52759ea52c3e2341690f208fea898643bbb"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-pfr-1.77.0"

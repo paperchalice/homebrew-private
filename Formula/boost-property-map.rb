@@ -4,6 +4,7 @@ class BoostPropertyMap < Formula
   url "https://github.com/boostorg/property_map.git",
     tag:      "boost-1.77.0",
     revision: "6ed5bffff77d0ca5502d581ddc557208a3f43cd7"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-property-map-1.77.0"

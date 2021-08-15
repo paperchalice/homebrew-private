@@ -4,6 +4,7 @@ class BoostGraphParallel < Formula
   url "https://github.com/boostorg/graph_parallel.git",
     tag:      "boost-1.77.0",
     revision: "476623e72b93faaf11888ad7c70a1bd301618858"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-graph-parallel-1.77.0"

@@ -4,6 +4,7 @@ class BoostSafeNumerics < Formula
   url "https://github.com/boostorg/safe_numerics.git",
     tag:      "boost-1.77.0",
     revision: "d61e5ad30e96c0652b53ce83c7858c15d322cbbf"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-safe-numerics-1.77.0"

@@ -4,6 +4,7 @@ class BoostUblas < Formula
   url "https://github.com/boostorg/ublas.git",
     tag:      "boost-1.77.0",
     revision: "f0e55caf310d5e01c7e9f2190b2422e113ddeedb"
+  license "BSL-1.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-ublas-1.77.0"
