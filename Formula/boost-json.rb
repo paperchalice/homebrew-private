@@ -6,6 +6,11 @@ class BoostJson < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-json-1.77.0"
+    sha256 cellar: :any, big_sur: "645795a74744a30ebdace009c8121f32423aee758c355e9df8995867953e200b"
+  end
+
   depends_on "boost-config" => :build
 
   depends_on "boost-container"
