@@ -12,8 +12,6 @@ class BoostAssert < Formula
   end
 
   depends_on "boost-config"
-  depends_on "boost-core"
-  depends_on "boost-detail"
 
   def install
     prefix.install "include"
