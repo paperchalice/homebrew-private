@@ -11,8 +11,8 @@ class BoostTypeTraits < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "1e7f7c1326c586fc970ae4efd7712a711d361485c6476eda81fdc6ea0a1e2b80"
   end
 
-  depends_on "boost-config"        => :test
-  depends_on "boost-static-assert" => :test
+  depends_on "boost-config"
+  depends_on "boost-static-assert"
 
   def install
     prefix.install "include"

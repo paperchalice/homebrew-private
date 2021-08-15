@@ -11,7 +11,7 @@ class BoostStaticAssert < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "d9b2d26b91d423626a4eece882982a355c594406b6b1d133f0b765d61720cabc"
   end
 
-  depends_on "boost-config" => :test
+  depends_on "boost-config"
 
   def install
     prefix.install "include"
