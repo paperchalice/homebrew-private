@@ -6,6 +6,11 @@ class BoostLog < Formula
     revision: "9d3f9bcd7d416880d4631d7d39cceeb4e8f25da0"
   license "BSL-1.0"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-log-1.77.0"
+    sha256 cellar: :any, big_sur: "fb17da44e2f2b1b5d54d3ef02206d5fb4f41a70dec458040322becb2c5080c5a"
+  end
+
   depends_on "boost-config" => :build
   depends_on "pkg-config"   => :build
 
