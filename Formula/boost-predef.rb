@@ -17,6 +17,7 @@ class BoostPredef < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <boost/predef/version.h>
       int main() {
         return 0;
       }
