@@ -11,7 +11,7 @@ class BoostSystem < Formula
     sha256 cellar: :any, big_sur: "a765f0ff4d07883a5ae0af536f27ed272bb6599f56d95db8a9e7aa3728f5937b"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-config"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
@@ -31,6 +31,7 @@ class BoostSystem < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <boost/system/config.hpp>
       int main() {
         return 0;
       }
