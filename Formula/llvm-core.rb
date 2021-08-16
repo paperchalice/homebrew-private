@@ -11,12 +11,6 @@ class LlvmCore < Formula
     regex(/^llvmorg-(\d+\.\d+\.\d+)$/i)
   end
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-12.0.1"
-    rebuild 2
-    sha256 cellar: :any, big_sur: "53e5758379cc9bd8da4b3098175ab28eb4d7deedabc4c0bf79fef90d29e9a69f"
-  end
-
   depends_on "cmake"      => [:build, :test]
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
