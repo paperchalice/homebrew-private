@@ -15,7 +15,6 @@ class BoostArray < Formula
   depends_on "boost-exception"
   depends_on "boost-functional"
 
-
   def install
     prefix.install "include"
   end

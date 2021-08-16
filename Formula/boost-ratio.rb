@@ -11,8 +11,8 @@ class BoostRatio < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "44b3b3c79476bd70ed21ae38e7937ff72c2ab83d17281fb6975cb87058127c66"
   end
 
-  depends_on "boost-rational"
   depends_on "boost-mpl"
+  depends_on "boost-rational"
 
   def install
     prefix.install "include"

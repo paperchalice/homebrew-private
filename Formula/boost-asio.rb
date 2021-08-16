@@ -11,13 +11,13 @@ class BoostAsio < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "61db5a065ac54b2c6b953d05e2c4101d1cc8f390528402dc277a8cd0de955196"
   end
 
-  depends_on "boost-align"
   depends_on "boost-algorithm"
+  depends_on "boost-align"
   depends_on "boost-atomic"
   depends_on "boost-chrono"
   depends_on "boost-concept-check"
   depends_on "boost-context"
-  depends_on "boost-coroutine"
+  depends_on "boost-coroutine2"
   depends_on "boost-exception"
   depends_on "boost-functional"
   depends_on "boost-iterator"
