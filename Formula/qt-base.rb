@@ -45,7 +45,8 @@ class QtBase < Formula
     ENV.deparallelize
     # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "CMakeLists.txt", "FATAL_ERROR", ""
-    inreplace "src/corelib/global/qlibraryinfo.cpp", "canonicalPath", "absolutePath"
+    inreplace "src/corelib/global/qlibraryinfo.cpp", "QT_CONFIGURE_LIBLOCATION_TO_PREFIX_PATH",
+      "\"#{HOMEBREW_PREFIX.relative_path_from lib}/\""
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
@@ -63,7 +64,7 @@ class QtBase < Formula
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
       -D FEATURE_reduce_relocations=ON
-      -D FEATURE_relocatable=OFF
+      -D FEATURE_relocatable=ON
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
       -D FEATURE_sql_mysql=OFF
