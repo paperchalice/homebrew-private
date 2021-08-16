@@ -11,6 +11,9 @@ class BoostTypeof < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "872fe7f2c32b612e9b526ffdc766615346e4049d58df91bbf63a7aebfbeb8e00"
   end
 
+  depends_on "boost-preprocessor"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

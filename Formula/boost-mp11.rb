@@ -11,6 +11,8 @@ class BoostMp11 < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "7a5e2da642d045830648b672974527248aa375e707e43f9563853a23aacc2fa0"
   end
 
+  depends_on "boost-core"
+
   def install
     prefix.install "include"
   end

@@ -11,17 +11,9 @@ class BoostArray < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "f2e13751ac0005d954c33a4ef98207cd0291e75878ee1e77f613abe9c68b34ce"
   end
 
-  depends_on "boost-assert"
-  depends_on "boost-config"
   depends_on "boost-container-hash"
-  depends_on "boost-core"
-  depends_on "boost-detail"
   depends_on "boost-exception"
   depends_on "boost-functional"
-  depends_on "boost-integer"
-  depends_on "boost-static-assert"
-  depends_on "boost-throw-exception"
-  depends_on "boost-type-traits"
 
 
   def install

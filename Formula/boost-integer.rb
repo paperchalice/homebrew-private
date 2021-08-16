@@ -11,6 +11,10 @@ class BoostInteger < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "09612746b9ea2e92e1636f2dc79c435203fceff21c5e4706235b826edbaa8beb"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-static-assert"
+  depends_on "boost-throw-exception"
+
   def install
     prefix.install "include"
   end

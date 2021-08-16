@@ -11,6 +11,11 @@ class BoostSmartPtr < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "349b06f0e665921942b26c689bd3927b236ebad69063588002b9c52397ba313d"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-move"
+  depends_on "boost-throw-exception"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

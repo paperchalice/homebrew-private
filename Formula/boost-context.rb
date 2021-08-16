@@ -11,7 +11,7 @@ class BoostContext < Formula
     sha256 cellar: :any, big_sur: "f674f60150efbbff54a086e370ee6fcf2eaa18782afa0c80ac58c9994d026892"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-config"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")

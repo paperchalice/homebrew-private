@@ -11,6 +11,9 @@ class BoostTypeIndex < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "8435c281b378c1910965298e62629ae73b8499e8539ad77623dc43cc8705b8c8"
   end
 
+  depends_on "boost-container-hash"
+  depends_on "boost-smart-ptr"
+
   def install
     prefix.install "include"
   end

@@ -11,6 +11,9 @@ class BoostThrowException < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "bf9a21a3766b899b5f9a044e720c57f2b911bb41d221f33815eb840671f3cac6"
   end
 
+  depends_on "boost-assert"
+  depends_on "boost-config"
+
   def install
     prefix.install "include"
   end

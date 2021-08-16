@@ -11,6 +11,9 @@ class BoostContainerHash < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "8878429c71883531d2b4c9a193de61034e675a5121be2d640c58e2ec2aaf5d03"
   end
 
+  depends_on "boost-detail"
+  depends_on "boost-integer"
+
   def install
     prefix.install "include"
   end

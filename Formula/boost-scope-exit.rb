@@ -11,6 +11,8 @@ class BoostScopeExit < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "477e2bf3ef81b02faf55c8fd6f67e640860714342647905fd3e3933248c51415"
   end
 
+  depends_on "boost-function"
+
   def install
     prefix.install "include"
   end

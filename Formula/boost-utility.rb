@@ -11,6 +11,12 @@ class BoostUtility < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "786e0d4c7c504f47a88c9f7604bc6f4f7cb563f9273b6d55c4a3812f0596ea8c"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-io"
+  depends_on "boost-preprocessor"
+  depends_on "boost-throw-exception"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

@@ -13,8 +13,6 @@ class BoostAtomic < Formula
   end
 
   depends_on "boost-assert"
-  depends_on "boost-config"
-  depends_on "boost-static-assert"
   depends_on "boost-type-traits"
 
   def install

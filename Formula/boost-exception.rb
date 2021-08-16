@@ -11,7 +11,8 @@ class BoostException < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "ffc65ee958691a92c12eb2a5e584f19ae2ce84bdafee0edb33a4c31004faecf9"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-smart-ptr"
+  depends_on "boost-tuple"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")

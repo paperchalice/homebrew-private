@@ -11,6 +11,9 @@ class BoostMove < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "0601f5ed2f085f109e2ae2ee47c6b8b604d10ad842c7eed67bc8d48781a48372"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-static-assert"
+
   def install
     prefix.install "include"
   end

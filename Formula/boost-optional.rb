@@ -11,6 +11,11 @@ class BoostOptional < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "a90c4a9a146ecfedbdd0944631526b6c85c92d418feedf36247a9861f40cf605"
   end
 
+  depends_on "boost-detail"
+  depends_on "boost-move"
+  depends_on "boost-predef"
+  depends_on "boost-utility"
+
   def install
     prefix.install "include"
   end

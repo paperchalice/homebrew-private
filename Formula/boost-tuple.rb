@@ -11,6 +11,9 @@ class BoostTuple < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "692670f6977f0515010a79c97bcac0e77171bc1d2c48cf55a1867d397ecdd20c"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

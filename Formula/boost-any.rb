@@ -12,19 +12,10 @@ class BoostAny < Formula
   end
 
   depends_on "boost-align"
-  depends_on "boost-assert"
-  depends_on "boost-config"
-  depends_on "boost-core"
   depends_on "boost-container-hash"
-  depends_on "boost-detail"
   depends_on "boost-exception"
-  depends_on "boost-integer"
   depends_on "boost-move"
-  depends_on "boost-preprocessor"
-  depends_on "boost-static-assert"
-  depends_on "boost-throw-exception"
   depends_on "boost-type-index"
-  depends_on "boost-type-traits"
 
   def install
     prefix.install "include"

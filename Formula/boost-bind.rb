@@ -11,12 +11,15 @@ class BoostBind < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "28f48a9f57fbb5129dc1a2af2baea7093a2fc69c8691fe37643fed955a729707"
   end
 
+  depends_on "boost-core"
+
   def install
     prefix.install "include"
   end
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <boost/bind.hpp>
       int main() {
         return 0;
       }

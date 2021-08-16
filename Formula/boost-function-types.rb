@@ -11,6 +11,9 @@ class BoostFunctionTypes < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "edb39b8b72842fde3321b790f6727748542d123dde57561c99de89b1365bee42"
   end
 
+  depends_on "boost-detail"
+  depends_on "boost-mpl"
+
   def install
     prefix.install "include"
   end

@@ -11,6 +11,10 @@ class BoostCrc < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "4b47a68b1ce27c01156ac747ad1b7403292e471ad4d73d460b531ab1570a952e"
   end
 
+  depends_on "boost-array"
+  depends_on "boost-integer"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

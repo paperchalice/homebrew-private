@@ -11,8 +11,6 @@ class BoostAlign < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "2057b12d571596ddad3808afb897302f986d813984076939b233debc7557ef7a"
   end
 
-  depends_on "boost-assert"
-  depends_on "boost-config"
   depends_on "boost-core"
   depends_on "boost-static-assert"
 

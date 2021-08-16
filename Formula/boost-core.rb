@@ -11,6 +11,7 @@ class BoostCore < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "f555800aec628fd1c6cff6f66ada092202d42d8c8158b07bccf799570adf9578"
   end
 
+  depends_on "boost-assert"
   depends_on "boost-config"
 
   def install

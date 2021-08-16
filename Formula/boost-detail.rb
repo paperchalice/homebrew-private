@@ -11,6 +11,10 @@ class BoostDetail < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "8f661886848d0cff042a8a3c50cf714fb2c60b2fb2cbdb6e78956b1ec1547989"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-preprocessor"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

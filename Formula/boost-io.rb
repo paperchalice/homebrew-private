@@ -11,6 +11,8 @@ class BoostIo < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "3e289562c262ca7d591dc7845efbfa0950233aaca9f2cf830472d67cd94c3f66"
   end
 
+  depends_on "boost-config"
+
   def install
     prefix.install "include"
   end

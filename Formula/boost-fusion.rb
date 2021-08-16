@@ -11,6 +11,12 @@ class BoostFusion < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "8c406b8ec2f146685479c975669beacd3daac4f3f86107156c216290a47c0c5d"
   end
 
+  depends_on "boost-function-types"
+  depends_on "boost-container-hash"
+  depends_on "boost-tuple"
+  depends_on "boost-typeof"
+  depends_on "boost-utility"
+
   def install
     prefix.install "include"
   end

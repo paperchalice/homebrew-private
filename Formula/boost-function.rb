@@ -11,6 +11,10 @@ class BoostFunction < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "3e4423276f4e6b1dc8c43bb9e02927f454d1fde7a7b4d40324fd273582abf348"
   end
 
+  depends_on "boost-bind"
+  depends_on "boost-throw-exception"
+  depends_on "boost-typeof"
+
   def install
     prefix.install "include"
   end
