@@ -28,7 +28,7 @@ class Lldb < Formula
   uses_from_macos "zlib"
 
   def install
-    args = std_cmake_args + %W[
+    cmake_args = std_cmake_args + %W[
       -D CMAKE_CXX_STANDARD=17
       -D CMAKE_SHARED_LINKER_FLAGS=-Wl,-undefined\ dynamic_lookup
 
@@ -41,7 +41,7 @@ class Lldb < Formula
       -B build
     ]
 
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end

@@ -17,7 +17,7 @@ class CompilerRt < Formula
   depends_on xcode: [:build, :test]
 
   def install
-    args = std_cmake_args + %W[
+    cmake_args = std_cmake_args + %W[
       -D CMAKE_CXX_FLAGS=-w\ -std=c++17
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
       -D COMPILER_RT_ENABLE_IOS=ON
@@ -31,7 +31,7 @@ class CompilerRt < Formula
     ENV.permit_arch_flags
     ENV.delete "HOMEBREW_OPTFLAGS"
     ENV.prepend "PATH", "/usr/bin:"
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
   end
