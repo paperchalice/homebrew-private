@@ -2,8 +2,8 @@ class Polly < Formula
   desc "High-level loop and data-locality optimizer"
   homepage "https://polly.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.1",
-    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
+    tag:      "llvmorg-13.0.0-rc1",
+    revision: "d6974c010878cae1df5b27067230ee5dcbc63342"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
