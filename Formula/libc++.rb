@@ -24,9 +24,6 @@ class Libcxx < Formula
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON
       -D LIBCXX_CXX_ABI=libcxxabi
       -D LIBCXX_USE_COMPILER_RT=ON
-      -D LIBCXX_INSTALL_HEADER_PREFIX=#{prefix}/
-      -D LIBCXX_INSTALL_PREFIX=#{prefix}/
-      -D LIBCXX_USE_COMPILER_RT=ON
 
       -S libcxx
       -B build
