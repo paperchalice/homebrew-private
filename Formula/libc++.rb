@@ -18,7 +18,7 @@ class Libcxx < Formula
   depends_on "unwinder"
 
   def install
-    args = std_cmake_args + %W[
+    args = std_cmake_args + %w[
       -D CMAKE_SHARED_LINKER_FLAGS=-Wl,-reexport-lc++abi
 
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON
