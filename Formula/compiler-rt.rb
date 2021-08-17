@@ -18,7 +18,8 @@ class CompilerRt < Formula
 
   def install
     cmake_args = std_cmake_args + %W[
-      -D CMAKE_CXX_FLAGS=-w\ -std=c++17
+      -D CMAKE_CXX_FLAGS=-w
+      -D CMAKE_CXX_STANDARD=17
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
       -D COMPILER_RT_ENABLE_IOS=ON
       -D COMPILER_RT_ENABLE_TVOS=OFF
