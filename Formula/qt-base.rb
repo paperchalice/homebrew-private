@@ -42,11 +42,7 @@ class QtBase < Formula
 
   def install
     ENV.permit_arch_flags
-    ENV.deparallelize
-    # TODO: dev is "qmake/qmakelibraryinfo.cpp"
     inreplace "CMakeLists.txt", "FATAL_ERROR", ""
-    inreplace "src/corelib/global/qlibraryinfo.cpp", "QT_CONFIGURE_LIBLOCATION_TO_PREFIX_PATH",
-      "\"#{HOMEBREW_PREFIX.relative_path_from lib}/\""
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
@@ -90,8 +86,6 @@ class QtBase < Formula
   end
 
   test do
-    assert_equal HOMEBREW_PREFIX.to_s, `qmake -query QT_INSTALL_PREFIX`.strip
-
     (testpath/"CMakeLists.txt").write <<~EOS
       cmake_minimum_required(VERSION #{Formula["cmake"].version})
       project(test VERSION 1.0.0 LANGUAGES CXX)
