@@ -11,6 +11,13 @@ class BoostIterator < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "32df2237d8c37e34ab488854bda5fde5b62298c63a386ac80c3e59356f2b79f0"
   end
 
+  depends_on "boost-concept-check"
+  depends_on "boost-conversion"
+  depends_on "boost-fusion"
+  depends_on "boost-mpl"
+  depends_on "boost-optional"
+  depends_on "boost-smart-ptr"
+
   def install
     prefix.install "include"
   end

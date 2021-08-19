@@ -11,6 +11,13 @@ class BoostDll < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "fcad1d366ef53252ff81836f2bc2b637c41933e386721d0b82bdd329bcd11fc1"
   end
 
+  depends_on "boost-filesystem"
+  depends_on "boost-function"
+  depends_on "boost-predef"
+  depends_on "boost-spirit"
+  depends_on "boost-system"
+  depends_on "boost-type-index"
+
   def install
     prefix.install "include"
   end

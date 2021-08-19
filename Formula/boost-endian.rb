@@ -11,6 +11,9 @@ class BoostEndian < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "27315ce407ee268d1a11bac836accb4a7f607c884639c66ae87f102d39a698a0"
   end
 
+  depends_on "boost-core"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

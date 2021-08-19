@@ -11,6 +11,9 @@ class BoostSpirit < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "ed490f451094abe51dc8666e0899da700fb04782c2f8b2fb6425a028f6d1a575"
   end
 
+  depends_on "boost-fusion"
+  depends_on "boost-smart-ptr"
+
   def install
     prefix.install "include"
   end

@@ -11,6 +11,9 @@ class BoostConceptCheck < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "815bf1d5ce456796a9e312ef95b5a9c72ba8d5c815438956d1989bf7b359537f"
   end
 
+  depends_on "boost-preprocessor"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

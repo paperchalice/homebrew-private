@@ -11,6 +11,8 @@ class BoostLogic < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "2d4280349628c7f983a94b65cca303bb8b19bd74b52ecaf8d82b620a190ae4ce"
   end
 
+  depends_on "boost-core"
+
   def install
     prefix.install "include"
   end

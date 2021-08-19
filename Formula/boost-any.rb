@@ -11,10 +11,6 @@ class BoostAny < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "bcd02b374b86ce1741b6cbe12fff4aec089d53f23e2a0e692dd3129c175ee91c"
   end
 
-  depends_on "boost-align"
-  depends_on "boost-container-hash"
-  depends_on "boost-exception"
-  depends_on "boost-move"
   depends_on "boost-type-index"
 
   def install

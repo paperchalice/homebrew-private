@@ -11,6 +11,12 @@ class BoostLambda < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "25e8fb0d1f3091e0fd588e18b131d8246fd2dff7e984779c5a8a962952916ad6"
   end
 
+  depends_on "boost-bind"
+  depends_on "boost-detail"
+  depends_on "boost-iterator"
+  depends_on "boost-mpl"
+  depends_on "boost-tuple"
+
   def install
     prefix.install "include"
   end
