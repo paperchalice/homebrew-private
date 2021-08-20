@@ -12,6 +12,8 @@ class BoostAtomic < Formula
     sha256 cellar: :any, big_sur: "aefbaf7b076b7ac122fa968132fc508d1e3bb4d9d5dfcb8cd45cfbdda72fcfff"
   end
 
+  depends_on "boost-config" => :build
+
   depends_on "boost-assert"
   depends_on "boost-type-traits"
 

@@ -28,17 +28,14 @@ module Homebrew
     boosts.each do |c|
       f = Formula[c]
 
-      if f.stable.url.include? ".git"
-        url = f.stable.url.delete_suffix(".git")
-        new_rev = URI.parse("#{url}/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
-        Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
-        Utils::Inreplace.inreplace f.path, f.specs[:revision], new_rev
+      url = f.stable.url.delete_suffix(".git")
+      new_rev = URI.parse("#{url}/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
+      Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
+      Utils::Inreplace.inreplace f.path, f.specs[:revision], new_rev
 
-        # rm deps
-        Utils::Inreplace.inreplace f.path, /depends_on(?= \"boost)/, "# BOOST_BUMP" unless args.r?
-        Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on " if args.r?
-      end
-      
+      # rm deps
+      Utils::Inreplace.inreplace f.path, /depends_on(?= "boost)/, "# BOOST_BUMP" unless args.r?
+      Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on " if args.r?
     end
   end
 end
