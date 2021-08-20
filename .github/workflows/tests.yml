@@ -42,7 +42,7 @@ jobs:
           git rebase master
           popd
 
-      - run: brew test-bot --only-formulae --verbose
+      - run: brew test-bot --only-formulae --skip-dependents --verbose
         if: github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
