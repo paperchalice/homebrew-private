@@ -11,6 +11,10 @@ class BoostRange < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "cf19d70285dbfc2a5c28d8675a202a5cc14d8dcf5442bc05efe0d3ea4e7cbe75"
   end
 
+  depends_on "boost-array"
+  depends_on "boost-iterator"
+  depends_on "boost-regex"
+
   def install
     prefix.install "include"
   end

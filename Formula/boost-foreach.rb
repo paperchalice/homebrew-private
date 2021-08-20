@@ -11,6 +11,8 @@ class BoostForeach < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "c0165ab5720915642257f784c6cdc45561720b5a3c83944efa16c781d3c0cb39"
   end
 
+  depends_on "boost-range"
+
   def install
     prefix.install "include"
   end

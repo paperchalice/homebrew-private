@@ -11,6 +11,13 @@ class BoostAssign < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "2214777c6f14f02c176ee23ec6c0a3cd6d4b550b507816725afbd1f62b1ef9ac"
   end
 
+  depends_on "boost-array"
+  depends_on "boost-move"
+  depends_on "boost-mpl"
+  depends_on "boost-ptr-container"
+  depends_on "boost-range"
+  depends_on "boost-tuple"
+
   def install
     prefix.install "include"
   end

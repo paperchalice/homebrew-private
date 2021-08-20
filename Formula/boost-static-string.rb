@@ -11,6 +11,9 @@ class BoostStaticString < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "67dc02ec6fef3f899c0d271213b394269fbdc861eb8d1e5147735d9be7fcf5ab"
   end
 
+  depends_on "boost-container-hash"
+  depends_on "boost-utility"
+
   def install
     prefix.install "include"
   end

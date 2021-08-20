@@ -11,8 +11,14 @@ class BoostAlgorithm < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "7a2ff94f97b1ad309daea8a39b30a2949b11a0b630f4b14f975891001a09de8c"
   end
 
-  depends_on "boost-core"
-  depends_on "boost-type-traits"
+  depends_on "boost-array"
+  depends_on "boost-bind"
+  depends_on "boost-concept-check"
+  depends_on "boost-exception"
+  depends_on "boost-function"
+  depends_on "boost-iterator"
+  depends_on "boost-unordered"
+  depends_on "boost-regex"
 
   def install
     prefix.install "include"

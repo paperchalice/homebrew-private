@@ -16,7 +16,6 @@ class BoostIterator < Formula
   depends_on "boost-fusion"
   depends_on "boost-mpl"
   depends_on "boost-optional"
-  depends_on "boost-smart-ptr"
 
   def install
     prefix.install "include"

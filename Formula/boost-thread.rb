@@ -12,9 +12,8 @@ class BoostThread < Formula
     sha256 cellar: :any, big_sur: "ec372cbd516c9ee4827469f6620abec72587346ee9132003740a743e001bbc14"
   end
 
-  depends_on "boost-config" => :build
-
   depends_on "boost-atomic"
+  depends_on "boost-iterator"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")

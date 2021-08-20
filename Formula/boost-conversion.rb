@@ -11,6 +11,8 @@ class BoostConversion < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "17a7b51ec816e12a9bda2238479ebb386e734f9948f12e451908a39f7908055c"
   end
 
+  depends_on "boost-smart-ptr"
+
   def install
     prefix.install "include"
   end

@@ -11,6 +11,9 @@ class BoostNumericConversion < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "988809c4fc576db04bec15faf58833d0da72c6648bb2af445d8b996574bfdf69"
   end
 
+  depends_on "boost-conversion"
+  depends_on "boost-mpl"
+
   def install
     prefix.install "include"
   end

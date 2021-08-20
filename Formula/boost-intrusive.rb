@@ -11,6 +11,9 @@ class BoostIntrusive < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "dbf9fa19aec41c51e6f316f4b96066c19bf452d5c0db95651c560a1f70fe7637"
   end
 
+  depends_on "boost-container-hash"
+  depends_on "boost-move"
+
   def install
     prefix.install "include"
   end

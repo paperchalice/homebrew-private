@@ -11,6 +11,9 @@ class BoostMultiIndex < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "ff07aae3320eabf8707480db1832417ca078088b178fcee8346075ca98509e39"
   end
 
+  depends_on "boost-foreach"
+  depends_on "boost-serialization"
+
   def install
     prefix.install "include"
   end

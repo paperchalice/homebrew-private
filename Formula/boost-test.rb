@@ -11,7 +11,8 @@ class BoostTest < Formula
     sha256 cellar: :any, big_sur: "4c037ecec021a2b3ab23414885e1a2dce932aae24443bec83ab12e00ca4226ab"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-algorithm"
+  depends_on "boost-numeric-conversion"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")

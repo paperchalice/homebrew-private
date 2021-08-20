@@ -12,10 +12,7 @@ class BoostLambda < Formula
   end
 
   depends_on "boost-bind"
-  depends_on "boost-detail"
   depends_on "boost-iterator"
-  depends_on "boost-mpl"
-  depends_on "boost-tuple"
 
   def install
     prefix.install "include"

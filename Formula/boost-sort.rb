@@ -11,6 +11,8 @@ class BoostSort < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "04a56f6c18207c7758ba1ce270376df3c051d3563be5e366bdd458e9d3b93797"
   end
 
+  depends_on "boost-range"
+
   def install
     prefix.install "include"
   end

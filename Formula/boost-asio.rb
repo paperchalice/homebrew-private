@@ -15,9 +15,9 @@ class BoostAsio < Formula
   depends_on "boost-align"
   depends_on "boost-atomic"
   depends_on "boost-chrono"
-  depends_on "boost-concept-check"
   depends_on "boost-context"
   depends_on "boost-coroutine2"
+  depends_on "boost-date-time"
   depends_on "boost-exception"
   depends_on "boost-functional"
   depends_on "boost-iterator"
@@ -30,7 +30,6 @@ class BoostAsio < Formula
   depends_on "boost-system"
   depends_on "boost-thread"
   depends_on "boost-tokenizer"
-  depends_on "boost-tuple"
   depends_on "boost-type-index"
 
   def install

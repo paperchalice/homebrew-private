@@ -11,6 +11,13 @@ class BoostBeast < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "e7ae27bd70c79d11b28468784607dad75734fdc576ae9a9d09afcd8474b17bb4"
   end
 
+  depends_on "boost-asio"
+  depends_on "boost-container"
+  depends_on "boost-endian"
+  depends_on "boost-intrusive"
+  depends_on "boost-logic"
+  depends_on "boost-mp11"
+
   def install
     prefix.install "include"
   end

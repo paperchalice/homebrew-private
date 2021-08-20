@@ -11,14 +11,13 @@ class BoostAccumulators < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "42a3b13709ef85b159ba67e7cddbb4b8939ce2df42d551e46503a34146c6da08"
   end
 
-  depends_on "boost-array"
   depends_on "boost-circular-buffer"
-  depends_on "boost-concept-check"
-  depends_on "boost-iterator"
   depends_on "boost-mp11"
-  depends_on "boost-mpl"
+  depends_on "boost-numeric-conversion"
+  depends_on "boost-ublas"
   depends_on "boost-parameter"
-  depends_on "boost-typeof"
+  depends_on "boost-range"
+  depends_on "boost-serialization"
 
   def install
     prefix.install "include"

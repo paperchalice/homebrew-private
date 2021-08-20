@@ -1,5 +1,5 @@
 class BoostVariant2 < Formula
-  desc "Awesome library from Boost"
+  desc "Never valueless variant type"
   homepage "https://boost.org/libs/variant2/"
   url "https://github.com/boostorg/variant2.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,8 @@ class BoostVariant2 < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-variant2-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "6b48e76d944422c32562bfd337099b50bc3b512aedb486834e960985346d7bdf"
   end
+
+  depends_on "boost-mp11"
 
   def install
     prefix.install "include"

@@ -11,6 +11,9 @@ class BoostBimap < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "1883128aa29710f3726bb84e45143682a629a4e4f270a8725f0817c3b93cdb27"
   end
 
+  depends_on "boost-lambda"
+  depends_on "boost-multi-index"
+
   def install
     prefix.install "include"
   end
