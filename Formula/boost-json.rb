@@ -11,7 +11,8 @@ class BoostJson < Formula
     sha256 cellar: :any, big_sur: "645795a74744a30ebdace009c8121f32423aee758c355e9df8995867953e200b"
   end
 
-  depends_on "boost-config" => :build
+  depends_on "boost-config"    => :build
+  depends_on "boost-container" => :build
 
   depends_on "boost-container"
 

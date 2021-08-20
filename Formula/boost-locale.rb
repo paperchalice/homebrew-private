@@ -12,8 +12,12 @@ class BoostLocale < Formula
     sha256 cellar: :any, big_sur: "070eec433d5c2d15c9327056d11128f51a911871e6b8c24037e563df2550ed92"
   end
 
-  depends_on "boost-atomic" => :build
-  depends_on "boost-config" => :build
+  depends_on "boost-atomic"    => :build
+  depends_on "boost-config"    => :build
+  depends_on "boost-chrono"    => :build
+  depends_on "boost-container" => :build
+  depends_on "boost-system"    => :build
+  depends_on "boost-thread"    => :build
 
   depends_on "boost-chrono"
   depends_on "boost-container"

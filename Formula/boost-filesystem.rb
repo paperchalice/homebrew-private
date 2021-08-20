@@ -12,6 +12,9 @@ class BoostFilesystem < Formula
     sha256 cellar: :any, big_sur: "ab6c3178972fec789ad4e1815cfd7acd40b4ca8be255fc5396d4a78831708895"
   end
 
+  depends_on "boost-atomic" => :build
+  depends_on "boost-config" => :build
+
   depends_on "boost-atomic"
   depends_on "boost-iterator"
   depends_on "boost-smart-ptr"
