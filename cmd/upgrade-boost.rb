@@ -7,7 +7,18 @@ require "utils/inreplace"
 module Homebrew
   module_function
 
+  def upgrade_boost_args
+    Homebrew::CLI::Parser.new do
+      description <<~EOS
+        bump boost-*
+      EOS
+      switch "-r", description: "restore deps"
+    end
+  end
+
   def upgrade_boost
+    args = upgrade_boost_args.parse
+
     v = `brew livecheck boost`
     new_version = Version.new(v.scan(/\d+(?:\.\d+)+/).last)
 
@@ -16,10 +27,18 @@ module Homebrew
 
     boosts.each do |c|
       f = Formula[c]
-      # url = f.stable.url.delete_suffix(".git")
-      # new_rev = URI.parse("#{url}/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
-      Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
-      Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
+
+      if f.stable.url.include? ".git"
+        url = f.stable.url.delete_suffix(".git")
+        new_rev = URI.parse("#{url}/releases/tag/#{new_tag}").open.read.match(%r{(?<=commit/)\w{40}}).to_s
+        Utils::Inreplace.inreplace f.path, "boost-#{f.version}", "boost-#{new_version}"
+        Utils::Inreplace.inreplace f.path, f.specs[:revision], new_rev
+
+        # rm deps
+        Utils::Inreplace.inreplace f.path, /depends_on(?= \"boost)/, "# BOOST_BUMP" unless args.r?
+        Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on " if args.r?
+      end
+      
     end
   end
 end
