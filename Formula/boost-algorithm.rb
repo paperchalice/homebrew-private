@@ -17,8 +17,8 @@ class BoostAlgorithm < Formula
   depends_on "boost-exception"
   depends_on "boost-function"
   depends_on "boost-iterator"
-  depends_on "boost-unordered"
   depends_on "boost-regex"
+  depends_on "boost-unordered"
 
   def install
     prefix.install "include"

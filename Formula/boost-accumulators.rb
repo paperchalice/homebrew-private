@@ -14,10 +14,10 @@ class BoostAccumulators < Formula
   depends_on "boost-circular-buffer"
   depends_on "boost-mp11"
   depends_on "boost-numeric-conversion"
-  depends_on "boost-ublas"
   depends_on "boost-parameter"
   depends_on "boost-range"
   depends_on "boost-serialization"
+  depends_on "boost-ublas"
 
   def install
     prefix.install "include"
