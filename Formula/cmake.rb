@@ -54,7 +54,7 @@ class Cmake < Formula
     resource("bootstrap-cmake").stage buildpath/"bootstrap-cmake"
     ENV.append_path "PATH", buildpath/"bootstrap-cmake/CMake.app/Contents/bin"
 
-    cmake_args = std_cmake_args + %W[
+    cmake_args = std_cmake_args(install_prefix: libexec) + %W[
       -D BUILD_QtDialog=ON
 
       -D CMAKE_DATA_DIR=/share/cmake
@@ -80,12 +80,20 @@ class Cmake < Formula
 
       -S .
     ]
+    # -D LibArchive_INCLUDE_DIRS=#{Formula["libarchive"].include}
+    # -D LibArchive_LIBRARIES=#{Formula["libarchive"].lib}/#{shared_library "libarchive"}
 
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", "."
 
-    %w[bin share].each { |p| prefix.install_symlink prefix/"CMake.app/Contents/#{p}" }
+    %w[bin share].each do |p|
+      prefix.install libexec/"CMake.app/contents"/p
+      (libexec/"CMake.app/Contents/").install_symlink prefix/p
+    end
+    rm bin/"cmake-gui"
+    prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
+    bin.install prefix/"CMake" => "cmake-gui"
     rm pkgshare/"Modules/Internal/CPack/CPack.OSXScriptLauncher.in"
   end
 
