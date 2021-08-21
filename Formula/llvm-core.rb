@@ -23,6 +23,7 @@ class LlvmCore < Formula
 
   depends_on "z3"
 
+  uses_from_macos "libedit"
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
   uses_from_macos "zlib"
