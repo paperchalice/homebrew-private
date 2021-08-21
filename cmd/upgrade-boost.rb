@@ -34,8 +34,11 @@ module Homebrew
       Utils::Inreplace.inreplace f.path, f.specs[:revision], new_rev
 
       # rm deps
-      Utils::Inreplace.inreplace f.path, /depends_on(?= "boost-[\w\-]+"(?!\s+=> :build))/, "# BOOST_BUMP" unless args.r?
-      Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on " if args.r?
+      if args.r?
+        Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on"
+      else
+        Utils::Inreplace.inreplace f.path, /depends_on(?= "boost-[\w\-]+"(?!\s+=> :build))/, "# BOOST_BUMP"
+      end
     end
   end
 end
