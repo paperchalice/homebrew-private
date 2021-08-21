@@ -13,6 +13,11 @@ class Cmake < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.1"
+    sha256 cellar: :any, big_sur: "aeffd5ba0228479495fe9711a4e2de57e7e654746b437d7ba3a257cfefae3b16"
+  end
+
   depends_on "pkg-config" => :build
   depends_on "sphinx-doc" => :build
 
