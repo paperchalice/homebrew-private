@@ -24,7 +24,7 @@ class QtTools < Formula
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
-    args =std_cmake_args(HOMEBREW_PREFIX) + %W[
+    args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -S .

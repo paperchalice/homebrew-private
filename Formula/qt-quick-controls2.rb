@@ -24,7 +24,7 @@ class QtQuickControls2 < Formula
   depends_on "qt-imageformats"
 
   def install
-    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -S .

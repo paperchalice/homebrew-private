@@ -15,7 +15,7 @@ class QtLocation < Formula
   depends_on "qt-serial-port"
 
   def install
-    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -DCMAKE_STAGING_PREFIX=#{prefix}
 
       -S .

@@ -45,7 +45,7 @@ class QtBase < Formula
     inreplace "CMakeLists.txt", "FATAL_ERROR", ""
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
-    cmake_args = std_cmake_args(HOMEBREW_PREFIX) + %W[
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
       -D CMAKE_SYSROOT=#{MacOS.sdk_path}
 
