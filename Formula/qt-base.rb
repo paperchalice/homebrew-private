@@ -88,7 +88,7 @@ class QtBase < Formula
 
   def post_install
     MachO::Tools.change_dylib_id lib/"QtCore.framework/QtCore",
-      HOMEBREW_PREFIX/"lib/QtCore.framework/Versions/A/QtCore"
+      "#{HOMEBREW_PREFIX}/lib/QtCore.framework/Versions/A/QtCore"
   end
 
   test do
