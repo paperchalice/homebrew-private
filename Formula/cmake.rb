@@ -23,6 +23,7 @@ class Cmake < Formula
   depends_on "sphinx-doc" => :build
 
   depends_on "jsoncpp"
+  depends_on "libarchive"
   depends_on "libuv"
   depends_on "nghttp2"
   depends_on "qt-base"
@@ -68,7 +69,7 @@ class Cmake < Formula
       -D CMAKE_USE_SYSTEM_FORM=ON
       -D CMAKE_USE_SYSTEM_JSONCPP=ON
       -D CMAKE_USE_SYSTEM_KWIML=OFF
-      -D CMAKE_USE_SYSTEM_LIBARCHIVE=OFF
+      -D CMAKE_USE_SYSTEM_LIBARCHIVE=ON
       -D CMAKE_USE_SYSTEM_LIBLZMA=ON
       -D CMAKE_USE_SYSTEM_LIBRHASH=ON
       -D CMAKE_USE_SYSTEM_LIBUV=ON
@@ -76,13 +77,13 @@ class Cmake < Formula
       -D CMAKE_USE_SYSTEM_ZLIB=ON
       -D CMAKE_USE_SYSTEM_ZSTD=ON
 
+      -D LibArchive_ROOT=#{Formula["libarchive"].prefix}
+
       -D CMake_INSTALL_EMACS_DIR=#{elisp.to_s.delete_prefix "#{prefix}/"}
       -D CMake_BUILD_LTO=ON
 
       -S .
     ]
-    # -D LibArchive_INCLUDE_DIRS=#{Formula["libarchive"].include}
-    # -D LibArchive_LIBRARIES=#{Formula["libarchive"].lib}/#{shared_library "libarchive"}
 
     system "cmake", *cmake_args
     system "cmake", "--build", "."
