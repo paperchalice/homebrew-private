@@ -57,7 +57,6 @@ class Cmake < Formula
     ENV.append_path "PATH", buildpath/"bootstrap-cmake/CMake.app/Contents/bin"
 
     cmake_args = std_cmake_args(install_prefix: libexec) + %W[
-      -D BUILD_SHARED_LIBS=ON
       -D BUILD_QtDialog=ON
 
       -D CMAKE_DATA_DIR=/share/cmake
