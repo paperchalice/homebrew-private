@@ -52,15 +52,30 @@ class Gcc < Formula
   end
 
   resource "bootstrap_gcc" do
-    url "https://phoenixnap.dl.sourceforge.net/project/gnuada/GNAT_GCC%20Mac%20OS%20X/11.1.0/native/gcc-11.1.0-x86_64-apple-darwin15.pkg"
-    sha256 "d947b5db0576cb62942e5ce61f3ef53fb679f07b1adff7a4c0fa19a5e72a9532"
+    url "https://community.download.adacore.com/v1/aefa0616b9476874823a7974d3dd969ac13dfe3a?filename=gnat-2020-20200818-x86_64-darwin-bin.dmg"
+    sha256 "915cd7260ef1bc363d4ff6249343183c4f989ec0a7d779f125a5be6c194f790f"
+  end
+
+  resource "install_script" do
+    url "https://raw.githubusercontent.com/AdaCore/gnat_community_install_script/master/install_script.qs"
+    sha256 "93df6ca93265e97add6751e34a88e11dbcf8eb64657b49c12b4bb3d53f1a5acd"
   end
 
   def install
     if Hardware::CPU.intel?
-      resource("bootstrap_gcc").stage do
-        system "pkgutil", "--expand-full", "gcc-11.1.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
+      resources.each { |r| r.stage buildpath/"bootstrap_gcc" }
+      system "ls", buildpath/"bootstrap_gcc"
+      system "ls", buildpath/"bootstrap_gcc/Contents"
+      cd "bootstrap_gcc" do
+        gnat_install_args = %W[
+          --script ./install_script.qs
+          InstallPrefix=#{buildpath}/bgcc
+          Components=com.adacore.gnat
+        ]
+        system "./Contents/MacOS/gnat-2020-20200818-x86_64-darwin-bin", *gnat_install_args
       end
+      system "ls", buildpath/"bgcc"
+
       bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.1.0-x86_64-apple-darwin15.pkg/Payload"
       inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
       open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
