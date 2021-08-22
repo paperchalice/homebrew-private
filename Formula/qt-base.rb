@@ -86,6 +86,11 @@ class QtBase < Formula
     end
   end
 
+  def post_install
+    MachO::Tools.change_dylib_id lib/"QtCore.framework/QtCore",
+      HOMEBREW_PREFIX/"lib/QtCore.framework/Versions/A/QtCore"
+  end
+
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
       cmake_minimum_required(VERSION #{Formula["cmake"].version})
