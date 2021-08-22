@@ -15,7 +15,8 @@ class Cmake < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.1"
-    sha256 cellar: :any, big_sur: "aeffd5ba0228479495fe9711a4e2de57e7e654746b437d7ba3a257cfefae3b16"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "b237b0ddf56f10c42a46c555b6cf11bc292cf9b5c2c6c967fbfaf09d6c484256"
   end
 
   depends_on "pkg-config" => :build
