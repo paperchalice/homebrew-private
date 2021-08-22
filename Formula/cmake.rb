@@ -19,6 +19,7 @@ class Cmake < Formula
     sha256 cellar: :any, big_sur: "17ef2dfaa075e789cb049f6366c632ed8c1e99977bd20d6b65f5533dee5cba33"
   end
 
+  depends_on "kwiml"      => :build
   depends_on "pkg-config" => :build
   depends_on "sphinx-doc" => :build
 
@@ -68,7 +69,7 @@ class Cmake < Formula
       -D CMAKE_USE_SYSTEM_EXPAT=ON
       -D CMAKE_USE_SYSTEM_FORM=ON
       -D CMAKE_USE_SYSTEM_JSONCPP=ON
-      -D CMAKE_USE_SYSTEM_KWIML=OFF
+      -D CMAKE_USE_SYSTEM_KWIML=ON
       -D CMAKE_USE_SYSTEM_LIBARCHIVE=ON
       -D CMAKE_USE_SYSTEM_LIBLZMA=ON
       -D CMAKE_USE_SYSTEM_LIBRHASH=ON
