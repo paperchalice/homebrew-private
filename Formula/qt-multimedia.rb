@@ -10,7 +10,6 @@ class QtMultimedia < Formula
   depends_on "perl"       => :build
   depends_on "pkg-config" => :build
 
-  depends_on "glib"
   depends_on "gstreamer"
   depends_on "pulseaudio"
   depends_on "qt-base"
