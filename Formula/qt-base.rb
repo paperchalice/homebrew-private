@@ -82,6 +82,7 @@ class QtBase < Formula
     Pathname.glob(lib/"*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
+      lib.install_symlink f/f.stem => "lib#{f.stem}#{shared_library ""}"
     end
   end
 
