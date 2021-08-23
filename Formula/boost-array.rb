@@ -21,7 +21,6 @@ class BoostArray < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/array.hpp>
       int main() {
         return 0;
       }

@@ -31,7 +31,6 @@ class BoostSystem < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/system/config.hpp>
       int main() {
         return 0;
       }

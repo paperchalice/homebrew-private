@@ -35,7 +35,6 @@ class BoostAtomic < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/atomic.hpp>
       int main() {
         boost::atomic<int> n{0};
         return 0;

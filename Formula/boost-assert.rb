@@ -19,8 +19,6 @@ class BoostAssert < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/assert.hpp>
-      #include <boost/assert/source_location.hpp>
       int main() {
         BOOST_ASSERT(0 == 0);
         return 0;

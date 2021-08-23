@@ -20,9 +20,7 @@ class BoostTypeTraits < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/type_traits.hpp>
       int main() {
-        static_assert(boost::is_array<int[5]>::value == true);
         return 0;
       }
     EOS

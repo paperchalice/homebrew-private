@@ -19,7 +19,6 @@ class BoostBind < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/bind.hpp>
       int main() {
         return 0;
       }

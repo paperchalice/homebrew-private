@@ -26,8 +26,6 @@ class BoostAlgorithm < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/algorithm/algorithm.hpp>
-
       int main() {
         return 0;
       }

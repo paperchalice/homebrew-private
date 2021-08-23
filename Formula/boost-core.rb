@@ -20,10 +20,7 @@ class BoostCore < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/core/addressof.hpp>
       int main() {
-        char c = 0;
-        boost::addressof(c);
         return 0;
       }
     EOS

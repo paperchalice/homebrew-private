@@ -19,7 +19,6 @@ class BoostAny < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/any.hpp>
       int main() {
         return 0;
       }

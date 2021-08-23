@@ -20,7 +20,6 @@ class BoostMpl < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/mpl/bool.hpp>
       int main() {
         mpl_::bool_<true> b;
         return 0;

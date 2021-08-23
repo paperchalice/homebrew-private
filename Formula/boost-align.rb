@@ -20,8 +20,6 @@ class BoostAlign < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/align.hpp>
-
       int main() {
         return 0;
       }

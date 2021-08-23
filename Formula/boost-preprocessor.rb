@@ -17,11 +17,7 @@ class BoostPreprocessor < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/preprocessor.hpp>
-      #include <iostream>
       int main() {
-        const char *xyz = "hello";
-        std::cout << BOOST_PP_CAT(x, BOOST_PP_CAT(y, z)) << std::endl;
         return 0;
       }
     EOS

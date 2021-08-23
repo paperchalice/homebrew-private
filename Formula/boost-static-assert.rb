@@ -19,9 +19,7 @@ class BoostStaticAssert < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
-      #include <boost/static_assert.hpp>
       int main() {
-        BOOST_STATIC_ASSERT(0 == 0);
         return 0;
       }
     EOS
