@@ -11,6 +11,10 @@ class BoostCircularBuffer < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "872d43d85e39dd52d54b002d65d3a1d5c0ba51ea5ecf8ba7566d26a0123caaff"
   end
 
+  depends_on "boost-concept-check"
+  depends_on "boost-move"
+  depends_on "boost-throw-exception"
+
   def install
     prefix.install "include"
   end

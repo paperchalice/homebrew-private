@@ -11,6 +11,9 @@ class BoostDynamicBitset < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "f60aea3cfded88ac00be8822a67b1a2dcc3396da36a24e23ea9ec97c6dc595e7"
   end
 
+  depends_on "boost-container-hash"
+  depends_on "boost-integer"
+
   def install
     prefix.install "include"
   end

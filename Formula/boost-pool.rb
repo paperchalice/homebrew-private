@@ -11,6 +11,10 @@ class BoostPool < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "ac262ea5c80a13fad938708b67eff1b5b100c7a81162a00555f99f2bf2e5f7b7"
   end
 
+  depends_on "boost-integer"
+  depends_on "boost-throw-exception"
+  depends_on "boost-type-traits"
+
   def install
     prefix.install "include"
   end

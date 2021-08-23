@@ -11,6 +11,13 @@ class BoostConvert < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "a453a3c1494efd466ec3ec3f2923befa81ff7146ec247ee1c5ab767855e6bcc5"
   end
 
+  depends_on "boost-function-types"
+  depends_on "boost-lexical-cast"
+  depends_on "boost-math"
+  depends_on "boost-parameter"
+  depends_on "boost-range"
+  depends_on "boost-spirit"
+
   def install
     prefix.install "include"
   end

@@ -13,6 +13,12 @@ class BoostContract < Formula
 
   depends_on "boost-config" => :build
 
+  depends_on "boost-any"
+  depends_on "boost-mpl"
+  depends_on "boost-optional"
+  depends_on "boost-thread"
+  depends_on "boost-typeof"
+
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
 

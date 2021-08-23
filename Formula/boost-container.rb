@@ -13,6 +13,10 @@ class BoostContainer < Formula
 
   depends_on "boost-config" => :build
 
+  depends_on "boost-intrusive"
+  depends_on "boost-move"
+  depends_on "boost-type-traits"
+
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
 

@@ -13,6 +13,11 @@ class BoostContext < Formula
 
   depends_on "boost-config" => :build
 
+  depends_on "boost-mp11"
+  depends_on "boost-pool"
+  depends_on "boost-predef"
+  depends_on "boost-smart-ptr"
+
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
 

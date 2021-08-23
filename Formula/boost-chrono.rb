@@ -13,6 +13,10 @@ class BoostChrono < Formula
 
   depends_on "boost-config" => :build
 
+  depends_on "boost-move"
+  depends_on "boost-ratio"
+  depends_on "boost-system"
+
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
 

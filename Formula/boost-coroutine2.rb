@@ -11,6 +11,8 @@ class BoostCoroutine2 < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "b40a469d9e9caa9696009a024b6d1f6176d56f0f1a00c72bfef39c0a774ce8f1"
   end
 
+  depends_on "boost-context"
+
   def install
     prefix.install "include"
   end

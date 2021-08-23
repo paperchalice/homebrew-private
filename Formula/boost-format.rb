@@ -11,6 +11,11 @@ class BoostFormat < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "f5ed96583f1f5bbc1291042eb6a0c8b27f225607d4af1177f497b630603ce6fc"
   end
 
+  depends_on "boost-optional"
+  depends_on "boost-smart-ptr"
+  depends_on "boost-throw-exception"
+  depends_on "boost-utility"
+
   def install
     prefix.install "include"
   end

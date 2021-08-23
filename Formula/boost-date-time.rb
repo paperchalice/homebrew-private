@@ -13,6 +13,8 @@ class BoostDateTime < Formula
 
   depends_on "boost-config" => :build
 
+  depends_on "boost-asio"
+
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
 
