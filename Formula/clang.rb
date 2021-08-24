@@ -23,6 +23,8 @@ class Clang < Formula
 
   depends_on "llvm-core"
 
+  uses_from_macos "libxml2"
+
   def install
     cd "clang"
     ln_s buildpath/"clang-tools-extra", buildpath/"clang/tools/extra"
