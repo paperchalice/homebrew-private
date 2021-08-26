@@ -49,9 +49,6 @@ class QtTools < Formula
   end
 
   test do
-    # test `qtpaths`
-    assert_equal HOMEBREW_PREFIX.to_s, `qtpaths --install-prefix`.strip
-
     # test `qtdoc`
     (testpath/"test.qdocconf").write <<~EOS
       project = test
