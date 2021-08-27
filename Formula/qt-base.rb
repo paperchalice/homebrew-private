@@ -30,7 +30,6 @@ class QtBase < Formula
   depends_on "jpeg"
   depends_on "libb2"
   depends_on "libpng"
-  depends_on "libproxy"
   depends_on "md4c"
   depends_on "pcre2"
   depends_on "zstd"
@@ -56,7 +55,6 @@ class QtBase < Formula
       -D INSTALL_MKSPECSDIR=share/qt/mkspecs
       -D INSTALL_TESTSDIR=share/qt/tests
 
-      -D FEATURE_libproxy=ON
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
       -D FEATURE_reduce_relocations=ON
