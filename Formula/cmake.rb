@@ -14,9 +14,8 @@ class Cmake < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.1"
-    rebuild 3
-    sha256 cellar: :any, big_sur: "17ef2dfaa075e789cb049f6366c632ed8c1e99977bd20d6b65f5533dee5cba33"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.2"
+    sha256 cellar: :any, big_sur: "499792b9c3848ceb78200d60158d69a185a4ea6d2239eba181f0e9de52820d7d"
   end
 
   depends_on "kwiml"      => :build
