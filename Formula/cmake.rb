@@ -85,6 +85,10 @@ class Cmake < Formula
     prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
     bin.install prefix/"CMake" => "cmake-gui"
     rm pkgshare/"Modules/Internal/CPack/CPack.OSXScriptLauncher.in"
+    (bin/"cmake-app").write <<~SH
+      #!/bin/sh
+      open #{libexec}/CMake.app
+    SH
   end
 
   test do
