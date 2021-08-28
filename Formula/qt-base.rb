@@ -57,7 +57,6 @@ class QtBase < Formula
 
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
-      -D FEATURE_reduce_relocations=ON
       -D FEATURE_relocatable=ON
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
@@ -80,7 +79,7 @@ class QtBase < Formula
     Pathname.glob(lib/"*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
-      lib.install_symlink f/f.stem => "#{shared_library "lib#{f.stem}"}"
+      lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
   end
 
