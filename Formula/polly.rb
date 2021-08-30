@@ -15,6 +15,7 @@ class Polly < Formula
   depends_on "pkg-config" => :build
 
   depends_on "isl"
+  depends_on "jsoncpp"
   depends_on "llvm-core"
 
   def install
