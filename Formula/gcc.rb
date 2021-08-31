@@ -7,9 +7,6 @@ class Gcc < Formula
   head "https://gcc.gnu.org/git/gcc.git"
 
   livecheck do
-    # Should be
-    # url :stable
-    # but that does not work with the ARM-specific branch above
     url :stable
     regex(%r{href=.*?gcc[._-]v?(\d+(?:\.\d+)+)(?:/?["' >]|\.t)}i)
   end
@@ -83,11 +80,12 @@ class Gcc < Formula
 
     args = %W[
       --prefix=#{prefix}
-      --libdir=#{lib}/gcc/#{version_suffix}
+      --disable-multilib
       --enable-nls
       --enable-host-shared
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
+      --with-gcc-major-version-only
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
       --with-mpc=#{Formula["libmpc"].opt_prefix}
@@ -103,9 +101,6 @@ class Gcc < Formula
       args << "--build=#{cpu}-apple-darwin#{OS.kernel_version.major}"
       args << "--with-system-zlib"
 
-      # Xcode 10 dropped 32-bit support
-      args << "--disable-multilib" if DevelopmentTools.clang_build_version >= 1000
-
       # Workaround for Xcode 12.5 bug on Intel
       # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100340
       args << "--without-build-config" if Hardware::CPU.intel? && DevelopmentTools.clang_build_version >= 1205
@@ -113,14 +108,9 @@ class Gcc < Formula
       # System headers may not be in /usr/include
       sdk = MacOS.sdk_path_if_needed
       if sdk
-        args << "--with-native-system-header-dir=/usr/include"
         args << "--with-sysroot=#{sdk}"
         ENV["SDKROOT"] = MacOS.sdk_path
       end
-
-      # Ensure correct install names when linking against libgcc_s;
-      # see discussion in https://github.com/Homebrew/legacy-homebrew/pull/34303
-      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", "#{HOMEBREW_PREFIX}/lib"
     end
 
     mkdir "build" do
@@ -141,10 +131,8 @@ class Gcc < Formula
     end
     rm bin/"#{triple}-gcc"
     rm bin/"#{triple}-c++"
-    bin.install_symlink bin/"#{triple}-gcc-#{version}" => "#{triple}-gcc"
+    bin.install_symlink bin/"#{triple}-gcc-#{version.major}" => "#{triple}-gcc"
     bin.install_symlink bin/"#{triple}-g++" => "#{triple}-c++"
-
-    lib.install_symlink Pathname.glob(lib/"gcc/#{version_suffix}/lib*")
   end
 
   test do
