@@ -5,8 +5,8 @@ class Kwiml < Formula
   version "2021-08-20"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/kwiml-2021-04-01"
-    sha256 cellar: :any_skip_relocation, big_sur: "6faf76a8a7abed49dfd50c0c6d2bb35d80add76d923caab2dc6c43c2148d896a"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/kwiml-2021-08-20"
+    sha256 cellar: :any_skip_relocation, big_sur: "66ce1aabdba9093841542a28299f380df515224fe39d19ab5eebc6e64d00c5ec"
   end
 
   depends_on "cmake" => :build
