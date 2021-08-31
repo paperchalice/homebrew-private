@@ -2,7 +2,7 @@ class Kwiml < Formula
   desc "Kitware Information Macro Library"
   homepage "https://gitlab.kitware.com/utils/kwiml"
   url "https://gitlab.kitware.com/utils/kwiml.git"
-  version "2021-04-01"
+  version "2021-08-20"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/kwiml-2021-04-01"
