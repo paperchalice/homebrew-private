@@ -106,11 +106,9 @@ class Gcc < Formula
       args << "--without-build-config" if Hardware::CPU.intel? && DevelopmentTools.clang_build_version >= 1205
 
       # System headers may not be in /usr/include
-      sdk = MacOS.sdk_path_if_needed
-      if sdk
-        args << "--with-sysroot=#{sdk}"
-        ENV["SDKROOT"] = MacOS.sdk_path
-      end
+      ENV["SDKROOT"] = MacOS.sdk_path
+      args << "--with-sysroot=#{MacOS.sdk_path}"
+      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", opt_lib.to_s
     end
 
     mkdir "build" do
