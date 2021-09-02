@@ -28,6 +28,7 @@ class QtMultimedia < Formula
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
+      lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
   end
 
