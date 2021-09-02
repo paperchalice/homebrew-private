@@ -1,8 +1,8 @@
 class QtLottie < Formula
   desc "Describing 2D vector graphics animations"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qtlottie-everywhere-src-6.1.2.tar.xz"
-  sha256 "5b1b8a8a6c2ffd587937f84a8201b6e485cb58462d4d6aa9c00aea2f6b40071b"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qtlottie-everywhere-src-6.1.3.tar.xz"
+  sha256 "3c6a2642091f28e9cb0f8c0f82069fd3957d88e7bc6519517d17c0ca02c6b103"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtlottie.git", branch: "dev"
 
