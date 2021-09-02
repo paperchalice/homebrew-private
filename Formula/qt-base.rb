@@ -76,7 +76,7 @@ class QtBase < Formula
     bin.install_symlink bin/"qmake#{version.major}" => "qmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
 
-    Pathname.glob(lib/"*.framework") do |f|
+    lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
       lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")

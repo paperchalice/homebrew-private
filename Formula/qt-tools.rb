@@ -37,12 +37,12 @@ class QtTools < Formula
     rm bin/"qtdiag"
     bin.install_symlink bin/"qtdiag#{version.major}" => "qtdiag"
 
-    Pathname.glob(lib/"*.framework") do |f|
+    lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
     end
 
-    Pathname.glob(bin/"*.app") do |app|
+    bin.glob("*.app") do |app|
       libexec.install app
       bin.write_exec_script libexec/app.basename/"Contents/MacOS"/app.stem
     end

@@ -23,7 +23,7 @@ class QtWebSockets < Formula
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    Pathname.glob(lib/"*.framework") do |f|
+    lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
     end
