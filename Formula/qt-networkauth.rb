@@ -12,8 +12,8 @@ class QtNetworkauth < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-networkauth-6.1.2"
-    sha256 cellar: :any, big_sur: "bf7eaa44bcc513ca9e8721722df1b7a06a444766563a2944afd5596a360b8679"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-networkauth-6.1.3"
+    sha256 cellar: :any, big_sur: "68e45d4793d08ed775eb45e13773a7a1eb38605211c8cbe5e62eed84c5d32db5"
   end
 
   depends_on "cmake"      => [:build, :test]
