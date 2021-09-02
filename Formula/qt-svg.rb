@@ -1,8 +1,8 @@
 class QtSvg < Formula
   desc "SVG support library for Qt"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.2/submodules/qtsvg-everywhere-src-6.1.2.tar.xz"
-  sha256 "8f6ae706ae8ba54e52bc765cc03ea3c815d312c920e023630639151eab80fe21"
+  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qtsvg-everywhere-src-6.1.3.tar.xz"
+  sha256 "c7d7b3c0b8a944b9c7c776c61350b552ce98457e0f21ccc90c08625ed193df09"
   license all_of: ["GPL-2.0-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtsvg.git", branch: "dev"
 
