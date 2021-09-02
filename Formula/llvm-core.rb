@@ -37,10 +37,6 @@ class LlvmCore < Formula
       man1.install Pathname.glob("_build/man/*")
     end
 
-    cd "llvm/utils/lit" do
-      system "python3", *Language::Python.setup_install_args(prefix)
-    end
-
     args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
