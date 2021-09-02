@@ -13,6 +13,7 @@ module Homebrew
 
     repo = Pathname.new(`brew --repo paperchalice/private`).dirname/"homebrew-private"
     qts = Pathname.glob(repo/"Formula/qt-*").map { |f| f.basename(".rb").to_s }
+    qts.delete "qt-doc"
 
     url_template = "https://download.qt.io/official_releases/qt/#{new_version.major}.#{new_version.minor}/#{new_version}/submodules/qt%s-everywhere-src-#{new_version}.tar.xz"
     qts.each do |c|
