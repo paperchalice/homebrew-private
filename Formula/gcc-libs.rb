@@ -86,7 +86,7 @@ class GccLibs < Formula
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
       --with-gcc-major-version-only
-      --with-libintl-prefix=#{Formula["gettext"].opt_prefix}
+      --with-libintl=#{Formula["gettext"].opt_prefix}
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
       --with-mpc=#{Formula["libmpc"].opt_prefix}
