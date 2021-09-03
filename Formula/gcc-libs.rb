@@ -80,6 +80,9 @@ class GccLibs < Formula
 
     args = %W[
       --prefix=#{prefix}
+      --libexecdir=#{lib}
+      --mandir=#{man}
+      --infodir=#{info}
       --disable-multilib
       --enable-nls
       --enable-host-shared
@@ -115,6 +118,8 @@ class GccLibs < Formula
 
     mkdir "build" do
       system "../configure", *args
+      system "ls"
+      system "sss"
 
       # Use -headerpad_max_install_names in the build,
       # otherwise updated load commands won't fit in the Mach-O header.
