@@ -16,6 +16,7 @@ class QtDoc < Formula
   depends_on "pkg-config" => :build
   depends_on "python"     => :build
   depends_on "qt-tools"   => :build
+  depends_on xcode: :build
 
   def install
     inreplace "qtbase/cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
