@@ -23,7 +23,6 @@ class Gcc < Formula
 
   depends_on "python" => :build
 
-  depends_on "gettext"
   depends_on "gmp"
   depends_on "isl"
   depends_on "libmpc"
@@ -48,32 +47,14 @@ class Gcc < Formula
     end
   end
 
-  resource "bootstrap_gcc" do
-    url "https://phoenixnap.dl.sourceforge.net/project/gnuada/GNAT_GCC%20Mac%20OS%20X/11.1.0/native/gcc-11.1.0-x86_64-apple-darwin15.pkg"
-    sha256 "d947b5db0576cb62942e5ce61f3ef53fb679f07b1adff7a4c0fa19a5e72a9532"
-  end
-
   def install
-    if Hardware::CPU.intel?
-      resource("bootstrap_gcc").stage do
-        system "pkgutil", "--expand-full", "gcc-11.1.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
-      end
-      bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.1.0-x86_64-apple-darwin15.pkg/Payload"
-      inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
-      open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
-
-      ENV.append_path "PATH", bootstrap_gcc_prefix/"bin"
-      ENV["ADAC"] = bootstrap_gcc_prefix/"bin/gcc"
-    end
-
+    # don't resolve symlinks
+    inreplace "libiberty/make-relative-prefix.c", "(progname, bin_prefix, prefix, 1)",
+      "(progname, bin_prefix, prefix, 0)"
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
 
-    # We avoiding building:
-    #  - Go, currently not supported on macOS
-    #  - BRIG
-    languages = %w[c c++ jit objc obj-c++ fortran]
-    languages << "ada" << "d" if Hardware::CPU.intel?
+    languages = %w[c c++]
 
     pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -84,9 +65,9 @@ class Gcc < Formula
       --enable-nls
       --enable-host-shared
       --enable-checking=release
-      --enable-languages=#{languages.join(",")}
+      --enable-languages=#{languages.join ","}
+      --libexecdir=#{lib}
       --with-gcc-major-version-only
-      --with-libintl=#{Formula["gettext"].opt_prefix}
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
       --with-mpc=#{Formula["libmpc"].opt_prefix}
@@ -96,8 +77,6 @@ class Gcc < Formula
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
     ]
-    # libphobos is part of gdc
-    args << "--enable-libphobos" if Hardware::CPU.intel?
 
     triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
     on_macos do
@@ -124,7 +103,7 @@ class Gcc < Formula
       system "make", "install"
     end
 
-    %w[gcc gcc-ar gcc-nm gcc-ranlib gfortran gdc c++ g++].each do |x|
+    %w[gcc gcc-ar gcc-nm gcc-ranlib c++ g++].each do |x|
       rm bin/x
       bin.install_symlink bin/"#{triple}-#{x}" => x
     end
@@ -145,57 +124,5 @@ class Gcc < Formula
     EOS
     system "#{bin}/gcc", "-o", "hello-c", "hello-c.c"
     assert_equal "Hello, world!\n", `./hello-c`
-
-    (testpath/"hello-cc.cc").write <<~EOS
-      #include <iostream>
-      struct exception { };
-      int main()
-      {
-        std::cout << "Hello, world!" << std::endl;
-        try { throw exception{}; }
-          catch (exception) { }
-          catch (...) { }
-        return 0;
-      }
-    EOS
-    system "#{bin}/g++", "-o", "hello-cc", "hello-cc.cc"
-    assert_equal "Hello, world!\n", `./hello-cc`
-
-    (testpath/"test.f90").write <<~EOS
-      integer,parameter::m=10000
-      real::a(m), b(m)
-      real::fact=0.5
-
-      do concurrent (i=1:m)
-        a(i) = a(i) + fact*b(i)
-      end do
-      write(*,"(A)") "Done"
-      end
-    EOS
-    system "#{bin}/gfortran", "-o", "test", "test.f90"
-    assert_equal "Done\n", `./test`
-
-    if Hardware::CPU.intel?
-      (testpath/"hello_d.d").write <<~EOS
-        import std.stdio;
-        int main()
-        {
-          writeln("Hello, world!");
-          return 0;
-        }
-      EOS
-      system "#{bin}/gdc", "-o", "hello-d", "hello_d.d"
-      assert_equal "Hello, world!\n", `./hello-d`
-
-      (testpath/"hello_ada.adb").write <<~EOS
-        with Text_IO; use Text_IO;
-        procedure hello is
-        begin
-          Put_Line("Hello, world!");
-        end hello;
-      EOS
-      system bin/"gnat", "make", "hello_ada.adb"
-      assert_equal "Hello, world!\n", `./hello_ada`
-    end
   end
 end
