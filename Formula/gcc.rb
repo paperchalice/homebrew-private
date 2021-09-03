@@ -98,8 +98,9 @@ class Gcc < Formula
     # libphobos is part of gdc
     args << "--enable-libphobos" if Hardware::CPU.intel?
 
+    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
     on_macos do
-      args << "--build=#{cpu}-apple-darwin#{OS.kernel_version.major}"
+      args << "--build=#{triple}"
       args << "--with-system-zlib"
 
       # Workaround for Xcode 12.5 bug on Intel
@@ -121,8 +122,6 @@ class Gcc < Formula
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
       system "make", "install"
     end
-
-    triple = (libexec/"gcc").children[0].stem
 
     %w[gcc gcc-ar gcc-nm gcc-ranlib gfortran gdc c++ g++].each do |x|
       rm bin/x
