@@ -86,11 +86,12 @@ class Gcc < Formula
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
       --with-gcc-major-version-only
-      --with-libintl-prefix=#{Formula["gettext"].opt_prefix}
+      --with-libintl=#{Formula["gettext"].opt_prefix}
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
       --with-mpc=#{Formula["libmpc"].opt_prefix}
       --with-isl=#{Formula["isl"].opt_prefix}
+      --with-python-dir=#{Language::Python.site_packages "python3"}
       --with-zstd=#{Formula["zstd"].opt_prefix}
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
