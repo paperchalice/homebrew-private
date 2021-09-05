@@ -97,6 +97,7 @@ class Gfortran < Formula
         system "make", "-C", "gcc", "fortran.install-#{t}"
       end
       (lib/"gcc/#{triple}/#{version_suffix}").install "gcc/f951"
+      rm_rf lib.glob("libquadmath*")
 
       gcc = Formula["paperchalice/private/gcc"]
       %w[gfortran].each do |l|
