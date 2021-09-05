@@ -111,6 +111,15 @@ class Gdc < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"hello_d.d").write <<~EOS
+      import std.stdio;
+      int main()
+      {
+        writeln("Hello, world!");
+        return 0;
+      }
+    EOS
+    system "gdc", "-o", "hello-d", "hello_d.d"
+    assert_equal "Hello, world!\n", `./hello-d`
   end
 end
