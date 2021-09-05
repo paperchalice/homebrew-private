@@ -91,9 +91,7 @@ class Gfortran < Formula
       # otherwise updated load commands won't fit in the Mach-O header.
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
-      %w[cafexeclibLTLIBRARIES toolexeclibDATA nodist_fincludeHEADERS gfor_cHEADERS].each do |t|
-        system "make", "-C", "#{triple}/libgfortran", "install-#{t}"
-      end
+      system "make", "-C", "#{triple}/libgfortran", "install"
       system "make", "-C", "#{triple}/libgomp", "install-nodist_fincludeHEADERS"
       %w[common man info].each do |t|
         system "make", "-C", "gcc", "fortran.install-#{t}"
