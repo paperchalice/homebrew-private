@@ -6,6 +6,11 @@ class Gdc < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gdc-11.2.0"
+    sha256 big_sur: "2264d58c6a9215c0d2818fe4217aabac3dc8e38458122306ef0d42776a2a08d8"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
