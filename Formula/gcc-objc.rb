@@ -75,7 +75,7 @@ class GccObjc < Formula
     ]
 
     triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    if OS.mac? do
+    if OS.mac?
       args << "--build=#{triple}"
       args << "--with-system-zlib"
 
