@@ -136,6 +136,7 @@ class Gcc < Formula
       %w[fortran nat-style nat_rm nat_ugn dc].each do |i|
         rm_rf info/"g#{i}.info"
       end
+      rm_rf lib/"gcc"/triple/version_suffix/"finclude"
 
       %w[gcc gomp itm quadmath].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
