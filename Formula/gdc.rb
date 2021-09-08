@@ -75,7 +75,7 @@ class Gdc < Formula
     ]
 
     triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    on_macos do
+    if OS.mac? do
       args << "--build=#{triple}"
       args << "--with-system-zlib"
 

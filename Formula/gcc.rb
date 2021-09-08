@@ -98,7 +98,7 @@ class Gcc < Formula
     args << "--enable-libphobos" if Hardware::CPU.intel?
 
     triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    on_macos do
+    if OS.mac? do
       args << "--build=#{triple}"
       args << "--with-system-zlib"
 
