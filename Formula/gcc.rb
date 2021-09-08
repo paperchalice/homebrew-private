@@ -13,8 +13,8 @@ class Gcc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-11.2.0"
-    rebuild 4
-    sha256 big_sur: "bcf8b9c877f7f4b93dfb03f5c4301eeb2c945b696b81dc98a0497ff0214603da"
+    rebuild 5
+    sha256 big_sur: "1ddecf513c5ae0a46a17a346aa7959ac4fca74e7f5af2f5b1ee5a0247f980a94"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
@@ -136,6 +136,7 @@ class Gcc < Formula
       %w[fortran nat-style nat_rm nat_ugn dc].each do |i|
         rm_rf info/"g#{i}.info"
       end
+      rm_rf lib/"gcc"/triple/version_suffix/"finclude"
 
       %w[gcc gomp itm quadmath].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
