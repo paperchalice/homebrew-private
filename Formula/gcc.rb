@@ -129,6 +129,7 @@ class Gcc < Formula
         system "make", "-C", "gcc", "install-#{t}"
       end
       system "make", "install-fixincludes"
+      system "make", "install-libcc1"
       %w[gcov gcov-dump gcov-tool].each { |x| bin.install "gcc/#{x}" }
       %w[cc1 collect2 lto1].each do |t|
         (lib/"gcc"/triple/version_suffix).install "gcc/#{t}"
