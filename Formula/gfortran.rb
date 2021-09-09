@@ -6,6 +6,11 @@ class Gfortran < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gfortran-11.2.0"
+    sha256 big_sur: "4b8e1f8f4b1fbe2adf4432022c86db8731f8906899ffbfe7368358d45d7e7ced"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
