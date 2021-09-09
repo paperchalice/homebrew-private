@@ -84,6 +84,7 @@ class Gcc < Formula
       --enable-host-shared
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
+      --libexecdir=#{lib}
       --with-gcc-major-version-only
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
