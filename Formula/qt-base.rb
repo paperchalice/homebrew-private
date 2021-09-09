@@ -74,7 +74,7 @@ class QtBase < Formula
     rm bin/"qt-cmake-private-install.cmake"
     rm bin/"qmake"
     bin.install_symlink bin/"qmake#{version.major}" => "qmake"
-    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", HOMEBREW_SHIMS_PATH/"mac/super", "/usr/bin"
+    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", Superenv.shims_path, "/usr/bin"
 
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
