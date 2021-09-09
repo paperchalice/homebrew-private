@@ -70,7 +70,7 @@ class Gfortran < Formula
     ]
 
     triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    on_macos do
+    if OS.mac?
       args << "--build=#{triple}"
       args << "--with-system-zlib"
 
@@ -107,6 +107,9 @@ class Gfortran < Formula
         "#{lib}/#{shared_library("libquadmath", 0)}",
         "#{gcc.lib}/#{shared_library("libquadmath", 0)}"
     end
+
+    rm bin/"gfortran"
+    bin.install_symlink bin/"#{triple}-gfortran" => "gfortran"
   end
 
   test do
