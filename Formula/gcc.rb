@@ -139,7 +139,7 @@ class Gcc < Formula
         rm_rf info/"g#{i}.info"
       end
 
-      %w[gcc gomp itm quadmath ssp].each do |l|
+      %w[atomic gcc gomp itm quadmath ssp].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
       end
       rm_rf lib/"gcc"/triple/version_suffix/"finclude"
