@@ -6,6 +6,11 @@ class Gnat < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gnat-11.2.0"
+    sha256 big_sur: "cc3b63c1bdd5615b48bcde5e2e37ac27457676877001b0d5623336a9721331da"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
