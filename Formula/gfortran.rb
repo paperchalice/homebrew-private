@@ -118,6 +118,17 @@ class Gfortran < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.f90").write <<~EOS
+      integer,parameter::m=10000
+      real::a(m), b(m)
+      real::fact=0.5
+      do concurrent (i=1:m)
+        a(i) = a(i) + fact*b(i)
+      end do
+      write(*,"(A)") "Done"
+      end
+    EOS
+    system "gfortran", "-o", "test", "test.f90"
+    assert_equal "Done\n", `./test`
   end
 end

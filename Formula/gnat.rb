@@ -130,6 +130,14 @@ class Gnat < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"hello_ada.adb").write <<~EOS
+      with Text_IO; use Text_IO;
+      procedure hello is
+      begin
+        Put_Line("Hello, world!");
+      end hello;
+    EOS
+    system "gnat", "make", "hello_ada.adb"
+    assert_equal "Hello, world!\n", `./hello_ada`
   end
 end
