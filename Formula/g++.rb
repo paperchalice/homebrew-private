@@ -11,6 +11,11 @@ class Gxx < Formula
     regex(%r{href=.*?gcc[._-]v?(\d+(?:\.\d+)+)(?:/?["' >]|\.t)}i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/g++-11.2.0"
+    sha256 big_sur: "84d10e164671f44cc345c8c701f341406979ccde56a4b0bfd491dd8c8ac0dfe6"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
