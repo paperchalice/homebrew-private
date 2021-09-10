@@ -122,7 +122,7 @@ class Gcc < Formula
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
 
       %w[
-        driver gcc-ar mkheaders
+        cpp driver gcc-ar mkheaders
         headers plugin lto-wrapper
         man info po
       ].each do |t|
