@@ -4,7 +4,7 @@ class Gcc < Formula
   url "https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz"
   sha256 "d08edc536b54c372a1010ff6619dd274c0f1603aa49212ba20f7aa2cda36fa8b"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
-  head "https://gcc.gnu.org/git/gcc.git", brach: "master"
+  head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   livecheck do
     url :stable
