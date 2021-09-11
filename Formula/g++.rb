@@ -132,6 +132,14 @@ class Gxx < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"hello.cpp").write <<~EOS
+      #include <iostream>
+      int main() {
+        std::cout << "hello" << std::endl;
+        return 0;
+      }
+    EOS
+    system "g++", "hello.cpp"
+    system "./a.out"
   end
 end
