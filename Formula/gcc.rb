@@ -154,6 +154,15 @@ class Gcc < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"hello-c.c").write <<~EOS
+      #include <stdio.h>
+      int main()
+      {
+        puts("Hello, world!");
+        return 0;
+      }
+    EOS
+    system HOMEBREW_PREFIX/"bin/gcc", "hello-c.c"
+    system "./a.out"
   end
 end

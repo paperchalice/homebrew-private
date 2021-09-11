@@ -140,7 +140,7 @@ class Gxx < Formula
         return 0;
       }
     EOS
-    system "g++", "hello.cpp"
+    system HOMEBREW_PREFIX/"bin/g++", "hello.cpp"
     system "./a.out"
   end
 end
