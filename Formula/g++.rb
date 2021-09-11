@@ -22,6 +22,7 @@ class Gxx < Formula
   pour_bottle? only_if: :clt_installed
 
   depends_on "doxygen" => :build
+  depends_on "gettext" => :build
   depends_on "python"  => :build
 
   depends_on "gmp"
