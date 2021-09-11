@@ -13,14 +13,16 @@ class Gxx < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/g++-11.2.0"
-    sha256 big_sur: "84d10e164671f44cc345c8c701f341406979ccde56a4b0bfd491dd8c8ac0dfe6"
+    rebuild 1
+    sha256 big_sur: "eaea4892e504a80932ea5f2d36fa58ced3330920acc1da0696dbd9205fd8ca63"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
 
-  depends_on "python" => :build
+  depends_on "doxygen" => :build
+  depends_on "python"  => :build
 
   depends_on "gmp"
   depends_on "isl"
@@ -102,11 +104,22 @@ class Gxx < Formula
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
 
+      # make documentation
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "doc-man-doxygen"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "doc-install-man"
+      system "make", "-C", "#{triple}/libstdc++-v3/po", "install"
+
       (lib/"gcc"/triple/version_suffix).install "gcc/cc1plus"
       %w[sanitizer stdc++-v3].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
       end
       %w[common man info].each { |t| system "make", "-C", "gcc", "c++.install-#{t}" }
+      bin.install bin/"g++" => "#{triple}-g++"
+      bin.install_symlink bin/"#{triple}-g++" => "#{triple}-c++"
+      %w[g++ c++].each do |x|
+        bin.install_symlink bin/"#{triple}-g++" => x
+      end
+      rm_rf lib/"gcc"/triple/version_suffix/"cc1"
     end
 
     # fix linkage
@@ -116,13 +129,6 @@ class Gxx < Formula
         "#{opt_lib}/#{shared_library "libgcc_s", 1}",
         "#{gcc.lib}/#{shared_library "libgcc_s", 1}"
     end
-
-    %w[c++ g++].each do |x|
-      rm_rf bin/x
-      bin.install_symlink bin/"#{triple}-g++" => x
-    end
-
-    rm_rf lib/"gcc"/triple/version_suffix/"cc1"
   end
 
   test do
