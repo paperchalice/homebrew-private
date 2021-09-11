@@ -83,6 +83,7 @@ class Gcc < Formula
       --enable-nls
       --enable-host-shared
       --enable-checking=release
+      --enable-shared
       --enable-languages=#{languages.join(",")}
       --libexecdir=#{lib}
       --with-gcc-major-version-only
