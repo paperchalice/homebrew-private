@@ -11,6 +11,12 @@ jobs:
         os: [macos-11.0]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Install MacTeX
+        if: contains(github.event.pull_request.labels.*.name, 'TeX')
+        run: |
+          brew install --cask mactex
+          eval "$(/usr/libexec/path_helper)"
+
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
