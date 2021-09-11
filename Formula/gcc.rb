@@ -121,11 +121,12 @@ class Gcc < Formula
       # otherwise updated load commands won't fit in the Mach-O header.
       # This is needed because `gcc` avoids the superenv shim.
       system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
+      system "make", "pdf"
 
       %w[
         cpp driver gcc-ar mkheaders
         headers plugin lto-wrapper
-        man info po
+        man info po pdf
       ].each do |t|
         system "make", "-C", "gcc", "install-#{t}"
       end
