@@ -23,6 +23,7 @@ class Gcc < Formula
 
   depends_on "python" => :build
 
+  depends_on "gettext"
   depends_on "gmp"
   depends_on "isl"
   depends_on "libmpc"
@@ -87,6 +88,7 @@ class Gcc < Formula
       --enable-languages=#{languages.join(",")}
       --libexecdir=#{lib}
       --with-gcc-major-version-only
+      --with-gettext=#{Formula["gettext"].opt_prefix}
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
       --with-mpc=#{Formula["libmpc"].opt_prefix}
