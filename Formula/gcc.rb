@@ -76,7 +76,7 @@ class Gcc < Formula
     languages = %w[ada c c++ d objc obj-c++ fortran]
 
     pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
+    os = OS.kernel_name.downcase
 
     args = %W[
       --prefix=#{prefix}
@@ -101,7 +101,7 @@ class Gcc < Formula
     # libphobos is part of gdc
     args << "--enable-libphobos" if Hardware::CPU.intel?
 
-    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
+    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
     if OS.mac?
       args << "--build=#{triple}"
       args << "--with-system-zlib"
