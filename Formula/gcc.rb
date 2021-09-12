@@ -76,7 +76,6 @@ class Gcc < Formula
     languages = %w[ada c c++ d objc obj-c++ fortran]
 
     pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
-    os = OS.kernel_name.downcase
 
     args = %W[
       --prefix=#{prefix}
