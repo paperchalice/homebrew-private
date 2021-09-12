@@ -86,7 +86,6 @@ class Gfortran < Formula
       # System headers may not be in /usr/include
       ENV["SDKROOT"] = MacOS.sdk_path
       args << "--with-sysroot=#{MacOS.sdk_path}"
-      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", opt_lib.to_s
     end
 
     mkdir "build" do
@@ -106,7 +105,7 @@ class Gfortran < Formula
 
       gcc = Formula["paperchalice/private/gcc"]
       MachO::Tools.change_install_name lib/shared_library("libgfortran"),
-        "#{opt_lib}/#{shared_library("libgcc_s", 1)}",
+        "#{lib}/#{shared_library("libgcc_s", 1)}",
         "#{gcc.lib}/#{shared_library("libgcc_s", 1)}"
       MachO::Tools.change_install_name lib/shared_library("libgfortran"),
         "#{lib}/#{shared_library("libquadmath", 0)}",

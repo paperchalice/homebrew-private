@@ -94,7 +94,6 @@ class Gxx < Formula
       # System headers may not be in /usr/include
       ENV["SDKROOT"] = MacOS.sdk_path
       args << "--with-sysroot=#{MacOS.sdk_path}"
-      inreplace "libgcc/config/t-slibgcc-darwin", "@shlib_slibdir@", opt_lib.to_s
     end
 
     mkdir "build" do
@@ -127,7 +126,7 @@ class Gxx < Formula
     gcc = Formula["paperchalice/private/gcc"]
     %w[asan ubsan stdc++].each do |l|
       MachO::Tools.change_install_name lib/shared_library("lib#{l}"),
-        "#{opt_lib}/#{shared_library "libgcc_s", 1}",
+        "#{lib}/#{shared_library "libgcc_s", 1}",
         "#{gcc.lib}/#{shared_library "libgcc_s", 1}"
     end
   end
