@@ -1,9 +1,8 @@
 class Gn < Formula
   desc "Generate Ninja - Chromium's build system"
   homepage "https://gn.googlesource.com/gn/"
-  url "https://gn.googlesource.com/gn.git",
-    revision: "d565aa3e72dd9e81da9595ee8c9d7b24cb45c48b"
-  version "1929"
+  url "https://gn.googlesource.com/gn.git"
+  version "1936"
   license "BSD-3-Clause"
 
   bottle do
@@ -18,6 +17,9 @@ class Gn < Formula
     system "python3", "build/gen.py"
     system "ninja", "-C", "out/", "gn"
     bin.install "out/gn"
+    doc.install Dir["docs/*"]
+    %w[autoload ftdetect ftplugin syntax].each { |v| (share/"vim/vimfiles").install "misc/vim/#{v}" }
+    elisp.install "misc/emacs/gn-mode.el"
   end
 
   test do
@@ -45,5 +47,7 @@ class Gn < Formula
     system bin/"gn", "gen", out
     assert_predicate out/"build.ninja", :exist?,
       "Check we actually generated a build.ninja file"
+
+    system bin/"gn", "--version"
   end
 end
