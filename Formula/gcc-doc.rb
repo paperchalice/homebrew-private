@@ -16,10 +16,6 @@ class GccDoc < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "cf630b467fa3e65f76d96cf2d47fc2f87e39b66eabf3fd5df6609117713a99bf"
   end
 
-  # The bottles are built on systems with the CLT installed, and do not work
-  # out of the box on Xcode-only systems due to an incorrect sysroot.
-  pour_bottle? only_if: :clt_installed
-
   depends_on "gmp"     => :build
   depends_on "isl"     => :build
   depends_on "libmpc"  => :build
