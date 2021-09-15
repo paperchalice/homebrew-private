@@ -10,7 +10,7 @@ class Libmng < Formula
     sha256 cellar: :any, big_sur: "e986cb8f8298e16d2461d548a10c59e82579c015b84a551380b5ddae2b231e81"
   end
 
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "jpeg"
   depends_on "little-cms2"

@@ -13,7 +13,7 @@ class QtDatavis3d < Formula
 
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"
