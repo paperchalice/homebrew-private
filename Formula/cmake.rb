@@ -70,6 +70,9 @@ class Cmake < Formula
       -D CMake_INSTALL_EMACS_DIR=#{elisp.to_s.delete_prefix "#{prefix}/"}
       -D CMake_BUILD_LTO=ON
 
+      -D SPHINX_HTML=ON
+      -D SPHINX_MAN=ON
+
       -S .
     ]
 
