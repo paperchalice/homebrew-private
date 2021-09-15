@@ -18,7 +18,7 @@ class QtQuickControls2 < Formula
 
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
-  depends_on "pkgconf" => :build
+  depends_on "pkgconf"    => :build
 
   depends_on "qt-declarative"
   depends_on "qt-imageformats"

@@ -12,7 +12,7 @@ class Polly < Formula
   end
 
   depends_on "cmake"      => :build
-  depends_on "pkgconf" => :build
+  depends_on "pkgconf"    => :build
 
   depends_on "isl"
   depends_on "jsoncpp"

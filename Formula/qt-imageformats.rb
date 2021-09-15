@@ -18,7 +18,7 @@ class QtImageformats < Formula
 
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
-  depends_on "pkgconf" => :build
+  depends_on "pkgconf"    => :build
 
   depends_on "jasper"
   depends_on "libmng"

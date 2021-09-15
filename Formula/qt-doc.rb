@@ -14,7 +14,7 @@ class QtDoc < Formula
   depends_on "cmake"      => :build
   depends_on "ninja"      => :build
   depends_on "perl"       => :build
-  depends_on "pkgconf" => :build
+  depends_on "pkgconf"    => :build
   depends_on "python"     => :build
   depends_on "qt-tools"   => :build
   depends_on xcode: :build
