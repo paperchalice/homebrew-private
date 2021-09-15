@@ -16,20 +16,19 @@ class QtDeclarative < Formula
     sha256 cellar: :any, big_sur: "eba66f43ace1f5a3621812a37a6a1c869762c53a4aab77c4d6ebb94ed870642f"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkg-config" => :build
+  depends_on "cmake"           => [:build, :test]
+  depends_on "perl"            => :build
+  depends_on "pkg-config"      => :build
+  depends_on "qt-shader-tools" => :build
 
   depends_on "python"
   depends_on "qt-base"
-  depends_on "qt-shader-tools"
-  depends_on "qt-svg"
 
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      -D Python_ROOT_DIR=#{Formula["python"].opt_prefix}
+      -D Python_ROOT_DIR=#{Formula["python"].prefix}
 
       -S .
     ]
