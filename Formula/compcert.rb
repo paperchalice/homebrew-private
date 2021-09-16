@@ -5,6 +5,11 @@ class Compcert < Formula
   sha256 "6a56b4e4c2b6e776eba43a1a08047c9efd6874244bd2d8c48ccb6ccd1117aefb"
   license "LGPL-2.1-only"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/compcert-3.9"
+    sha256 cellar: :any_skip_relocation, big_sur: "e11fd93a2863bef7bccf64894d73b479d86e561e9de10da33360bdbeff147917"
+  end
+
   depends_on "coq"    => :build
   depends_on "menhir" => :build
   depends_on "ocaml"  => :build
