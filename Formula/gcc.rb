@@ -67,8 +67,7 @@ class Gcc < Formula
     end
 
     # don't resolve symlinks
-    inreplace "libiberty/make-relative-prefix.c", "(progname, bin_prefix, prefix, 1)",
-      "(progname, bin_prefix, prefix, 0)"
+    inreplace "libiberty/make-relative-prefix.c", /(?<=, )1/, "0"
 
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
@@ -80,11 +79,12 @@ class Gcc < Formula
     args = %W[
       --prefix=#{prefix}
       --disable-multilib
-      --enable-nls
-      --enable-host-shared
       --enable-checking=release
-      --enable-shared
+      --enable-host-shared
+      --enable-install-libiberty
       --enable-languages=#{languages.join(",")}
+      --enable-nls
+      --enable-shared
       --libexecdir=#{lib}
       --with-gcc-major-version-only
       --with-gettext=#{Formula["gettext"].opt_prefix}
@@ -141,9 +141,10 @@ class Gcc < Formula
         rm_rf info/"g#{i}.info"
       end
 
-      %w[atomic gcc gomp itm quadmath ssp].each do |l|
+      %w[atomic gcc gomp itm quadmath ssp libiberty].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
       end
+      lib.install prefix/"libiberty/pic/libiberty.a"
       rm_rf lib/"gcc"/triple/version_suffix/"finclude"
     end
 

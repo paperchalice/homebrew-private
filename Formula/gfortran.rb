@@ -44,8 +44,8 @@ class Gfortran < Formula
 
   def install
     # don't resolve symlinks
-    inreplace "libiberty/make-relative-prefix.c", "(progname, bin_prefix, prefix, 1)",
-      "(progname, bin_prefix, prefix, 0)"
+    inreplace "libiberty/make-relative-prefix.c", /(?<=, )1/, "0"
+
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
 
