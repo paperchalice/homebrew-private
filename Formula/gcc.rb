@@ -141,10 +141,10 @@ class Gcc < Formula
         rm_rf info/"g#{i}.info"
       end
 
-      %w[atomic gcc gomp itm quadmath ssp libiberty].each do |l|
+      %w[atomic gcc gomp itm quadmath ssp].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
       end
-      lib.install prefix/"libiberty/pic/libiberty.a"
+      system "make", "-C", "libiberty", "install"
       rm_rf lib/"gcc"/triple/version_suffix/"finclude"
     end
 
