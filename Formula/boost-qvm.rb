@@ -1,5 +1,5 @@
 class BoostQvm < Formula
-  desc "Awesome library from Boost"
+  desc "Generic library for working with Quaternions, Vectors and Matrices"
   homepage "https://boost.org/libs/qvm/"
   url "https://github.com/boostorg/qvm.git",
     tag:      "boost-1.77.0",
