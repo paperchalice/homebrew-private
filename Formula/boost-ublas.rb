@@ -1,5 +1,5 @@
 class BoostUblas < Formula
-  desc "Awesome library from Boost"
+  desc "C++ template class library for BLAS"
   homepage "https://boost.org/libs/numeric/ublas/"
   url "https://github.com/boostorg/ublas.git",
     tag:      "boost-1.77.0",
