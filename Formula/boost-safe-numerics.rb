@@ -1,5 +1,5 @@
 class BoostSafeNumerics < Formula
-  desc "Awesome library from Boost"
+  desc "Replacements to standard numeric types which throw exceptions on errors"
   homepage "https://boost.org/libs/safe_numerics/"
   url "https://github.com/boostorg/safe_numerics.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,11 @@ class BoostSafeNumerics < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-safe-numerics-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "80f2fa3810ee2ba70ca41ef26c86df3384a5d8cffc852517ee2b0ce0c2a14548"
   end
+
+  depends_on "boost-concept-check"
+  depends_on "boost-integer"
+  depends_on "boost-logic"
+  depends_on "boost-mp11"
 
   def install
     prefix.install "include"

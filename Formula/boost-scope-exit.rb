@@ -1,5 +1,5 @@
 class BoostScopeExit < Formula
-  desc "Awesome library from Boost"
+  desc "C++ RAII technique"
   homepage "https://boost.org/libs/scope_exit/"
   url "https://github.com/boostorg/scope_exit.git",
     tag:      "boost-1.77.0",

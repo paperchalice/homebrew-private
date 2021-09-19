@@ -1,5 +1,5 @@
 class BoostSmartPtr < Formula
-  desc "Awesome library from Boost"
+  desc "C++ smart pointer"
   homepage "https://boost.org/libs/smart_ptr/"
   url "https://github.com/boostorg/smart_ptr.git",
     tag:      "boost-1.77.0",

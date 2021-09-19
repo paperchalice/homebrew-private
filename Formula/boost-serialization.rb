@@ -1,5 +1,5 @@
 class BoostSerialization < Formula
-  desc "Awesome library from Boost"
+  desc "C++ serialization library"
   homepage "https://boost.org/libs/serialization/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",

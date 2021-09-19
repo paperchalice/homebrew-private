@@ -1,5 +1,5 @@
 class BoostStacktrace < Formula
-  desc "Awesome library from Boost"
+  desc "Provide information about call sequence in a human-readable form"
   homepage "https://boost.org/libs/stacktrace/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",

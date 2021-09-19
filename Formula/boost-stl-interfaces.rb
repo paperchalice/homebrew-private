@@ -1,5 +1,5 @@
 class BoostStlInterfaces < Formula
-  desc "Awesome library from Boost"
+  desc "C++14 and later CRTP template for defining iterators"
   homepage "https://boost.org/libs/stl_interfaces/"
   url "https://github.com/boostorg/stl_interfaces.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,9 @@ class BoostStlInterfaces < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-stl-interfaces-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "0ad51a15e515e54f76d8bd78627149e2757af84971595b3aaae2199394132e82"
   end
+
+  depends_on "boost-assert"
+  depends_on "boost-config"
 
   def install
     prefix.install "include"

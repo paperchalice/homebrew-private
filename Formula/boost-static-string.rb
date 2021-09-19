@@ -1,5 +1,5 @@
 class BoostStaticString < Formula
-  desc "Awesome library from Boost"
+  desc "Dynamically resizable string of characters with compile-time fixed capacity"
   homepage "https://boost.org/libs/static_string/"
   url "https://github.com/boostorg/static_string.git",
     tag:      "boost-1.77.0",

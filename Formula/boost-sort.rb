@@ -1,5 +1,5 @@
 class BoostSort < Formula
-  desc "Awesome library from Boost"
+  desc "Sort algorithms collection"
   homepage "https://boost.org/libs/sort/"
   url "https://github.com/boostorg/sort.git",
     tag:      "boost-1.77.0",

@@ -1,5 +1,5 @@
 class BoostSpirit < Formula
-  desc "Awesome library from Boost"
+  desc "Object-oriented, recursive-descent parser and output generation library"
   homepage "https://boost.org/libs/spirit/"
   url "https://github.com/boostorg/spirit.git",
     tag:      "boost-1.77.0",

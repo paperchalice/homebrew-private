@@ -1,5 +1,5 @@
 class BoostStatechart < Formula
-  desc "Awesome library from Boost"
+  desc "C++ library for finite state machines"
   homepage "https://boost.org/libs/statechart/"
   url "https://github.com/boostorg/statechart.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,11 @@ class BoostStatechart < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-statechart-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "800a20acf0dbf4b7f07f23c365d1509b08361b49c5cd4c0276dc5d7a05fd96f8"
   end
+
+  depends_on "boost-conversion"
+  depends_on "boost-funciton"
+  depends_on "boost-mpl"
+  depends_on "boost-thread"
 
   def install
     prefix.install "include"
