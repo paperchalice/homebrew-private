@@ -12,7 +12,7 @@ class BoostStatechart < Formula
   end
 
   depends_on "boost-conversion"
-  depends_on "boost-funciton"
+  depends_on "boost-function"
   depends_on "boost-mpl"
   depends_on "boost-thread"
 
