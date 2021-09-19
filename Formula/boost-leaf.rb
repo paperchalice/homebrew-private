@@ -1,5 +1,5 @@
 class BoostLeaf < Formula
-  desc "Awesome library from Boost"
+  desc "Lightweight Error Augmentation Framework"
   homepage "https://boost.org/libs/leaf/"
   url "https://github.com/boostorg/leaf.git",
     tag:      "boost-1.77.0",

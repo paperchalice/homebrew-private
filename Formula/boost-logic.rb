@@ -1,5 +1,5 @@
 class BoostLogic < Formula
-  desc "Awesome library from Boost"
+  desc "3-state boolean library"
   homepage "https://boost.org/libs/logic/"
   url "https://github.com/boostorg/logic.git",
     tag:      "boost-1.77.0",

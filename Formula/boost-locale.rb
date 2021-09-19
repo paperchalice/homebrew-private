@@ -1,5 +1,5 @@
 class BoostLocale < Formula
-  desc "Awesome library from Boost"
+  desc "High quality localization facilities in a C++ way"
   homepage "https://boost.org/libs/locale/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
