@@ -1,5 +1,5 @@
 class BoostXpressive < Formula
-  desc "Awesome library from Boost"
+  desc "advanced, object-oriented regular expression template library"
   homepage "https://boost.org/libs/xpressive/"
   url "https://github.com/boostorg/xpressive.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,11 @@ class BoostXpressive < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-xpressive-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "ed853ba9c881016888e17ac8551f6ee85fb1056b18a1edb5524c629643cf35e2"
   end
+
+  depends_on "boost-lexical-cast"
+  depends_on "boost-numeric-conversion"
+  depends_on "boost-proto"
+  depends_on "boost-range"
 
   def install
     prefix.install "include"

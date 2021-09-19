@@ -1,5 +1,5 @@
 class BoostTypeIndex < Formula
-  desc "Awesome library from Boost"
+  desc "Runtime/Compile time copyable type info"
   homepage "https://boost.org/libs/type_index/"
   url "https://github.com/boostorg/type_index.git",
     tag:      "boost-1.77.0",
