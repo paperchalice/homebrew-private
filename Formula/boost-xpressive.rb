@@ -1,5 +1,5 @@
 class BoostXpressive < Formula
-  desc "advanced, object-oriented regular expression template library"
+  desc "Advanced, object-oriented regular expression template library"
   homepage "https://boost.org/libs/xpressive/"
   url "https://github.com/boostorg/xpressive.git",
     tag:      "boost-1.77.0",

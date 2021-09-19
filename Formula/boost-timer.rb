@@ -11,10 +11,11 @@ class BoostTimer < Formula
     sha256 cellar: :any, big_sur: "5d047170de20d128623d86e385133eb65f5b47e8b9f479bbc8ad309417caf44d"
   end
 
-  depends_on "boost-config" => :build
   depends_on "boost-chrono" => :build
+  depends_on "boost-config" => :build
 
   depends_on "boost-chrono"
+  depends_on "boost-config"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
