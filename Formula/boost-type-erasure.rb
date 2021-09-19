@@ -13,7 +13,10 @@ class BoostTypeErasure < Formula
   end
 
   depends_on "boost-atomic" => :build
+  depends_on "boost-chrono" => :build
   depends_on "boost-config" => :build
+  depends_on "boost-system" => :build
+  depends_on "boost-thread" => :build
 
   depends_on "boost-chrono"
   depends_on "boost-system"

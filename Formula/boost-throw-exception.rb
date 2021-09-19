@@ -1,5 +1,5 @@
 class BoostThrowException < Formula
-  desc "Awesome library from Boost"
+  desc "Common Boost infrastructure for throwing exceptions"
   homepage "https://boost.org/libs/throw_exception/"
   url "https://github.com/boostorg/throw_exception.git",
     tag:      "boost-1.77.0",
