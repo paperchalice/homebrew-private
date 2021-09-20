@@ -22,10 +22,10 @@ class Cmake < Formula
   depends_on "pkgconf"    => :build
   depends_on "sphinx-doc" => :build
 
+  # nghttp2 is for curl
   depends_on "jsoncpp"
   depends_on "libarchive"
   depends_on "libuv"
-  # nghttp2
   depends_on "qt-base"
   depends_on "rhash"
   depends_on "xz"
