@@ -25,7 +25,7 @@ class Cmake < Formula
   depends_on "jsoncpp"
   depends_on "libarchive"
   depends_on "libuv"
-  depends_on "nghttp2"
+  # nghttp2
   depends_on "qt-base"
   depends_on "rhash"
   depends_on "xz"
