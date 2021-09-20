@@ -11,8 +11,8 @@ class BoostFlyweight < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "283447fd3762e6eb6fe3c1bf5e60e5739e317a6c293eb4ebb17b9f206574c6bd"
   end
 
-  depends_on "boost-mpl"
   depends_on "boost-interprocess"
+  depends_on "boost-mpl"
   depends_on "boost-multi-index"
 
   def install
