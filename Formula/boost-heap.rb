@@ -1,5 +1,5 @@
 class BoostHeap < Formula
-  desc "Awesome library from Boost"
+  desc "Implementation of priority queues"
   homepage "https://boost.org/libs/heap/"
   url "https://github.com/boostorg/heap.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,11 @@ class BoostHeap < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-heap-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "f95d43b7e3b8f89a372a9ca3b47216f37ed884fd2577cea785024c25aaacdc09"
   end
+
+  depends_on "boost-concept-check"
+  depends_on "boost-intrusive"
+  depends_on "boost-iterator"
+  depends_on "boost-parameter"
 
   def install
     prefix.install "include"

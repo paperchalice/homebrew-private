@@ -1,5 +1,5 @@
 class BoostHana < Formula
-  desc "Awesome library from Boost"
+  desc "Your standard library for metaprogramming"
   homepage "https://boost.org/libs/hana/"
   url "https://github.com/boostorg/hana.git",
     tag:      "boost-1.77.0",

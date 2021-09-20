@@ -1,5 +1,5 @@
 class BoostHof < Formula
-  desc "Awesome library from Boost"
+  desc "Boost Higher Order Functions"
   homepage "https://boost.org/libs/hof/"
   url "https://github.com/boostorg/hof.git",
     tag:      "boost-1.77.0",
