@@ -11,8 +11,8 @@ class BoostLockfree < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "eb7f525c783091f392abf0e0af929b8e3826e5dd959fcd474c967ae9dca4dba1"
   end
 
-  depends_on "boost-array"
   depends_on "boost-align"
+  depends_on "boost-array"
   depends_on "boost-integer"
   depends_on "boost-parameter"
 
