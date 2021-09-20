@@ -1,5 +1,5 @@
 class BoostIterator < Formula
-  desc "Awesome library from Boost"
+  desc "Iterator concepts"
   homepage "https://boost.org/libs/iterator/"
   url "https://github.com/boostorg/iterator.git",
     tag:      "boost-1.77.0",

@@ -1,5 +1,5 @@
 class BoostIo < Formula
-  desc "Awesome library from Boost"
+  desc "Utilities for the standard I/O library"
   homepage "https://boost.org/libs/io/"
   url "https://github.com/boostorg/io.git",
     tag:      "boost-1.77.0",

@@ -1,5 +1,5 @@
 class BoostInteger < Formula
-  desc "Awesome library from Boost"
+  desc "Integer type support,"
   homepage "https://boost.org/libs/integer/"
   url "https://github.com/boostorg/integer.git",
     tag:      "boost-1.77.0",

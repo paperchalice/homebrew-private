@@ -1,5 +1,5 @@
 class BoostInterval < Formula
-  desc "Awesome library from Boost"
+  desc "Numeric interval library"
   homepage "https://boost.org/libs/numeric/interval/"
   url "https://github.com/boostorg/interval.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,8 @@ class BoostInterval < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-interval-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "b0123c0e01da3139739bdb5d92a1e5d0a474491ed0ff5b5ef13213f0c6aed83a"
   end
+
+  depends_on "boost-logic"
 
   def install
     prefix.install "include"

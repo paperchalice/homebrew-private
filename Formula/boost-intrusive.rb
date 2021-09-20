@@ -1,5 +1,5 @@
 class BoostIntrusive < Formula
-  desc "Awesome library from Boost"
+  desc "Intrusive containers for C++"
   homepage "https://boost.org/libs/intrusive/"
   url "https://github.com/boostorg/intrusive.git",
     tag:      "boost-1.77.0",

@@ -1,5 +1,5 @@
 class BoostIostreams < Formula
-  desc "Awesome library from Boost"
+  desc "IOStream from boost"
   homepage "https://boost.org/libs/iostreams/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
@@ -14,6 +14,8 @@ class BoostIostreams < Formula
 
   depends_on "boost-config" => :build
   depends_on "pkgconf"      => :build
+
+  depends_on "boost-config"
 
   depends_on "xz"
   depends_on "zstd"
