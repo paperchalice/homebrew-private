@@ -1,5 +1,5 @@
 class BoostFunction < Formula
-  desc "Awesome library from Boost"
+  desc "Function object wrappers"
   homepage "https://boost.org/libs/function/"
   url "https://github.com/boostorg/function.git",
     tag:      "boost-1.77.0",

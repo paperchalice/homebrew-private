@@ -1,5 +1,5 @@
 class BoostFunctional < Formula
-  desc "Awesome library from Boost"
+  desc "Enhancements to the function object adapters"
   homepage "https://boost.org/libs/functional/"
   url "https://github.com/boostorg/functional.git",
     tag:      "boost-1.77.0",
@@ -11,7 +11,6 @@ class BoostFunctional < Formula
     sha256 cellar: :any_skip_relocation, big_sur: "d3536643bdb8412b8861dec3be408882b95c8dddf30403b8dcfd4e5aba9fd689"
   end
 
-  depends_on "boost-core"
   depends_on "boost-function"
 
   def install

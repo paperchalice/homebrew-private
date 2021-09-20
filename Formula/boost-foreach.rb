@@ -1,5 +1,5 @@
 class BoostForeach < Formula
-  desc "Awesome library from Boost"
+  desc "Make simple things easy"
   homepage "https://boost.org/libs/foreach/"
   url "https://github.com/boostorg/foreach.git",
     tag:      "boost-1.77.0",

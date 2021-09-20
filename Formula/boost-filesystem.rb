@@ -1,5 +1,5 @@
 class BoostFilesystem < Formula
-  desc "Awesome library from Boost"
+  desc "Facilities to manipulate files and directories"
   homepage "https://boost.org/libs/filesystem/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",

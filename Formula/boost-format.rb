@@ -1,5 +1,5 @@
 class BoostFormat < Formula
-  desc "Awesome library from Boost"
+  desc "Formatting arguments according to a format-string"
   homepage "https://boost.org/libs/format/"
   url "https://github.com/boostorg/format.git",
     tag:      "boost-1.77.0",

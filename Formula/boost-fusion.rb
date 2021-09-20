@@ -1,5 +1,5 @@
 class BoostFusion < Formula
-  desc "Awesome library from Boost"
+  desc "Working with heterogeneous collections of data"
   homepage "https://boost.org/libs/fusion/"
   url "https://github.com/boostorg/fusion.git",
     tag:      "boost-1.77.0",

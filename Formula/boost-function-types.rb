@@ -1,5 +1,5 @@
 class BoostFunctionTypes < Formula
-  desc "Awesome library from Boost"
+  desc "Make funciton types better"
   homepage "https://boost.org/libs/function_types/"
   url "https://github.com/boostorg/function_types.git",
     tag:      "boost-1.77.0",
