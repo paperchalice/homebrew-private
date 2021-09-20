@@ -24,8 +24,8 @@ class BoostFiber < Formula
 
     %w[config context filesystem].each do |d|
       f = Formula["boost-#{d}"]
-      Pathname.glob(f.lib/"cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
-      Pathname.glob(f.lib/"lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
+      f.lib.glob("cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
+      f.lib.glob("lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
     end
 
     prefix.install "stage/lib"
