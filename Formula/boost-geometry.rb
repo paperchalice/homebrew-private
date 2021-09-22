@@ -1,5 +1,5 @@
 class BoostGeometry < Formula
-  desc "Awesome library from Boost"
+  desc "Generic Geometry Library"
   homepage "https://boost.org/libs/geometry/"
   url "https://github.com/boostorg/geometry.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,8 @@ class BoostGeometry < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-geometry-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "5ad1eaf5e27b6454b97ed38257dd26028fc0a13edb621aae0d841a0b62de03bc"
   end
+
+  depends_on "boost-filesystem"
 
   def install
     prefix.install "include"
