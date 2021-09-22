@@ -1,5 +1,5 @@
 class BoostPfr < Formula
-  desc "Awesome library from Boost"
+  desc "Basic reflection"
   homepage "https://boost.org/libs/pfr/"
   url "https://github.com/boostorg/pfr.git",
     tag:      "boost-1.77.0",

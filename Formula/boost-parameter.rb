@@ -1,5 +1,5 @@
 class BoostParameter < Formula
-  desc "Awesome library from Boost"
+  desc "Write functions and class templates that can accept arguments by name"
   homepage "https://boost.org/libs/parameter/"
   url "https://github.com/boostorg/parameter.git",
     tag:      "boost-1.77.0",

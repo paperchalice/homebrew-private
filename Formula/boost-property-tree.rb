@@ -1,5 +1,5 @@
 class BoostPropertyTree < Formula
-  desc "Awesome library from Boost"
+  desc "Stores an arbitrarily deeply nested tree of values"
   homepage "https://boost.org/libs/property_tree/"
   url "https://github.com/boostorg/property_tree.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,9 @@ class BoostPropertyTree < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-property-tree-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "58d93fae4ea2da6ccbe2905024bcdd914e74e53c4e0420a239ff0e17502313ef"
   end
+
+  depends_on "boost-any"
+  depends_on "boost-multi-index"
 
   def install
     prefix.install "include"

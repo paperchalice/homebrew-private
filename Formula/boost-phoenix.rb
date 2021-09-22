@@ -1,5 +1,5 @@
 class BoostPhoenix < Formula
-  desc "Awesome library from Boost"
+  desc "FP techniques such as higher order functions"
   homepage "https://boost.org/libs/phoenix/"
   url "https://github.com/boostorg/phoenix.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,9 @@ class BoostPhoenix < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-phoenix-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "5ec41649ffc527ffda697e9876836f1490bb5815e4575683c4861e1099e89a9a"
   end
+
+  depends_on "boost-proto"
+  depends_on "boost-range"
 
   def install
     prefix.install "include"

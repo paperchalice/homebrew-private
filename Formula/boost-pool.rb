@@ -1,5 +1,5 @@
 class BoostPool < Formula
-  desc "Awesome library from Boost"
+  desc "Memory allocation scheme that is very fast"
   homepage "https://boost.org/libs/pool/"
   url "https://github.com/boostorg/pool.git",
     tag:      "boost-1.77.0",
