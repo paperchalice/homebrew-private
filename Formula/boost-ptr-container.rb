@@ -12,7 +12,7 @@ class BoostPtrContainer < Formula
   end
 
   depends_on "boost-circular-buffer"
-  depends_on "boost-serialization"
+  depends_on "boost-serialization"
   depends_on "boost-unordered"
 
   def install
