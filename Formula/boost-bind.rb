@@ -1,5 +1,5 @@
 class BoostBind < Formula
-  desc "Awesome library from Boost"
+  desc "Generalization of the standard functions std::bind"
   homepage "https://boost.org/libs/bind/"
   url "https://github.com/boostorg/bind.git",
     tag:      "boost-1.77.0",

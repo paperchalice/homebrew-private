@@ -1,5 +1,5 @@
 class BoostBeast < Formula
-  desc "Awesome library from Boost"
+  desc "HTTP and WebSocket built on Boost.Asio in C++11"
   homepage "https://boost.org/libs/beast/"
   url "https://github.com/boostorg/beast.git",
     tag:      "boost-1.77.0",

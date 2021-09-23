@@ -1,5 +1,5 @@
 class BoostBimap < Formula
-  desc "Awesome library from Boost"
+  desc "Bidirectional maps library for C++"
   homepage "https://boost.org/libs/bimap/"
   url "https://github.com/boostorg/bimap.git",
     tag:      "boost-1.77.0",
