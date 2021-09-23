@@ -1,5 +1,5 @@
 class BoostTuple < Formula
-  desc "Awesome library from Boost"
+  desc "Tuple from boost"
   homepage "https://boost.org/libs/tuple/"
   url "https://github.com/boostorg/tuple.git",
     tag:      "boost-1.77.0",

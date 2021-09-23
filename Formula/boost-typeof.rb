@@ -1,5 +1,5 @@
 class BoostTypeof < Formula
-  desc "Awesome library from Boost"
+  desc "Get types before language-based facility is added"
   homepage "https://boost.org/libs/typeof/"
   url "https://github.com/boostorg/typeof.git",
     tag:      "boost-1.77.0",
