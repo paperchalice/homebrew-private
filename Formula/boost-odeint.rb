@@ -1,5 +1,5 @@
 class BoostOdeint < Formula
-  desc "Awesome library from Boost"
+  desc "Highly flexible library for solving ordinary differential equations"
   homepage "https://boost.org/libs/numeric/odeint/"
   url "https://github.com/boostorg/odeint.git",
     tag:      "boost-1.77.0",

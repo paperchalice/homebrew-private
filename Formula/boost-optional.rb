@@ -1,5 +1,5 @@
 class BoostOptional < Formula
-  desc "Awesome library from Boost"
+  desc "Representing optional objects in C++"
   homepage "https://boost.org/libs/optional/"
   url "https://github.com/boostorg/optional.git",
     tag:      "boost-1.77.0",

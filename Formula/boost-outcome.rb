@@ -1,5 +1,5 @@
 class BoostOutcome < Formula
-  desc "Awesome library from Boost"
+  desc "Provides very lightweight outcome<T> and result"
   homepage "https://boost.org/libs/outcome/"
   url "https://github.com/boostorg/outcome.git",
     tag:      "boost-1.77.0",
