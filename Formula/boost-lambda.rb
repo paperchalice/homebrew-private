@@ -1,5 +1,5 @@
 class BoostLambda < Formula
-  desc "Awesome library from Boost"
+  desc "Lambda calculus in C++"
   homepage "https://boost.org/libs/lambda/"
   url "https://github.com/boostorg/lambda.git",
     tag:      "boost-1.77.0",
