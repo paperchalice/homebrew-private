@@ -1,5 +1,5 @@
 class BoostJson < Formula
-  desc "Awesome library from Boost"
+  desc "C++ Json parser"
   homepage "https://boost.org/libs/json/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
