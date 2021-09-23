@@ -1,5 +1,5 @@
 class BoostMetaparse < Formula
-  desc "Awesome library from Boost"
+  desc "Generating compile time parsers"
   homepage "https://boost.org/libs/metaparse/"
   url "https://github.com/boostorg/metaparse.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,8 @@ class BoostMetaparse < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-metaparse-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "750a43bc2445ff2ab3edf2a6700de44d217447c31ffe69a3379eab6147eda0b5"
   end
+
+  depends_on "boost-mpl"
 
   def install
     prefix.install "include"

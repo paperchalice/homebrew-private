@@ -1,5 +1,5 @@
 class BoostMp11 < Formula
-  desc "Awesome library from Boost"
+  desc "C++11 metaprogramming library"
   homepage "https://boost.org/libs/mp11/"
   url "https://github.com/boostorg/mp11.git",
     tag:      "boost-1.77.0",

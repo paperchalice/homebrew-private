@@ -1,5 +1,5 @@
 class BoostMsm < Formula
-  desc "Awesome library from Boost"
+  desc "Meta State Machine"
   homepage "https://boost.org/libs/msm/"
   url "https://github.com/boostorg/msm.git",
     tag:      "boost-1.77.0",
@@ -10,6 +10,10 @@ class BoostMsm < Formula
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/boost-msm-1.77.0"
     sha256 cellar: :any_skip_relocation, big_sur: "3bbf51bab6d323dfe22d85795b6c8b98234f09b2e22cacec53724ee97c1d6ee9"
   end
+
+  depends_on "boost-circular-buffer"
+  depends_on "boost-phoenix"
+  depends_on "boost-serialization"
 
   def install
     prefix.install "include"

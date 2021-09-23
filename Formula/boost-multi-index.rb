@@ -1,5 +1,5 @@
 class BoostMultiIndex < Formula
-  desc "Awesome library from Boost"
+  desc "Maintaining one or more indices"
   homepage "https://boost.org/libs/multi_index/"
   url "https://github.com/boostorg/multi_index.git",
     tag:      "boost-1.77.0",

@@ -1,5 +1,5 @@
 class BoostMove < Formula
-  desc "Awesome library from Boost"
+  desc "Move semantics for old compiler"
   homepage "https://boost.org/libs/move/"
   url "https://github.com/boostorg/move.git",
     tag:      "boost-1.77.0",

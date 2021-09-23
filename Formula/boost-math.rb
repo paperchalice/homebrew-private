@@ -1,5 +1,5 @@
 class BoostMath < Formula
-  desc "Awesome library from Boost"
+  desc "Math Library"
   homepage "https://boost.org/libs/math/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
@@ -13,6 +13,9 @@ class BoostMath < Formula
   end
 
   depends_on "boost-config" => :build
+
+  depends_on "boost-lexical-cast"
+  depends_on "boost-random"
 
   def install
     boost_name = name.delete_prefix("boost-").sub("-", "_")
