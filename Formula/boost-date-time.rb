@@ -1,5 +1,5 @@
 class BoostDateTime < Formula
-  desc "Awesome library from Boost"
+  desc "Rrepresent date in C++"
   homepage "https://boost.org/libs/date_time/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",

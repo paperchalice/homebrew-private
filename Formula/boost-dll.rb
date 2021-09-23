@@ -1,5 +1,5 @@
 class BoostDll < Formula
-  desc "Awesome library from Boost"
+  desc "Library for comfortable work with DLL and DSO"
   homepage "https://boost.org/libs/dll/"
   url "https://github.com/boostorg/dll.git",
     tag:      "boost-1.77.0",

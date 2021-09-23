@@ -1,5 +1,5 @@
 class BoostDynamicBitset < Formula
-  desc "Awesome library from Boost"
+  desc "Bitset size is specified at run-time"
   homepage "https://boost.org/libs/dynamic_bitset/"
   url "https://github.com/boostorg/dynamic_bitset.git",
     tag:      "boost-1.77.0",

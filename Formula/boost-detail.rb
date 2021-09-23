@@ -1,5 +1,5 @@
 class BoostDetail < Formula
-  desc "Awesome library from Boost"
+  desc "Misc detail for boost"
   homepage "https://boost.org/libs/detail/"
   url "https://github.com/boostorg/detail.git",
     tag:      "boost-1.77.0",

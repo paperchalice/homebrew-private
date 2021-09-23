@@ -1,5 +1,5 @@
 class BoostEndian < Formula
-  desc "Awesome library from Boost"
+  desc "Facilities for dealing with endianness"
   homepage "https://boost.org/libs/endian/"
   url "https://github.com/boostorg/endian.git",
     tag:      "boost-1.77.0",

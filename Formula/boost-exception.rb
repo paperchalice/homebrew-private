@@ -1,5 +1,5 @@
 class BoostException < Formula
-  desc "Awesome library from Boost"
+  desc "Dynamic Exception Augmentation Library"
   homepage "https://boost.org/libs/exception/"
   url "https://github.com/boostorg/boost.git",
     tag:      "boost-1.77.0",
