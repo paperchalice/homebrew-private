@@ -32,6 +32,12 @@ class QtQuickTimeline < Formula
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
+
+    lib.glob("*.framework") do |f|
+      frameworks.install_symlink f
+      include.install_symlink f/"Headers" => f.stem
+      lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
+    end
   end
 
   test do
