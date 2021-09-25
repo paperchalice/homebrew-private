@@ -1,8 +1,8 @@
 class QtQuick3d < Formula
   desc "New module and API for defining 3D content in Qt Quick"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qtquick3d-everywhere-src-6.1.3.tar.xz"
-  sha256 "91dbdda78204cb27c100ed3a4eed9f3b18466c4349b1f164191a646348410ca6"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtquick3d-everywhere-src-6.2.0-rc2.tar.xz"
+  sha256 "5ed98ceab987686a048f3264d62aed3fd21f45fe53c365dbb9a15dc48576267d"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtquick3d.git", branch: "dev"
 
@@ -16,13 +16,14 @@ class QtQuick3d < Formula
     sha256 cellar: :any, big_sur: "415cf0f596f7997ff3dca5bbc8b621ac423ff99b5f815ba57c92b03ac9524888"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake"   => [:build, :test]
+  depends_on "perl"    => :build
+  depends_on "pkgconf" => :build
 
   depends_on "assimp"
   depends_on "qt-base"
   depends_on "qt-declarative"
+  depends_on "qt-quick-timeline"
   depends_on "qt-shader-tools"
 
   def install
