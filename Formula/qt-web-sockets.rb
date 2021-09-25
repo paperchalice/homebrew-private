@@ -6,6 +6,11 @@ class QtWebSockets < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebsockets.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-sockets-6.2.0-rc2"
+    sha256 cellar: :any, big_sur: "a3e79d10c888f196101edbd5a1e3cc70fcb8852f5b9491cb91d90cdefb887d9e"
+  end
+
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
