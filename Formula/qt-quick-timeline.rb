@@ -1,8 +1,8 @@
 class QtQuickTimeline < Formula
   desc "Module for keyframe-based timeline construction"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qtquicktimeline-everywhere-src-6.1.3.tar.xz"
-  sha256 "2b558f2abe7d6d4b1a500bd8126987e76314e6cd499d365a6476f347b8d2d82a"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtquicktimeline-everywhere-src-6.2.0-rc2.tar.xz"
+  sha256 "21656346e9627aaa872b024bd9cfe29fb42f02a9858d89e38b98dbdaf8ec1019"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtquicktimeline.git", branch: "dev"
 
