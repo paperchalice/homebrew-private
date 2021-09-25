@@ -1,8 +1,8 @@
 class QtWebEngine < Formula
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtwebengine-everywhere-src-6.1.1.tar.xz"
-  sha256 "246d1acdcd953819b09b1da22bd359335d145d8a3550d9e827dc1fd27b6bd3ff"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtwebengine-everywhere-src-6.2.0-rc2.tar.xz"
+  sha256 "d0088aea07c3b4fda06585f98fe8e7dfc13e8a1fcfd12388c6c1b4a4d97621d4"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
@@ -10,23 +10,14 @@ class QtWebEngine < Formula
   depends_on "ninja"      => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
+  depends_on "python"     => :build
 
-  depends_on "ffmpeg"
-  depends_on "icu4c"
-  depends_on "libevent"
-  depends_on "libvpx"
-  depends_on "little-cms2"
-  depends_on "minizip"
   depends_on "node"
-  depends_on "opus"
-  depends_on "protobuf"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-location"
   depends_on "qt-tools"
   depends_on "qt-web-channel"
-  depends_on "re2"
-  depends_on "snappy"
 
   uses_from_macos "bison" => :build
   uses_from_macos "flex"  => :build
@@ -37,10 +28,28 @@ class QtWebEngine < Formula
   uses_from_macos "zlib"
 
   def install
+    inreplace "cmake/Functions.cmake", '"${clangBasePath}"', '"/usr"'
+
+    cd "src/3rdparty/gn" do
+      gn_args = %W[
+        --no-last-commit-position
+        --cc cc
+        --cxx c++
+        --ld clang++
+        --qt-version #{version.major_minor_patch}.qtwebengine.qt.io
+        --isysroot #{MacOS.sdk_path}
+      ]
+      system "python2", "build/gen.py", *gn_args
+      system "ninja", "-C", "out/", "gn"
+      ENV.append_path "PATH", buildpath/"src/3rdparty/gn/out"
+    end
+
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -S .
+      -G Ninja
     ]
     system "cmake", *cmake_args
     system "cmake", "--build", "."
