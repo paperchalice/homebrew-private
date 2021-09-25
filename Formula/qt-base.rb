@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qtbase-everywhere-src-6.1.3.tar.xz"
-  sha256 "1e9abb2ea4daa0fd11f46fc871d9e896b916e1b7130fed74c83d66221bb4fe78"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtbase-everywhere-src-6.2.0-rc2.tar.xz"
+  sha256 "a4fc0c542f7836f8d6c02abeb1fb7869e212689b4c35b57758e3a796a92fcff9"
   license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
@@ -55,9 +55,10 @@ class QtBase < Formula
       -D INSTALL_MKSPECSDIR=share/qt/mkspecs
       -D INSTALL_TESTSDIR=share/qt/tests
 
+      -D FEATURE_optimize_size=ON
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
-      -D FEATURE_relocatable=ON
+      -D FEATURE_relocatable=OFF
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
       -D FEATURE_sql_mysql=OFF
@@ -72,20 +73,18 @@ class QtBase < Formula
     system "cmake", "--install", ".", "--strip"
 
     rm bin/"qt-cmake-private-install.cmake"
-    rm bin/"qmake"
-    bin.install_symlink bin/"qmake#{version.major}" => "qmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", Superenv.shims_path, "/usr/bin"
+    inreplace share/"qt/mkspecs/qmodule.pri", Superenv.shims_path/"pkg-config", HOMEBREW_PREFIX/"bin/pkgconf"
 
+    %w[qmake qtpaths].each do |x|
+      rm bin/x
+      bin.install_symlink bin/"#{x}#{version.major}" => x
+    end
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
       lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
-  end
-
-  def post_install
-    MachO::Tools.change_dylib_id lib/"QtCore.framework/QtCore",
-      "#{HOMEBREW_PREFIX}/lib/QtCore.framework/Versions/A/QtCore"
   end
 
   test do
