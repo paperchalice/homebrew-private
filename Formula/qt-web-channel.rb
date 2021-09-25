@@ -6,6 +6,11 @@ class QtWebChannel < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebchannel.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-channel-6.2.0-rc2"
+    sha256 cellar: :any, big_sur: "dea272168088ce20f0cb71827fd1a2757e8cf66a389fae58e7b0ddb19e88b7d2"
+  end
+
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
