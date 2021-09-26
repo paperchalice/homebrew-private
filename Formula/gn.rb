@@ -2,7 +2,7 @@ class Gn < Formula
   desc "Generate Ninja - Chromium's build system"
   homepage "https://gn.googlesource.com/gn/"
   url "https://gn.googlesource.com/gn.git"
-  version "1936"
+  version "1938"
   license "BSD-3-Clause"
 
   bottle do
