@@ -6,8 +6,8 @@ class Gn < Formula
   license "BSD-3-Clause"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gn-1936"
-    sha256 cellar: :any_skip_relocation, big_sur: "a6483ebed67cc7a0ff28561002e1a43f1692ba45d1b98e338e125c57e38d9452"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gn-1938"
+    sha256 cellar: :any_skip_relocation, big_sur: "105fbf631a867c49c384fc1a6cfed6885ef5998631a6b57f4c19706cb141962f"
   end
 
   depends_on "ninja"  => :build
