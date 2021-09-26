@@ -12,8 +12,8 @@ class QtQuick3d < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick3d-6.1.3"
-    sha256 cellar: :any, big_sur: "415cf0f596f7997ff3dca5bbc8b621ac423ff99b5f815ba57c92b03ac9524888"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick3d-6.2.0-rc2"
+    sha256 cellar: :any, big_sur: "980aba5abacf4b87b44bcd5c83cdf02d84189e564a5d3438dc2945d1e266fa7d"
   end
 
   depends_on "cmake"   => [:build, :test]
