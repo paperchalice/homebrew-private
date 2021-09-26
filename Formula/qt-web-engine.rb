@@ -32,11 +32,12 @@ class QtWebEngine < Formula
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
       -S .
+      -B build
       -G Ninja
     ]
     system "cmake", *cmake_args
-    system "cmake", "--build", "."
-    system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build", "--strip"
 
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
