@@ -1,14 +1,14 @@
 class QtTools < Formula
   desc "Qt utilities"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.3/submodules/qttools-everywhere-src-6.1.3.tar.xz"
-  sha256 "29c1e305752791070f5dee2182ba9a44a489a1217911ceafca063f1007e6fb38"
+  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qttools-everywhere-src-6.2.0-rc2.tar.xz"
+  sha256 "83ca926e1580b3d6e8e639c14722e1e78e6ef9cc19c3c1e2f61e4aadc5a93b69"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.1.3"
-    sha256 cellar: :any, big_sur: "744099ddfacb3769dcd0a175879792b717e3e9dad2b6ffc5bd7014a9be6f4a6f"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.2.0-rc2"
+    sha256 cellar: :any, big_sur: "680c56f9716d9f0b042ef27550843eda3b6c87305795d58d973056874d4b5670"
   end
 
   depends_on "cmake"      => [:build, :test]
