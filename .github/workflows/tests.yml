@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-11.0]
-    timeout-minutes: 2
+    timeout-minutes: 720
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install MacTeX
