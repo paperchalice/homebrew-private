@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtbase-everywhere-src-6.2.0-rc2.tar.xz"
-  sha256 "a4fc0c542f7836f8d6c02abeb1fb7869e212689b4c35b57758e3a796a92fcff9"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtbase-everywhere-src-6.2.0.tar.xz"
+  sha256 "fdfff0716d093bcb6bcd53746ce1d3c9701a6bf3326d47813866d43949b47769"
   license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
