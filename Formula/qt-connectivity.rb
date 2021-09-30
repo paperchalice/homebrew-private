@@ -6,6 +6,11 @@ class QtConnectivity < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtconnectivity.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-connectivity-6.2.0"
+    sha256 cellar: :any, big_sur: "549d8155dffd60b68243e6e67877169fb1e515282febdd612de48d64c7e5979a"
+  end
+
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
