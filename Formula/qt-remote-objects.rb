@@ -6,6 +6,11 @@ class QtRemoteObjects < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtremoteobjects.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-remote-objects-6.2.0"
+    sha256 cellar: :any, big_sur: "77b88a731438d756820660ca806ab4a1f5ad5016b971dc9fea220449d1b7b3f1"
+  end
+
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
