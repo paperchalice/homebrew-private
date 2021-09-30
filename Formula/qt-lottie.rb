@@ -7,8 +7,8 @@ class QtLottie < Formula
   head "https://code.qt.io/qt/qtlottie.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-lottie-6.1.3"
-    sha256 cellar: :any, big_sur: "0f159d99e22d6e5edc11759568334ccbc62bef6a3be491beadc0de3aba443fe4"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-lottie-6.2.0"
+    sha256 cellar: :any, big_sur: "ab53dac1133b43a89e91330cbe5ed413149794231fba8431866665444c7264a2"
   end
 
   depends_on "cmake"      => [:build, :test]
