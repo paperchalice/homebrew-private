@@ -1,8 +1,8 @@
 class QtRemoteObjects < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtremoteobjects-everywhere-src-6.1.1.tar.xz"
-  sha256 "246d1acdcd953819b09b1da22bd359335d145d8a3550d9e827dc1fd27b6bd3ff"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtremoteobjects-everywhere-src-6.2.0.tar.xz"
+  sha256 "69b2ee333569bab026eaf16e4a552f912c0dc5afbe01e1609ddbb0e78b4593ca"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtremoteobjects.git", branch: "dev"
 

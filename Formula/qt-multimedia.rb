@@ -1,8 +1,8 @@
 class QtMultimedia < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtmultimedia-everywhere-src-6.1.1.tar.xz"
-  sha256 "246d1acdcd953819b09b1da22bd359335d145d8a3550d9e827dc1fd27b6bd3ff"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtmultimedia-everywhere-src-6.2.0.tar.xz"
+  sha256 "f12b96e6da2ebfe84105c0cb6e96fbc6bda012de8998ec5c96b58c85dcb40b4f"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtmultimedia.git", branch: "dev"
 
@@ -10,8 +10,6 @@ class QtMultimedia < Formula
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
 
-  depends_on "gstreamer"
-  depends_on "pulseaudio"
   depends_on "qt-base"
   depends_on "qt-declarative"
 

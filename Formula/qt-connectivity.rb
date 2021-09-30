@@ -1,8 +1,8 @@
 class QtConnectivity < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.1/6.1.1/submodules/qtconnectivity-everywhere-src-6.1.1.tar.xz"
-  sha256 "246d1acdcd953819b09b1da22bd359335d145d8a3550d9e827dc1fd27b6bd3ff"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtconnectivity-everywhere-src-6.2.0.tar.xz"
+  sha256 "4c689100bb43f78a7e30380296376b7f4dff356d9a02b0bba97362d6b497649c"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtconnectivity.git", branch: "dev"
 
