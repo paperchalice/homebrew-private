@@ -7,8 +7,8 @@ class QtTranslations < Formula
   head "https://code.qt.io/qt/qttranslations.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.1.3"
-    sha256 cellar: :any_skip_relocation, big_sur: "f99d82522eb9ceedd69b8b8599a52a87a72c8965b8e770b0d825523d7529750c"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.2.0"
+    sha256 cellar: :any_skip_relocation, big_sur: "56a0042832fc0fb12d71c2f4ec3b39551d99f93e956c280abf5cb8dc3375482a"
   end
 
   depends_on "cmake"    => :build
