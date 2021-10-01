@@ -41,7 +41,7 @@ class QtBase < Formula
 
   def install
     ENV.permit_arch_flags
-    inreplace "CMakeLists.txt", "FATAL_ERROR", ""
+    cd buildpath.realpath
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
