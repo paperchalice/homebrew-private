@@ -42,6 +42,7 @@ class QtWebEngine < Formula
 
       -S .
     ]
+    cd buildpath.realpath
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"

@@ -41,7 +41,6 @@ class QtBase < Formula
 
   def install
     ENV.permit_arch_flags
-    cd buildpath.realpath
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
@@ -68,9 +67,13 @@ class QtBase < Formula
       -G Ninja
     ]
 
-    system "cmake", *cmake_args
-    system "cmake", "--build", "."
-    system "cmake", "--install", ".", "--strip"
+    cd buildpath.realpath do
+      p = pwd
+      system "echo", p.to_s
+      system "cmake", *cmake_args
+      system "cmake", "--build", "."
+      system "cmake", "--install", ".", "--strip"
+    end
 
     rm bin/"qt-cmake-private-install.cmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", Superenv.shims_path, "/usr/bin"
