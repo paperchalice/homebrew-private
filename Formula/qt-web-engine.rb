@@ -1,8 +1,8 @@
 class QtWebEngine < Formula
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtwebengine-everywhere-src-6.2.0-rc2.tar.xz"
-  sha256 "d0088aea07c3b4fda06585f98fe8e7dfc13e8a1fcfd12388c6c1b4a4d97621d4"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtwebengine-everywhere-src-6.2.0.tar.xz"
+  sha256 "c6e530a61bea2e7fbb50308a2b4e7fdb4f7c7b61a28797973270acffc020809d"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
