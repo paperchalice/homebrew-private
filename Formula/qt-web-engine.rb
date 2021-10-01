@@ -6,13 +6,13 @@ class QtWebEngine < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "ninja"      => :build
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
-  depends_on "python"     => :build
+  depends_on "cmake"   => [:build, :test]
+  depends_on "ninja"   => :build
+  depends_on "node"    => :build
+  depends_on "perl"    => :build
+  depends_on "pkgconf" => :build
+  depends_on "python"  => :build
 
-  depends_on "node"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-location"
@@ -28,11 +28,18 @@ class QtWebEngine < Formula
   uses_from_macos "zlib"
 
   def install
+    inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
+        'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
+    inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
+              "FilePath(full_path)", "FilePath(input)"
     %w[
-      cmake/Functions.cmake
-      src/CMakeLists.txt
       cmake/Gn.cmake
-    ].each { |p| inreplace p, "REALPATH", "ABSOLUTE" }
+      cmake/Functions.cmake
+      src/core/api/CMakeLists.txt
+      src/CMakeLists.txt
+      src/gn/CMakeLists.txt
+      src/process/CMakeLists.txt
+    ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
@@ -42,8 +49,7 @@ class QtWebEngine < Formula
       -G Ninja
     ]
     system "cmake", *cmake_args
-    system "cmake", "--build", ".", "-t", "run_core_GnDone"
-    system "false"
+    system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
     lib.glob("*.framework") do |f|
