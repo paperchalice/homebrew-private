@@ -2,8 +2,8 @@ class Unwinder < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.1",
-    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
+    tag:      "llvmorg-13.0.0",
+    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
