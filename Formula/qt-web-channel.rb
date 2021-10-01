@@ -7,8 +7,8 @@ class QtWebChannel < Formula
   head "https://code.qt.io/qt/qtwebchannel.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-channel-6.2.0-rc2"
-    sha256 cellar: :any, big_sur: "dea272168088ce20f0cb71827fd1a2757e8cf66a389fae58e7b0ddb19e88b7d2"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-channel-6.2.0"
+    sha256 cellar: :any, big_sur: "4624f6e5f555caf7ca4b15f972867b94c270d48ec09a4fa53dcdecdb0b367240"
   end
 
   depends_on "cmake"      => [:build, :test]
