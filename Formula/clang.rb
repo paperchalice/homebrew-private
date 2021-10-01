@@ -15,11 +15,11 @@ class Clang < Formula
 
   depends_on "cmake"       => :build
   depends_on "compiler-rt" => :build
+  depends_on "lld"         => :build
   depends_on "python"      => :build
   depends_on "sphinx-doc"  => :build
   depends_on "unwinder"    => :build
 
-  depends_on "lld"
   depends_on "llvm-core"
 
   uses_from_macos "libxml2"
