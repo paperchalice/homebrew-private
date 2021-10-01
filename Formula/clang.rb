@@ -2,8 +2,8 @@ class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.1",
-    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
+    tag:      "llvmorg-13.0.0",
+    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -16,11 +16,11 @@ class Clang < Formula
 
   depends_on "cmake"       => :build
   depends_on "compiler-rt" => :build
-  depends_on "libc++"      => :build
   depends_on "python"      => :build
   depends_on "sphinx-doc"  => :build
   depends_on "unwinder"    => :build
 
+  depends_on "lld"
   depends_on "llvm-core"
 
   uses_from_macos "libxml2"
@@ -58,8 +58,6 @@ class Clang < Formula
     args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
-      -D CMAKE_EXE_LINKER_FLAGS=-L/usr/lib
-      -D CMAKE_SHARED_LINKER_FLAGS=-L/usr/lib
 
       -D C_INCLUDE_DIRS=#{include_dirs}
       -D CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
@@ -67,6 +65,7 @@ class Clang < Formula
       -D CLANG_DEFAULT_STD_C=c17
       -D CLANG_DEFAULT_STD_CXX=cxx17
       -D CLANG_DEFAULT_CXX_STDLIB=libc++
+      -D CLANG_DEFAULT_LINKER=lld
       -D CLANG_DEFAULT_RTLIB=compiler-rt
       -D CLANG_DEFAULT_UNWINDLIB=libunwind
       -D CLANG_LINK_CLANG_DYLIB=OFF
