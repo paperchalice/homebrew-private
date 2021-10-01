@@ -30,6 +30,7 @@ class QtWebEngine < Formula
   def install
     inreplace "cmake/Functions.cmake", 'clang_base_path="${clangBasePath}"', ""
     inreplace "src/CMakeLists.txt", "REALPATH", "ABSOLUTE"
+    inreplace "src/gn/CMakeLists.txt", "REALPATH", "ABSOLUTE"
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
