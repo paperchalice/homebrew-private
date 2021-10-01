@@ -1,8 +1,8 @@
 class QtQuick3d < Formula
   desc "New module and API for defining 3D content in Qt Quick"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/development_releases/qt/6.2/6.2.0-rc2/submodules/qtquick3d-everywhere-src-6.2.0-rc2.tar.xz"
-  sha256 "5ed98ceab987686a048f3264d62aed3fd21f45fe53c365dbb9a15dc48576267d"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtquick3d-everywhere-src-6.2.0.tar.xz"
+  sha256 "e8f8163237468e158ace7737d60a0a722209ffda444c57c786fc53db1af851e1"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtquick3d.git", branch: "dev"
 

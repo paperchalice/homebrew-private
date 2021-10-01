@@ -12,6 +12,7 @@ class QtMultimedia < Formula
 
   depends_on "qt-base"
   depends_on "qt-declarative"
+  depends_on "qt-shader-tools"
 
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
