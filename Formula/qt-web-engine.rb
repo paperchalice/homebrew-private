@@ -28,21 +28,8 @@ class QtWebEngine < Formula
   uses_from_macos "zlib"
 
   def install
-    inreplace "cmake/Functions.cmake", '"${clangBasePath}"', '"/usr"'
-
-    cd "src/3rdparty/gn" do
-      gn_args = %W[
-        --no-last-commit-position
-        --cc cc
-        --cxx c++
-        --ld clang++
-        --qt-version #{version.major_minor_patch}.qtwebengine.qt.io
-        --isysroot #{MacOS.sdk_path}
-      ]
-      system "python2", "build/gen.py", *gn_args
-      system "ninja", "-C", "out/", "gn"
-      ENV.append_path "PATH", buildpath/"src/3rdparty/gn/out"
-    end
+    inreplace "cmake/Functions.cmake", 'clang_base_path="${clangBasePath}"', ""
+    inreplace "src/CMakeLists.txt", "REALPATH", "ABSOLUTE"
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
