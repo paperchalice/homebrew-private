@@ -7,8 +7,8 @@ class QtLocation < Formula
   head "https://code.qt.io/qt/qtlocation.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-location-6.2.0-rc2"
-    sha256 cellar: :any, big_sur: "a712ef0426873bca9a5eaa6d1d6991fb8ca1f0c0501b540aa0cbd2b408d5b7a8"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-location-6.2.0"
+    sha256 cellar: :any, big_sur: "83f6a1211f88991c70883c6612612a5c93a15c6b0f8869b277ddad77590368e7"
   end
 
   depends_on "cmake"      => [:build, :test]
