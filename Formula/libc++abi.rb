@@ -2,8 +2,8 @@ class Libcxxabi < Formula
   desc "C++ Standard Library Support"
   homepage "https://libcxxabi.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.1",
-    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
+    tag:      "llvmorg-13.0.0",
+    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -18,9 +18,17 @@ class Libcxxabi < Formula
   depends_on "unwinder"
 
   def install
-    args = std_cmake_args+ %w[
+    inreplace "libcxx/cmake/Modules/MacroEnsureOutOfSourceBuild.cmake", "FATAL_ERROR", ""
+    libcxx_args = %w[
+      -S libcxx
+      -B libcxx/build
+    ]
+    system "cmake", *libcxx_args
+    (buildpath/"libcxx/include").install buildpath/"libcxx/build/include/c++/v1/__config_site"
+    args = std_cmake_args+ %W[
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON
       -D LIBCXXABI_USE_COMPILER_RT=ON
+      -D LIBCXXABI_LIBCXX_INCLUDES=#{buildpath}/libcxx/include
 
       -S libcxxabi
       -B build
