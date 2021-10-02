@@ -2,25 +2,27 @@ class Mlir < Formula
   desc "Multi-Level Intermediate Representation"
   homepage "https://mlir.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-12.0.1",
-    revision: "fed41342a82f5a3a9201819a82bf7a48313e296b"
+    tag:      "llvmorg-13.0.0",
+    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   depends_on "cmake" => :build
 
   depends_on "llvm-core"
-
-  patch do
-    url "https://github.com/llvm/llvm-project/commit/2aa1af9b1da0d832270d9b8afcba19a4aba2c366.patch?full_index=1"
-    sha256 "9eef2025e3e4401e705426b3bf9af7a04ab0fbb4c3cc055dded6e16addec1d79"
-  end
+  # TODO: depends_on "numpy"
+  # TODO: depends_on "pybind11"
+  # TODO: depends_on "python"
 
   def install
     cd "mlir"
 
     cmake_args = std_cmake_args+ %w[
-      -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_CXX_STANDARD=17
+      -D BUILD_SHARED_LIBS=OFF
+      -D CMAKE_CXX_STANDARD=17
+
+      -D LLVM_BUILD_TOOLS=ON
+      -D MLIR_ENABLE_BINDINGS_PYTHON=OFF
+      -D MLIR_BINDINGS_PYTHON_LOCK_VERSION=OFF
 
       -S .
       -B build
