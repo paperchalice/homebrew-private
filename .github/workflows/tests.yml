@@ -48,9 +48,12 @@ jobs:
           git checkout main
           git rebase master
           popd
+          mkdir -p $GITHUB_WORKSPACE/../tmp
 
       - run: brew test-bot --only-formulae --skip-dependents --verbose
         if: github.event_name == 'pull_request'
+        env:
+          HOMEBREW_TEMP: $GITHUB_WORKSPACE/../tmp
 
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
