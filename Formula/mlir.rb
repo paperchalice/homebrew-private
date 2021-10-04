@@ -8,7 +8,8 @@ class Mlir < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-13.0.0"
-    sha256 cellar: :any, big_sur: "0f57fb3aab46f6fb3f9f2d942ca422d15d6fe4ad3e20f599e0c75311375041a9"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "4d2ddc42dec1b212708aa41584885aadcbe3fd75fe0827b75a795397d0afdb6d"
   end
 
   depends_on "cmake" => :build
