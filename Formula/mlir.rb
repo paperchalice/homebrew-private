@@ -36,6 +36,8 @@ class Mlir < Formula
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
+
+    bin.install "build/bin/mlir-tblgen"
   end
 
   test do
