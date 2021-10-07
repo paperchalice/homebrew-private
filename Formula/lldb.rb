@@ -7,9 +7,8 @@ class Lldb < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/lldb-12.0.1"
-    rebuild 1
-    sha256 cellar: :any, big_sur: "a461cdb286feee084b46a9b1006604ebd4c00f0de32e26d71d869901ea22f4d6"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/lldb-13.0.0"
+    sha256 cellar: :any, big_sur: "f4c3c74b04bee8311a5eeb3d96025e78893160191a9e3e2a904e2fbf8047ae98"
   end
 
   depends_on "cmake" => :build
