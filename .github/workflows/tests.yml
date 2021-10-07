@@ -50,7 +50,7 @@ jobs:
           popd
           mkdir -p $GITHUB_WORKSPACE/../tmp
 
-      - run: brew test-bot --only-formulae --skip-dependents --verbose
+      - run: brew test-bot --only-formulae --skip-dependents
         if: github.event_name == 'pull_request'
         env:
           HOMEBREW_TEMP: $GITHUB_WORKSPACE/../tmp
