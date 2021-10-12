@@ -49,8 +49,6 @@ jobs:
           git rebase master
           popd
           mkdir -p $GITHUB_WORKSPACE/../tmp
-          brew install qt
-          brew unlink qt
 
       - run: brew test-bot --only-formulae --skip-dependents
         if: github.event_name == 'pull_request'
