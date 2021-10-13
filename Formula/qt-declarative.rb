@@ -19,9 +19,9 @@ class QtDeclarative < Formula
   depends_on "cmake"           => [:build, :test]
   depends_on "perl"            => :build
   depends_on "pkgconf"         => :build
+  depends_on "python"          => :build
   depends_on "qt-shader-tools" => :build
 
-  depends_on "python"
   depends_on "qt-base"
 
   def install
