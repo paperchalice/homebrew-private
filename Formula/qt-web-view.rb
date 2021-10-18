@@ -6,6 +6,12 @@ class QtWebView < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebview.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-view-6.2.0"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "73411a54b850cdbcdda136a73ec4bdcbf41ddc9370c1f73c1b677cfb744d1d65"
+  end
+
   keg_only "prepared bottle"
 
   depends_on "cmake"      => [:build, :test]
