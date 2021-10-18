@@ -12,10 +12,9 @@ class QtWebView < Formula
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
 
-  depends_on "qt"
-  # TODO: depends_on "qt-base"
-  # TODO: depends_on "qt-declarative"
-  # TODO: depends_on "qt-web-engine"
+  depends_on "qt-base"
+  depends_on "qt-declarative"
+  depends_on "qt-web-engine"
 
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
