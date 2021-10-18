@@ -43,12 +43,14 @@ class QtWebEngine < Formula
     mkdir_p lib/"metatypes"
     mkdir_p share/"qt/modules"
     mkdir_p share/"qt/qml"
+    mkdir_p share/"qt/mkspecs/modules"
 
     (lib/"cmake/Qt#{version.major}").install Dir["cmake/Find*"]
     cp_r qt.lib.glob("QtWebEngine*"), lib
     cp_r (qt.lib/"cmake").glob("qt#{version.major}webengine*"), lib/"metatypes"
     cp_r (qt.lib/"metatypes").glob("Qt#{version.major}WebEngine*"), lib/"cmake"
     cp_r (qt.pkgshare/"modules").glob("WebEngine*"), share/"qt/modules"
+    cp_r (qt.pkgshare/"mkspecs/modules").glob("qt_lib_webengine*"), share/"qt/mkspecs/modules"
     cp_r (qt.pkgshare/"qml").glob("QtWebEngine*"), share/"qt/qml"
     # inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
     #     'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
