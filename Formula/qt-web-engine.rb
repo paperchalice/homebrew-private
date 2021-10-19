@@ -75,8 +75,8 @@ class QtWebEngine < Formula
       -G Ninja
     ]
     system "cmake", *cmake_args
-    # TODO:system "cmake", "--build", "."
-    # TODO:system "cmake", "--install", ".", "--strip"
+    # TODO: system "cmake", "--build", "."
+    # TODO: system "cmake", "--install", ".", "--strip"
 
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
