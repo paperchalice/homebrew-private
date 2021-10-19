@@ -14,7 +14,7 @@ class Gn < Formula
   depends_on "python" => :build
 
   def install
-    system "python3", "build/gen.py"
+    system "./build/gen.py"
     system "ninja", "-C", "out/", "gn"
     bin.install "out/gn"
     doc.install Dir["docs/*"]
