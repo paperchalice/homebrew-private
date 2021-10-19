@@ -52,27 +52,29 @@ class QtWebEngine < Formula
     cp_r (qt.pkgshare/"modules").glob("WebEngine*"), share/"qt/modules"
     cp_r (qt.pkgshare/"mkspecs/modules").glob("qt_lib_webengine*"), share/"qt/mkspecs/modules"
     cp_r (qt.pkgshare/"qml").glob("QtWebEngine*"), share/"qt/qml"
-    # inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
-    #     'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
-    # inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
-    #           "FilePath(full_path)", "FilePath(input)"
-    # %w[
-    #   cmake/Gn.cmake
-    #   cmake/Functions.cmake
-    #   src/core/api/CMakeLists.txt
-    #   src/CMakeLists.txt
-    #   src/gn/CMakeLists.txt
-    #   src/process/CMakeLists.txt
-    # ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
-    # cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
-    #   -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
-    #   -D CMAKE_STAGING_PREFIX=#{prefix}
+    # real build steps
+    inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
+        'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
+    inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
+              "FilePath(full_path)", "FilePath(input)"
+    %w[
+      cmake/Gn.cmake
+      cmake/Functions.cmake
+      src/core/api/CMakeLists.txt
+      src/CMakeLists.txt
+      src/gn/CMakeLists.txt
+      src/process/CMakeLists.txt
+    ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
-    #   -S .
-    #   -G Ninja
-    # ]
-    # TODO:system "cmake", *cmake_args
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_STAGING_PREFIX=#{prefix}
+
+      -S .
+      -G Ninja
+    ]
+    system "cmake", *cmake_args
     # TODO:system "cmake", "--build", "."
     # TODO:system "cmake", "--install", ".", "--strip"
 
