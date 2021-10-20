@@ -79,10 +79,6 @@ class Gdc < Formula
       args << "--build=#{triple}"
       args << "--with-system-zlib"
 
-      # Workaround for Xcode 12.5 bug on Intel
-      # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100340
-      args << "--without-build-config" if Hardware::CPU.intel? && DevelopmentTools.clang_build_version >= 1205
-
       # System headers may not be in /usr/include
       ENV["SDKROOT"] = MacOS.sdk_path
       args << "--with-sysroot=#{MacOS.sdk_path}"
