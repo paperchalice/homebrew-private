@@ -16,6 +16,7 @@ class QtVirtualKeyboard < Formula
   depends_on "pkgconf"    => :build
 
   depends_on "hunspell"
+  depends_on "libxcb"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-svg"
