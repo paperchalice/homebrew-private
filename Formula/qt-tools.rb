@@ -33,6 +33,7 @@ class QtTools < Formula
     system "cmake", *args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
+    system "cmake", "--install", "src/designer/src/uiplugin"
 
     rm bin/"qtdiag"
     bin.install_symlink bin/"qtdiag#{version.major}" => "qtdiag"
