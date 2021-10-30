@@ -1,8 +1,8 @@
 class QtTools < Formula
   desc "Qt utilities"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qttools-everywhere-src-6.2.0.tar.xz"
-  sha256 "a903d005f8ab39545aed88a13b04f13ddbbe073da7007203a91fb8b42b890057"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qttools-everywhere-src-6.2.1.tar.xz"
+  sha256 "5a856d3d3d5fe6e15dc3f1af707a0ef1df2e687850403fc94af635edb9312bfb"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
@@ -21,6 +21,7 @@ class QtTools < Formula
 
   def install
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
+    ENV.prepend "PATH", "/usr/bin"
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
