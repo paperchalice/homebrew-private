@@ -21,7 +21,7 @@ class QtTools < Formula
 
   def install
     ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
-    ENV.prepend "PATH", "/usr/bin"
+    ENV.remove "PATH", Formula["llvm-core"].bin
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
 
