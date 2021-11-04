@@ -30,7 +30,6 @@ class Ffmpeg < Formula
   depends_on "libssh"
   depends_on "libvidstab"
   depends_on "libvmaf"
-  depends_on "libxml2"
   depends_on "libvorbis"
   depends_on "libvpx"
   depends_on "opencore-amr"
@@ -52,8 +51,8 @@ class Ffmpeg < Formula
   depends_on "webp"
   depends_on "x264"
   depends_on "x265"
-  depends_on "xz"
   depends_on "xvid"
+  depends_on "xz"
   depends_on "zeromq"
   depends_on "zimg"
 
