@@ -1,13 +1,8 @@
 class Sudo < Formula
   desc "Su and do"
   homepage "https://www.sudo.ws/"
-  url "https://www.sudo.ws/dist/sudo-1.9.7.tar.gz"
-  sha256 "2bbe7c2d6699b84d950ef9a43f09d4d967b8bc244b73bc095c4202068ddbe549"
-
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/sudo-1.9.7"
-    sha256 big_sur: "39b6ce47966f4d1697d372794c69d0b040429676337b6c299dde868826bcf9aa"
-  end
+  url "https://www.sudo.ws/dist/sudo-1.9.8p2.tar.gz"
+  sha256 "9e3b8b8da7def43b6e60c257abe80467205670fd0f7c081de1423c414b680f2d"
 
   depends_on "python" => :build
 
