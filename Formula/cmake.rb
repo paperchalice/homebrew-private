@@ -1,19 +1,11 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-3.21.3.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/legacy/cmake-3.21.3.tar.gz"
-  sha256 "d14d06df4265134ee42c4d50f5a60cb8b471b7b6a47da8e5d914d49dd783794f"
+  url "https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0.tar.gz"
+  mirror "http://fresh-center.net/linux/misc/cmake-3.21.4.tar.gz"
+  sha256 "998c7ba34778d2dfdb3df8a695469e24b11e2bfa21fbe41b361a3f45e1c9345e"
   license "BSD-3-Clause"
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
-
-  # The "latest" release on GitHub has been an unstable version before, so we
-  # check the Git tags instead.
-  livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
-  end
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.3"
@@ -47,12 +39,6 @@ class Cmake < Formula
     mirror "http://fresh-center.net/linux/misc/cmake-3.21.3.tar.gz"
     sha256 "20dbede1d80c1ac80be2966172f8838c3d899951ac4467372f806b386d42ad3c"
   end
-
-  # The completions were removed because of problems with system bash
-
-  # The `with-qt` GUI option was removed due to circular dependencies if
-  # CMake is built with Qt support and Qt is built with MySQL support as MySQL uses CMake.
-  # For the GUI application please instead use `brew install --cask cmake`.
 
   def install
     resource("bootstrap-cmake").stage buildpath/"bootstrap-cmake"
@@ -94,10 +80,9 @@ class Cmake < Formula
   end
 
   def post_install
-    if Formula["qt-tools"].linked?
-      share.glob("doc/qt/*.qch") do |qch|
-        system "Assistant", "-register", qch
-      end
+    qt_tools = Formula["qt-tools"]
+    if qt_tools.latest_version_installed?
+      share.glob("doc/qt/*.qch") { |qch| system qt_tools.bin/"Assistant", "-register", qch }
     end
   end
 
