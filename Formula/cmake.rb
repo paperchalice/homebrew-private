@@ -8,8 +8,8 @@ class Cmake < Formula
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.21.3"
-    sha256 cellar: :any, big_sur: "8dca26d0290ce2bde55968cdf3de7250c1e8d8d751fdf7de7de48a7d93325189"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.22.0"
+    sha256 cellar: :any, big_sur: "b8938b10e09401aff3ce18a61d868f5c98aafeb70bb2594722110d8e6dea42bc"
   end
 
   depends_on "kwiml"      => :build
