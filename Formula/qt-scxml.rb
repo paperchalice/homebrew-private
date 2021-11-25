@@ -1,8 +1,8 @@
 class QtScxml < Formula
   desc "State Machine Notation compiler and related tools"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtscxml-everywhere-src-6.2.0.tar.xz"
-  sha256 "90d4af011a17f04a003cbd453c7e0720787e6cdacb8dfce7167179c2cd7dc839"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtscxml-everywhere-src-6.2.1.tar.xz"
+  sha256 "cff613f68af98f4bdc1e40df0b6515b69175e10e83c551a57ee5db4359505767"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtscxml.git", branch: "dev"
 
