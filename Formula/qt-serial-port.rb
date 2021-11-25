@@ -7,8 +7,8 @@ class QtSerialPort < Formula
   head "https://code.qt.io/qt/qtserialport.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-serial-port-6.2.0"
-    sha256 cellar: :any, big_sur: "9283be8449705c69b415d1a4124cdeef027ac54248b717345751c7b086464689"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-serial-port-6.2.1"
+    sha256 cellar: :any, big_sur: "937e9f436bd910b84fcf10e3128c04f5da274bf55ed2b1ccbcd6e387b16eac8f"
   end
 
   depends_on "cmake"      => [:build, :test]
