@@ -12,8 +12,8 @@ class QtSvg < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-svg-6.2.0"
-    sha256 cellar: :any, big_sur: "5f4872df6a7a5dffb187ce1be70b0020cc27180c49fd2625a20ecc44fef1cd02"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-svg-6.2.1"
+    sha256 cellar: :any, big_sur: "56427c9060f8d466ec487f3e4f40a3c243f574f7b05367719ff40059693c5eb5"
   end
 
   depends_on "cmake"      => [:build, :test]
