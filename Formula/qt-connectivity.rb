@@ -7,8 +7,8 @@ class QtConnectivity < Formula
   head "https://code.qt.io/qt/qtconnectivity.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-connectivity-6.2.0"
-    sha256 cellar: :any, big_sur: "549d8155dffd60b68243e6e67877169fb1e515282febdd612de48d64c7e5979a"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-connectivity-6.2.1"
+    sha256 cellar: :any, big_sur: "dbb0c3caa4a4274cc20d99734a705ae1cf436ce6100aa1cac99d66c8398ae0af"
   end
 
   depends_on "cmake"      => [:build, :test]
