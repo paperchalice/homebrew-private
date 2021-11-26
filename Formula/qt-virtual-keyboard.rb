@@ -1,8 +1,8 @@
 class QtVirtualKeyboard < Formula
   desc "Qt Quick virtual keyboard"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtvirtualkeyboard-everywhere-src-6.2.0.tar.xz"
-  sha256 "1055e7fe1dfaecbfd4b69f40ec1135fda1980e6e21adbe757a8a4affbfb9bcee"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtvirtualkeyboard-everywhere-src-6.2.1.tar.xz"
+  sha256 "61baa6be64b41f3b1e526ed11896f818a50eb50d282906d4464eb8e0fa98f0fe"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtvirtualkeyboard.git", branch: "dev"
 

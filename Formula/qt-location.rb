@@ -1,8 +1,8 @@
 class QtLocation < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtlocation-everywhere-src-6.2.0.tar.xz"
-  sha256 "c627f85afbffe18b91e9081e9a4867b79c81a0ea24a683a2d5847c55097b5426"
+  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtlocation-everywhere-src-6.2.1.tar.xz"
+  sha256 "a99e92c762d45b17e14685cd8a3c1564a3da0ce1cfd1a68ffd5b3fd7c409dcad"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtlocation.git", branch: "dev"
 
