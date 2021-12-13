@@ -11,8 +11,8 @@ class Unrar < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unrar-6.0.5"
-    sha256 cellar: :any, big_sur: "99d73e41774d599d375c9efc099c0ed43e3e3e5ef49536bc5e95a66a98d1a89e"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unrar-6.1.3"
+    sha256 cellar: :any, big_sur: "59df97555068fa7f2a1a132d16ff0a0c0577c8dfecf0510818e94f6914c8e337"
   end
 
   def install
