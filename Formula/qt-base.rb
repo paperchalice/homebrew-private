@@ -58,6 +58,7 @@ class QtBase < Formula
       -D FEATURE_optimize_size=ON
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
+      -D FEATURE_zstd=ON
       -D FEATURE_relocatable=OFF
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
