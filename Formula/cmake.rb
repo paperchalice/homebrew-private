@@ -84,6 +84,7 @@ class Cmake < Formula
     if qt_tools.latest_version_installed?
       share.glob("doc/qt/*.qch") { |qch| system qt_tools.bin/"Assistant", "-register", qch }
     end
+    ln_sf libexec/"CMake.app", "/Applications/CMake.app"
   end
 
   test do
