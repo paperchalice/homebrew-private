@@ -12,15 +12,17 @@ class QtWebEngine < Formula
     sha256 cellar: :any, big_sur: "99c778ca08bec64fdb86fe282aaec81f75824cf092851731b6f3daa295a3ea60"
   end
 
-  keg_only "prepared bottle"
-
   depends_on "cmake"   => [:build, :test]
   depends_on "ninja"   => :build
   depends_on "node"    => :build
   depends_on "perl"    => :build
   depends_on "pkgconf" => :build
   depends_on "python"  => :build
-  depends_on "qt"      => :build
+
+  depends_on "ffmpeg"
+  depends_on "flac"
+  depends_on "jpeg"
+  depends_on "libpng"
 
   depends_on "qt-base"
   depends_on "qt-declarative"
@@ -37,23 +39,25 @@ class QtWebEngine < Formula
   uses_from_macos "zlib"
 
   def install
-    qt = Formula["qt"]
+    # prepare system libs
+    system_libs = %w[
+      ffmpeg
+      flac
+      libjpeg
+      libpng
+      libxml
+      libxslt
+      zlib
+    ]
+    inreplace "src/core/CMakeLists.txt",
+      "angle_enable_vulkan=false",
+      "angle_enable_vulkan=false\nasdf"
+    inreplace "src/core/CMakeLists.txt", "asdf",
+      (system_libs.map { |l| "use_system_#{l}=true" }).join("\n")
+    cd "src/3rdparty/chromium/build/linux/unbundle" do
+      system "python3", "./replace_gn_files.py", "--system-libraries", *system_libs
+    end
 
-    mkdir_p lib/"cmake/Qt#{version.major}"
-    mkdir_p lib/"metatypes"
-    mkdir_p share/"qt/modules"
-    mkdir_p share/"qt/qml"
-    mkdir_p share/"qt/mkspecs/modules"
-
-    (lib/"cmake/Qt#{version.major}").install Dir["cmake/Find*"]
-    cp_r qt.lib.glob("QtWebEngine*"), lib
-    cp_r (qt.lib/"cmake").glob("qt#{version.major}webengine*"), lib/"metatypes"
-    cp_r (qt.lib/"metatypes").glob("Qt#{version.major}WebEngine*"), lib/"cmake"
-    cp_r (qt.pkgshare/"modules").glob("WebEngine*"), share/"qt/modules"
-    cp_r (qt.pkgshare/"mkspecs/modules").glob("qt_lib_webengine*"), share/"qt/mkspecs/modules"
-    cp_r (qt.pkgshare/"qml").glob("QtWebEngine*"), share/"qt/qml"
-
-    # real build steps
     inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
     inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
@@ -75,8 +79,8 @@ class QtWebEngine < Formula
       -G Ninja
     ]
     system "cmake", *cmake_args
-    # TODO: system "cmake", "--build", "."
-    # TODO: system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "."
+    system "cmake", "--install", ".", "--strip"
 
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
