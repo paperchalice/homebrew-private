@@ -8,7 +8,8 @@ class Lldb < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/lldb-13.0.0"
-    sha256 cellar: :any, big_sur: "f4c3c74b04bee8311a5eeb3d96025e78893160191a9e3e2a904e2fbf8047ae98"
+    rebuild 1
+    sha256 cellar: :any, big_sur: "c3336c570df3b196ad108abaa08b9b0732b24e9cb6d978e4c3b4e2c54ead1503"
   end
 
   depends_on "cmake" => :build
