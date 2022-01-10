@@ -36,6 +36,7 @@ class Lldb < Formula
 
       -D Clang_DIR=#{Formula["clang"].lib}/cmake/clang
       -D LLDB_BUILD_FRAMEWORK=ON
+      -D LLDB_SKIP_DSYM=ON
       -D LLDB_FRAMEWORK_INSTALL_DIR=Frameworks
       -D LLDB_USE_SYSTEM_SIX=ON
 
@@ -48,12 +49,13 @@ class Lldb < Formula
     system "cmake", "--install", "build"
 
     site_package = Language::Python.site_packages("python3")
-    (prefix/site_package).install_symlink frameworks/"Resources/Python/lldb"
-    %w[darwin-debug lldb-argdumper debugserver].each { |x| bin.install_symlink frameworks/"Resources"/x }
-    rm_rf frameworks/"LLDB.framework/Resources/Clang/include"
-    headers = Formula["clang"].lib/"clang/#{Formula["clang"].version}/include"
-    ln_s headers.relative_path_from(frameworks/"LLDB.framework/Resources/Clang"),
-      frameworks/"LLDB.framework/Resources/Clang"
+    lldb_framework = frameworks/"LLDB.framework"
+    clangf = Formula["clang"]
+    (prefix/site_package).install_symlink lldb_framework/"Resources/Python/lldb"
+    %w[darwin-debug lldb-argdumper debugserver].each { |x| bin.install_symlink lldb_framework/"Resources"/x }
+    rm_rf lldb_framework/"Resources/Clang/include"
+    headers = clangf.lib/"clang/#{clangf.version}/include"
+    (lldb_framework/"Resources/Clang").install_symlink headers
   end
 
   test do
@@ -63,24 +65,18 @@ end
 
 __END__
 diff --git a/lldb/bindings/python/CMakeLists.txt b/lldb/bindings/python/CMakeLists.txt
-index 9422ee0..ed79bef 100644
+index 9422ee0..f115121 100644
 --- a/lldb/bindings/python/CMakeLists.txt
 +++ b/lldb/bindings/python/CMakeLists.txt
-@@ -175,9 +175,11 @@ function(finish_swig_python swig_target lldb_python_bindings_dir lldb_python_tar
-   set(python_scripts_install_target "install-${python_scripts_target}")
-   add_custom_target(${python_scripts_target})
-   add_dependencies(${python_scripts_target} ${swig_target})
--  install(DIRECTORY ${lldb_python_target_dir}/../
--          DESTINATION ${LLDB_PYTHON_INSTALL_PATH}
--          COMPONENT ${python_scripts_target})
-+  if(NOT LLDB_BUILD_FRAMEWORK)
-+    install(DIRECTORY ${lldb_python_target_dir}/../
-+            DESTINATION ${LLDB_PYTHON_INSTALL_PATH}
-+            COMPONENT ${python_scripts_target})
-+  endif()
-   if (NOT LLVM_ENABLE_IDE)
-     add_llvm_install_targets(${python_scripts_install_target}
-                              COMPONENT ${python_scripts_target}
+@@ -163,7 +163,7 @@ function(finish_swig_python swig_target lldb_python_bindings_dir lldb_python_tar
+ 
+   # Install the LLDB python module
+   if(LLDB_BUILD_FRAMEWORK)
+-    set(LLDB_PYTHON_INSTALL_PATH ${LLDB_FRAMEWORK_INSTALL_DIR}/LLDB.framework/Resources/Python)
++    set(LLDB_PYTHON_INSTALL_PATH ${LLDB_FRAMEWORK_INSTALL_DIR}/LLDB.framework/Versions/${LLDB_FRAMEWORK_VERSION}/Resources/Python)
+   else()
+     set(LLDB_PYTHON_INSTALL_PATH ${LLDB_PYTHON_RELATIVE_PATH})
+   endif()
 diff --git a/lldb/tools/driver/CMakeLists.txt b/lldb/tools/driver/CMakeLists.txt
 index c31863b..167b840 100644
 --- a/lldb/tools/driver/CMakeLists.txt
