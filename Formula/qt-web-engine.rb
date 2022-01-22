@@ -45,8 +45,9 @@ class QtWebEngine < Formula
     # libjpeg
     # libpng
     # libxml
-    # libxslt
     system_libs = %w[
+      libxml
+      libxslt
       zlib
     ]
     inreplace "src/core/CMakeLists.txt",
