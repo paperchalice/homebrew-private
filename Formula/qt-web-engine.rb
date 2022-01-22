@@ -40,13 +40,13 @@ class QtWebEngine < Formula
 
   def install
     # prepare system libs
+    # ffmpeg
+    # flac
+    # libjpeg
+    # libpng
+    # libxml
+    # libxslt
     system_libs = %w[
-      ffmpeg
-      flac
-      libjpeg
-      libpng
-      libxml
-      libxslt
       zlib
     ]
     inreplace "src/core/CMakeLists.txt",
