@@ -32,11 +32,6 @@ class Pyside < Formula
 
   fails_with gcc: "5"
 
-  resource "packaging" do
-    url "https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz"
-    sha256 "dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"
-  end
-
   def install
     # upstream issue: https://bugreports.qt.io/browse/PYSIDE-1684
     inreplace "sources/pyside6/cmake/Macros/PySideModules.cmake",
@@ -44,8 +39,6 @@ class Pyside < Formula
               "${shiboken_include_dirs}:#{Formula["qt"].opt_include}"
 
     python = Formula["python@3.9"]
-    venv = virtualenv_create(buildpath/"venv", python.opt_bin/"python3")
-    venv.pip_install resources
 
     qt = Formula["qt"]
     site_packages = prefix/Language::Python.site_packages(python.opt_bin/"python3")
@@ -57,7 +50,7 @@ class Pyside < Formula
       --shorter-paths
       --skip-docs
     ]
-    system buildpath/"venv/bin/python3", *Language::Python.setup_install_args(prefix), *pyside_args
+    system "python3", *Language::Python.setup_install_args(prefix), *pyside_args
 
     # install tools symlinks
     %w[lupdate lrelease].each { |x| ln_s (qt.opt_bin/x).relative_path_from(site_pyside), site_pyside }
