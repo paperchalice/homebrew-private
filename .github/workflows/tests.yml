@@ -1,0 +1,65 @@
+name: brew test-bot
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  test-bot:
+    strategy:
+      matrix:
+        os: [macos-11.0]
+    timeout-minutes: 720
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Install MacTeX
+        if: contains(github.event.pull_request.labels.*.name, 'TeX')
+        run: |
+          brew install --cask mactex
+          eval "$(/usr/libexec/path_helper)"
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
+
+      - run: brew test-bot --only-cleanup-before
+
+      - run: brew test-bot --only-setup
+
+      - run: brew test-bot --only-tap-syntax
+
+      - name: Use my fork Homebrew
+        run: |
+          pushd $(brew --repo)
+          git remote add paperchalice https://github.com/paperchalice/brew.git
+          git fetch paperchalice
+          git checkout main
+          git rebase master
+      - name: mark qt keg only
+        if: contains(github.event.pull_request.labels.*.name, 'webengine')
+        run: |
+          pushd $(brew --repo)/Library/Taps/homebrew/homebrew-core
+          sed -i '' 's/uses_from_macos "zlib"/keg_only "foo"/g' Formula/qt.rb
+          popd
+
+      - run: brew test-bot --only-formulae --skip-dependents --verbose
+        if: github.event_name == 'pull_request'
+
+      - name: Upload bottles as artifact
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@main
+        with:
+          name: bottles
+          path: '*.bottle.*'
