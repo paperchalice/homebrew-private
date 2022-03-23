@@ -2,8 +2,8 @@ class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-13.0.0",
-    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
+    tag:      "llvmorg-14.0.0",
+    revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -31,23 +31,19 @@ class LlvmCore < Formula
   def install
     inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
-    cd "llvm/docs" do
-      system "make", "-f", "Makefile.sphinx", "SPHINXOPTS=-t builder-man", "man"
-      man1.install Pathname.glob("_build/man/*")
-    end
-
     args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
-      -D LLVM_BUILD_DOCS=ON
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
       -D LLVM_ENABLE_MODULES=OFF
       -D LLVM_ENABLE_RTTI=ON
-      -D LLVM_INCLUDE_DOCS=OFF
-      -D LLVM_INCLUDE_TESTS=OFF
+      -D LLVM_ENABLE_SPHINX=ON
+      -D SPHINX_WARNINGS_AS_ERRORS=OFF
+      -D SPHINX_OUTPUT_HTML=OFF
+      -D SPHINX_OUTPUT_MAN=ON
       -D LLVM_INSTALL_BINUTILS_SYMLINKS=ON
       -D LLVM_INSTALL_UTILS=ON
       -D LLVM_ENABLE_Z3_SOLVER=ON
@@ -59,6 +55,8 @@ class LlvmCore < Formula
     ]
 
     system "cmake", *args
+    system "cmake", "--build", "build", "--target", "docs-llvm-man"
+    man1.install Dir["build/docs/man/*"]
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
 
@@ -74,7 +72,7 @@ class LlvmCore < Formula
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
       cmake_minimum_required(VERSION #{Formula["cmake"].version})
-      project(test VERSION 1.0.0 LANGUAGES CXX)
+      project(test VERSION 1.0.0 LANGUAGES C CXX)
       set(CMAKE_CXX_STANDARD 17)
       set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -107,8 +105,7 @@ class LlvmCore < Formula
       }
     EOS
 
-    ENV.delete "CPATH"
-    system "cmake", "-S", "."
+    system "cmake", "-S", ".", "--debug-find"
     system "cmake", "--build", "."
     system "./test"
   end
