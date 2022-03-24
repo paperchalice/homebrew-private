@@ -7,8 +7,8 @@ class CompilerRt < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/compiler-rt-13.0.0"
-    sha256 cellar: :any, big_sur: "e0629f803d13c0637c652a5f08ce341c01e57cf13590b42e710eb266e4d965cd"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/compiler-rt-14.0.0"
+    sha256 cellar: :any, monterey: "e9d1d27448b30240949e4af2f23cc59048b246fb8cf17c13419602a0bd45a4e5"
   end
 
   depends_on "cmake"     => :build
