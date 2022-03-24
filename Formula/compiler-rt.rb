@@ -2,8 +2,8 @@ class CompilerRt < Formula
   desc "Highly tuned implementations of the low-level code generator support routines"
   homepage "https://compiler-rt.llvm.org"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-13.0.0",
-    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
+    tag:      "llvmorg-14.0.0",
+    revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -20,7 +20,7 @@ class CompilerRt < Formula
       -D CMAKE_CXX_FLAGS=-w
       -D CMAKE_CXX_STANDARD=17
       -D CMAKE_INSTALL_PREFIX=#{lib}/clang/#{Formula["llvm-core"].version}
-      -D COMPILER_RT_ENABLE_IOS=ON
+      -D COMPILER_RT_ENABLE_IOS=OFF
       -D COMPILER_RT_ENABLE_TVOS=OFF
       -D COMPILER_RT_ENABLE_WATCHOS=OFF
 
