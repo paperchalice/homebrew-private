@@ -7,8 +7,8 @@ class Lld < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/lld-13.0.0"
-    sha256 cellar: :any, big_sur: "ffccf5a93d7d34519942d06ff0f6cf8d07c25d5d61e9e019bedcc473b1ef2d26"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/lld-14.0.0"
+    sha256 cellar: :any, monterey: "f6549dfde0fbdeca1f08d0ce2f277412face852854d297cfc3faa5b04dfe4748"
   end
 
   depends_on "cmake" => :build
