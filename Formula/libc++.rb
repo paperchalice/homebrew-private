@@ -7,8 +7,8 @@ class Libcxx < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-13.0.0"
-    sha256 cellar: :any, big_sur: "8bab6a68cc990e052f8108739eed960a7895aecb2ed1a23de04c33d249b1f90d"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-14.0.0"
+    sha256 cellar: :any, monterey: "e25b8b1d7e6e53b87ffea49045a666a8bd502db1ebdf516bd26f07cd5167aefe"
   end
 
   depends_on "cmake" => :build
