@@ -12,8 +12,7 @@ class Cmake < Formula
     sha256 cellar: :any, big_sur: "b8938b10e09401aff3ce18a61d868f5c98aafeb70bb2594722110d8e6dea42bc"
   end
 
-  depends_on "kwiml"      => :build
-  depends_on "pkgconf"    => :build
+  depends_on "pkgconf" => :build
 
   # nghttp2 is for curl
   depends_on "jsoncpp"
