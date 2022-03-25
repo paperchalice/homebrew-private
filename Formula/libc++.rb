@@ -2,8 +2,8 @@ class Libcxx < Formula
   desc "LLVM C++ standard library"
   homepage "https://libcxx.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-13.0.0",
-    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
+    tag:      "llvmorg-14.0.0",
+    revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -11,27 +11,24 @@ class Libcxx < Formula
     sha256 cellar: :any, big_sur: "8bab6a68cc990e052f8108739eed960a7895aecb2ed1a23de04c33d249b1f90d"
   end
 
-  depends_on "cmake"       => :build
-  depends_on "compiler-rt" => :build
+  depends_on "cmake" => :build
 
   depends_on "libc++abi"
-  depends_on "paperchalice/private/libunwind"
 
   def install
-    args = std_cmake_args + %w[
-      -D CMAKE_SHARED_LINKER_FLAGS=-Wl,-reexport-lc++abi
+    cmake_args = std_cmake_args+ %w[
+      -D LLVM_ENABLE_RUNTIMES=libcxx;libcxxabi
 
-      -D LIBCXXABI_USE_LLVM_UNWINDER=ON
-      -D LIBCXX_CXX_ABI=libcxxabi
-      -D LIBCXX_USE_COMPILER_RT=ON
-
-      -S libcxx
+      -S runtimes
       -B build
     ]
 
-    system "cmake", *args
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build", "--strip"
+    system "cmake", *cmake_args
+    system "cmake", "--build", "build", "--target", "install-cxx"
+
+    MachO::Tools.change_install_name "#{lib}/#{shared_library "libc++"}",
+                                     "@rpath/#{shared_library "libc++abi", 1}",
+                                     "#{Formula["libc++abi"].lib}/#{shared_library "libc++abi", 1}"
   end
 
   test do
