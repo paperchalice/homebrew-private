@@ -13,12 +13,12 @@ class Clang < Formula
 
   pour_bottle? only_if: :clt_installed
 
-  depends_on "cmake"       => :build
-  depends_on "compiler-rt" => :build
-  depends_on "lld"         => :build
-  depends_on "python"      => :build
-  depends_on "sphinx-doc"  => :build
-  depends_on "unwinder"    => :build
+  depends_on "cmake"                             => :build
+  depends_on "compiler-rt"                       => :build
+  depends_on "lld"                               => :build
+  depends_on "paperchalice/private/libunwind"    => :build
+  depends_on "python"                            => :build
+  depends_on "sphinx-doc"                        => :build
 
   depends_on "llvm-core"
 

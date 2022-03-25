@@ -1,15 +1,10 @@
-class Unwinder < Formula
+class Libunwind < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
     tag:      "llvmorg-13.0.0",
     revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
   license "Apache-2.0" => { with: "LLVM-exception" }
-
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unwinder-13.0.0"
-    sha256 cellar: :any, big_sur: "378fc786088784ab21e83e3340003b21413229bad79bfc15e6f40f8cd132cfd4"
-  end
 
   depends_on "cmake" => :build
 

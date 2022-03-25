@@ -17,7 +17,7 @@ module Homebrew
     %w[
       llvm-core
       libc++ libc++abi compiler-rt polly
-      clang flang lld lldb unwinder
+      clang flang lld lldb paperchalice/private/libunwind
     ].each do |n|
       f = Formula[n]
       Utils::Inreplace.inreplace f.path, old_tag, new_tag

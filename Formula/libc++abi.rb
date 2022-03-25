@@ -15,7 +15,7 @@ class Libcxxabi < Formula
   depends_on "compiler-rt" => :build
   depends_on "python"      => :build
 
-  depends_on "unwinder"
+  depends_on "paperchalice/private/libunwind"
 
   def install
     inreplace "libcxx/cmake/Modules/MacroEnsureOutOfSourceBuild.cmake", "FATAL_ERROR", ""
