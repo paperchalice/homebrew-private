@@ -14,14 +14,14 @@ class Libunwind < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args+ %w[
+    cmake_args = std_cmake_args+ %w[
       -D LLVM_ENABLE_RUNTIMES=libunwind
 
       -S runtimes
       -B build
     ]
 
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "build", "--target", "install-unwind"
   end
 
