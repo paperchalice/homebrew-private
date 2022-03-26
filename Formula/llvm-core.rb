@@ -31,7 +31,7 @@ class LlvmCore < Formula
   def install
     inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
-    args = std_cmake_args + %w[
+    cmake_args = std_cmake_args + %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
@@ -41,6 +41,8 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_MODULES=OFF
       -D LLVM_ENABLE_RTTI=ON
       -D LLVM_ENABLE_SPHINX=ON
+      -D LLVM_BUILD_DOCS=ON
+      -D LLVM_INCLUDE_DOCS=ON
       -D SPHINX_WARNINGS_AS_ERRORS=OFF
       -D SPHINX_OUTPUT_HTML=OFF
       -D SPHINX_OUTPUT_MAN=ON
@@ -54,9 +56,7 @@ class LlvmCore < Formula
       -B build
     ]
 
-    system "cmake", *args
-    system "cmake", "--build", "build", "--target", "docs-llvm-man"
-    man1.install Dir["build/docs/man/*"]
+    system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
 
