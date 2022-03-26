@@ -6,6 +6,11 @@ class Bolt < Formula
     revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/bolt-14.0.0"
+    sha256 cellar: :any, monterey: "052acd9d0c4424297861164b3b510399bab57e434c00ef507b68560b475fa975"
+  end
+
   depends_on "cmake"      => :build
   depends_on "sphinx-doc" => :build
 
