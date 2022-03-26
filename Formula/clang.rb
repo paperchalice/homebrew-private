@@ -2,8 +2,8 @@ class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-13.0.0",
-    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
+    tag:      "llvmorg-14.0.0",
+    revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -13,30 +13,25 @@ class Clang < Formula
 
   pour_bottle? only_if: :clt_installed
 
-  depends_on "cmake"                             => :build
-  depends_on "compiler-rt"                       => :build
-  depends_on "lld"                               => :build
-  depends_on "paperchalice/private/libunwind"    => :build
-  depends_on "python"                            => :build
-  depends_on "sphinx-doc"                        => :build
+  depends_on "cmake"       => :build
+  depends_on "python"      => :build
+  depends_on "sphinx-doc"  => :build
 
+  # TODO: depends_on "grpc"
   depends_on "llvm-core"
 
   uses_from_macos "libxml2"
 
   def install
-    cd "clang"
-    ln_s buildpath/"clang-tools-extra", buildpath/"clang/tools/extra"
-
     # avoid building libclang-cpp
-    inreplace "tools/CMakeLists.txt", "add_clang_subdirectory(clang-shlib)", ""
+    inreplace "clang/tools/clang-shlib/CMakeLists.txt", "LLVM_ENABLE_PIC", "OFF"
 
     # add `-L /usr/local/lib`
-    inreplace "lib/Driver/ToolChains/Darwin.cpp",
+    inreplace "clang/lib/Driver/ToolChains/Darwin.cpp",
       "Args.AddAllArgs(CmdArgs, options::OPT_L);",
       (%Q{CmdArgs.push_back("-L#{HOMEBREW_PREFIX}/lib");\n} + "Args.AddAllArgs(CmdArgs, options::OPT_L);")
 
-    inreplace "lib/Driver/ToolChains/Clang.cpp",
+    inreplace "clang/lib/Driver/ToolChains/Clang.cpp",
       "// Parse additional include paths from environment variables.",
       "CmdArgs.push_back(\"-F#{HOMEBREW_PREFIX}/Frameworks\");"
     include_dirs = %W[
@@ -44,17 +39,9 @@ class Clang < Formula
       #{HOMEBREW_PREFIX}/include
     ].join ":"
 
-    cd "docs" do
-      system "make", "-f", "Makefile.sphinx", "man"
-      man1.install Pathname.glob("_build/man/*")
-    end
-
-    # use ld because atom based lld is work in progress
-    # -DCLANG_DEFAULT_LINKER=lld
-    ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
     config_trick = '"+std::string(std::getenv("HOME"))+"/.local/etc/clang'
     py_ver = Language::Python.major_minor_version("python3")
-    args = std_cmake_args + %W[
+    cmake_args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
@@ -69,16 +56,26 @@ class Clang < Formula
       -D CLANG_DEFAULT_UNWINDLIB=libunwind
       -D CLANG_LINK_CLANG_DYLIB=OFF
       -D CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
-
       -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
+      -D CLANGD_ENABLE_REMOTE=OFF
 
-      -S .
+      -D LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
+      -D LLVM_BUILD_DOCS=ON
+      -D LLVM_INCLUDE_DOCS=ON
+      -D LLVM_ENABLE_SPHINX=ON
+      -D SPHINX_WARNINGS_AS_ERRORS=OFF
+      -D SPHINX_OUTPUT_HTML=OFF
+      -D SPHINX_OUTPUT_MAN=ON
+
+      -S clang
       -B build
     ]
 
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
+    lib.install "build/lib/ClangdXPC.framework"
+    frameworks.install_symlink lib/"ClangdXPC.framework"
   end
 
   test do
