@@ -2,8 +2,8 @@ class Polly < Formula
   desc "High-level loop and data-locality optimizer"
   homepage "https://polly.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-13.0.0",
-    revision: "d7b669b3a30345cfcdb2fde2af6f48aa4b94845d"
+    tag:      "llvmorg-14.0.0",
+    revision: "329fda39c507e8740978d10458451dcdb21563be"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -15,24 +15,24 @@ class Polly < Formula
   depends_on "pkgconf"    => :build
 
   depends_on "isl"
-  depends_on "jsoncpp"
   depends_on "llvm-core"
 
   def install
     cd "polly"
     mkdir_p "include/isl"
     cp "lib/External/isl/include/isl/isl-noexceptions.h", "include/isl/isl-noexceptions.h"
-    args = std_cmake_args+ %w[
+    cmake_args = std_cmake_args+ %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
-      -D POLLY_BUNDLED_ISL=OFF
+      -D POLLY_BUNDLED_ISL=ON
+      -D POLLY_ENABLE_GPGPU_CODEGEN=OFF
 
       -S .
       -B build
     ]
 
-    system "cmake", *args
+    system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
   end
