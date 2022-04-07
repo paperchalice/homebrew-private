@@ -5,6 +5,11 @@ class Ppcg < Formula
     tag:      "ppcg-0.08.5",
     revision: "d9a30c04d3b6d832d30545abaf907ea257b59d8a"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/ppcg-0.08.5"
+    sha256 cellar: :any, monterey: "0d733226a530c8cfde654254f7056f9ce80e1ea472eb3398e80419f94d6d2627"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool"  => :build
