@@ -23,6 +23,7 @@ class Pet < Formula
 
   def install
     configure_args = std_configure_args + %W[
+      --disable-static
       --with-clang-prefix=#{HOMEBREW_PREFIX}
       --with-isl=system
       --with-libyaml=system
@@ -32,7 +33,7 @@ class Pet < Formula
     system "./configure", *configure_args
     system "make"
     system "make", "install"
-    (lib/"pkg-config").install "pet.pc"
+    (lib/"pkgconfig").install "pet.pc"
   end
 
   test do
