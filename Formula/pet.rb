@@ -7,7 +7,8 @@ class Pet < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/pet-0.11.5"
-    sha256 cellar: :any, monterey: "52d9a70451f29e826a41a7e0792cca70f523389e53d703cb3e740e98be9c633d"
+    rebuild 1
+    sha256 cellar: :any, monterey: "f70618aac547dfed2a163ed1554acde3f1d10531db1b5e04787f181b7ddfd6db"
   end
 
   depends_on "autoconf" => :build
