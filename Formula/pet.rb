@@ -5,6 +5,11 @@ class Pet < Formula
     tag:      "pet-0.11.5",
     revision: "9246f61776c4ab6585908675547b9b4fb24ca1db"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/pet-0.11.5"
+    sha256 cellar: :any, monterey: "52d9a70451f29e826a41a7e0792cca70f523389e53d703cb3e740e98be9c633d"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool"  => :build
