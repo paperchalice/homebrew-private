@@ -5,6 +5,11 @@ class Xinit < Formula
   sha256 "de9b8f617b68a70f6caf87da01fcf0ebd2b75690cdcba9c921d0ef54fa54abb9"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xinit-1.4.1"
+    sha256 monterey: "027db18b72e4db1610c150e7e4a8fa483dbb3f4681b885d3209421f9d7e46ae6"
+  end
+
   depends_on "pkgconf" => :build
 
   depends_on "libx11"
