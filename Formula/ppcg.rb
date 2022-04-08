@@ -1,5 +1,5 @@
 class Ppcg < Formula
-  desc "Polyhedral Extraction Tool"
+  desc "Polyhedral parallel code generation for CUDA"
   homepage "https://repo.or.cz/ppcg"
   url "https://repo.or.cz/ppcg.git",
     tag:      "ppcg-0.08.5",
