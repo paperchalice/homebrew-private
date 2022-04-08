@@ -5,6 +5,11 @@ class Libxfont2 < Formula
   sha256 "aa7c6f211cf7215c0ab4819ed893dc98034363d7b930b844bb43603c2e10b53e"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libxfont2-2.0.5"
+    sha256 cellar: :any, monterey: "8b7baa768fa4ccfc22198b0e2fe819bfc2bcfec0dca071e3f7a1fc9224eb01ee"
+  end
+
   depends_on "pkgconf"     => :build
   depends_on "util-macros" => :build
   depends_on "xorgproto"   => [:build, :test]
