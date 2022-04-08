@@ -22,13 +22,11 @@ class Libxfont2 < Formula
   uses_from_macos "zlib"
 
   def install
-    configure_args = std_configure_args + %W[
+    configure_args = std_configure_args + %w[
       --disable-silent-rules
       --disable-static
-      --with-bundle-id-prefix=sh.homebrew
-      --with-launchagents-dir=#{prefix}
-      --with-launchdaemons-dir=#{prefix}
     ]
+
     system "./configure", *configure_args
     system "make"
     system "make", "install"
