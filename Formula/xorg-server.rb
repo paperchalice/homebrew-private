@@ -6,6 +6,11 @@ class XorgServer < Formula
   revision: "93a0f39851f4b940d42e88460495ba52b166cb93"
   license "X11"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xorg-server-2.8.1"
+    sha256 monterey: "f6082fd6bb31e86348f64ce8529be2504b2128d1e6ea052270732eb87bc31ca1"
+  end
+
   depends_on "autoconf"    => :build
   depends_on "automake"    => :build
   depends_on "font-util"   => :build
