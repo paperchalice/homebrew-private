@@ -41,7 +41,6 @@ jobs:
           git fetch paperchalice
           git checkout main
           git rebase master
-          sudo xcode-select -s /Applications/Xcode_13.3.app/Contents/Developer
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
         run: |
