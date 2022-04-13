@@ -5,6 +5,11 @@ class Xrdb < Formula
   sha256 "4f5d031c214ffb88a42ae7528492abde1178f5146351ceb3c05f3b8d5abee8b4"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xrdb-1.2.1"
+    sha256 cellar: :any, monterey: "dfbeac149370ba55e406bf28bdbf22ff232b6dab7f60a30dff0f12060712ec91"
+  end
+
   depends_on "pkgconf" => :build
 
   depends_on "libxmu"
