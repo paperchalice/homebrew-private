@@ -43,7 +43,6 @@ class XorgServer < Formula
       --without-doxygen
       --without-fop
       --without-xmlto
-      --enable-xcsecurity
       --with-apple-applications-dir=#{libexec}
     ]
 
