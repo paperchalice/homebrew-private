@@ -28,6 +28,7 @@ class XorgServer < Formula
   depends_on "libxt"
   depends_on "pixman"
   depends_on "quartz-wm"
+  depends_on "xinit"
   depends_on "xkbcomp"
   depends_on "xkeyboardconfig"
 

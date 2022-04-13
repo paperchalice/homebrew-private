@@ -13,6 +13,10 @@ class Xinit < Formula
   depends_on "pkgconf" => :build
 
   depends_on "libx11"
+  depends_on "mkfontscale"
+  depends_on "xauth"
+  depends_on "xrdb"
+  depends_on "xset"
 
   def install
     configure_args = std_configure_args + %W[
