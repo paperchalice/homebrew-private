@@ -28,7 +28,6 @@ class XorgServer < Formula
   depends_on "libxt"
   depends_on "pixman"
   depends_on "quartz-wm"
-  depends_on "xinit"
   depends_on "xkbcomp"
   depends_on "xkeyboardconfig"
 
@@ -43,14 +42,12 @@ class XorgServer < Formula
       --without-doxygen
       --without-fop
       --without-xmlto
-      --with-apple-applications-dir=#{libexec}
     ]
 
     system "autoreconf", "-i"
     system "./configure", *configure_args
     system "make"
     system "make", "install"
-    bin.install_symlink bin/"Xquartz" => "X"
   end
 
   test do
