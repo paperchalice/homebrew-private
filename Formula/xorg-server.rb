@@ -8,7 +8,8 @@ class XorgServer < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/xorg-server-2.8.1"
-    sha256 monterey: "f6082fd6bb31e86348f64ce8529be2504b2128d1e6ea052270732eb87bc31ca1"
+    rebuild 1
+    sha256 monterey: "3e2e9e389cb057730a5b6e5ab331fd50db1ac010732e2469d8430970c9aa3113"
   end
 
   depends_on "autoconf"    => :build
