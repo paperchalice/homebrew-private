@@ -5,6 +5,11 @@ class Mkfontscale < Formula
   sha256 "8ae3fb5b1fe7436e1f565060acaa3e2918fe745b0e4979b5593968914fe2d5c4"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mkfontscale-1.2.2"
+    sha256 cellar: :any, monterey: "68a921f902c034ba97ea6a989e0271b7c9e12fe5f5d9a048805c4e849228e9d5"
+  end
+
   depends_on "pkgconf" => :build
 
   depends_on "freetype"
