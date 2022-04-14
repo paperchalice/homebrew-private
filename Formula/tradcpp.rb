@@ -1,9 +1,9 @@
 class Tradcpp < Formula
   desc "K&R-style C preprocessor"
   homepage "https://www.netbsd.org/~dholland/tradcpp"
-  url "http://ftp.netbsd.org/pub/NetBSD/misc/dholland/tradcpp-0.5.3.tar.gz"
+  url "https://ftp.netbsd.org/pub/NetBSD/misc/dholland/tradcpp-0.5.3.tar.gz"
   sha256 "e17b9f42cf74b360d5691bc59fb53f37e41581c45b75fcd64bb965e5e2fe4c5e"
-  license "MIT"
+  license "BSD-2-Clause"
 
   depends_on "bmake" => :build
 
