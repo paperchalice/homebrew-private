@@ -1,5 +1,5 @@
 class Libapplewm < Formula
-  desc "X11 font rasterisation library"
+  desc "Xlib-based library for the Apple-WM extension"
   homepage "https://www.x.org/"
   url "https://www.x.org/releases/individual/lib/libAppleWM-1.4.1.tar.bz2"
   sha256 "5e5c85bcd81152b7bd33083135bfe2287636e707bba25f43ea09e1422c121d65"
@@ -28,6 +28,26 @@ class Libapplewm < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.c").write <<~EOS
+      #include <X11/Xlib.h>
+      #include <X11/extensions/applewm.h>
+      #include <stdio.h>
+
+      int main(void) {
+        Display* disp = XOpenDisplay(NULL);
+        if (disp == NULL) {
+          fprintf(stderr, "Unable to connect to display\\n");
+          return 0;
+        }
+
+        XAppleWMSetFrontProcess(disp);
+        return 0;
+      }
+    EOS
+    system ENV.cc, "test.c", "-o", "test",
+      "-I#{include}", "-L#{lib}", "-L#{Formula["libx11"].lib}",
+      "-lX11", "-lAppleWM"
+    system "./test"
+    assert_equal 0, $CHILD_STATUS.exitstatus
   end
 end
