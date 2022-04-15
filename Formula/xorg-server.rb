@@ -26,7 +26,6 @@ class XorgServer < Formula
   depends_on "libxfixes"
   depends_on "libxfont2"
   depends_on "libxkbfile"
-  depends_on "libxt"
   depends_on "pixman"
   depends_on "quartz-wm"
   depends_on "xkbcomp"
