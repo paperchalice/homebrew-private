@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtbase-everywhere-src-6.2.1.tar.xz"
-  sha256 "2c5f07b5c3ea27d3fc1a46686ea3fb6724f94dddf1fb007de3eb0bdb87429079"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtbase-everywhere-src-6.3.0.tar.xz"
+  sha256 "b865aae43357f792b3b0a162899d9bf6a1393a55c4e5e4ede5316b157b1a0f99"
   license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
@@ -42,6 +42,7 @@ class QtBase < Formula
   def install
     ENV.permit_arch_flags
     inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
+    inreplace "CMakeLists.txt", /^qt_internal_check_if_path_has_symlinks/, "#"
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
@@ -74,7 +75,6 @@ class QtBase < Formula
 
     rm bin/"qt-cmake-private-install.cmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", Superenv.shims_path, "/usr/bin"
-    inreplace share/"qt/mkspecs/qmodule.pri", Superenv.shims_path/"pkg-config", HOMEBREW_PREFIX/"bin/pkgconf"
 
     %w[qmake qtpaths].each do |x|
       rm bin/x
