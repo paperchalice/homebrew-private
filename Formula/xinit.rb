@@ -79,6 +79,14 @@ class Xinit < Formula
     end
   end
 
+  def caveats
+    <<~EOS
+      enable the sh.brew.privileged_startx:
+      `sudo chown root #{opt_prefix}/sh.brew.privileged_startx.plist`
+      `sudo launchctl bootstrap system #{opt_prefix}/sh.brew.privileged_startx.plist`
+    EOS
+  end
+
   def plist_name
     "sh.brew.startx"
   end
