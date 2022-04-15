@@ -47,8 +47,13 @@ class Xinit < Formula
     (prefix/"etc/X11/xinit/xinitrc.d/10-fontdir.sh").write <<~SH
       #!/bin/sh
       if [ -x #{HOMEBREW_PREFIX}/bin/xset ] ; then
-        fontpath="#{HOMEBREW_PREFIX}/share/fonts/misc/,#{HOMEBREW_PREFIX}/share/fonts/TTF/,#{HOMEBREW_PREFIX}/share/fonts/OTF,#{HOMEBREW_PREFIX}/share/fonts/Type1/,#{HOMEBREW_PREFIX}/share/fonts/75dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/100dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/75dpi/,#{HOMEBREW_PREFIX}/share/fonts/100dpi/"
-
+        fontpath="built-ins"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/misc/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/misc"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/TTF/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/TTF"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/OTF/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/OTF"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/Type1/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/Type1"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/75dpi/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/75dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/75dpi"
+        [ -e #{HOMEBREW_PREFIX}/share/fonts/100dpi/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/100dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/100dpi"
         [ -e #{HOMEBREW_PREFIX}/share/fonts/libwmf/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/libwmf"
         [ -e #{HOMEBREW_PREFIX}/share/fonts/urw-fonts/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/urw-fonts"
         [ -e "$HOME"/.fonts/fonts.dir ] && fontpath="$fontpath,$HOME/.fonts"
