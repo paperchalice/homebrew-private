@@ -24,7 +24,7 @@ class QtWebEngine < Formula
 
   depends_on "qt-base"
   depends_on "qt-declarative"
-  depends_on "qt-location"
+  depends_on "qt-positioning"
   depends_on "qt-tools"
   depends_on "qt-web-channel"
 

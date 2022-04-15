@@ -1,10 +1,10 @@
-class QtLocation < Formula
-  desc "Support for CAN and potentially other serial buses"
+class QtPositioning < Formula
+  desc "Positioning information via QML and C++ interfaces"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtlocation-everywhere-src-6.2.0.tar.xz"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtpositioning-everywhere-src-6.3.0.tar.xz"
   sha256 "c627f85afbffe18b91e9081e9a4867b79c81a0ea24a683a2d5847c55097b5426"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
-  head "https://code.qt.io/qt/qtlocation.git", branch: "dev"
+  head "https://code.qt.io/qt/qtpositioning.git", branch: "dev"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-location-6.2.0"
