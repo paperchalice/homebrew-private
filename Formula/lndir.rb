@@ -5,6 +5,11 @@ class Lndir < Formula
   sha256 "49f4fab0de8d418db4ce80dad34e9b879a4199f3e554253a8e1ab68f7c7cb65d"
   license "X11"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/lndir-1.0.3"
+    sha256 cellar: :any_skip_relocation, monterey: "bb4fe959d88c22240278b94d9765bc3c90cab8aa9bd96c9dbe40faef8409a95c"
+  end
+
   depends_on "pkgconf"   => :build
   depends_on "xorgproto" => :build
 
