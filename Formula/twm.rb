@@ -5,6 +5,11 @@ class Twm < Formula
   sha256 "aaf201d4de04c1bb11eed93de4bee0147217b7bdf61b7b761a56b2fdc276afe4"
   license "X11"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/twm-1.0.12"
+    sha256 monterey: "33e5242f34836d678ecabd0b35eefe5edea8b5eeb0b337a48594273f7a5268c1"
+  end
+
   depends_on "pkgconf" => :build
 
   depends_on "libxmu"
