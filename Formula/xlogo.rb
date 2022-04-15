@@ -5,6 +5,11 @@ class Xlogo < Formula
   sha256 "633d7a3aa5df61e4e643b740e5799664741ab1a0ba40593e54fcd15dc30f378e"
   license "X11"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xlogo-1.0.5"
+    sha256 cellar: :any, monterey: "f233135d0da26f645ac8493b4ed3e35ce60a1b65e381e66fa6d1f2c92314c95f"
+  end
+
   depends_on "pkgconf"     => :build
   depends_on "util-macros" => :build
 
