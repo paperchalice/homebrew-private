@@ -1,8 +1,8 @@
 class QtSerialPort < Formula
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtserialport-everywhere-src-6.2.1.tar.xz"
-  sha256 "ec77f4c9d6096588f3e735315f873976103479be453985b27f27fe8994e0776a"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtserialport-everywhere-src-6.3.0.tar.xz"
+  sha256 "eebd6934d48cc044b8c87795a4fd91bb81f7195d4b5a2ddb12802f343d5db64f"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtserialport.git", branch: "dev"
 
