@@ -1,8 +1,8 @@
 class QtLanguageServer < Formula
   desc "Qt implementation of the Language Server Protocol"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtlanguageserver-everywhere-src-6.2.0.tar.xz"
-  sha256 "c6e530a61bea2e7fbb50308a2b4e7fdb4f7c7b61a28797973270acffc020809d"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtlanguageserver-everywhere-src-6.3.0.tar.xz"
+  sha256 "70aad8f7060e1e0c40365cb3f0f5f572643a5390f59d8e5a327df6fc0a9eeeaa"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtlanguageserver.git", branch: "dev"
 
