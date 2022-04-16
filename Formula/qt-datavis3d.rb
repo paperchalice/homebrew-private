@@ -1,8 +1,8 @@
 class QtDatavis3d < Formula
   desc "Qt 3D data visualization framework"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtdatavis3d-everywhere-src-6.2.1.tar.xz"
-  sha256 "bfcf311df531498705786d0a689ae50a26169ce7db5da10e97ab579815bfb009"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtdatavis3d-everywhere-src-6.3.0.tar.xz"
+  sha256 "09512ef3b2b28ff8defaea96498736418ada008f3778220a9185c09dd59e0d8d"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtdatavis3d.git", branch: "dev"
 
