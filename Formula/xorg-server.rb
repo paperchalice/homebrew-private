@@ -48,6 +48,10 @@ class XorgServer < Formula
     system "./configure", *configure_args
     system "make"
     system "make", "install"
+    (bin/"x11-app").write <<~SH
+      #!/bin/sh
+      open #{opt_libexec}/X11.app
+    SH
   end
 
   test do
