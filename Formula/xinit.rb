@@ -40,6 +40,7 @@ class Xinit < Formula
     system "make", "install"
 
     bin.install_symlink Formula["xorg-server"].bin/"Xquartz" => "X"
+    inreplace bin/"startx", HOMEBREW_PREFIX/"libexec", opt_libexec
 
     # generate fonts dir
     mkdir share/"system_fonts"
@@ -53,12 +54,12 @@ class Xinit < Formula
     share_fonts= HOMEBREW_PREFIX/"share/fonts"
     dpis = %w[75dpi 100dpi]
     fontdirs = %w[misc TTF OTF Type1 75dpi 100dpi libwmf urw-fonts].map do |d|
-      "  " + <<-EOS.squish
+      <<-EOS.squish
         [ -e #{share_fonts}/#{d}/fonts.dir ] &&
           fontpath="$fontpath,#{share_fonts}/#{d}#{",#{share_fonts}/#{d}/:unscaled" if dpis.include? d}"
       EOS
     end + %w["$HOME"/.fonts "$HOME"/Library/Fonts /Library/Fonts /System/Library/Fonts].map do |d|
-      "  " + <<-EOS
+      <<-EOS
         [ -e #{d}/fonts.dir ] && fontpath="$fontpath,#{d}"
       EOS
     end
