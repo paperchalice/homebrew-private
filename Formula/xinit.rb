@@ -11,6 +11,7 @@ class Xinit < Formula
     sha256 monterey: "b8969ebfbd619fe46d61fa27526d111570aedbd334a96b3ec402a993c2531e1f"
   end
 
+  depends_on "lndir"   => :build
   depends_on "pkgconf" => :build
   depends_on "tradcpp" => :build
 
@@ -28,7 +29,6 @@ class Xinit < Formula
 
   def install
     configure_args = std_configure_args + %W[
-      RAWCPP=tradcpp
       --disable-silent-rules
       --with-bundle-id-prefix=sh.brew
       --with-launchagents-dir=#{prefix}
@@ -36,30 +36,37 @@ class Xinit < Formula
     ]
 
     system "./configure", *configure_args
-    system "make"
+    system "make", "RAWCPP=tradcpp"
     system "make", "install"
 
     bin.install_symlink Formula["xorg-server"].bin/"Xquartz" => "X"
+
+    # generate fonts dir
+    mkdir share/"system_fonts"
+    system "lndir", "/System/Library/Fonts", share/"system_fonts"
+
+    # install scripts
     bin.install resource("font_cache")
     inreplace bin/"font_cache", "/opt/X11", HOMEBREW_PREFIX
     inreplace bin/"startx", prefix, HOMEBREW_PREFIX
     inreplace prefix/"etc/X11/xinit/xinitrc", prefix, HOMEBREW_PREFIX
+    share_fonts= HOMEBREW_PREFIX/"share/fonts"
+    dpis = %w[75dpi 100dpi]
+    fontdirs = %w[misc TTF OTF Type1 75dpi 100dpi libwmf urw-fonts].map do |d|
+      "  " + <<-EOS.squish
+        [ -e #{share_fonts}/#{d}/fonts.dir ] &&
+          fontpath="$fontpath,#{share_fonts}/#{d}#{",#{share_fonts}/#{d}/:unscaled" if dpis.include? d}"
+      EOS
+    end + %w["$HOME"/.fonts "$HOME"/Library/Fonts /Library/Fonts /System/Library/Fonts].map do |d|
+      "  " + <<-EOS
+        [ -e #{d}/fonts.dir ] && fontpath="$fontpath,#{d}"
+      EOS
+    end
     (prefix/"etc/X11/xinit/xinitrc.d/10-fontdir.sh").write <<~SH
       #!/bin/sh
       if [ -x #{HOMEBREW_PREFIX}/bin/xset ] ; then
         fontpath="built-ins"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/misc/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/misc"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/TTF/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/TTF"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/OTF/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/OTF"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/Type1/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/Type1"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/75dpi/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/75dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/75dpi"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/100dpi/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/100dpi/:unscaled,#{HOMEBREW_PREFIX}/share/fonts/100dpi"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/libwmf/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/libwmf"
-        [ -e #{HOMEBREW_PREFIX}/share/fonts/urw-fonts/fonts.dir ] && fontpath="$fontpath,#{HOMEBREW_PREFIX}/share/fonts/urw-fonts"
-        [ -e "$HOME"/.fonts/fonts.dir ] && fontpath="$fontpath,$HOME/.fonts"
-        [ -e "$HOME"/Library/Fonts/fonts.dir ] && fontpath="$fontpath,$HOME/Library/Fonts"
-        [ -e /Library/Fonts/fonts.dir ] && fontpath="$fontpath,/Library/Fonts"
-        [ -e /System/Library/Fonts/fonts.dir ] && fontpath="$fontpath,/System/Library/Fonts"
+        #{fontdirs.join "\n"}
 
         #{HOMEBREW_PREFIX}/bin/xset fp= "$fontpath"
         unset fontpath
