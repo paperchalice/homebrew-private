@@ -1,8 +1,8 @@
 class QtSensors < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtsensors-everywhere-src-6.2.1.tar.xz"
-  sha256 "5f55c972c52848f5c828148fded1b30de32955f7ee04867568c559991214739a"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtsensors-everywhere-src-6.3.0.tar.xz"
+  sha256 "c757c733b5ee847abd44c531cfb22287e4cbab03e8d6fc337690808a2cbe9748"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtsensors.git", branch: "dev"
 
