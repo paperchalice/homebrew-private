@@ -1,8 +1,8 @@
 class QtWebSockets < Formula
   desc "Qt sockets support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qtwebsockets-everywhere-src-6.2.1.tar.xz"
-  sha256 "23344e21e96a839697abed7bf7931a8c08a752f08bf25edf240748501aba3816"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtwebsockets-everywhere-src-6.3.0.tar.xz"
+  sha256 "e018a09fe960b7d9560d6bbc9d3ca022fed6566e6ba6fc6d869a97482d4e6361"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebsockets.git", branch: "dev"
 
