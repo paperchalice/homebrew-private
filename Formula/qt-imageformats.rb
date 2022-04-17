@@ -12,8 +12,8 @@ class QtImageformats < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-imageformats-6.2.1"
-    sha256 cellar: :any, big_sur: "4c41b4be4a45136fdd72d5814ce9ef0700d7f6d0d80473ad9b4d817eac057bcb"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-imageformats-6.3.0"
+    sha256 cellar: :any, monterey: "9ac69ff59d3c8911c005308647fca72057599dfe5c2b8e363fa4e338d53ca404"
   end
 
   depends_on "cmake"      => [:build, :test]
