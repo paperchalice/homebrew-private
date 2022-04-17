@@ -49,7 +49,7 @@ class XorgServer < Formula
     system "make"
     system "make", "install"
     (bin/"x11-app").write <<~SH
-      #!/bin/sh
+      #! /bin/sh
       open #{opt_libexec}/X11.app
     SH
   end

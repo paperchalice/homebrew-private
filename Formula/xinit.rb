@@ -64,7 +64,7 @@ class Xinit < Formula
       EOS
     end
     (prefix/"etc/X11/xinit/xinitrc.d/10-fontdir.sh").write <<~SH
-      #!/bin/sh
+      #! /bin/sh
       if [ -x #{HOMEBREW_PREFIX}/bin/xset ] ; then
         fontpath="built-ins"
         #{fontdirs.join "\n"}
@@ -74,7 +74,7 @@ class Xinit < Formula
       fi
     SH
     (prefix/"etc/X11/xinit/xinitrc.d/98-user.sh").write <<~SH
-      #!/bin/sh
+      #! /bin/sh
       if [ -d "${HOME}/.xinitrc.d" ] ; then
         for f in "${HOME}"/.xinitrc.d/*.sh ; do
                 [ -x "$f" ] && . "$f"
@@ -83,7 +83,7 @@ class Xinit < Formula
       fi
     SH
     (prefix/"etc/X11/xinit/xinitrc.d/99-quartz-wm.sh").write <<~SH
-      #!/bin/sh
+      #! /bin/sh
       [ -n "${USERWM}" -a -x "${USERWM}" ] && exec "${USERWM}" &
       [ -x #{HOMEBREW_PREFIX}/bin/quartz-wm ] && exec #{HOMEBREW_PREFIX}/bin/quartz-wm &
     SH

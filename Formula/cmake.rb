@@ -72,7 +72,7 @@ class Cmake < Formula
     prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
     bin.install prefix/"CMake" => "cmake-gui"
     (bin/"cmake-app").write <<~SH
-      #!/bin/sh
+      #! /bin/sh
       open #{libexec}/CMake.app
     SH
   end
