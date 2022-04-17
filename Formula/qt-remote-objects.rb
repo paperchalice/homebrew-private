@@ -7,8 +7,8 @@ class QtRemoteObjects < Formula
   head "https://code.qt.io/qt/qtremoteobjects.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-remote-objects-6.2.1"
-    sha256 cellar: :any, big_sur: "0cb086552a96c5880dc60495ef78534108418d87f3ba3b7ecc8e5e2887e16fd7"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-remote-objects-6.3.0"
+    sha256 cellar: :any, monterey: "3e53c3b0596b1be934688344ea194f3c55323687648b7f16eb883d4ffdb4de92"
   end
 
   depends_on "cmake"      => [:build, :test]
