@@ -1,8 +1,8 @@
 class QtVirtualKeyboard < Formula
   desc "Qt Quick virtual keyboard"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtvirtualkeyboard-everywhere-src-6.2.0.tar.xz"
-  sha256 "1055e7fe1dfaecbfd4b69f40ec1135fda1980e6e21adbe757a8a4affbfb9bcee"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtvirtualkeyboard-everywhere-src-6.3.0.tar.xz"
+  sha256 "89aaf15acf5432af8f5cf4ec45cb32d87a3348906215dd56e81cb294eb276573"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtvirtualkeyboard.git", branch: "dev"
 
@@ -16,7 +16,6 @@ class QtVirtualKeyboard < Formula
   depends_on "pkgconf"    => :build
 
   depends_on "hunspell"
-  depends_on "libxcb"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-svg"
