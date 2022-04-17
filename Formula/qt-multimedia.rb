@@ -7,8 +7,8 @@ class QtMultimedia < Formula
   head "https://code.qt.io/qt/qtmultimedia.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-multimedia-6.2.1"
-    sha256 cellar: :any, big_sur: "b17bb35d85d3015df147ec0e4a04b1fdb5d9b0108cf8782e75396c82005f5c9f"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-multimedia-6.3.0"
+    sha256 cellar: :any, monterey: "e82f334162afa86f57a893444d93da74a7f5c1c9d3fe9348803d4b59e28a05ea"
   end
 
   depends_on "cmake"      => [:build, :test]
