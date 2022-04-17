@@ -7,8 +7,9 @@ class QtPositioning < Formula
   head "https://code.qt.io/qt/qtpositioning.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-location-6.2.0"
-    sha256 cellar: :any, big_sur: "83f6a1211f88991c70883c6612612a5c93a15c6b0f8869b277ddad77590368e7"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-positioning-6.3.0"
+    rebuild 1
+    sha256 cellar: :any, monterey: "fa6261686ce1cf80579e54f7a23e0a2c1a961131b453b259f1a6f53e44dca7e0"
   end
 
   depends_on "cmake"      => [:build, :test]
