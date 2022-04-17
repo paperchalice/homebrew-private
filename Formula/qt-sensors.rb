@@ -7,8 +7,8 @@ class QtSensors < Formula
   head "https://code.qt.io/qt/qtsensors.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-sensors-6.2.1"
-    sha256 cellar: :any, big_sur: "55319c616be69d176f1543ad9dc4560d8e3cd0228ee632faa4d15328e9a1312c"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-sensors-6.3.0"
+    sha256 cellar: :any, monterey: "30c8e097130a96be31c481ae0527ab27260ba25db7456f6c94da1ecbf4bdf4f5"
   end
 
   depends_on "cmake"      => [:build, :test]
