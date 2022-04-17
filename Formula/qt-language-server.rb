@@ -6,6 +6,11 @@ class QtLanguageServer < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtlanguageserver.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-language-server-6.3.0"
+    sha256 cellar: :any, monterey: "ab3728d547e2f15dc4e069f0f19ffb1bac95d1a1b76d930f4d76b56a5bfba56b"
+  end
+
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
