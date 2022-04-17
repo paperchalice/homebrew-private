@@ -7,8 +7,8 @@ class QtSerialBus < Formula
   head "https://code.qt.io/qt/qtserialbus.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-serial-bus-6.2.0"
-    sha256 cellar: :any, big_sur: "000cea3b34e4011008813345de9317079167a877563505540671e8a85c9c7a00"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-serial-bus-6.3.0"
+    sha256 cellar: :any, monterey: "f736af17d5e3851b685a4eab5b4ef2e924b898d885363dfcd7456d3d999e7afc"
   end
 
   depends_on "cmake"      => [:build, :test]
