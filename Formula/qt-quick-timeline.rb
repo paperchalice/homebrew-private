@@ -16,7 +16,7 @@ class QtQuickTimeline < Formula
     sha256 cellar: :any, big_sur: "29338749202f512d72f898e22131459d1a253f4cc0cf6d6ad8d79f68c587285d"
   end
 
-  depends_on "cmake"      => [:build, :test]
+  depends_on "cmake"      => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
 
@@ -26,6 +26,7 @@ class QtQuickTimeline < Formula
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
+      -D CMAKE_INSTALL_RPATH=#{rpath};@loader_path/../../../../../lib
 
       -S .
     ]
@@ -57,6 +58,8 @@ class QtQuickTimeline < Formula
           }
       }
     EOS
-    system "qmlscene", "--quit", testpath/"hello.qml"
+    fork do
+      exec "qml", testpath/"hello.qml"
+    end
   end
 end
