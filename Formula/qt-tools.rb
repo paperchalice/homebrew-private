@@ -1,8 +1,8 @@
 class QtTools < Formula
   desc "Qt utilities"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.1/submodules/qttools-everywhere-src-6.2.1.tar.xz"
-  sha256 "5a856d3d3d5fe6e15dc3f1af707a0ef1df2e687850403fc94af635edb9312bfb"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qttools-everywhere-src-6.3.0.tar.xz"
+  sha256 "fce94688ea925782a2879347584991f854630daadba6c52aed6d93e33cd0b19c"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
@@ -20,7 +20,6 @@ class QtTools < Formula
   depends_on "qt-declarative"
 
   def install
-    ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["libc++"].lib
     ENV.remove "PATH", Formula["llvm-core"].bin
     inreplace "cmake/FindWrapLibClang.cmake", "INTERFACE libclang",
       'INTERFACE libclang "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>"'
@@ -45,7 +44,11 @@ class QtTools < Formula
 
     bin.glob("*.app") do |app|
       libexec.install app
-      bin.write_exec_script libexec/app.basename/"Contents/MacOS"/app.stem
+      bin.write_exec_script opt_libexec/app.basename/"Contents/MacOS"/app.stem
+      (bin/"#{app.basename}-app").write <<~SH
+        #! /bin/sh
+        open #{opt_libexec/app.basename}
+      SH
     end
   end
 
