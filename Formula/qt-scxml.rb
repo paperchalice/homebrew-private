@@ -12,8 +12,8 @@ class QtScxml < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-scxml-6.2.1"
-    sha256 cellar: :any, big_sur: "c0359adae7f37970c9e4b4d858aaed33d389215629b29f43603bd0d0cdb2bf71"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-scxml-6.3.0"
+    sha256 cellar: :any, monterey: "d82aef080f60d4cc8267fcbb5b0606df298a14eaa87995c1f2064727f9ba8a72"
   end
 
   depends_on "cmake"      => [:build, :test]
