@@ -1,8 +1,10 @@
 class QtWebEngine < Formula
+  include Language::Python::Virtualenv
+
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtwebengine-everywhere-src-6.2.0.tar.xz"
-  sha256 "c6e530a61bea2e7fbb50308a2b4e7fdb4f7c7b61a28797973270acffc020809d"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtwebengine-everywhere-src-6.3.0.tar.xz"
+  sha256 "2001b45dd81dcb7ad1bc6cf1aa32f2eca5367a11fed49656053c75676c4d093d"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
@@ -12,16 +14,16 @@ class QtWebEngine < Formula
     sha256 cellar: :any, big_sur: "99c778ca08bec64fdb86fe282aaec81f75824cf092851731b6f3daa295a3ea60"
   end
 
-  keg_only "prepared bottle"
-
+  depends_on "ccache"  => :build
   depends_on "cmake"   => [:build, :test]
   depends_on "ninja"   => :build
   depends_on "node"    => :build
   depends_on "perl"    => :build
   depends_on "pkgconf" => :build
   depends_on "python"  => :build
-  depends_on "qt"      => :build
+  # TODO: depends_on "qt"      => :build
 
+  depends_on "minizip"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-positioning"
@@ -36,7 +38,27 @@ class QtWebEngine < Formula
   uses_from_macos "libxslt"
   uses_from_macos "zlib"
 
-  def install
+  resource "html5lib" do
+    url "https://files.pythonhosted.org/packages/ac/b6/b55c3f49042f1df3dcd422b7f224f939892ee94f22abcf503a9b7339eaf2/html5lib-1.1.tar.gz"
+    sha256 "b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f"
+  end
+
+  resource "six" do
+    url "https://files.pythonhosted.org/packages/71/39/171f1c67cd00715f190ba0b100d606d440a28c93c7714febeca8b79af85e/six-1.16.0.tar.gz"
+    sha256 "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+  end
+
+  resource "webencodings" do
+    url "https://files.pythonhosted.org/packages/0b/02/ae6ceac1baeda530866a85075641cec12989bd8d31af6d5ab4a3e8c92f47/webencodings-0.5.1.tar.gz"
+    sha256 "b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"
+  end
+
+  patch do
+    url "https://github.com/qt/qtwebengine/commit/8fd6601ef64dc22e48ec9c14440262f88d82cd4e.patch?full_index=1"
+    sha256 "e5edbe5cdafa105b9fe37b667fa6a43864d0f7de7b8d265411d083229fb8bcac"
+  end
+
+  def copy_brew
     qt = Formula["qt"]
 
     mkdir_p lib/"cmake/Qt#{version.major}"
@@ -52,37 +74,48 @@ class QtWebEngine < Formula
     cp_r (qt.pkgshare/"modules").glob("WebEngine*"), share/"qt/modules"
     cp_r (qt.pkgshare/"mkspecs/modules").glob("qt_lib_webengine*"), share/"qt/mkspecs/modules"
     cp_r (qt.pkgshare/"qml").glob("QtWebEngine*"), share/"qt/qml"
+  end
 
-    # real build steps
-    inreplace "src/3rdparty/chromium/build/toolchain/mac/BUILD.gn",
+  def real_install
+    python = Formula["python"]
+    venv = virtualenv_create(buildpath/"venv", python.bin/"python3")
+    venv.pip_install resources
+    ENV["PYTHON3_PATH"] = buildpath/"venv/bin/python3"
+    ENV.prepend_path "PATH", buildpath/"venv/bin"
+
+    inreplace "src/3rdparty/chromium/build/toolchain/apple/toolchain.gni",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
     inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
               "FilePath(full_path)", "FilePath(input)"
     %w[
       cmake/Gn.cmake
-      cmake/Functions.cmake
-      src/core/api/CMakeLists.txt
-      src/CMakeLists.txt
       src/gn/CMakeLists.txt
-      src/process/CMakeLists.txt
     ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
+      -D Python3_EXECUTABLE=#{buildpath}/venv/bin/python3
+      -D BUILD_WITH_PCH=ON
+
       -S .
       -G Ninja
     ]
     system "cmake", *cmake_args
-    # TODO: system "cmake", "--build", "."
-    # TODO: system "cmake", "--install", ".", "--strip"
+    system "cmake", "--build", "."
+    system "cmake", "--install", ".", "--strip"
 
     lib.glob("*.framework") do |f|
       frameworks.install_symlink f
       include.install_symlink f/"Headers" => f.stem
       lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
+  end
+
+  def install
+    # copy_brew
+    real_install
   end
 
   test do
