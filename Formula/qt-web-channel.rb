@@ -1,8 +1,8 @@
 class QtWebChannel < Formula
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/submodules/qtwebchannel-everywhere-src-6.2.0.tar.xz"
-  sha256 "518391ed74b087da3c15058c9c17760204425599ef3ffe61b1b73edc2028c171"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtwebchannel-everywhere-src-6.3.0.tar.xz"
+  sha256 "ebc4c428a31ff8510046a5e6aced58eeb5b63be72a098effc021cc96e27be40e"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebchannel.git", branch: "dev"
 
