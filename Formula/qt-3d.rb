@@ -12,8 +12,8 @@ class Qt3d < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-3d-6.2.1"
-    sha256 cellar: :any, big_sur: "2a845a4977cc50e093480775edb99fba4b9d83c853637c6d2777a35055344418"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-3d-6.3.0"
+    sha256 cellar: :any, monterey: "658e102f6c1851cfbddbce7e6d6efa94c06a22a8697a90f7ac6ce5f49e24ba87"
   end
 
   depends_on "cmake" => [:build, :test]
