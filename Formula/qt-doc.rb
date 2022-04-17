@@ -1,8 +1,8 @@
 class QtDoc < Formula
   desc "Qt Documentation"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.2/6.2.0/single/qt-everywhere-src-6.2.0.tar.xz"
-  sha256 "60c2dc0ee86dd338e5c5194bd95922abfc097841e3e855693dfb4f5aaf0db4db"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/single/qt-everywhere-src-6.3.0.tar.xz"
+  sha256 "cd2789cade3e865690f3c18df58ffbff8af74cc5f01faae50634c12eb52dd85b"
   license "GFDL-1.3-only"
 
   bottle do
