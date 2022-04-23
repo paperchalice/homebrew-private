@@ -18,6 +18,10 @@ class Tradcpp < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.c").write <<~EOS
+      #define FOO bar
+      FOO
+    EOS
+    assert_match "bar", shell_output("#{bin}/tradcpp ./test.c")
   end
 end
