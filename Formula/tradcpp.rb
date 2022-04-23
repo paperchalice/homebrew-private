@@ -14,8 +14,7 @@ class Tradcpp < Formula
 
   def install
     system "bmake"
-    bin.install "tradcpp"
-    man1.install "tradcpp.1"
+    system "bmake", "prefix=#{prefix}", "MK_INSTALL_AS_USER=yes", "install"
   end
 
   test do
