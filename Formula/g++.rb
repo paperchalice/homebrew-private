@@ -12,9 +12,8 @@ class Gxx < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/g++-11.2.0"
-    rebuild 1
-    sha256 big_sur: "eaea4892e504a80932ea5f2d36fa58ced3330920acc1da0696dbd9205fd8ca63"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/g++-11.3.0"
+    sha256 monterey: "48e79e9b5b7227b4ecae72176fcb7ea705406226556ea6220037b5a683a30b9e"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
