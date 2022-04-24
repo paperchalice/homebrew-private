@@ -1,8 +1,8 @@
 class Gxx < Formula
   desc "GNU C++ compiler"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz"
-  sha256 "d08edc536b54c372a1010ff6619dd274c0f1603aa49212ba20f7aa2cda36fa8b"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.xz"
+  sha256 "b47cf2818691f5b1e21df2bb38c795fac2cfbd640ede2d0a5e1c89e338a3ac39"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
@@ -61,15 +61,18 @@ class Gxx < Formula
 
     pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
+    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
 
     args = %W[
       --prefix=#{prefix}
       --disable-multilib
+      --build=#{triple}
       --enable-nls
       --enable-host-shared
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
       --libexecdir=#{lib}
+      --with-sysroot=#{MacOS.sdk_path}
       --with-gcc-major-version-only
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
@@ -77,31 +80,14 @@ class Gxx < Formula
       --with-isl=#{Formula["isl"].opt_prefix}
       --with-python-dir=#{Language::Python.site_packages "python3"}
       --with-zstd=#{Formula["zstd"].opt_prefix}
+      --with-system-zlib
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
     ]
 
-    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    if OS.mac?
-      args << "--build=#{triple}"
-      args << "--with-system-zlib"
-
-      # Workaround for Xcode 12.5 bug on Intel
-      # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100340
-      args << "--without-build-config" if Hardware::CPU.intel? && DevelopmentTools.clang_build_version >= 1205
-
-      # System headers may not be in /usr/include
-      ENV["SDKROOT"] = MacOS.sdk_path
-      args << "--with-sysroot=#{MacOS.sdk_path}"
-    end
-
     mkdir "build" do
       system "../configure", *args
-
-      # Use -headerpad_max_install_names in the build,
-      # otherwise updated load commands won't fit in the Mach-O header.
-      # This is needed because `gcc` avoids the superenv shim.
-      system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
+      system "make"
 
       # make documentation
       system "make", "-C", "#{triple}/libstdc++-v3/doc", "doc-man-doxygen"
@@ -119,14 +105,6 @@ class Gxx < Formula
         bin.install_symlink bin/"#{triple}-g++" => x
       end
       rm_rf lib/"gcc"/triple/version_suffix/"cc1"
-    end
-
-    # fix linkage
-    gcc = Formula["paperchalice/private/gcc"]
-    %w[asan ubsan stdc++].each do |l|
-      MachO::Tools.change_install_name lib/shared_library("lib#{l}"),
-        "#{lib}/#{shared_library "libgcc_s", 1}",
-        "#{gcc.lib}/#{shared_library "libgcc_s", 1}"
     end
   end
 
