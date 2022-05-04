@@ -42,7 +42,7 @@ class GccStrap < Formula
       system "make"
       system "make", "install"
     end
-    MachO::Tools.add_rpath "#{lib}/gcc/#{triple}/#{version.major}/adalib#{shared_library "libgnarl"}",
+    MachO::Tools.add_rpath "#{lib}/gcc/#{triple}/#{version.major}/adalib/#{shared_library "libgnarl"}",
                            "@loader_path"
   end
 
