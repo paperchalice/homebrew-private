@@ -4,7 +4,6 @@ class GccBoot < Formula
   url "https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.xz"
   sha256 "b47cf2818691f5b1e21df2bb38c795fac2cfbd640ede2d0a5e1c89e338a3ac39"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
-  head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-11.3.0"
@@ -13,6 +12,8 @@ class GccBoot < Formula
 
   keg_only "bootstrap formula"
 
+  depends_on "gcc-strap" => :build
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
@@ -20,20 +21,11 @@ class GccBoot < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
-  resource "bootstrap_gcc" do
-    url "https://downloads.sourceforge.net/project/gnuada/GNAT_GCC%20Mac%20OS%20X/11.2.0/native/gcc-11.2.0-x86_64-apple-darwin15.pkg"
-    sha256 "d1ed487ec5f8243ba9c8781cd3039a29091817a211f277003d3b6ea4217b5e1b"
-  end
-
   def install
-    resource("bootstrap_gcc").stage do
-      system "pkgutil", "--expand-full", "gcc-11.2.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
-    end
-    bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.2.0-x86_64-apple-darwin15.pkg/Payload"
-    inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
-    open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
-    ENV.prepend_path "PATH", bootstrap_gcc_prefix/"bin"
-    ENV["ADAC"] = bootstrap_gcc_prefix/"bin/gcc"
+    ENV.prepend_path "PATH", Formula["gcc-strap"].bin
+    ENV.delete "CC"
+    ENV.delete "CXX"
+    ENV.delete "LD"
 
     triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
     languages = %w[ada c c++ d objc obj-c++ fortran]
@@ -55,6 +47,8 @@ class GccBoot < Formula
       system "make"
       system "make", "install"
     end
+    MachO::Tools.add_rpath "#{lib}/gcc/#{triple}/#{version.major}/adalib/#{shared_library "libgnarl"}",
+                           "@loader_path"
   end
 
   test do
