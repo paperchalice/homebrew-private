@@ -5,6 +5,11 @@ class GccStrap < Formula
   sha256 "b47cf2818691f5b1e21df2bb38c795fac2cfbd640ede2d0a5e1c89e338a3ac39"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-strap-11.3.0"
+    sha256 monterey: "7a40a9a4ee92e7766cd57ebdc8a32264ec17f96542f3c79a43d4dead27181c41"
+  end
+
   keg_only "bootstrap formula"
 
   # The bottles are built on systems with the CLT installed, and do not work
