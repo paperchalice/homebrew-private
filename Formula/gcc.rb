@@ -20,7 +20,8 @@ class Gcc < Formula
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
 
-  depends_on "python" => :build
+  depends_on "gcc-strap" => :build
+  depends_on "python"    => :build
 
   depends_on "gettext"
   depends_on "gmp"
@@ -47,29 +48,14 @@ class Gcc < Formula
     end
   end
 
-  resource "bootstrap_gcc" do
-    url "https://phoenixnap.dl.sourceforge.net/project/gnuada/GNAT_GCC%20Mac%20OS%20X/11.1.0/native/gcc-11.1.0-x86_64-apple-darwin15.pkg"
-    sha256 "d947b5db0576cb62942e5ce61f3ef53fb679f07b1adff7a4c0fa19a5e72a9532"
-  end
-
   def install
-    if Hardware::CPU.intel?
-      resource("bootstrap_gcc").stage do
-        system "pkgutil", "--expand-full", "gcc-11.1.0-x86_64-apple-darwin15.pkg", buildpath/"bootstrap_gcc"
-      end
-      bootstrap_gcc_prefix = buildpath/"bootstrap_gcc/gcc-11.1.0-x86_64-apple-darwin15.pkg/Payload"
-      inreplace "configure", /\${CC}(?= -c conftest\.adb)/, bootstrap_gcc_prefix/"bin/gcc"
-      open("gcc/ada/gcc-interface/Make-lang.in", "a") { |f| f.puts "override CC = #{bootstrap_gcc_prefix}/bin/gcc" }
-
-      ENV.append_path "PATH", bootstrap_gcc_prefix/"bin"
-      ENV["ADAC"] = bootstrap_gcc_prefix/"bin/gcc"
-    end
+    ENV.prepend_path "PATH", Formula["gcc-strap"].bin
+    ENV.delete "CC"
+    ENV.delete "CXX"
+    ENV.delete "LD"
 
     # don't resolve symlinks
     inreplace "libiberty/make-relative-prefix.c", /(?<=, )1/, "0"
-
-    # GCC will suffer build errors if forced to use a particular linker.
-    ENV.delete "LD"
 
     languages = %w[ada c c++ d objc obj-c++ fortran]
 
