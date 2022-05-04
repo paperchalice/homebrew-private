@@ -6,6 +6,11 @@ class GccBoot < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-11.3.0"
+    sha256 monterey: "2161c3144830780334eda09191a12f13495380d58a80c70c585d71a3e0bd7a5b"
+  end
+
   keg_only "bootstrap formula"
 
   # The bottles are built on systems with the CLT installed, and do not work
