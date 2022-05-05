@@ -1,23 +1,16 @@
 class XorgServer < Formula
-  desc "Xquartz X server"
+  desc "X Window System display server"
   homepage "https://www.x.org"
-  url "https://github.com/XQuartz/xorg-server.git",
-  tag:      "XQuartz-2.8.1",
-  revision: "93a0f39851f4b940d42e88460495ba52b166cb93"
-  license "X11"
+  url "https://gitlab.freedesktop.org/xorg/xserver.git",
+    tag:      "xorg-server-21.1.3",
+    revision: "85397cc2efe8fa73461cd21afe700829b2eca768"
+  license "MIT"
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xorg-server-2.8.1"
-    rebuild 1
-    sha256 monterey: "3e2e9e389cb057730a5b6e5ab331fd50db1ac010732e2469d8430970c9aa3113"
-  end
-
-  depends_on "autoconf"    => :build
-  depends_on "automake"    => :build
   depends_on "font-util"   => :build
-  depends_on "libtool"     => :build
-  depends_on "mesa"        => :build
-  depends_on "pkgconf"     => :build
+  depends_on "libxkbfile"  => :build
+  depends_on "meson"       => :build
+  depends_on "ninja"       => :build
+  depends_on "pkg-config"  => :build
   depends_on "util-macros" => :build
   depends_on "xorgproto"   => :build
   depends_on "xtrans"      => :build
@@ -25,36 +18,80 @@ class XorgServer < Formula
   depends_on "libapplewm"
   depends_on "libxfixes"
   depends_on "libxfont2"
-  depends_on "libxkbfile"
+  depends_on "mesa"
   depends_on "pixman"
-  depends_on "quartz-wm"
+  depends_on "xcb-util"
+  depends_on "xcb-util-image"
+  depends_on "xcb-util-keysyms"
+  depends_on "xcb-util-renderutil"
+  depends_on "xcb-util-wm"
   depends_on "xkbcomp"
   depends_on "xkeyboardconfig"
 
-  def install
-    configure_args = std_configure_args + %W[
-      --with-apple-applications-dir=#{libexec}
-      --with-bundle-id-prefix=sh.brew
-      --with-sha1=CommonCrypto
-      --with-xkb-path=#{HOMEBREW_PREFIX}/share/X11/xkb
-      --with-xkb-output=#{share}/X11/xkb/compiled
-      --disable-devel-docs
-      --without-doxygen
-      --without-fop
-      --without-xmlto
-    ]
+  on_linux do
+    depends_on "libepoxy"
+    depends_on "libxcvt"
+    depends_on "libxshmfence"
+  end
 
-    system "autoreconf", "-i"
-    system "./configure", *configure_args
-    system "make"
-    system "make", "install"
-    (bin/"x11-app").write <<~SH
-      #! /bin/sh
-      open #{opt_libexec}/X11.app
-    SH
+  def install
+    meson_args = std_meson_args + %W[
+      -Dxephyr=true
+      -Dxf86bigfont=true
+      -Dxcsecurity=true
+
+      -Dxkb_dir=#{HOMEBREW_PREFIX}/share/X11/xkb
+      -Dxkb_bin_dir=#{Formula["xkbcomp"].opt_bin}
+      -Dxkb_output_dir=#{HOMEBREW_PREFIX}/X11/xkb/compiled
+
+      -Dbundle-id-prefix=homebrew.mxcl
+      -Dbuilder_addr=#{tap.remote}
+      -Dbuilder_string=#{tap.name}
+    ]
+    # macOS doesn't provide `authdes_cred` so `secure-rpc=false`
+    # glamor needs GLX enabled `libepoxy` on macOS
+    if OS.mac?
+      meson_args += %W[
+        -Dsecure-rpc=false
+        -Dapple-applications-dir=#{libexec}
+      ]
+    end
+
+    system "meson", "build", *meson_args
+    system "meson", "compile", "-C", "build"
+    system "meson", "install", "-C", "build"
+    bin.install_symlink bin/"Xquartz" => "X" if OS.mac?
+  end
+
+  def post_install
+    if OS.mac?
+      system "/System/Library/Frameworks/CoreServices.framework"\
+             "/Frameworks/LaunchServices.framework/Support/lsregister",
+            "-R", "-f", libexec/"X11.app"
+    end
   end
 
   test do
-    system "echo"
+    mkdir_p "Library/Logs/X11"
+    (testpath/"test.c").write <<~EOS
+      #include <assert.h>
+      #include <xcb/xcb.h>
+
+      int main(void) {
+        xcb_connection_t *connection = xcb_connect(NULL, NULL);
+        int has_err = xcb_connection_has_error(connection);
+        assert(has_err == 0);
+        return 0;
+      }
+    EOS
+    xcb = Formula["libxcb"]
+    system ENV.cc, "./test.c", "-o", "test", "-I#{xcb.include}", "-L#{xcb.lib}", "-lxcb"
+
+    ENV["DISPLAY"] = ":1"
+    fork do
+      exec bin/"X", ":1"
+    end
+    sleep 5
+    system "./test"
   end
 end
