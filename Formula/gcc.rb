@@ -1,8 +1,8 @@
 class Gcc < Formula
   desc "GNU compiler collection"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.xz"
-  sha256 "b47cf2818691f5b1e21df2bb38c795fac2cfbd640ede2d0a5e1c89e338a3ac39"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-12.1.0/gcc-12.1.0.tar.xz"
+  sha256 "62fd634889f31c02b64af2c468f064b47ad1ca78411c45abe6ac4b5f8dd19c7b"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
@@ -32,10 +32,6 @@ class Gcc < Formula
 
   uses_from_macos "libiconv"
   uses_from_macos "zlib"
-
-  on_linux do
-    depends_on "binutils"
-  end
 
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
@@ -113,7 +109,6 @@ class Gcc < Formula
       %w[atomic gcc gomp itm quadmath ssp].each do |l|
         system "make", "-C", "#{triple}/lib#{l}", "install"
       end
-      system "make", "-C", "libiberty", "install"
       rm_rf lib/"gcc"/triple/version_suffix/"finclude"
     end
 
