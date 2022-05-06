@@ -12,8 +12,8 @@ class Gcc < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-11.3.0"
-    sha256 monterey: "6389dde3eb6e1192ffa6b9173faa5b04cbb0b52dad9bb48aa1db0c94ce628220"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-12.1.0"
+    sha256 monterey: "501a9282ebc186ccfc70c64f4d497d43bdf8dcf5e93ccb671ad67f2be2b40458"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
