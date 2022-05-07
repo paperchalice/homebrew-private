@@ -1,8 +1,8 @@
 class Gfortran < Formula
   desc "GNU Fortran frontend"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-11.3.0/gcc-11.3.0.tar.xz"
-  sha256 "b47cf2818691f5b1e21df2bb38c795fac2cfbd640ede2d0a5e1c89e338a3ac39"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-12.1.0/gcc-12.1.0.tar.xz"
+  sha256 "62fd634889f31c02b64af2c468f064b47ad1ca78411c45abe6ac4b5f8dd19c7b"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
@@ -51,9 +51,8 @@ class Gfortran < Formula
 
     languages = %w[c c++ fortran]
 
-    pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
+    pkgversion = "Homebrew GCC #{pkg_version}"
+    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
 
     args = %W[
       --prefix=#{prefix}
