@@ -22,6 +22,7 @@ class LlvmCore < Formula
 
   depends_on "z3"
 
+  uses_from_macos "curl"
   uses_from_macos "libedit"
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
@@ -35,6 +36,7 @@ class LlvmCore < Formula
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
 
+      -D LLVM_ENABLE_CURL=ON
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
       -D LLVM_ENABLE_LIBCXX=ON
