@@ -7,8 +7,8 @@ class Gnat < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gnat-11.2.0"
-    sha256 big_sur: "cc3b63c1bdd5615b48bcde5e2e37ac27457676877001b0d5623336a9721331da"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gnat-12.1.0"
+    sha256 monterey: "0014cf9a2fd5e8ea2d5247439b2d23a1bce1bce06e20232f9a49ae694a893d72"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
