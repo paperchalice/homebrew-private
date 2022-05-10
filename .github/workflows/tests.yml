@@ -40,6 +40,8 @@ jobs:
           git remote add paperchalice https://github.com/paperchalice/brew.git
           git fetch paperchalice
           git checkout main
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           git rebase master
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
