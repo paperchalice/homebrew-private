@@ -15,7 +15,6 @@ class XorgServer < Formula
   depends_on "xorgproto"   => :build
   depends_on "xtrans"      => :build
 
-  depends_on "libapplewm"
   depends_on "libxfixes"
   depends_on "libxfont2"
   depends_on "mesa"
@@ -28,10 +27,17 @@ class XorgServer < Formula
   depends_on "xkbcomp"
   depends_on "xkeyboardconfig"
 
+  on_macos do
+    depends_on "libapplewm"
+  end
+
   on_linux do
+    depends_on "dbus"
+    depends_on "libdrm"
     depends_on "libepoxy"
     depends_on "libxcvt"
     depends_on "libxshmfence"
+    depends_on "systemd"
   end
 
   def install
@@ -86,10 +92,10 @@ class XorgServer < Formula
     EOS
     xcb = Formula["libxcb"]
     system ENV.cc, "./test.c", "-o", "test", "-I#{xcb.include}", "-L#{xcb.lib}", "-lxcb"
-
+    x = OS.mac? ? "X" : "Xorg"
     ENV["DISPLAY"] = ":1"
     fork do
-      exec bin/"X", ":1"
+      exec bin/x, ":1"
     end
     sleep 5
     system "./test"
