@@ -6,6 +6,11 @@ class XorgServer < Formula
     revision: "85397cc2efe8fa73461cd21afe700829b2eca768"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xorg-server-21.1.3"
+    sha256 monterey: "d825a0550d6ad57c2eb898cea70371ef5172f26e327c0ed14d39bd338d40f608"
+  end
+
   depends_on "font-util"   => :build
   depends_on "libxkbfile"  => :build
   depends_on "meson"       => :build
