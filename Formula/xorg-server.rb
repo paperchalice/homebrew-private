@@ -34,22 +34,36 @@ class XorgServer < Formula
   depends_on "xkeyboardconfig"
 
   on_linux do
+    depends_on "libdrm"
     depends_on "libepoxy"
     depends_on "libxcvt"
     depends_on "libxshmfence"
+    depends_on "systemd"
   end
 
   def install
+    font_path = %w[misc TTF OTF Type1 100dpi 75dpi].map do |p|
+      "#{HOMEBREW_PREFIX}/share/fonts/X11/#{p}"
+    end
+    if OS.mac?
+      font_path += %W[
+        #{HOMEBREW_PREFIX}/share/system_fonts
+        /Library/Fonts
+        /System/Library/Fonts
+      ]
+    end
     meson_args = std_meson_args + %W[
       -Dxephyr=true
       -Dxf86bigfont=true
       -Dxcsecurity=true
 
+      -Dmodule_dir=#{HOMEBREW_PREFIX}/xorg/modules
+      -Ddefault_font_path=#{font_path.join ","}
       -Dxkb_dir=#{HOMEBREW_PREFIX}/share/X11/xkb
       -Dxkb_bin_dir=#{Formula["xkbcomp"].opt_bin}
       -Dxkb_output_dir=#{HOMEBREW_PREFIX}/X11/xkb/compiled
 
-      -Dbundle-id-prefix=sh.brew
+      -Dbundle-id-prefix=homebrew.mxcl
       -Dbuilder_addr=#{tap.remote}
       -Dbuilder_string=#{tap.name}
     ]
@@ -72,7 +86,7 @@ class XorgServer < Formula
     if OS.mac?
       system "/System/Library/Frameworks/CoreServices.framework"\
              "/Frameworks/LaunchServices.framework/Support/lsregister",
-            "-R", "-f", libexec/"X11.app"
+             "-R", "-f", libexec/"X11.app"
     end
   end
 
@@ -96,7 +110,7 @@ class XorgServer < Formula
     fork do
       exec bin/"X", ":1"
     end
-    sleep 5
+    sleep 10
     system "./test"
   end
 end
