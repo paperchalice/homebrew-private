@@ -27,6 +27,11 @@ class Xinit < Formula
     sha256 "8f27cf55e5053686350fce6ea1078e314bd5b2d752e9da1b9051541e643e79d6"
   end
 
+  resource "10-fontdir.sh" do
+    url "https://raw.githubusercontent.com/XQuartz/XQuartz/XQuartz-2.8.1/base/opt/X11/etc/X11/xinit/xinitrc.d/10-fontdir.sh"
+    sha256 "b44d51e582c129320942c0a6d17d18cbefb0612ca7fed5c266a7b337e4b00b55"
+  end
+
   resource "98-user.sh" do
     url "https://raw.githubusercontent.com/XQuartz/XQuartz/XQuartz-2.8.1/base/opt/X11/etc/X11/xinit/xinitrc.d/98-user.sh"
     sha256 "b417aea949931b7c03133535c3b5146b9403b8c3482a1c1d0a5dc01c07876c84"
@@ -44,10 +49,9 @@ class Xinit < Formula
     system "make", "RAWCPP=tradcpp"
     system "make", "install"
 
-    # generate fonts dir
-    mkdir share/"system_fonts"
-    system "lndir", "/System/Library/Fonts", share/"system_fonts"
-
+    inreplace bin/"startx", prefix, HOMEBREW_PREFIX
+    replace bin/"startx", HOMEBREW_PREFIX/"libexec", opt_libexec
+    inreplace prefix/"etc/X11/xinit/xinitrc", prefix, opt_prefix
     # install scripts
     if OS.mac?
       bin.install resource("font_cache") if OS.mac?
@@ -55,48 +59,26 @@ class Xinit < Formula
         s.gsub! "/opt/X11", HOMEBREW_PREFIX
         s.gsub! "/usr/bin/lockfile", Formula["procmail"].opt_bin/"lockfile"
       end
-    end
-    (prefix/"etc/X11/xinit/xinitrc.d").install resource("98-user.sh")
-    inreplace bin/"startx", prefix, HOMEBREW_PREFIX
-    inreplace prefix/"etc/X11/xinit/xinitrc" do |s|
-      s.gsub! prefix, opt_prefix
-      s.gsub! "twm", Formula["quartz-wm"].opt_bin/"quartz-wm"
-      s.gsub! "xclock", "# xclock"
-      s.gsub!(/^xterm/, "# xterm")
-    end
-    share_fonts= HOMEBREW_PREFIX/"share/fonts"
-    dpis = %w[75dpi 100dpi]
-    fontdirs = %w[misc TTF OTF Type1 75dpi 100dpi libwmf urw-fonts].map do |d|
-      <<~EOS.squish
-        [ -e #{share_fonts}/#{d}/fonts.dir ] &&
-          fontpath="$fontpath,#{share_fonts}/#{d}#{",#{share_fonts}/#{d}/:unscaled" if dpis.include? d}"
-      EOS
-    end + %w["$HOME"/.fonts "$HOME"/Library/Fonts /Library/Fonts /System/Library/Fonts].map do |d|
-      <<~EOS.squish
-        [ -e #{d}/fonts.dir ] && fontpath="$fontpath,#{d}"
-      EOS
-    end
-    (prefix/"etc/X11/xinit/xinitrc.d/10-fontdir.sh").write <<~SH
-      #!/bin/sh
-      if [ -x #{HOMEBREW_PREFIX}/bin/xset ] ; then
-        fontpath="built-ins"
-        #{fontdirs.join "\n  "}
 
-        #{HOMEBREW_PREFIX}/bin/xset fp= "$fontpath"
-        unset fontpath
-      fi
-    SH
-    %w[10-fontdir 98-user].each do |x|
-      chmod "+x", prefix/"etc/X11/xinit/xinitrc.d/#{x}.sh"
+      %w[10-fontdir 98-user].each do |x|
+        (prefix/"etc/X11/xinit/xinitrc.d").install resource("#{x}.sh")
+        chmod "+x", prefix/"etc/X11/xinit/xinitrc.d/#{x}.sh"
+      end
+
+      inreplace prefix/"etc/X11/xinit/xinitrc.d/10-fontdir.sh" do |s|
+        s.gsub! "/opt/X11/bin", Formula["xset"].opt_bin
+        s.gsub! "/opt/X11/share", HOMEBREW_PREFIX/"share/X11"
+        s.gsub! 'fp= "$fontpath"', 'fp= "built-ins,$fontpath"'
+      end
     end
   end
 
-  def caveats
-    <<~EOS
-      enable the homebrew.mxcl.privileged_startx:
-      `sudo chown root #{opt_prefix}/homebrew.mxcl.privileged_startx.plist`
-      `sudo launchctl bootstrap system #{opt_prefix}homebrew.mxcl.privileged_startx.plist`
-    EOS
+  def post_install
+    if OS.mac?
+      # generate fonts dir
+      mkdir_p share/"X11/system_fonts"
+      system "lndir", "/System/Library/Fonts", share/"X11/system_fonts"
+    end
   end
 
   def plist_name
