@@ -44,7 +44,7 @@ class XorgServer < Formula
 
   def install
     font_path = %w[misc TTF OTF Type1 100dpi 75dpi].map do |p|
-      "#{HOMEBREW_PREFIX}/share/fonts/X11/#{p}"
+      HOMEBREW_PREFIX/"share/fonts/X11"/p
     end
     if OS.mac?
       font_path += %W[
