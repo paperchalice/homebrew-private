@@ -7,8 +7,8 @@ class Xinit < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/xinit-1.4.1"
-    rebuild 2
-    sha256 monterey: "eb6d13f52f215de287d1cd4a64f02f85677d6e7f8c5357db6cfe337edb5f980d"
+    rebuild 3
+    sha256 monterey: "dd0673e81dd304308d7fb6a491a2dbe62da74cd368a6a2215970f24a615630ad"
   end
 
   depends_on "lndir"      => :build
