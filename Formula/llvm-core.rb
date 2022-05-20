@@ -20,6 +20,7 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
+  depends_on "libtensorflow"
   depends_on "z3"
 
   uses_from_macos "curl"
