@@ -80,8 +80,7 @@ class QtWebEngine < Formula
     python = Formula["python"]
     venv = virtualenv_create(buildpath/"venv", python.bin/"python3")
     venv.pip_install resources
-    ENV["PYTHON3_PATH"] = buildpath/"venv/bin/python3"
-    ENV.prepend_path "PATH", buildpath/"venv/bin"
+    ENV.prepend_path "PYTHONPATH", venv/"lib/python#{xy}/site-packages"
 
     inreplace "src/3rdparty/chromium/build/toolchain/apple/toolchain.gni",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
@@ -96,7 +95,6 @@ class QtWebEngine < Formula
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      -D Python3_EXECUTABLE=#{buildpath}/venv/bin/python3
       -D BUILD_WITH_PCH=ON
 
       -S .
