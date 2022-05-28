@@ -20,8 +20,8 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
-  depends_on "libtensorflow"
-  depends_on "z3"
+  depends_on "libtensorflow" => :optional
+  depends_on "z3"            => :optional
 
   uses_from_macos "curl"
   uses_from_macos "libedit"
@@ -49,17 +49,17 @@ class LlvmCore < Formula
       -D SPHINX_WARNINGS_AS_ERRORS=OFF
       -D SPHINX_OUTPUT_HTML=OFF
       -D SPHINX_OUTPUT_MAN=ON
-      -D TENSORFLOW_C_LIB_PATH=#{Formula["libtensorflow"].opt_prefix}
       -D LLVM_INSTALL_BINUTILS_SYMLINKS=ON
       -D LLVM_INSTALL_CCTOOLS_SYMLINKS=ON
       -D LLVM_INSTALL_UTILS=ON
-      -D LLVM_ENABLE_Z3_SOLVER=ON
       -D LLVM_OPTIMIZED_TABLEGEN=ON
       -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
 
       -S llvm
       -B build
     ]
+    cmake_args << "-D LLVM_ENABLE_Z3_SOLVER=ON" if build.with? "z3"
+    cmake_args << "-D TENSORFLOW_C_LIB_PATH=#{Formula["libtensorflow"].prefix}" if build.with? "libtensorflow"
 
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
