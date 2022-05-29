@@ -2,8 +2,8 @@ class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.0",
-    revision: "329fda39c507e8740978d10458451dcdb21563be"
+    tag:      "llvmorg-14.0.4",
+    revision: "29f1039a7285a5c3a9c353d054140bf2556d4c4d"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
