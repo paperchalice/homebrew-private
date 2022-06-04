@@ -77,18 +77,17 @@ class XorgServer < Formula
       ]
     end
 
+    File.open("hw/xquartz/bundle/meson.build", "a") do |f|
+      f.write <<~EOS
+        install_data('Xquartz.plist',
+          install_dir: join_paths(get_option('prefix'), get_option('libdir'), 'X11/xserver'),
+          install_mode: 'rw-r--r--')
+      EOS
+    end
     system "meson", "build", *meson_args
     system "meson", "compile", "-C", "build"
     system "meson", "install", "-C", "build"
     bin.install_symlink bin/"Xquartz" => "X" if OS.mac?
-  end
-
-  def post_install
-    if OS.mac?
-      system "/System/Library/Frameworks/CoreServices.framework"\
-             "/Frameworks/LaunchServices.framework/Support/lsregister",
-             "-R", "-f", libexec/"X11.app"
-    end
   end
 
   test do
@@ -109,7 +108,7 @@ class XorgServer < Formula
 
     ENV["DISPLAY"] = ":1"
     fork do
-      exec bin/"X", ":1"
+      exec bin/"Xvfb", ":1"
     end
     sleep 10
     system "./test"
