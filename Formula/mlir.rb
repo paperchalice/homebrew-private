@@ -2,8 +2,8 @@ class Mlir < Formula
   desc "Multi-Level Intermediate Representation"
   homepage "https://mlir.llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.0",
-    revision: "329fda39c507e8740978d10458451dcdb21563be"
+    tag:      "llvmorg-14.0.5",
+    revision: "c12386ae247c0d46e1d513942e322e3a0510b126"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -12,6 +12,7 @@ class Mlir < Formula
   end
 
   depends_on "cmake" => :build
+  depends_on "mold"  => :build
 
   depends_on "llvm-core"
   depends_on "numpy"
@@ -22,10 +23,11 @@ class Mlir < Formula
     cmake_args = std_cmake_args+ %w[
       -D BUILD_SHARED_LIBS=ON
       -D CMAKE_CXX_STANDARD=17
+      -D CMAKE_CXX_FLAGS="-fuse-ld=mold"
 
       -D LLVM_BUILD_TOOLS=ON
       -D LLVM_BUILD_UTILS=ON
-      -D MLIR_ENABLE_BINDINGS_PYTHON=OFF
+      -D MLIR_ENABLE_BINDINGS_PYTHON=ON
 
       -S mlir
       -B build
