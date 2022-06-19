@@ -80,7 +80,8 @@ class QtWebEngine < Formula
     python = Formula["python"]
     venv = virtualenv_create(buildpath/"venv", python.bin/"python3")
     venv.pip_install resources
-    ENV.prepend_path "PYTHONPATH", venv/"lib/python#{xy}/site-packages"
+    ENV.prepend_path "PYTHONPATH", buildpath/"venv"/(Language::Python.site_packages "python3")
+    ENV.prepend_path "PATH", Formula["python"].libexec/"bin"
 
     inreplace "src/3rdparty/chromium/build/toolchain/apple/toolchain.gni",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
@@ -91,11 +92,23 @@ class QtWebEngine < Formula
       src/gn/CMakeLists.txt
     ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
+    cd "src/3rdparty/chromium/third_party/zlib" do
+      mkdir_p "minizip/contrib"
+      cp Dir[Formula["minizip"].include/"minizip/*"], "minizip/contrib"
+      cp "contrib/minizip/iowin32.h", "minizip/contrib"
+    end
+    cd "src/3rdparty/chromium/build/linux/unbundle" do
+      system_libs = %w[
+        zlib
+        libxml
+        libxslt
+      ]
+      system "./replace_gn_files.py", "--system-libraries", *system_libs
+    end
+
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
       -D CMAKE_STAGING_PREFIX=#{prefix}
-
-      -D BUILD_WITH_PCH=ON
 
       -S .
       -G Ninja
