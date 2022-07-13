@@ -2,8 +2,8 @@ class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
   url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.5",
-    revision: "c12386ae247c0d46e1d513942e322e3a0510b126"
+    tag:      "llvmorg-14.0.6",
+    revision: "f28c006a5895fc0e329fe15fead81e37457cb1d1"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -72,6 +72,7 @@ class LlvmCore < Formula
     %w[ftdetect ftplugin indent syntax].each do |dir|
       (share/"vim/vimfiles"/dir).install Dir["llvm/utils/vim/#{dir}/*.vim"]
     end
+    system "gzip", *Dir[man1/"*"]
   end
 
   test do
