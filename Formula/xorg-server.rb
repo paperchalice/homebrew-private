@@ -83,14 +83,6 @@ class XorgServer < Formula
     bin.install_symlink bin/"Xquartz" => "X" if OS.mac?
   end
 
-  def post_install
-    if OS.mac?
-      system "/System/Library/Frameworks/CoreServices.framework"\
-             "/Frameworks/LaunchServices.framework/Support/lsregister",
-             "-R", "-f", libexec/"X11.app"
-    end
-  end
-
   test do
     mkdir_p "Library/Logs/X11"
     (testpath/"test.c").write <<~EOS
