@@ -7,8 +7,8 @@ class Mlir < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-14.0.0"
-    sha256 cellar: :any, monterey: "b5704a9d23efadd81fa61e62f210775084e159e40d78bcb714ed5de9640454c6"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-14.0.6"
+    sha256 cellar: :any, monterey: "b15054a3ec861e367293dec830983abd4ba2df89566ff9642a8f3a177f5a133b"
   end
 
   depends_on "cmake" => :build
