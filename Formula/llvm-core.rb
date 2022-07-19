@@ -20,6 +20,8 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
+  depends_on "zstd"
+
   depends_on "libtensorflow" => :optional
   depends_on "z3"            => :optional
 
@@ -40,10 +42,12 @@ class LlvmCore < Formula
       -D LLVM_ENABLE_CURL=ON
       -D LLVM_ENABLE_EH=ON
       -D LLVM_ENABLE_FFI=ON
+      -D LLVM_ENABLE_HTTPLIB=ON
       -D LLVM_ENABLE_LIBCXX=ON
       -D LLVM_ENABLE_MODULES=OFF
       -D LLVM_ENABLE_RTTI=ON
       -D LLVM_ENABLE_SPHINX=ON
+      -D LLVM_ENABLE_ZSTD=ON
       -D LLVM_BUILD_DOCS=ON
       -D LLVM_INCLUDE_DOCS=ON
       -D SPHINX_WARNINGS_AS_ERRORS=OFF
