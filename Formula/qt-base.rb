@@ -3,7 +3,15 @@ class QtBase < Formula
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtbase-everywhere-src-6.3.0.tar.xz"
   sha256 "b865aae43357f792b3b0a162899d9bf6a1393a55c4e5e4ede5316b157b1a0f99"
-  license all_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  license all_of: [
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "GFDL-1.3-no-invariants-only",
+    "GPL-2.0-only"  => { with: "Qt-GPL-exception-1.0" },
+    "GPL-3.0-only"  => { with: "Qt-GPL-exception-1.0" },
+    "LGPL-3.0-only" => { with: "Qt-LGPL-exception-1.1" },
+  ]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
   livecheck do
