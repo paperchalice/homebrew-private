@@ -34,6 +34,7 @@ class QtBase < Formula
   depends_on "double-conversion"
   depends_on "freetype"
   depends_on "glib"
+  depends_on "harfbuzz"
   depends_on "icu4c"
   depends_on "jpeg"
   depends_on "libb2"
@@ -71,6 +72,7 @@ class QtBase < Formula
       -D FEATURE_sql_odbc=OFF
       -D FEATURE_sql_psql=OFF
       -D FEATURE_sql_mysql=OFF
+      -D FEATURE_system_harfbuzz=ON
       -D FEATURE_system_sqlite=ON
 
       -S .
