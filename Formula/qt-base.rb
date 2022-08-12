@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtbase-everywhere-src-6.3.0.tar.xz"
-  sha256 "b865aae43357f792b3b0a162899d9bf6a1393a55c4e5e4ede5316b157b1a0f99"
+  url "https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtbase-everywhere-src-6.3.1.tar.xz"
+  sha256 "0a64421d9c2469c2c48490a032ab91d547017c9cc171f3f8070bc31888f24e03"
   license all_of: [
     "Apache-2.0",
     "BSD-3-Clause",
@@ -25,9 +25,11 @@ class QtBase < Formula
   end
 
   depends_on "cmake"      => [:build, :test]
+  depends_on "molten-vk"  => :build
   depends_on "ninja"      => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
+  depends_on "vulkan-headers" => :build
 
   depends_on "brotli"
   depends_on "dbus"
@@ -36,7 +38,7 @@ class QtBase < Formula
   depends_on "glib"
   depends_on "harfbuzz"
   depends_on "icu4c"
-  depends_on "jpeg"
+  depends_on "jpeg-turbo"
   depends_on "libb2"
   depends_on "libpng"
   depends_on "md4c"
@@ -67,6 +69,7 @@ class QtBase < Formula
       -D FEATURE_optimize_size=ON
       -D FEATURE_pkg_config=ON
       -D FEATURE_reduce_exports=ON
+      -D FEATURE_vulkan=ON
       -D FEATURE_zstd=ON
       -D FEATURE_relocatable=OFF
       -D FEATURE_sql_odbc=OFF
