@@ -17,6 +17,9 @@ class LlvmCore < Formula
   end
 
   depends_on "cmake"      => [:build, :test]
+  depends_on "go"         => :build
+  depends_on "ocaml"      => :build
+  depends_on "opam"       => :build
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
@@ -33,32 +36,42 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   def install
+    inreplace "llvm/cmake/modules/AddOCaml.cmake", "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
+    opamroot = buildpath/".opam"
+    ENV["OPAMROOT"] = opamroot
+    ENV["OPAMYES"] = "1"
+    system "opam", "init", "--no-setup", "--disable-sandboxing"
+    system "opam", "install", "ctypes"
+    ENV.append_path "PATH", opamroot/"default/bin"
+
     inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
 
-    cmake_args = std_cmake_args + %w[
-      -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_CXX_STANDARD=17
+    cmake_args = std_cmake_args + %W[
+      BUILD_SHARED_LIBS=ON
+      CMAKE_CXX_STANDARD=17
 
-      -D LLVM_ENABLE_CURL=ON
-      -D LLVM_ENABLE_EH=ON
-      -D LLVM_ENABLE_FFI=ON
-      -D LLVM_ENABLE_HTTPLIB=ON
-      -D LLVM_ENABLE_LIBCXX=ON
-      -D LLVM_ENABLE_MODULES=OFF
-      -D LLVM_ENABLE_RTTI=ON
-      -D LLVM_ENABLE_SPHINX=ON
-      -D LLVM_ENABLE_ZSTD=ON
-      -D LLVM_BUILD_DOCS=ON
-      -D LLVM_INCLUDE_DOCS=ON
-      -D SPHINX_WARNINGS_AS_ERRORS=OFF
-      -D SPHINX_OUTPUT_HTML=OFF
-      -D SPHINX_OUTPUT_MAN=ON
-      -D LLVM_INSTALL_BINUTILS_SYMLINKS=ON
-      -D LLVM_INSTALL_CCTOOLS_SYMLINKS=ON
-      -D LLVM_INSTALL_UTILS=ON
-      -D LLVM_OPTIMIZED_TABLEGEN=ON
-      -D LLVM_CREATE_XCODE_TOOLCHAIN=OFF
-
+      LLVM_ENABLE_CURL=ON
+      LLVM_ENABLE_EH=ON
+      LLVM_ENABLE_FFI=ON
+      LLVM_ENABLE_HTTPLIB=ON
+      LLVM_ENABLE_LIBCXX=ON
+      LLVM_ENABLE_MODULES=OFF
+      LLVM_ENABLE_OCAMLDOC=OFF
+      LLVM_ENABLE_RTTI=ON
+      LLVM_ENABLE_SPHINX=ON
+      LLVM_ENABLE_ZSTD=ON
+      LLVM_BUILD_DOCS=ON
+      LLVM_INCLUDE_DOCS=ON
+      SPHINX_WARNINGS_AS_ERRORS=OFF
+      SPHINX_OUTPUT_HTML=OFF
+      SPHINX_OUTPUT_MAN=ON
+      LLVM_INSTALL_BINUTILS_SYMLINKS=ON
+      LLVM_INSTALL_CCTOOLS_SYMLINKS=ON
+      LLVM_INSTALL_UTILS=ON
+      LLVM_OCAML_INSTALL_PATH=#{lib}/ocaml
+      LLVM_OPTIMIZED_TABLEGEN=ON
+      LLVM_CREATE_XCODE_TOOLCHAIN=OFF
+    ].map { |o| "-D #{o}" } + %w[
       -S llvm
       -B build
     ]
@@ -71,6 +84,7 @@ class LlvmCore < Formula
 
     site_package = Language::Python.site_packages("python3")
     (prefix/site_package).install "llvm/bindings/python/llvm"
+    bin.install "build/bin/llvm-go"
     elisp.install Dir["llvm/utils/emacs/*.el"]
     # Install Vim plugins
     %w[ftdetect ftplugin indent syntax].each do |dir|
