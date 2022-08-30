@@ -34,13 +34,13 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
-      - name: Use my fork Homebrew
-        run: |
-          pushd $(brew --repo)
-          git remote add paperchalice https://github.com/paperchalice/brew.git
-          git fetch paperchalice
-          git checkout main
-          git rebase master
+      # - name: Use my fork Homebrew
+      #   run: |
+      #     pushd $(brew --repo)
+      #     git remote add paperchalice https://github.com/paperchalice/brew.git
+      #     git fetch paperchalice
+      #     git checkout main
+      #     git rebase master
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
         run: |
