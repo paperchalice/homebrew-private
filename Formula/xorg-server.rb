@@ -48,6 +48,7 @@ class XorgServer < Formula
               "'#{HOMEBREW_PREFIX}/share/fonts/X11'"
     # avoid setting `xkb_dir`
     ENV.remove "PKG_CONFIG_PATH", Formula["xkbcomp"].opt_lib/"pkgconfig"
+    ENV.delete "PKG_CONFIG_LIBDIR"
     system "echo", "$PKG_CONFIG_PATH"
     system "false"
     meson_args = %W[
