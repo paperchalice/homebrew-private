@@ -48,6 +48,8 @@ class XorgServer < Formula
               "'#{HOMEBREW_PREFIX}/share/fonts/X11'"
     # avoid setting `xkb_dir`
     ENV.remove "PKG_CONFIG_PATH", Formula["xkbcomp"].opt_lib/"pkgconfig"
+    system "echo", "$PKG_CONFIG_PATH"
+    system "false"
     meson_args = %W[
       --prefix=#{HOMEBREW_PREFIX}
       --buildtype=release
@@ -98,6 +100,7 @@ class XorgServer < Formula
     fork do
       exec bin/"Xvfb", ":1"
     end
+    system "cat", "/var/log/Xorg.0.log"
     ENV["DISPLAY"] = ":1"
     sleep 10
     system "./test"
