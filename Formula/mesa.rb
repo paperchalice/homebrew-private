@@ -101,7 +101,7 @@ class Mesa < Formula
 
     ENV.prepend_path "PATH", "#{venv_root}/bin"
 
-    args = ["-Db_ndebug=true", "-Ddri-drivers-path=#{HOMEBREW_PREFIX}/lib/dri"]
+    args = ["-Db_ndebug=true"]
 
     if OS.linux?
       args += %w[
@@ -124,6 +124,9 @@ class Mesa < Formula
     system "meson", "build", *args, *std_meson_args
     system "meson", "compile", "-C", "build"
     system "meson", "install", "-C", "build"
+    inreplace lib/"pkgconfig/dri.pc" do |s|
+      s.change_make_var! "dridriverdir", HOMEBREW_PREFIX/"lib/dri"
+    end
 
     if OS.linux?
       # Strip executables/libraries/object files to reduce their size
