@@ -133,20 +133,3 @@ index de9daba..3d8e519 100644
  # Building libclang-cpp.so fails if LLVM_ENABLE_PIC=Off
  if (NOT LLVM_ENABLE_PIC)
    return()
-diff --git a/clang/tools/driver/driver.cpp b/clang/tools/driver/driver.cpp
-index 34335a5..e4e4b65 100644
---- a/clang/tools/driver/driver.cpp
-+++ b/clang/tools/driver/driver.cpp
-@@ -68,7 +68,11 @@ std::string GetExecutablePath(const char *Argv0, bool CanonicalPrefixes) {
-   // This just needs to be some symbol in the binary; C++ doesn't
-   // allow taking the address of ::main however.
-   void *P = (void*) (intptr_t) GetExecutablePath;
--  return llvm::sys::fs::getMainExecutable(Argv0, P);
-+  StringRef ME{llvm::sys::fs::getMainExecutable(Argv0, P)};
-+  if (ME.consume_front("CLANG_PREFIX")) {
-+    return "/usr/local" + ME.str();
-+  }
-+  return ME.str();
- }
- 
- static const char *GetStableCStr(std::set<std::string> &SavedStrings,
