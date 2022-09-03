@@ -33,6 +33,11 @@ class Gcc < Formula
   uses_from_macos "libiconv"
   uses_from_macos "zlib"
 
+  patch do
+    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/gcc.diff"
+    sha256 "86b8c7d37867be17ec42b6144aa370c216832e0147bee5d9f2393e7bcb53ed41"
+  end
+
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 

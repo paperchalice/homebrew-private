@@ -36,6 +36,11 @@ class LlvmCore < Formula
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
+  patch do
+    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/llvm-core.diff"
+    sha256 "9d41cce817e76b29243c9c1d383b1be1f3170f8bb886d659a97316b83342cbf1"
+  end
+
   def install
     inreplace "llvm/cmake/modules/AddOCaml.cmake", "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
     opamroot = buildpath/".opam"

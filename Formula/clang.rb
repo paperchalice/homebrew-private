@@ -22,6 +22,11 @@ class Clang < Formula
 
   uses_from_macos "libxml2"
 
+  patch do
+    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/clang.diff"
+    sha256 "5f897f8d9e8d98bfac53218f3a437e705fba6b4b4ab786f1125f7a0e1bdfb51a"
+  end
+
   def install
     inreplace "clang/tools/driver/driver.cpp", "CLANG_PREFIX", prefix
     config_trick = '"s+std::getenv("HOME")+"/.local/etc/clang'
