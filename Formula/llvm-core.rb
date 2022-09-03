@@ -36,8 +36,6 @@ class LlvmCore < Formula
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
-  patch :DATA
-
   def install
     inreplace "llvm/cmake/modules/AddOCaml.cmake", "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
     opamroot = buildpath/".opam"
@@ -135,22 +133,3 @@ class LlvmCore < Formula
     system "./test"
   end
 end
-
-__END__
---- a/llvm/lib/Support/Path.cpp
-+++ b/llvm/lib/Support/Path.cpp
-@@ -1211,7 +1211,13 @@ namespace fs {
- std::string getMainExecutable(const char *Argv0, void *MainAddr) {
-   if (IsLLVMDriver)
-     return sys::path::stem(Argv0).str();
--  return getMainExecutableImpl(Argv0, MainAddr);
-+  auto MainExe = getMainExecutableImpl(Argv0, MainAddr);
-+  StringRef Bin = sys::path::parent_path(MainExe);
-+  StringRef Prefix = sys::path::parent_path(Bin);
-+  if (Prefix.startswith("/usr/local/Cellar/")) {
-+    sys::path::replace_path_prefix(MainExe, Prefix, "/usr/local");
-+  }
-+  return MainExe.str();
- }
- 
- TempFile::TempFile(StringRef Name, int FD)

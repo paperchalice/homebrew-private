@@ -1,0 +1,31 @@
+--- a/libiberty/make-relative-prefix.c
++++ b/libiberty/make-relative-prefix.c
+@@ -313,8 +313,27 @@ make_relative_prefix_1 (const char *progname, const char *bin_prefix,
+ 	}
+     }
+ 
+-  if (resolve_links)
++  if (resolve_links) {
+     full_progname = lrealpath (progname);
++    static const char CELLAR[] = "/usr/local/Cellar/";
++    static const char BREW_PREFIX[] = "/usr/local/";
++    size_t cellar_len = strlen(CELLAR);
++    size_t brew_len = sizeof(BREW_PREFIX);
++    if (strncmp(full_progname, CELLAR, cellar_len) == 0) {
++      int full_prog_num = 0;
++      char ** full_prog_dirs = split_directories(full_progname + cellar_len, &full_prog_num);
++      if (full_prog_dirs >= 2) {
++        size_t pack_len = strlen(full_prog_dirs[0]) + strlen(full_prog_dirs[1]);
++        size_t offset = cellar_len + pack_len;
++        size_t tail_len = strlen(full_progname + offset);
++        char * final_path = malloc(brew_len + tail_len);
++        sprintf(final_path, "%s%s", BREW_PREFIX, full_progname + offset);
++        free(full_progname);
++        full_progname = final_path;
++      }
++      free_split_directories(full_prog_dirs);
++    }
++  }
+   else
+     full_progname = strdup (progname);
+   if (full_progname == NULL)

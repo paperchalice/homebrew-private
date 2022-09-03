@@ -50,9 +50,6 @@ class Gcc < Formula
     ENV.delete "CXX"
     ENV.delete "LD"
 
-    # don't resolve symlinks
-    inreplace "libiberty/make-relative-prefix.c", /(?<=, )1/, "0"
-
     languages = %w[ada c c++ d objc obj-c++ fortran]
 
     pkgversion = "Homebrew GCC #{pkg_version}"
