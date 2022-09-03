@@ -45,8 +45,6 @@ class LlvmCore < Formula
     system "opam", "install", "ctypes"
     ENV.append_path "PATH", opamroot/"default/bin"
 
-    inreplace "llvm/lib/Support/Unix/Path.inc", /(?<=return )link_path/, "exe_path"
-
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
       CMAKE_CXX_STANDARD=17
