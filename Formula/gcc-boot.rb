@@ -6,9 +6,8 @@ class GccBoot < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-11.3.0"
-    rebuild 1
-    sha256 monterey: "7e238b9b7387b58e7f04f6c69cc5478fa7d9df3bd46fe94095145254beaaab4a"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-12.2.0"
+    sha256 monterey: "1edddd6454d77fde820d41dec9197856973de13115f5fe25746212fe6615da96"
   end
 
   keg_only "bootstrap formula"
