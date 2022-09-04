@@ -6,8 +6,8 @@ class GccStrap < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-strap-11.3.0"
-    sha256 monterey: "7a40a9a4ee92e7766cd57ebdc8a32264ec17f96542f3c79a43d4dead27181c41"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-strap-12.2.0"
+    sha256 monterey: "98f8a05ec25086b2356947e6e31e4e252bc453f12e2d537a027b9169d910543e"
   end
 
   keg_only "bootstrap formula"
