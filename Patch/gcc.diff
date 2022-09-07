@@ -40,4 +40,22 @@
      { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 2 },
      { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 0 },
  #endif
-
+--- a/gcc/config/darwin-c.cc
++++ b/gcc/config/darwin-c.cc
+@@ -455,6 +455,7 @@ add_framework_path (char *path)
+ 
+ static const char *framework_defaults [] =
+   {
++    "/usr/local/Frameworks",
+     "/System/Library/Frameworks",
+     "/Library/Frameworks",
+   };
+@@ -508,7 +509,7 @@ darwin_register_frameworks (const char *sysroot,
+       for (i = 0; i < ARRAY_SIZE (framework_defaults); ++i)
+ 	{
+ 	  char *str;
+-	  if (sysroot)
++	  if (sysroot && i != 0)
+ 	    str = concat (sysroot, xstrdup (framework_defaults [i]), NULL);
+ 	  else
+ 	    str = xstrdup (framework_defaults[i]);
