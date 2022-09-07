@@ -11,6 +11,11 @@ class GccBase < Formula
     regex(%r{href=.*?gcc[._-]v?(\d+(?:\.\d+)+)(?:/?["' >]|\.t)}i)
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-base-12.2.0"
+    sha256 monterey: "4897c06ff065014725af6039b8409dc6d31647733b630901aff80ad3a8cf25d8"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
