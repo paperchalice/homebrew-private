@@ -29,3 +29,18 @@
    else
      full_progname = strdup (progname);
    if (full_progname == NULL)
+
+diff --git a/gcc/cppdefault.cc b/gcc/cppdefault.cc
+index 7888300..568e636 100644
+--- a/gcc/cppdefault.cc
++++ b/gcc/cppdefault.cc
+@@ -66,6 +66,9 @@ const struct default_include cpp_include_defaults[]
+ #endif
+ #ifdef LOCAL_INCLUDE_DIR
+     /* /usr/local/include comes before the fixincluded header files.  */
++    { LOCAL_INCLUDE_DIR, 0, 0, 1, 0, 0 },
++    { LOCAL_INCLUDE_DIR, 0, 0, 1, 0, 2 },
++    { LOCAL_INCLUDE_DIR, 0, 0, 1, 0, 0 },
+     { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 2 },
+     { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 0 },
+ #endif
