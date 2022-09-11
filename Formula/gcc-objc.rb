@@ -1,8 +1,8 @@
 class GccObjc < Formula
   desc "GNU Objective C/C++ frontend"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz"
-  sha256 "d08edc536b54c372a1010ff6619dd274c0f1603aa49212ba20f7aa2cda36fa8b"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.xz"
+  sha256 "e549cf9cf3594a00e27b6589d4322d70e0720cdd213f39beb4181e06926230ff"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
@@ -17,11 +17,11 @@ class GccObjc < Formula
 
   depends_on "python" => :build
 
+  depends_on "gcc-base"
   depends_on "gmp"
   depends_on "isl"
   depends_on "libmpc"
   depends_on "mpfr"
-  depends_on "paperchalice/private/gcc"
   depends_on "zstd"
 
   uses_from_macos "libiconv"
@@ -34,6 +34,11 @@ class GccObjc < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
+  patch do
+    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/gcc.diff"
+    sha256 "691af73554281887a941ea145ed2ddb89be1e352020949c0c3d2ca3a30fc75a1"
+  end
+
   def version_suffix
     if build.head?
       "HEAD"
@@ -43,9 +48,6 @@ class GccObjc < Formula
   end
 
   def install
-    # don't resolve symlinks
-    inreplace "libiberty/make-relative-prefix.c", /(?<=, )1/, "0"
-
     # GCC will suffer build errors if forced to use a particular linker.
     ENV.delete "LD"
 
@@ -53,16 +55,19 @@ class GccObjc < Formula
 
     pkgversion = "Homebrew GCC #{pkg_version} #{build.used_options*" "}".strip
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
+    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
 
     args = %W[
-      --prefix=#{prefix}
+      --build=#{triple}
+      --prefix=#{HOMEBREW_PREFIX}
       --disable-multilib
+      --disable-bootstrap
       --enable-nls
       --enable-host-shared
       --enable-checking=release
       --enable-libphobos
       --enable-languages=#{languages.join ","}
-      --libexecdir=#{lib}
+      --libexecdir=#{HOMEBREW_PREFIX}/lib
       --with-gcc-major-version-only
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
@@ -70,40 +75,33 @@ class GccObjc < Formula
       --with-isl=#{Formula["isl"].opt_prefix}
       --with-python-dir=#{Language::Python.site_packages "python3"}
       --with-zstd=#{Formula["zstd"].opt_prefix}
+      --with-system-zlib
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
+      --with-sysroot=#{MacOS.sdk_path}
     ]
-
-    triple = "#{cpu}-apple-darwin#{OS.kernel_version.major}"
-    if OS.mac?
-      args << "--build=#{triple}"
-      args << "--with-system-zlib"
-
-      # System headers may not be in /usr/include
-      ENV["SDKROOT"] = MacOS.sdk_path
-      args << "--with-sysroot=#{MacOS.sdk_path}"
-    end
 
     mkdir "build" do
       system "../configure", *args
-
-      # Use -headerpad_max_install_names in the build,
-      # otherwise updated load commands won't fit in the Mach-O header.
-      # This is needed because `gcc` avoids the superenv shim.
-      system "make", "BOOT_LDFLAGS=-Wl,-headerpad_max_install_names"
-      system "make", "-C", "#{triple}/libobjc", "install"
+      system "make"
+      system "make", "-C", "#{triple}/libobjc", "prefix=#{prefix}", "install"
       %w[cc1obj cc1objplus].each { |t| (lib/"gcc/#{triple}/#{version_suffix}").install "gcc/#{t}" }
-
-      gcc = Formula["paperchalice/private/gcc"]
-      %w[objc-gnu].each do |l|
-        MachO::Tools.change_install_name lib/shared_library("lib#{l}"),
-          "#{lib}/#{shared_library("libgcc_s", 1)}",
-          "#{gcc.lib}/#{shared_library("libgcc_s", 1)}"
-      end
     end
   end
 
   test do
+    # This formula is not work:
+    # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90709
+    (testpath/"test.m").write <<~EOS
+      #import <Foundation/Foundation.h>
+
+      int main(int argc, const char * argv[]) {
+          @autoreleasepool {
+              NSLog(@"Hello, World!");
+          }
+          return 0;
+      }
+    EOS
     system "echo"
   end
 end
