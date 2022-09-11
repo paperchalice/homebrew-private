@@ -7,8 +7,8 @@ class Gdc < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gdc-12.1.0"
-    sha256 monterey: "2c579dce26901f42003b0d9facf010b719812f70eb1d9a0271c8846fc8a078ca"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gdc-12.2.0"
+    sha256 cellar: :any, monterey: "40a60bc807bb71d16148e95924f29efdacf597621f426209f5f4d61278151707"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
