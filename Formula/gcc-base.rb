@@ -90,7 +90,6 @@ class GccBase < Formula
     ]
 
     mkdir "build" do
-      destdir = "#{Pathname.pwd}/../instdir"
       system "../configure", *args
       system "make"
 
@@ -99,14 +98,13 @@ class GccBase < Formula
         headers plugin lto-wrapper
         man info po
       ].each do |t|
-        system "make", "-C", "gcc", "DESTDIR=#{destdir}", "install-#{t}"
+        system "make", "-C", "gcc", "prefix=#{prefix}", "install-#{t}"
       end
-      system "make", "DESTDIR=#{destdir}", "install-fixincludes"
-      system "make", "DESTDIR=#{destdir}", "install-libcc1"
+      system "make", "prefix=#{prefix}", "install-fixincludes"
+      system "make", "prefix=#{prefix}", "install-libcc1"
       %w[atomic gcc gomp itm quadmath ssp].each do |l|
-        system "make", "DESTDIR=#{destdir}", "-C", "#{triple}/lib#{l}", "install"
+        system "make", "prefix=#{prefix}", "-C", "#{triple}/lib#{l}", "install"
       end
-      prefix.install Dir[Pathname.pwd/"../instdir/#{HOMEBREW_PREFIX}/*"]
       %w[gcov gcov-dump gcov-tool].each { |x| bin.install "gcc/#{x}" }
       %w[cc1 collect2 lto1].each do |t|
         (lib/"gcc"/triple/version_suffix).install "gcc/#{t}"

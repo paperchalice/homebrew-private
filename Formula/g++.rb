@@ -89,21 +89,19 @@ class Gxx < Formula
     ]
 
     mkdir "build" do
-      destdir = buildpath/"instdir"
       system "../configure", *args
       system "make"
 
       # make documentation
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "DESTDIR=#{destdir}", "doc-man-doxygen"
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "DESTDIR=#{destdir}", "doc-install-man"
-      system "make", "-C", "#{triple}/libstdc++-v3/po", "DESTDIR=#{destdir}", "install"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-man-doxygen"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
+      system "make", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
 
       %w[sanitizer stdc++-v3].each do |l|
-        system "make", "-C", "#{triple}/lib#{l}", "DESTDIR=#{destdir}", "install"
+        system "make", "-C", "#{triple}/lib#{l}", "prefix=#{prefix}", "install"
       end
-      %w[common man info].each { |t| system "make", "-C", "gcc", "DESTDIR=#{destdir}", "c++.install-#{t}" }
+      %w[common man info].each { |t| system "make", "-C", "gcc", "prefix=#{prefix}", "c++.install-#{t}" }
 
-      prefix.install Dir["#{destdir}/#{HOMEBREW_PREFIX}/*"]
       (lib/"gcc"/triple/version_suffix).install "gcc/cc1plus"
       %W[c++ g++ #{triple}-c++].each do |x|
         rm bin/x
