@@ -7,8 +7,8 @@ class GccObjc < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-objc-11.2.0"
-    sha256 big_sur: "a17dddeea555916fef89e8f8656557d44af2f859607581093748f57605089229"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-objc-12.2.0"
+    sha256 cellar: :any, monterey: "2fc5ccd3b747c1b77c31d9d9510d0c1ce7a0032ece278cafdc8c07816bc93c2a"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
