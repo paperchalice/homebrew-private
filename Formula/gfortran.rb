@@ -7,8 +7,8 @@ class Gfortran < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gfortran-12.1.0"
-    sha256 monterey: "56cf8926143d9bb884a18564d82ac7f0f18765c859308be85dfd7df7b6703368"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gfortran-12.2.0"
+    sha256 cellar: :any, monterey: "5e635c4d256636bc62df0cec0c72b6866d19587827bb6449799b79557f9bf807"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
