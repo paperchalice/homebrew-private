@@ -1,9 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.6",
-    revision: "f28c006a5895fc0e329fe15fead81e37457cb1d1"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0/llvm-project-15.0.0.src.tar.xz"
+  sha256 "caaf8100365b6ebafc39fea803e902ca3ff38b4d5327b9927097808d32964db7"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -36,13 +35,39 @@ class LlvmCore < Formula
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
+  resource "cpp-httplib" do
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.11.1.tar.gz"
+    sha256 "1ce2f0393ba779ec34885c5cd937141b4b5b730e2bc2efc34eb8554289c24d61"
+  end
+
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/llvm-core.diff"
-    sha256 "9d41cce817e76b29243c9c1d383b1be1f3170f8bb886d659a97316b83342cbf1"
+    sha256 "f57595945e7c7ae9aa8c27bc80b0c1ab7c28502800b9d51c00cae0f2877cef61"
+  end
+
+  # tweak zstd behavior in cmake and llvm config for better testing
+  patch do
+    url "https://github.com/llvm/llvm-project/commit/c0b4f248df79f184adba856f13a950a53c881f3f.patch?full_index=1"
+    sha256 "e553156319af0264571788c423a174dc54d313f11fd98c330c7c8220a73ec421"
   end
 
   def install
-    inreplace "llvm/cmake/modules/AddOCaml.cmake", "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
+    resource("cpp-httplib").stage do
+      cpp_httplib_cmake_args = %W[
+        -D CMAKE_INSTALL_PREFIX=#{buildpath}/cpp-httplib
+        -D CMAKE_BUILD_TYPE=MinSizeRel
+        -S .
+        -B build
+      ]
+      system "cmake", *cpp_httplib_cmake_args
+      system "cmake", "--build", "build"
+      system "cmake", "--install", "build"
+    end
+
+    inreplace "llvm/cmake/modules/AddOCaml.cmake" do |s|
+      s.gsub! "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
+      s.gsub! "stdc++", "c++"
+    end
     opamroot = buildpath/".opam"
     ENV["OPAMROOT"] = opamroot
     ENV["OPAMYES"] = "1"
@@ -54,6 +79,7 @@ class LlvmCore < Formula
       BUILD_SHARED_LIBS=ON
       CMAKE_CXX_STANDARD=17
 
+      httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
       LLVM_ENABLE_CURL=ON
       LLVM_ENABLE_EH=ON
       LLVM_ENABLE_FFI=ON
@@ -74,6 +100,7 @@ class LlvmCore < Formula
       LLVM_INSTALL_UTILS=ON
       LLVM_OCAML_INSTALL_PATH=#{lib}/ocaml
       LLVM_OPTIMIZED_TABLEGEN=ON
+      LLVM_PREFER_STATIC_ZSTD=OFF
       LLVM_CREATE_XCODE_TOOLCHAIN=OFF
     ].map { |o| "-D #{o}" } + %w[
       -S llvm
