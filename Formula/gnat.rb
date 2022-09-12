@@ -108,7 +108,7 @@ class Gnat < Formula
         Put_Line("Hello, world!");
       end hello;
     EOS
-    system "gnat", "make", "hello_ada.adb"
+    system bin/"gnat", "make", "hello_ada.adb"
     assert_equal "Hello, world!\n", `./hello_ada`
   end
 end
