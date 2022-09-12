@@ -1,17 +1,18 @@
 --- a/llvm/lib/Support/Path.cpp
 +++ b/llvm/lib/Support/Path.cpp
-@@ -1211,7 +1211,13 @@ namespace fs {
+@@ -1211,7 +1211,14 @@ namespace fs {
  std::string getMainExecutable(const char *Argv0, void *MainAddr) {
    if (IsLLVMDriver)
      return sys::path::stem(Argv0).str();
 -  return getMainExecutableImpl(Argv0, MainAddr);
 +  auto MainExe = getMainExecutableImpl(Argv0, MainAddr);
++  SmallString<128> ResultPath(MainExe);
 +  StringRef Bin = sys::path::parent_path(MainExe);
 +  StringRef Prefix = sys::path::parent_path(Bin);
 +  if (Prefix.startswith("/usr/local/Cellar/")) {
-+    sys::path::replace_path_prefix(MainExe, Prefix, "/usr/local");
++    sys::path::replace_path_prefix(ResultPath, Prefix, "/usr/local");
++    return ResultPath.str().str();
 +  }
-+  return MainExe.str();
  }
  
  TempFile::TempFile(StringRef Name, int FD)
