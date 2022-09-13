@@ -10,7 +10,7 @@
  #endif
 --- a/clang/lib/Driver/ToolChains/Darwin.cpp
 +++ b/clang/lib/Driver/ToolChains/Darwin.cpp
-@@ -617,6 +617,7 @@ void darwin::Linker::ConstructJob(Compilation &C, const JobAction &JA,
+@@ -615,6 +615,7 @@ void darwin::Linker::ConstructJob(Compilation &C, const JobAction &JA,
    if (!Args.hasArg(options::OPT_nostdlib, options::OPT_nostartfiles))
      getMachOToolChain().addStartObjectFileArgs(Args, CmdArgs);
  
@@ -18,7 +18,7 @@
    Args.AddAllArgs(CmdArgs, options::OPT_L);
  
    AddLinkerInputs(getToolChain(), Inputs, Args, CmdArgs, JA);
-@@ -2320,6 +2321,7 @@ void DarwinClang::AddClangSystemIncludeArgs(const llvm::opt::ArgList &DriverArgs
+@@ -2285,6 +2286,7 @@ void DarwinClang::AddClangSystemIncludeArgs(const llvm::opt::ArgList &DriverArgs
        SmallString<128> P(Sysroot);
        llvm::sys::path::append(P, "usr", "local", "include");
        addSystemInclude(DriverArgs, CC1Args, P);
