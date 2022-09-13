@@ -6,8 +6,8 @@ class Clang < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-14.0.0"
-    sha256 cellar: :any, monterey: "75dd568c362c1866b21c00d762835a668c2837a42c8e93d1becff20cb3437f9d"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-15.0.0"
+    sha256 cellar: :any, monterey: "8c604d3aed065d89a521d7a5af815bedfcf4916871072612797ff91be6e9a608"
   end
 
   pour_bottle? only_if: :clt_installed
