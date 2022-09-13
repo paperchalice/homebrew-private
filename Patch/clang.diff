@@ -1,5 +1,3 @@
-diff --git a/clang/lib/Driver/Driver.cpp b/clang/lib/Driver/Driver.cpp
-index 554e6b8..0155ee5 100644
 --- a/clang/lib/Driver/Driver.cpp
 +++ b/clang/lib/Driver/Driver.cpp
 @@ -215,6 +215,7 @@ Driver::Driver(StringRef ClangExecutable, StringRef TargetTriple,
@@ -10,8 +8,6 @@ index 554e6b8..0155ee5 100644
  #if defined(CLANG_CONFIG_FILE_SYSTEM_DIR)
    SystemConfigDir = CLANG_CONFIG_FILE_SYSTEM_DIR;
  #endif
-diff --git a/clang/lib/Driver/ToolChains/Darwin.cpp b/clang/lib/Driver/ToolChains/Darwin.cpp
-index b060a6a..c0be9c5 100644
 --- a/clang/lib/Driver/ToolChains/Darwin.cpp
 +++ b/clang/lib/Driver/ToolChains/Darwin.cpp
 @@ -617,6 +617,7 @@ void darwin::Linker::ConstructJob(Compilation &C, const JobAction &JA,
@@ -30,20 +26,17 @@ index b060a6a..c0be9c5 100644
    }
  
    // Add the Clang builtin headers (<resource>/include)
-diff --git a/clang/lib/Lex/InitHeaderSearch.cpp b/clang/lib/Lex/InitHeaderSearch.cpp
-index 0caa776..5f651bc 100644
 --- a/clang/lib/Lex/InitHeaderSearch.cpp
 +++ b/clang/lib/Lex/InitHeaderSearch.cpp
-@@ -467,6 +467,7 @@ void InitHeaderSearch::AddDefaultIncludePaths(const LangOptions &Lang,
-       else {
-         AddPath("/System/Library/Frameworks", System, true);
-         AddPath("/Library/Frameworks", System, true);
-+        AddUnmappedPath("/usr/local/Frameworks", System, true, None);
-       }
+@@ -463,6 +463,7 @@ void InitHeaderSearch::AddDefaultIncludePaths(const LangOptions &Lang,
+       // Add the default framework include paths on Darwin.
+       AddPath("/System/Library/Frameworks", System, true);
+       AddPath("/Library/Frameworks", System, true);
++      AddUnmappedPath("/usr/local/Frameworks", System, true, None);
      }
      return;
-diff --git a/clang/tools/clang-shlib/CMakeLists.txt b/clang/tools/clang-shlib/CMakeLists.txt
-index de9daba..3d8e519 100644
+   }
+
 --- a/clang/tools/clang-shlib/CMakeLists.txt
 +++ b/clang/tools/clang-shlib/CMakeLists.txt
 @@ -1,3 +1,4 @@
