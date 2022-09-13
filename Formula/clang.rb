@@ -1,9 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.0",
-    revision: "329fda39c507e8740978d10458451dcdb21563be"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0/llvm-project-15.0.0.src.tar.xz"
+  sha256 "caaf8100365b6ebafc39fea803e902ca3ff38b4d5327b9927097808d32964db7"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -20,43 +19,43 @@ class Clang < Formula
   # TODO: depends_on "grpc"
   depends_on "llvm-core"
 
+  uses_from_macos "gzip" => :build
   uses_from_macos "libxml2"
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/clang.diff"
-    sha256 "5f897f8d9e8d98bfac53218f3a437e705fba6b4b4ab786f1125f7a0e1bdfb51a"
+    sha256 "164ea8269c83d5f9dcdf1e2aef05ef7e4feaec0e822b54845e881a14ba2d7dda"
   end
 
   def install
-    inreplace "clang/tools/driver/driver.cpp", "CLANG_PREFIX", prefix
     config_trick = '"s+std::getenv("HOME")+"/.local/etc/clang'
     py_ver = Language::Python.major_minor_version("python3")
+    # CLANG_RESOURCE_DIR=../lib/clang/current
     cmake_args = std_cmake_args + %W[
-      -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_CXX_STANDARD=17
+      BUILD_SHARED_LIBS=ON
+      CMAKE_CXX_STANDARD=17
 
-      -D CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
-      -D CLANG_CONFIG_FILE_USER_DIR=#{config_trick}
-      -D CLANG_RESOURCE_DIR=../lib/clang/current
-      -D CLANG_DEFAULT_STD_C=c17
-      -D CLANG_DEFAULT_STD_CXX=cxx17
-      -D CLANG_DEFAULT_CXX_STDLIB=libc++
-      -D CLANG_DEFAULT_LINKER=lld
-      -D CLANG_DEFAULT_RTLIB=compiler-rt
-      -D CLANG_DEFAULT_UNWINDLIB=libunwind
-      -D CLANG_LINK_CLANG_DYLIB=OFF
-      -D CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
-      -D DEFAULT_SYSROOT=#{MacOS.sdk_path}
-      -D CLANGD_ENABLE_REMOTE=OFF
+      CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
+      CLANG_CONFIG_FILE_USER_DIR=#{config_trick}
+      CLANG_DEFAULT_STD_C=c17
+      CLANG_DEFAULT_STD_CXX=cxx17
+      CLANG_DEFAULT_CXX_STDLIB=libc++
+      CLANG_DEFAULT_LINKER=lld
+      CLANG_DEFAULT_RTLIB=compiler-rt
+      CLANG_DEFAULT_UNWINDLIB=libunwind
+      CLANG_LINK_CLANG_DYLIB=OFF
+      CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
+      DEFAULT_SYSROOT=#{MacOS.sdk_path}
+      CLANGD_ENABLE_REMOTE=OFF
 
-      -D LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
-      -D LLVM_BUILD_DOCS=ON
-      -D LLVM_INCLUDE_DOCS=ON
-      -D LLVM_ENABLE_SPHINX=ON
-      -D SPHINX_WARNINGS_AS_ERRORS=OFF
-      -D SPHINX_OUTPUT_HTML=OFF
-      -D SPHINX_OUTPUT_MAN=ON
-
+      LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
+      LLVM_BUILD_DOCS=ON
+      LLVM_INCLUDE_DOCS=ON
+      LLVM_ENABLE_SPHINX=ON
+      SPHINX_WARNINGS_AS_ERRORS=OFF
+      SPHINX_OUTPUT_HTML=OFF
+      SPHINX_OUTPUT_MAN=ON
+    ].map { |o| "-D #{o}" } + %w[
       -S clang
       -B build
     ]
@@ -66,6 +65,7 @@ class Clang < Formula
     system "cmake", "--install", "build", "--strip"
     lib.install "build/lib/ClangdXPC.framework"
     frameworks.install_symlink lib/"ClangdXPC.framework"
+    system "gzip", *Dir[man1/"*"]
   end
 
   test do
