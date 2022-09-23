@@ -1,12 +1,10 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.1/submodules/qtbase-everywhere-src-6.3.1.tar.xz"
-  sha256 "0a64421d9c2469c2c48490a032ab91d547017c9cc171f3f8070bc31888f24e03"
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtbase-everywhere-src-6.4.0.tar.xz"
+  sha256 "cb6475a0bd8567c49f7ffbb072a05516ee6671171bed55db75b22b94ead9b37d"
   license all_of: [
-    "Apache-2.0",
     "BSD-3-Clause",
-    "BSL-1.0",
     "GFDL-1.3-no-invariants-only",
     "GPL-2.0-only"  => { with: "Qt-GPL-exception-1.0" },
     "GPL-3.0-only"  => { with: "Qt-GPL-exception-1.0" },
@@ -25,15 +23,18 @@ class QtBase < Formula
   end
 
   depends_on "cmake"      => [:build, :test]
-  depends_on "molten-vk"  => :build
+  depends_on "gtk+3"      => :build
+  depends_on "molten-vk"  => [:build, :test]
   depends_on "ninja"      => :build
+  depends_on "openssl"    => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
-  depends_on "vulkan-headers" => :build
+  depends_on "vulkan-headers" => [:build, :test]
 
   depends_on "brotli"
   depends_on "dbus"
   depends_on "double-conversion"
+  depends_on "fontconfig"
   depends_on "freetype"
   depends_on "glib"
   depends_on "harfbuzz"
@@ -41,8 +42,16 @@ class QtBase < Formula
   depends_on "jpeg-turbo"
   depends_on "libb2"
   depends_on "libpng"
+  depends_on "libsm"
+  depends_on "libxcb"
+  depends_on "libxkbcommon"
   depends_on "md4c"
+  depends_on "mesa"
   depends_on "pcre2"
+  depends_on "xcb-util-image"
+  depends_on "xcb-util-keysyms"
+  depends_on "xcb-util-renderutil"
+  depends_on "xcb-util-wm"
   depends_on "zstd"
 
   uses_from_macos "cups"
@@ -50,34 +59,53 @@ class QtBase < Formula
   uses_from_macos "sqlite"
   uses_from_macos "zlib"
 
+  patch do
+    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/qt-base.diff"
+    sha256 "45ddb83062e3fc95aadb49be920620db7cc0860ecc18353d9bf549c2689e7406"
+  end
+
+  # vulkan: Re-enable VK_KHR_portability drivers
+  patch do
+    url "https://github.com/qt/qtbase/commit/7fbc741d107ab679f6abd680ec909ce9b2bf333a.patch?full_index=1"
+    sha256 "41e4bd41995c446e496a8128f2015443ede7f1b3cd3efe180d62e249cd046540"
+  end
+
   def install
     ENV.permit_arch_flags
-    inreplace "cmake/FindGSSAPI.cmake", "gssapi_krb5", ""
-    inreplace "CMakeLists.txt", /^qt_internal_check_if_path_has_symlinks/, "#"
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
-      -D CMAKE_STAGING_PREFIX=#{prefix}
-      -D CMAKE_SYSROOT=#{MacOS.sdk_path}
+      BUILD_WITH_PCH=OFF
+      CMAKE_STAGING_PREFIX=#{prefix}
+      CMAKE_SYSROOT=#{MacOS.sdk_path}
 
-      -D INSTALL_DATADIR=share/qt
-      -D INSTALL_ARCHDATADIR=share/qt
+      OPENGL_INCLUDE_DIR=#{Formula["mesa"].include}
+      OPENGL_gl_LIBRARY=#{Formula["mesa"].lib/shared_library("libGL")}
+      OPENGL_glu_LIBRARY=#{Formula["mesa"].lib/shared_library("libGL")}
 
-      -D INSTALL_EXAMPLESDIR=share/qt/examples
-      -D INSTALL_MKSPECSDIR=share/qt/mkspecs
-      -D INSTALL_TESTSDIR=share/qt/tests
+      INSTALL_DATADIR=share/qt
+      INSTALL_ARCHDATADIR=share/qt
 
-      -D FEATURE_optimize_size=ON
-      -D FEATURE_pkg_config=ON
-      -D FEATURE_reduce_exports=ON
-      -D FEATURE_vulkan=ON
-      -D FEATURE_zstd=ON
-      -D FEATURE_relocatable=OFF
-      -D FEATURE_sql_odbc=OFF
-      -D FEATURE_sql_psql=OFF
-      -D FEATURE_sql_mysql=OFF
-      -D FEATURE_system_harfbuzz=ON
-      -D FEATURE_system_sqlite=ON
+      INSTALL_EXAMPLESDIR=share/qt/examples
+      INSTALL_MKSPECSDIR=share/qt/mkspecs
+      INSTALL_TESTSDIR=share/qt/tests
 
+      QT_FIND_ALL_PACKAGES_ALWAYS=ON
+      FEATURE_optimize_size=ON
+      FEATURE_pkg_config=ON
+      FEATURE_reduce_exports=ON
+      FEATURE_vulkan=ON
+      FEATURE_zstd=ON
+      FEATURE_sql_odbc=OFF
+      FEATURE_sql_psql=OFF
+      FEATURE_sql_mysql=OFF
+      FEATURE_ssl=ON
+      FEATURE_fontconfig=ON
+      FEATURE_system_harfbuzz=ON
+      FEATURE_system_sqlite=ON
+      FEATURE_system_xcb_xinput=ON
+      FEATURE_xcb=ON
+      FEATURE_gtk3=ON
+    ].map { |o| "-D #{o}" } + %w[
       -S .
       -G Ninja
     ]
@@ -98,6 +126,7 @@ class QtBase < Formula
       include.install_symlink f/"Headers" => f.stem
       lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
+    system "gzip", share/"qt/plugins/platformthemes/libqgtk3.dylib"
   end
 
   test do
@@ -129,6 +158,7 @@ class QtBase < Formula
 
     system "cmake", testpath
     system "cmake", "--build", "."
-    assert_equal "Hello World!", shell_output("#{testpath}/test 2>&1").strip
+    assert_equal "Hello World!", shell_output(testpath/"test 2>&1").strip
+    assert_equal HOMEBREW_PREFIX.to_s, shell_output(bin/"qtpaths --query QT_INSTALL_PREFIX").strip
   end
 end
