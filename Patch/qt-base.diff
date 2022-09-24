@@ -1,5 +1,3 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 9c5141e..4be3cd5 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -47,7 +47,6 @@ function(qt_internal_check_if_path_has_symlinks path)
@@ -10,8 +8,6 @@ index 9c5141e..4be3cd5 100644
  
  # Run auto detection routines, but not when doing standalone tests. In that case, the detection
  # results are taken from either QtBuildInternals or the qt.toolchain.cmake file. Also, inhibit
-diff --git a/cmake/FindGSSAPI.cmake b/cmake/FindGSSAPI.cmake
-index 9e72dd8..bf7ba8c 100644
 --- a/cmake/FindGSSAPI.cmake
 +++ b/cmake/FindGSSAPI.cmake
 @@ -17,7 +17,6 @@ find_library(GSSAPI_LIBRARIES
@@ -22,8 +18,17 @@ index 9e72dd8..bf7ba8c 100644
               HINTS ${PC_GSSAPI_LIBDIR}
  )
  
-diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
-index f88f72e..7290567 100644
+--- a/cmake/FindWrapZSTD.cmake
++++ b/cmake/FindWrapZSTD.cmake
+@@ -28,7 +28,7 @@ include(FindPackageHandleStandardArgs)
+ if(TARGET zstd::libzstd_static OR TARGET zstd::libzstd_shared)
+     find_package_handle_standard_args(WrapZSTD
+                                       REQUIRED_VARS zstd_VERSION VERSION_VAR zstd_VERSION)
+-    if(TARGET zstd::libzstd_static)
++    if(OFF)
+         set(zstdtargetsuffix "_static")
+     else()
+         set(zstdtargetsuffix "_shared")
 --- a/src/corelib/global/qlibraryinfo.cpp
 +++ b/src/corelib/global/qlibraryinfo.cpp
 @@ -365,6 +365,9 @@ static QString getRelocatablePrefix(QLibraryInfoPrivate::UsageMode usageMode)
@@ -36,3 +41,14 @@ index f88f72e..7290567 100644
  #elif QT_CONFIG(dlopen)
      Q_UNUSED(usageMode);
      Dl_info info;
+--- a/src/gui/configure.cmake
++++ b/src/gui/configure.cmake
+@@ -28,7 +28,7 @@ set_property(CACHE INPUT_libpng PROPERTY STRINGS undefined no qt system)
+ 
+ 
+ #### Libraries
+-qt_set01(X11_SUPPORTED LINUX OR HPUX OR FREEBSD OR NETBSD OR OPENBSD OR SOLARIS OR HURD) # special case
++qt_set01(X11_SUPPORTED APPLE OR LINUX OR HPUX OR FREEBSD OR NETBSD OR OPENBSD OR SOLARIS OR HURD) # special case
+ qt_find_package(ATSPI2 PROVIDED_TARGETS PkgConfig::ATSPI2 MODULE_NAME gui QMAKE_LIB atspi)
+ qt_find_package(DirectFB PROVIDED_TARGETS PkgConfig::DirectFB MODULE_NAME gui QMAKE_LIB directfb)
+ qt_find_package(Libdrm PROVIDED_TARGETS Libdrm::Libdrm MODULE_NAME gui QMAKE_LIB drm)
