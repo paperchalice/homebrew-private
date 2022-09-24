@@ -30,7 +30,7 @@ index f88f72e..7290567 100644
      const QString prefixDir = QString(libDirCFString) + "/" QT_CONFIGURE_LIBLOCATION_TO_PREFIX_PATH;
  
      prefixPath = QDir::cleanPath(prefixDir);
-+    if (prefixPath.startsWith("/usr/local/Cellar/qt/")) {
++    if (prefixPath.startsWith("/usr/local/Cellar/qt-base/")) {
 +        prefixPath = "/usr/local";
 +    }
  #elif QT_CONFIG(dlopen)
