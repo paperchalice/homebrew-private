@@ -1,0 +1,38 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9c5141e..4be3cd5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -47,7 +47,6 @@ function(qt_internal_check_if_path_has_symlinks path)
+             cd $(realpath <path>) before invoking cmake <source_dir>.")
+     endif()
+ endfunction()
+-qt_internal_check_if_path_has_symlinks("${CMAKE_BINARY_DIR}")
+ 
+ # Run auto detection routines, but not when doing standalone tests. In that case, the detection
+ # results are taken from either QtBuildInternals or the qt.toolchain.cmake file. Also, inhibit
+diff --git a/cmake/FindGSSAPI.cmake b/cmake/FindGSSAPI.cmake
+index 9e72dd8..bf7ba8c 100644
+--- a/cmake/FindGSSAPI.cmake
++++ b/cmake/FindGSSAPI.cmake
+@@ -17,7 +17,6 @@ find_library(GSSAPI_LIBRARIES
+              GSS # framework
+              gss # solaris
+              gssapi # FreeBSD
+-             gssapi_krb5
+              HINTS ${PC_GSSAPI_LIBDIR}
+ )
+ 
+diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
+index f88f72e..7290567 100644
+--- a/src/corelib/global/qlibraryinfo.cpp
++++ b/src/corelib/global/qlibraryinfo.cpp
+@@ -365,6 +365,9 @@ static QString getRelocatablePrefix(QLibraryInfoPrivate::UsageMode usageMode)
+     const QString prefixDir = QString(libDirCFString) + "/" QT_CONFIGURE_LIBLOCATION_TO_PREFIX_PATH;
+ 
+     prefixPath = QDir::cleanPath(prefixDir);
++    if (prefixPath.startsWith("/usr/local/Cellar/qt/")) {
++        prefixPath = "/usr/local";
++    }
+ #elif QT_CONFIG(dlopen)
+     Q_UNUSED(usageMode);
+     Dl_info info;
