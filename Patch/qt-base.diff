@@ -71,7 +71,7 @@
  {
      QString fontpath = QString::fromLocal8Bit(qgetenv("QT_QPA_FONTDIR"));
      if (fontpath.isEmpty())
--        fontpath = QLibraryInfo::path(QLibraryInfo::LibrariesPath) + "/fonts"_L1;
+-        fontpath = QLibraryInfo::path(QLibraryInfo::LibrariesPath) + QLatin1String("/fonts");
 +        fontpath = QLibraryInfo::path(QLibraryInfo::LibrariesPath) + "/../share/system_fonts"_L1;
  
 -    return fontpath;
