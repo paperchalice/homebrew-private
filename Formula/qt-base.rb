@@ -83,7 +83,7 @@ class QtBase < Formula
   end
 
   def install
-    ENV.permit_arch_flags
+    # ENV.permit_arch_flags
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       BUILD_WITH_PCH=OFF
