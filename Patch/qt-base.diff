@@ -65,19 +65,3 @@
          find_library(WrapOpenGL_AGL NAMES AGL)
          if(WrapOpenGL_AGL)
              set(__opengl_agl_fw_path "${WrapOpenGL_AGL}")
-
-
-mmm a/src/gui/text/qplatformfontdatabase.cpp
-ppp b/src/gui/text/qplatformfontdatabase.cpp
-@@ -361,9 +361,9 @@ QString QPlatformFontDatabase::fontDir() const
- {
-     QString fontpath = QString::fromLocal8Bit(qgetenv("QT_QPA_FONTDIR"));
-     if (fontpath.isEmpty())
--        fontpath = QLibraryInfo::path(QLibraryInfo::LibrariesPath) + "/fonts"_L1;
-+        fontpath = QLibraryInfo::path(QLibraryInfo::LibrariesPath) + "/../share/system_fonts"_L1;
- 
--    return fontpath;
-+    return QDir::cleanPath(fontpath);
- }
- 
- /*!
