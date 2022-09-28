@@ -71,7 +71,6 @@ class QtBase < Formula
   patch do
     url "https://github.com/qt/qtbase/commit/7fbc741d107ab679f6abd680ec909ce9b2bf333a.patch?full_index=1"
     sha256 "41e4bd41995c446e496a8128f2015443ede7f1b3cd3efe180d62e249cd046540"
-    directory "qtbase"
   end
 
   # vulkan: Add flag to opt out from enumerating Portability phys.devices
@@ -79,7 +78,6 @@ class QtBase < Formula
   patch do
     url "https://github.com/qt/qtbase/commit/b018bc6e2d27b95024ee8f1b8c719199df47c264.patch?full_index=1"
     sha256 "1b8acf46721100d92e6828206bbde10daa2ed4a020fe7d8f998db80652af6506"
-    directory "qtbase"
   end
 
   def install
