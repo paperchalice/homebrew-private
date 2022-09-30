@@ -23,7 +23,6 @@ class QtBase < Formula
   end
 
   depends_on "cmake"      => [:build, :test]
-  depends_on "gtk+3"      => :build
   depends_on "molten-vk"  => [:build, :test]
   depends_on "ninja"      => :build
   depends_on "openssl"    => :build
@@ -64,15 +63,9 @@ class QtBase < Formula
     sha256 "45ddb83062e3fc95aadb49be920620db7cc0860ecc18353d9bf549c2689e7406"
   end
 
-  # vulkan: Re-enable VK_KHR_portability drivers
-  patch do
-    url "https://github.com/qt/qtbase/commit/7fbc741d107ab679f6abd680ec909ce9b2bf333a.patch?full_index=1"
-    sha256 "41e4bd41995c446e496a8128f2015443ede7f1b3cd3efe180d62e249cd046540"
-  end
-
   def install
     ENV.permit_arch_flags
-
+    inreplace "src/gui/CMakeLists.txt", "AND NOT APPLE", ""
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       BUILD_WITH_PCH=OFF
       CMAKE_STAGING_PREFIX=#{prefix}
@@ -104,7 +97,6 @@ class QtBase < Formula
       FEATURE_system_sqlite=ON
       FEATURE_system_xcb_xinput=ON
       FEATURE_xcb=ON
-      FEATURE_gtk3=ON
     ].map { |o| "-D #{o}" } + %w[
       -S .
       -G Ninja
@@ -126,7 +118,6 @@ class QtBase < Formula
       include.install_symlink f/"Headers" => f.stem
       lib.install_symlink f/f.stem => shared_library("lib#{f.stem}")
     end
-    system "gzip", share/"qt/plugins/platformthemes/libqgtk3.dylib"
   end
 
   test do
