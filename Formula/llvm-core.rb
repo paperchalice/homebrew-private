@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0/llvm-project-15.0.0.src.tar.xz"
-  sha256 "caaf8100365b6ebafc39fea803e902ca3ff38b4d5327b9927097808d32964db7"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.1/llvm-project-15.0.1.src.tar.xz"
+  sha256 "f25ce2d4243bebf527284eb7be7f6f56ef454fca8b3de9523f7eb4efb8d26218"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -91,7 +91,7 @@ class LlvmCore < Formula
       LLVM_ENABLE_ZSTD=ON
       LLVM_BUILD_DOCS=ON
       LLVM_INCLUDE_DOCS=ON
-      LLVM_TOOL_LLVM_DRIVER_BUILD=ON
+      LLVM_TOOL_LLVM_DRIVER_BUILD=OFF
       SPHINX_WARNINGS_AS_ERRORS=OFF
       SPHINX_OUTPUT_HTML=OFF
       SPHINX_OUTPUT_MAN=ON
