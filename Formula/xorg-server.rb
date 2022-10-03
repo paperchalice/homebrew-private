@@ -90,7 +90,7 @@ class XorgServer < Formula
     if OS.mac?
       inreplace bin/"xvfb-run" do |s|
         s.gsub! "getopt", Formula["gnu-getopt"].opt_bin/"getopt"
-        s.gsub! /(?>fmt) -t/, "" # bsd fmt doesn't support -t
+        s.gsub!(/(?>fmt) -t/, "") # bsd fmt doesn't support -t
         s.change_make_var! "MCOOKIE", "$(openssl rand -hex 16)"
       end
     end
