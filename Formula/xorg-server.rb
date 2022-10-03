@@ -120,7 +120,6 @@ class XorgServer < Formula
       }
     EOS
     xcb = Formula["libxcb"]
-    ENV["COLUMNS"] = "80"
     system ENV.cc, "./test.c", "-o", "test", "-I#{xcb.include}", "-L#{xcb.lib}", "-lxcb"
 
     fork do
