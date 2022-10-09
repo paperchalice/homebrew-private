@@ -6,9 +6,9 @@ class QtBase < Formula
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
-    "GPL-2.0-only"  => { with: "Qt-GPL-exception-1.0" },
+    "GPL-2.0-only",
     "GPL-3.0-only"  => { with: "Qt-GPL-exception-1.0" },
-    "LGPL-3.0-only" => { with: "Qt-LGPL-exception-1.1" },
+    "LGPL-3.0-only",
   ]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
