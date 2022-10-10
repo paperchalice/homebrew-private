@@ -7,8 +7,8 @@ class QtBase < Formula
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
     "GPL-2.0-only",
-    "GPL-3.0-only"  => { with: "Qt-GPL-exception-1.0" },
     "LGPL-3.0-only",
+    "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
   ]
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
