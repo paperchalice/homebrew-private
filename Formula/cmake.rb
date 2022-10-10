@@ -1,9 +1,9 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-3.23.2.tar.gz"
-  sha256 "f316b40053466f9a416adf981efda41b160ca859e97f6a484b447ea299ff26aa"
+  url "https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz"
+  mirror "http://fresh-center.net/linux/misc/cmake-3.24.2.tar.gz"
+  sha256 "0d9020f06f3ddf17fb537dc228e1a56c927ee506b486f55fe2dc19f69bf0c8db"
   license "BSD-3-Clause"
 
   bottle do
@@ -69,7 +69,7 @@ class Cmake < Formula
 
   test do
     (testpath/"CMakeLists.txt").write <<~CMAKE
-      cmake_minimum_required(VERSION 3.23)
+      cmake_minimum_required(VERSION #{version})
 
       project(Template
               VERSION      0.0.0.0
