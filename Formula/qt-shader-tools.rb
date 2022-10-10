@@ -12,8 +12,8 @@ class QtShaderTools < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.3.0"
-    sha256 cellar: :any, monterey: "ae0e48fd13e63e4e992bad1b7100ea3ad6b81345edfccf5d1718a77d7726888f"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.4.0"
+    sha256 cellar: :any, monterey: "60b3cc16c41466b0d2bcca978fd7fc7ab9b80b71d7fe62ee7553546d1e5bbeaa"
   end
 
   depends_on "cmake"      => [:build, :test]
