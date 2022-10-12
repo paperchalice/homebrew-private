@@ -1,8 +1,8 @@
 class QtMultimedia < Formula
   desc "Support for CAN and potentially other serial buses"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtmultimedia-everywhere-src-6.3.0.tar.xz"
-  sha256 "d050247ff82974a8480c05ce602fd39e03d9e2d1b82bb78a3f42cf29b3a7fe3e"
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtmultimedia-everywhere-src-6.4.0.tar.xz"
+  sha256 "e82e8e847cae2a951a11db05b6d10a22b21e3a1d72e06a7781cce4bd197e796f"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtmultimedia.git", branch: "dev"
 
@@ -14,12 +14,15 @@ class QtMultimedia < Formula
   depends_on "cmake"      => [:build, :test]
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
+  depends_on "vulkan-headers" => [:build, :test]
 
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"
 
   def install
+    ENV.permit_arch_flags
+    ENV.runtime_cpu_detection
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -DCMAKE_STAGING_PREFIX=#{prefix}
 
