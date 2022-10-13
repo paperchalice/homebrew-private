@@ -1,9 +1,15 @@
 class QtQuickTimeline < Formula
   desc "Module for keyframe-based timeline construction"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtquicktimeline-everywhere-src-6.3.0.tar.xz"
-  sha256 "9ff0a931159efc6be5bd9f8a1e4a16a70e2dab37cf22ad85c6d330ccfdf31c1a"
-  license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtquicktimeline-everywhere-src-6.4.0.tar.xz"
+  sha256 "70e8a28b5310c42a8d50d949b55c1d7238cf52ea778f9bb2e254835a0e054f57"
+  license all_of: [
+    "BSD-3-Clause",
+    "GFDL-1.3-no-invariants-only",
+    "GPL-2.0-only",
+    "LGPL-3.0-only",
+    "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
+  ]
   head "https://code.qt.io/qt/qtquicktimeline.git", branch: "dev"
 
   livecheck do
@@ -27,7 +33,6 @@ class QtQuickTimeline < Formula
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
-      -D CMAKE_INSTALL_RPATH=#{rpath};@loader_path/../../../../../lib
 
       -S .
     ]
