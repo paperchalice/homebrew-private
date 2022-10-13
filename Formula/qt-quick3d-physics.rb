@@ -9,6 +9,11 @@ class QtQuick3dPhysics < Formula
     "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
   ]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick3d-physics-6.4.0"
+    sha256 cellar: :any, monterey: "df191a172a7aa09ba2a2d725df0784b6d5e1d9179086f2d7344bdc3fa3ea0dbe"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "perl"    => :build
   depends_on "pkgconf" => :build
