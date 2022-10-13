@@ -1,9 +1,15 @@
 class QtWebSockets < Formula
   desc "Qt sockets support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtwebsockets-everywhere-src-6.3.0.tar.xz"
-  sha256 "e018a09fe960b7d9560d6bbc9d3ca022fed6566e6ba6fc6d869a97482d4e6361"
-  license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtwebsockets-everywhere-src-6.4.0.tar.xz"
+  sha256 "ff3c6629cd6537266123c441709acdd67f231ff2a07216fc848448255bec9bca"
+  license all_of: [
+    "BSD-3-Clause",
+    "GFDL-1.3-no-invariants-only",
+    "GPL-2.0-only",
+    "LGPL-3.0-only",
+    "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
+  ]
   head "https://code.qt.io/qt/qtwebsockets.git", branch: "dev"
 
   bottle do
@@ -11,9 +17,9 @@ class QtWebSockets < Formula
     sha256 cellar: :any, monterey: "362abec088e2b2e4c7a7b8c89ba8d5d2145c534f6587a2f1c6007a2423ca797d"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake"   => [:build, :test]
+  depends_on "perl"    => :build
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"
