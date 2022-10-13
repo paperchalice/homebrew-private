@@ -13,8 +13,8 @@ class QtWebSockets < Formula
   head "https://code.qt.io/qt/qtwebsockets.git", branch: "dev"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-sockets-6.3.0"
-    sha256 cellar: :any, monterey: "362abec088e2b2e4c7a7b8c89ba8d5d2145c534f6587a2f1c6007a2423ca797d"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-sockets-6.4.0"
+    sha256 cellar: :any, monterey: "c16235c3be5a3bbdcef0df9c4cbdd29098a6233a06e34569d4b96f363fde3e9e"
   end
 
   depends_on "cmake"   => [:build, :test]
