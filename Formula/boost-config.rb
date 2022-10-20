@@ -32,6 +32,9 @@ class BoostConfig < Formula
 
   test do
     (testpath/"test.cpp").write <<~EOS
+      #include <iostream>
+      #include <boost/config.hpp>
+      using namespace std;
       int main() {
         std::cout << BOOST_LIB_VERSION << std::endl;
         return 0;
