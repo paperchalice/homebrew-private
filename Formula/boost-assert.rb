@@ -2,8 +2,8 @@ class BoostAssert < Formula
   desc "Awesome library from Boost"
   homepage "https://boost.org/libs/assert/"
   url "https://github.com/boostorg/assert.git",
-    tag:      "boost-1.77.0",
-    revision: "6aabfebae6d4acf996fe711de4e9b444ad88c17d"
+    tag:      "boost-1.80.0",
+    revision: "7dea14cf7f21dcd5bc5d4cedfd22935878634cdf"
   license "BSL-1.0"
 
   bottle do
