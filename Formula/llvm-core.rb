@@ -16,7 +16,6 @@ class LlvmCore < Formula
   end
 
   depends_on "cmake"      => [:build, :test]
-  depends_on "go"         => :build
   depends_on "ocaml"      => :build
   depends_on "opam"       => :build
   depends_on "python"     => :build
@@ -115,7 +114,6 @@ class LlvmCore < Formula
 
     site_package = Language::Python.site_packages("python3")
     (prefix/site_package).install "llvm/bindings/python/llvm"
-    bin.install "build/bin/llvm-go"
     elisp.install Dir["llvm/utils/emacs/*.el"]
     # Install Vim plugins
     %w[ftdetect ftplugin indent syntax].each do |dir|
