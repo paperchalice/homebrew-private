@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0/llvm-project-15.0.0.src.tar.xz"
-  sha256 "caaf8100365b6ebafc39fea803e902ca3ff38b4d5327b9927097808d32964db7"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.1/llvm-project-15.0.1.src.tar.xz"
+  sha256 "f25ce2d4243bebf527284eb7be7f6f56ef454fca8b3de9523f7eb4efb8d26218"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -28,6 +28,7 @@ class Clang < Formula
   end
 
   def install
+    sr = MacOS.sdk_path.to_str.tr "0-9", ""
     config_trick = '"s+std::getenv("HOME")+"/.local/etc/clang'
     py_ver = Language::Python.major_minor_version("python3")
     # CLANG_RESOURCE_DIR=../lib/clang/current
@@ -45,7 +46,7 @@ class Clang < Formula
       CLANG_DEFAULT_UNWINDLIB=libunwind
       CLANG_LINK_CLANG_DYLIB=OFF
       CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
-      DEFAULT_SYSROOT=#{MacOS.sdk_path}
+      DEFAULT_SYSROOT=#{sr}
       CLANGD_ENABLE_REMOTE=OFF
 
       LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
