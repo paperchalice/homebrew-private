@@ -29,6 +29,7 @@ class GccStrap < Formula
 
     triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
     languages = %w[ada c c++ d objc obj-c++ fortran]
+    sr = MacOS.sdk_path.to_str.tr "0-9", ""
 
     configure_args = %W[
       --build=#{triple}
@@ -38,7 +39,7 @@ class GccStrap < Formula
       --enable-libphobos
       --enable-languages=#{languages.join(",")}
       --with-gcc-major-version-only
-      --with-sysroot=#{MacOS.sdk_path}
+      --with-sysroot=#{sr}
     ]
 
     system "./contrib/download_prerequisites"
