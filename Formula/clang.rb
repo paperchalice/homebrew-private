@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.1/llvm-project-15.0.1.src.tar.xz"
-  sha256 "f25ce2d4243bebf527284eb7be7f6f56ef454fca8b3de9523f7eb4efb8d26218"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.3/llvm-project-15.0.3.src.tar.xz"
+  sha256 "dd07bdab557866344d85ae21bbeca5259d37b4b0e2ebf6e0481f42d1ba0fee88"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -24,12 +24,13 @@ class Clang < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/clang.diff"
-    sha256 "164ea8269c83d5f9dcdf1e2aef05ef7e4feaec0e822b54845e881a14ba2d7dda"
+    sha256 "ef5cd9aeb1aa261c6ae60fe82226dcdf9d924b2e8657e41ab0e75d2764ca3a8b"
   end
+
+  patch :DATA
 
   def install
     sr = MacOS.sdk_path.to_str.tr "0-9", ""
-    config_trick = '"s+std::getenv("HOME")+"/.local/etc/clang'
     py_ver = Language::Python.major_minor_version("python3")
     # CLANG_RESOURCE_DIR=../lib/clang/current
     cmake_args = std_cmake_args + %W[
@@ -37,7 +38,7 @@ class Clang < Formula
       CMAKE_CXX_STANDARD=17
 
       CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
-      CLANG_CONFIG_FILE_USER_DIR=#{config_trick}
+      CLANG_CONFIG_FILE_USER_DIR=~/.config/clang
       CLANG_DEFAULT_STD_C=c17
       CLANG_DEFAULT_STD_CXX=cxx17
       CLANG_DEFAULT_CXX_STDLIB=libc++
@@ -82,3 +83,33 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
+
+__END__
+diff --git a/clang/lib/Driver/Driver.cpp b/clang/lib/Driver/Driver.cpp
+index 3f29afd..9dd12d5 100644
+--- a/clang/lib/Driver/Driver.cpp
++++ b/clang/lib/Driver/Driver.cpp
+@@ -219,7 +219,11 @@ Driver::Driver(StringRef ClangExecutable, StringRef TargetTriple,
+   SystemConfigDir = CLANG_CONFIG_FILE_SYSTEM_DIR;
+ #endif
+ #if defined(CLANG_CONFIG_FILE_USER_DIR)
+-  UserConfigDir = CLANG_CONFIG_FILE_USER_DIR;
++  {
++    SmallString<128> P;
++    llvm::sys::fs::expand_tilde(CLANG_CONFIG_FILE_USER_DIR, P);
++    UserConfigDir = static_cast<std::string>(P);
++  }
+ #endif
+ 
+   // Compute the path to the resource directory.
+@@ -979,8 +983,8 @@ bool Driver::loadConfigFile() {
+     }
+     if (CLOptions->hasArg(options::OPT_config_user_dir_EQ)) {
+       SmallString<128> CfgDir;
+-      CfgDir.append(
+-          CLOptions->getLastArgValue(options::OPT_config_user_dir_EQ));
++      llvm::sys::fs::expand_tilde(
++          CLOptions->getLastArgValue(options::OPT_config_user_dir_EQ), CfgDir);
+       if (!CfgDir.empty()) {
+         if (llvm::sys::fs::make_absolute(CfgDir).value() != 0)
+           UserConfigDir.clear();
