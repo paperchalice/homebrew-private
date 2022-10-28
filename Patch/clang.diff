@@ -1,13 +1,3 @@
---- a/clang/lib/Driver/Driver.cpp
-+++ b/clang/lib/Driver/Driver.cpp
-@@ -215,6 +215,7 @@ Driver::Driver(StringRef ClangExecutable, StringRef TargetTriple,
-     SysRoot = std::string(P);
-   }
- 
-+  using namespace std::string_literals;
- #if defined(CLANG_CONFIG_FILE_SYSTEM_DIR)
-   SystemConfigDir = CLANG_CONFIG_FILE_SYSTEM_DIR;
- #endif
 --- a/clang/lib/Driver/ToolChains/Darwin.cpp
 +++ b/clang/lib/Driver/ToolChains/Darwin.cpp
 @@ -615,6 +615,7 @@ void darwin::Linker::ConstructJob(Compilation &C, const JobAction &JA,
