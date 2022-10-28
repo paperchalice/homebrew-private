@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.1/llvm-project-15.0.1.src.tar.xz"
-  sha256 "f25ce2d4243bebf527284eb7be7f6f56ef454fca8b3de9523f7eb4efb8d26218"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.3/llvm-project-15.0.3.src.tar.xz"
+  sha256 "dd07bdab557866344d85ae21bbeca5259d37b4b0e2ebf6e0481f42d1ba0fee88"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -41,12 +41,6 @@ class LlvmCore < Formula
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/llvm-core.diff"
     sha256 "f57595945e7c7ae9aa8c27bc80b0c1ab7c28502800b9d51c00cae0f2877cef61"
-  end
-
-  # tweak zstd behavior in cmake and llvm config for better testing
-  patch do
-    url "https://github.com/llvm/llvm-project/commit/c0b4f248df79f184adba856f13a950a53c881f3f.patch?full_index=1"
-    sha256 "e553156319af0264571788c423a174dc54d313f11fd98c330c7c8220a73ec421"
   end
 
   def install
