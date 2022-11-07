@@ -7,7 +7,8 @@ class GccStrap < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-strap-12.2.0"
-    sha256 monterey: "98f8a05ec25086b2356947e6e31e4e252bc453f12e2d537a027b9169d910543e"
+    rebuild 1
+    sha256 monterey: "9c7e18e4f9b681bbb76b0f17b65a0ea235093f80c74d65b13b7b65ea1fcd733b"
   end
 
   keg_only "bootstrap formula"
