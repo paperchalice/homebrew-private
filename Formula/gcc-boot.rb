@@ -7,7 +7,8 @@ class GccBoot < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-12.2.0"
-    sha256 monterey: "1edddd6454d77fde820d41dec9197856973de13115f5fe25746212fe6615da96"
+    rebuild 1
+    sha256 monterey: "b2ac6bfc13894e47b52f50b63cf5277a5830e88cc147a1ea76f529e2837b5a7a"
   end
 
   keg_only "bootstrap formula"
