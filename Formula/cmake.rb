@@ -8,8 +8,8 @@ class Cmake < Formula
   license "BSD-3-Clause"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.24.2"
-    sha256 cellar: :any, monterey: "fc36340ddc5b2db83b463a80da358e4756f0b0f3ce334e79809d6b1219dd370d"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.25.0"
+    sha256 cellar: :any, monterey: "e3cd4b44b74eb6bb678ad69e0869f20116fb117b9d2a8ff8a53dfe97a881a4ff"
   end
 
   depends_on "pkgconf" => :build
