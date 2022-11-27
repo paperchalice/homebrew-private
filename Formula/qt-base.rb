@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtbase-everywhere-src-6.4.0.tar.xz"
-  sha256 "cb6475a0bd8567c49f7ffbb072a05516ee6671171bed55db75b22b94ead9b37d"
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.1/submodules/qtbase-everywhere-src-6.4.1.tar.xz"
+  sha256 "532ad71cc0f9c8f7cb92766c47bc3d23263c60876becd9053802f9727af24fae"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -29,6 +29,7 @@ class QtBase < Formula
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
   depends_on "vulkan-headers" => [:build, :test]
+  depends_on "vulkan-loader" => :test
 
   depends_on "brotli"
   depends_on "dbus"
@@ -129,19 +130,19 @@ class QtBase < Formula
       set(CMAKE_AUTOMOC ON)
       set(CMAKE_AUTORCC ON)
       set(CMAKE_AUTOUIC ON)
-      find_package(Qt6 COMPONENTS Widgets REQUIRED)
+      find_package(Qt6 COMPONENTS Widgets Gui REQUIRED)
       add_executable(test
           main.cpp
       )
-      target_link_libraries(test PRIVATE Qt6::Widgets)
+      target_link_libraries(test PRIVATE Qt6::Widgets Qt6::Gui)
     EOS
 
     (testpath/"main.cpp").write <<~EOS
-      #include <QCoreApplication>
+      #include <QGuiApplication>
       #include <QDebug>
       int main(int argc, char *argv[])
       {
-        QCoreApplication a(argc, argv);
+        QGuiApplication app(argc, argv);
         qDebug() << "Hello World!";
         return 0;
       }
@@ -149,7 +150,7 @@ class QtBase < Formula
 
     system "cmake", testpath
     system "cmake", "--build", "."
-    assert_equal "Hello World!", shell_output(testpath/"test 2>&1").strip
+    system "./test"
     assert_equal HOMEBREW_PREFIX.to_s, shell_output(bin/"qtpaths --query QT_INSTALL_PREFIX").strip
   end
 end
