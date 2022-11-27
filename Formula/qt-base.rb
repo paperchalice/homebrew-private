@@ -138,16 +138,12 @@ class QtBase < Formula
     EOS
 
     (testpath/"main.cpp").write <<~EOS
-      #include <QCoreApplication>
+      #include <QGuiApplication>
       #include <QDebug>
-      #include <QVulkanInstance>
       int main(int argc, char *argv[])
       {
-        QCoreApplication a(argc, argv);
+        QGuiApplication app(argc, argv);
         qDebug() << "Hello World!";
-        QVulkanInstance inst;
-        if (!inst.create())
-          qFatal("Failed to create Vulkan instance: %d", inst.errorCode());
         return 0;
       }
     EOS
