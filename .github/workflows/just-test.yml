@@ -37,5 +37,5 @@ jobs:
       - run: brew test-bot --only-setup
         continue-on-error: true
 
-      - run: brew install --include-test ${{ github.event.inputs.name }}
+      - run: brew install --include-test paperchalice/private/${{ github.event.inputs.name }}
       - run: brew test -v ${{ github.event.inputs.name }}
