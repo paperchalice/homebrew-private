@@ -139,11 +139,14 @@ class QtBase < Formula
 
     (testpath/"main.cpp").write <<~EOS
       #include <QGuiApplication>
+      #include <QVulkanInstance>
       #include <QDebug>
       int main(int argc, char *argv[])
       {
         QGuiApplication app(argc, argv);
         qDebug() << "Hello World!";
+        QVulkanInstance inst;
+        inst.create();
         return 0;
       }
     EOS
