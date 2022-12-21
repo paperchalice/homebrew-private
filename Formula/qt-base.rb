@@ -108,7 +108,7 @@ class QtBase < Formula
     system "cmake", "--install", ".", "--strip"
 
     rm bin/"qt-cmake-private-install.cmake"
-    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", Superenv.shims_path, "/usr/bin"
+    inreplace lib/"cmake/Qt6/qt.toolchain.cmake", "#{Superenv.shims_path}/", ""
 
     %w[qmake qtpaths].each do |x|
       rm bin/x
