@@ -38,9 +38,13 @@ jobs:
       - name: Use my fork Homebrew
         run: |
           pushd $(brew --repo)
-          git remote add paperchalice https://github.com/paperchalice/brew.git
-          git fetch paperchalice
-          git merge main
+          git remote add me https://github.com/paperchalice/brew.git
+          git fetch me
+          git checkout main
+          git branch --set-upstream-to=me/main main
+          git pull
+          git rebase master
+          popd
           sudo xcode-select -switch /Applications/Xcode_14.1.app/Contents/Developer
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
