@@ -37,7 +37,7 @@ module Homebrew
       if args.r?
         Utils::Inreplace.inreplace f.path, "# BOOST_BUMP", "depends_on"
       else
-        Utils::Inreplace.inreplace f.path, /depends_on(?= "boost-[\w\-]+"(?!\s+=> :build))/, "# BOOST_BUMP"
+        Utils::Inreplace.inreplace f.path, /depends_on(?= "boost-[\w-]+"(?!\s+=> :build))/, "# BOOST_BUMP"
       end
     end
   end
