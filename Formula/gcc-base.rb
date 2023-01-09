@@ -60,7 +60,7 @@ class GccBase < Formula
     languages = %w[ada c c++ d objc obj-c++ fortran]
 
     pkgversion = "Homebrew GCC #{pkg_version}"
-    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
+    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}"
 
     args = %W[
       --build=#{triple}

@@ -28,7 +28,7 @@ class GccStrap < Formula
     ENV.delete "CXX"
     ENV.delete "LD"
 
-    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}#{OS.kernel_version.major}"
+    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}"
     languages = %w[ada c c++ d objc obj-c++ fortran]
     sr = MacOS.sdk_path.to_str.tr "0-9", ""
 
