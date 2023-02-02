@@ -24,7 +24,7 @@ class Libcxx < Formula
     ]
 
     system "cmake", *cmake_args
-    system "cmake", "--build", "build", "--target", "install-cxx"
+    system "cmake", "--build", "build", "--target", "install-cxx-stripped"
 
     MachO::Tools.change_install_name "#{lib}/#{shared_library "libc++"}",
                                      "@rpath/#{shared_library "libc++abi", 1}",

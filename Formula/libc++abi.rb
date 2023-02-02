@@ -22,7 +22,7 @@ class Libcxxabi < Formula
     ]
 
     system "cmake", *cmake_args
-    system "cmake", "--build", "build", "--target", "install-cxxabi"
+    system "cmake", "--build", "build", "--target", "install-cxxabi-stripped"
   end
 
   test do
