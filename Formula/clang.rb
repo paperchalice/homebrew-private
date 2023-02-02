@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.3/llvm-project-15.0.3.src.tar.xz"
-  sha256 "dd07bdab557866344d85ae21bbeca5259d37b4b0e2ebf6e0481f42d1ba0fee88"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/llvm-project-15.0.6.src.tar.xz"
+  sha256 "9d53ad04dc60cb7b30e810faf64c5ab8157dadef46c8766f67f286238256ff92"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -16,7 +16,6 @@ class Clang < Formula
   depends_on "python"      => :build
   depends_on "sphinx-doc"  => :build
 
-  # TODO: depends_on "grpc"
   depends_on "llvm-core"
 
   uses_from_macos "gzip" => :build
@@ -30,12 +29,12 @@ class Clang < Formula
   patch :DATA
 
   def install
-    sr = MacOS.sdk_path.to_str.tr "0-9", ""
     py_ver = Language::Python.major_minor_version("python3")
     # CLANG_RESOURCE_DIR=../lib/clang/current
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
       CMAKE_CXX_STANDARD=17
+      CMAKE_STRIP=/usr/bin/strip
 
       CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
       CLANG_CONFIG_FILE_USER_DIR=~/.config/clang
@@ -47,10 +46,9 @@ class Clang < Formula
       CLANG_DEFAULT_UNWINDLIB=libunwind
       CLANG_LINK_CLANG_DYLIB=OFF
       CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
-      DEFAULT_SYSROOT=#{sr}
+      DEFAULT_SYSROOT=#{MacOS.sdk_path}
       CLANGD_ENABLE_REMOTE=OFF
 
-      LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
       LLVM_BUILD_DOCS=ON
       LLVM_INCLUDE_DOCS=ON
       LLVM_ENABLE_SPHINX=ON
@@ -66,8 +64,6 @@ class Clang < Formula
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
-    lib.install "build/lib/ClangdXPC.framework"
-    frameworks.install_symlink lib/"ClangdXPC.framework"
     system "gzip", *Dir[man1/"*"]
   end
 
