@@ -16,7 +16,6 @@ class Clang < Formula
   depends_on "python"      => :build
   depends_on "sphinx-doc"  => :build
 
-  # TODO: depends_on "grpc"
   depends_on "llvm-core"
 
   uses_from_macos "gzip" => :build
@@ -50,7 +49,6 @@ class Clang < Formula
       DEFAULT_SYSROOT=#{MacOS.sdk_path}
       CLANGD_ENABLE_REMOTE=OFF
 
-      LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=#{buildpath}/clang-tools-extra
       LLVM_BUILD_DOCS=ON
       LLVM_INCLUDE_DOCS=ON
       LLVM_ENABLE_SPHINX=ON
@@ -65,9 +63,7 @@ class Clang < Formula
 
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
-    system "cmake", "--build", "build", "--target", "install-clang-tools-extra-stripped"
-    lib.install "build/lib/ClangdXPC.framework"
-    frameworks.install_symlink lib/"ClangdXPC.framework"
+    system "cmake", "--install", "build", "--strip"
     system "gzip", *Dir[man1/"*"]
   end
 
