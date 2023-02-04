@@ -5,6 +5,11 @@ class ClangToolsExtra < Formula
   sha256 "9d53ad04dc60cb7b30e810faf64c5ab8157dadef46c8766f67f286238256ff92"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-tools-extra-15.0.6"
+    sha256 cellar: :any, monterey: "d0e6009f841a70256db37f219ad06458fcb45d11db1262dd026aa447b6dae289"
+  end
+
   depends_on "cmake"       => :build
   depends_on "python"      => :build
   depends_on "sphinx-doc"  => :build
