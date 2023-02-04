@@ -18,7 +18,6 @@ class ClangToolsExtra < Formula
   depends_on "grpc"
 
   uses_from_macos "gzip" => :build
-  uses_from_macos "libxml2"
 
   def install
     (buildpath/"clang/tools").install "clang-tools-extra" => "extra"
