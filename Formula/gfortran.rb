@@ -112,7 +112,7 @@ class Gfortran < Formula
         write(*,"(A)") "Done"
       end
     EOS
-    system "gfortran", "-o", "test", "test.f90"
+    system HOMEBREW_PREFIX/"gfortran", "-o", "test", "test.f90"
     assert_equal "Done\n", `./test`
   end
 end
