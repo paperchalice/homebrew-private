@@ -22,11 +22,11 @@ class QtWebEngine < Formula
   depends_on "perl"    => :build
   depends_on "pkgconf" => :build
   depends_on "python"  => :build
-  depends_on "qt"      => :build
   depends_on "six"     => :build
 
   depends_on "ffmpeg"
   depends_on "minizip"
+  depends_on "qt"
   depends_on "re2"
   depends_on "snappy"
   # TODO: depends_on "qt-base"
@@ -95,6 +95,7 @@ class QtWebEngine < Formula
       inreplace "third_party/pdfium/core/fxcodec/icc/icc_transform.h",
                 "#include <lcms2.h>",
                 "#define CMS_NO_REGISTER_KEYWORD 1\n#include <lcms2.h>"
+      inreplace "third_party/libpng/pnglibconf.h", "#include", "//"
     end
 
     cd "src/3rdparty/chromium/build/linux/unbundle" do
@@ -141,9 +142,11 @@ class QtWebEngine < Formula
 end
 
 __END__
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index 61bf707..a3bbb78 100644
 --- a/src/core/CMakeLists.txt
 +++ b/src/core/CMakeLists.txt
-@@ -454,6 +454,31 @@ foreach(arch ${archs})
+@@ -454,6 +454,59 @@ foreach(arch ${archs})
                  use_external_popup_menu=false
                  angle_enable_vulkan=false
              )
@@ -151,15 +154,15 @@ __END__
 +                use_cups=true
 +                use_gio=false
 +                use_gnome_keyring=false
-+                use_bundled_fontconfig=false pdfium_use_system_zlib=true pdfium_use_system_libpng=true
-+                enable_session_service=false skia_use_system_libpng=true
++                use_bundled_fontconfig=false
++                enable_session_service=false
 +                is_cfi=false
 +                use_glib=false
 +                use_bluez=false
 +                use_vaapi=false
 +            )
 +            set(systemLibs libjpeg libpng freetype harfbuzz libevent libwebp libxml
-+                opus snappy libvpx icu ffmpeg re2 lcms2 minizip
++                opus snappy libvpx icu ffmpeg re2 lcms2
 +            )
 +            foreach(slib ${systemLibs})
 +                extend_gn_list(gnArgArg
@@ -167,27 +170,61 @@ __END__
 +                    CONDITION QT_FEATURE_webengine_system_${slib}
 +                )
 +            endforeach()
++            extend_gn_list(gnArgArg
++                ARGS use_system_libxslt
++                CONDITION QT_FEATURE_webengine_system_libxml
++            )
++            extend_gn_list(gnArgArg
++                ARGS icu_use_data_file
++                CONDITION NOT QT_FEATURE_webengine_system_icu
++            )
++            extend_gn_list(gnArgArg
++                ARGS use_system_zlib use_system_minizip
++                CONDITION QT_FEATURE_webengine_system_zlib AND QT_FEATURE_webengine_system_minizip
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_zlib
++                CONDITION QT_FEATURE_webengine_system_zlib
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_libpng skia_use_system_libpng
++                CONDITION QT_FEATURE_webengine_system_libpng
++            )
++
 +            if(QT_FEATURE_webengine_kerberos)
 +                list(APPEND gnArgArg
 +                     external_gssapi_include_dir="${GSSAPI_INCLUDE_DIRS}/gssapi"
 +                )
 +            endif()
++
++            if(CMAKE_CROSSCOMPILING AND cpu STREQUAL "arm")
++                check_thumb(armThumb)
++                if(NOT armThumb AND NOT QT_FEATURE_system_ffmpeg)
++                    list(APPEND gnArgArg media_use_ffmpeg=false use_webaudio_ffmpeg=false)
++                endif()
++            endif()
          endif()
  
          if(NOT CLANG)
-diff --git a/pdf/CMakeLists.txt b/pdf/CMakeLists.txt
-index ed2da10..1308077 100644
+diff --git a/src/pdf/CMakeLists.txt b/src/pdf/CMakeLists.txt
+index ed2da10..5ebca2b 100644
 --- a/src/pdf/CMakeLists.txt
 +++ b/src/pdf/CMakeLists.txt
-@@ -123,6 +123,12 @@ foreach(arch ${archs})
+@@ -123,6 +123,18 @@ foreach(arch ${archs})
          endif()
          if(MACOS)
              list(APPEND gnArgArg angle_enable_vulkan=false)
-+            list(APPEND gnArgArg pdfium_use_system_libpng=true)
-+            list(APPEND gnArgArg pdfium_use_system_zlib=true)
 +            extend_gn_list(gnArgArg
 +                ARGS use_system_icu
 +                CONDITION QT_FEATURE_webengine_system_icu
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_zlib
++                CONDITION QT_FEATURE_webengine_system_zlib
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_libpng
++                CONDITION QT_FEATURE_webengine_system_libpng
 +            )
          endif()
          if(IOS)
