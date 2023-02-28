@@ -54,7 +54,7 @@ jobs:
           sed -i '' 's/uses_from_macos "zlib"/keg_only "foo"/g' Formula/qt.rb
           popd
 
-      - run: brew test-bot --only-formulae --skip-dependents --verbose
+      - run: brew test-bot --only-formulae --skip-dependents
         if: github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
