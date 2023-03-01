@@ -115,7 +115,12 @@ class QtWebEngine < Formula
       -D FEATURE_webengine_kerberos=ON
       -D FEATURE_webengine_spellchecker=ON
 
-      -D FEATURE_qtpdf_build=OFF
+      -D FEATURE_pdf_v8=ON
+      -D FEATURE_pdf_xfa=ON
+      -D FEATURE_pdf_xfa_bmp=ON
+      -D FEATURE_pdf_xfa_gif=ON
+      -D FEATURE_pdf_xfa_png=ON
+      -D FEATURE_pdf_xfa_tiff=ON
 
       -S .
       -G Ninja
