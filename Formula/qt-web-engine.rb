@@ -3,8 +3,8 @@ class QtWebEngine < Formula
 
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtwebengine-everywhere-src-6.3.0.tar.xz"
-  sha256 "2001b45dd81dcb7ad1bc6cf1aa32f2eca5367a11fed49656053c75676c4d093d"
+  url "https://download.qt.io/official_releases/qt/6.4/6.4.2/submodules/qtwebengine-everywhere-src-6.4.2.tar.xz"
+  sha256 "ffa945518d1cc8d9ee73523e8d9c2090844f5a2d9c7eac05c4ad079472a119c9"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
@@ -14,21 +14,26 @@ class QtWebEngine < Formula
     sha256 cellar: :any, big_sur: "99c778ca08bec64fdb86fe282aaec81f75824cf092851731b6f3daa295a3ea60"
   end
 
-  depends_on "ccache"  => :build
+  keg_only "qt part"
+
   depends_on "cmake"   => [:build, :test]
   depends_on "ninja"   => :build
   depends_on "node"    => :build
   depends_on "perl"    => :build
   depends_on "pkgconf" => :build
   depends_on "python"  => :build
-  # TODO: depends_on "qt"      => :build
+  depends_on "six"     => :build
 
+  depends_on "ffmpeg"
   depends_on "minizip"
-  depends_on "qt-base"
-  depends_on "qt-declarative"
-  depends_on "qt-positioning"
-  depends_on "qt-tools"
-  depends_on "qt-web-channel"
+  depends_on "qt"
+  depends_on "re2"
+  depends_on "snappy"
+  # TODO: depends_on "qt-base"
+  # TODO: depends_on "qt-declarative"
+  # TODO: depends_on "qt-positioning"
+  # TODO: depends_on "qt-tools"
+  # TODO: depends_on "qt-web-channel"
 
   uses_from_macos "bison" => :build
   uses_from_macos "flex"  => :build
@@ -43,20 +48,12 @@ class QtWebEngine < Formula
     sha256 "b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f"
   end
 
-  resource "six" do
-    url "https://files.pythonhosted.org/packages/71/39/171f1c67cd00715f190ba0b100d606d440a28c93c7714febeca8b79af85e/six-1.16.0.tar.gz"
-    sha256 "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
-  end
-
   resource "webencodings" do
     url "https://files.pythonhosted.org/packages/0b/02/ae6ceac1baeda530866a85075641cec12989bd8d31af6d5ab4a3e8c92f47/webencodings-0.5.1.tar.gz"
     sha256 "b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"
   end
 
-  patch do
-    url "https://github.com/qt/qtwebengine/commit/8fd6601ef64dc22e48ec9c14440262f88d82cd4e.patch?full_index=1"
-    sha256 "e5edbe5cdafa105b9fe37b667fa6a43864d0f7de7b8d265411d083229fb8bcac"
-  end
+  patch :DATA
 
   def copy_brew
     qt = Formula["qt"]
@@ -77,10 +74,12 @@ class QtWebEngine < Formula
   end
 
   def real_install
-    python = Formula["python"]
-    venv = virtualenv_create(buildpath/"venv", python.bin/"python3")
+    python = "python3.11"
+    # Install python dependencies for QtWebEngine
+    venv_root = buildpath/"venv"
+    venv = virtualenv_create(venv_root, python)
     venv.pip_install resources
-    ENV.prepend_path "PYTHONPATH", venv/"lib/python#{xy}/site-packages"
+    ENV.prepend_path "PYTHONPATH", venv_root/Language::Python.site_packages(python)
 
     inreplace "src/3rdparty/chromium/build/toolchain/apple/toolchain.gni",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
@@ -91,11 +90,37 @@ class QtWebEngine < Formula
       src/gn/CMakeLists.txt
     ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
+    cd "src/3rdparty/chromium" do
+      inreplace "third_party/zlib/zconf.h", "!defined(CHROMIUM_ZLIB_NO_CHROMECONF)", "0"
+      inreplace "third_party/pdfium/core/fxcodec/icc/icc_transform.h",
+                "#include <lcms2.h>",
+                "#define CMS_NO_REGISTER_KEYWORD 1\n#include <lcms2.h>"
+      inreplace "third_party/libpng/pnglibconf.h", "#include", "//"
+    end
+
+    cd "src/3rdparty/chromium/build/linux/unbundle" do
+      # system python, "./replace_gn_files.py", "--system-libraries", "freetype"
+      system "echo"
+    end
+
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
-      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}.0
       -D CMAKE_STAGING_PREFIX=#{prefix}
 
-      -D BUILD_WITH_PCH=ON
+      -D FEATURE_webengine_system_ffmpeg=ON
+      -D FEATURE_webengine_system_icu=ON
+      -D FEATURE_webengine_system_re2=ON
+      -D FEATURE_webengine_system_snappy=ON
+      -D FEATURE_webengine_spellchecker=ON
+      -D FEATURE_webengine_kerberos=ON
+      -D FEATURE_webengine_spellchecker=ON
+
+      -D FEATURE_pdf_v8=ON
+      -D FEATURE_pdf_xfa=ON
+      -D FEATURE_pdf_xfa_bmp=ON
+      -D FEATURE_pdf_xfa_gif=ON
+      -D FEATURE_pdf_xfa_png=ON
+      -D FEATURE_pdf_xfa_tiff=ON
 
       -S .
       -G Ninja
@@ -120,3 +145,111 @@ class QtWebEngine < Formula
     system "echo"
   end
 end
+
+__END__
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index 61bf707..a3bbb78 100644
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -454,6 +454,59 @@ foreach(arch ${archs})
+                 use_external_popup_menu=false
+                 angle_enable_vulkan=false
+             )
++            list(APPEND gnArgArg
++                use_cups=true
++                use_gio=false
++                use_gnome_keyring=false
++                use_bundled_fontconfig=false
++                enable_session_service=false
++                is_cfi=false
++                use_glib=false
++                use_bluez=false
++                use_vaapi=false
++            )
++            set(systemLibs libjpeg libpng freetype harfbuzz libevent libwebp libxml
++                opus snappy libvpx icu ffmpeg re2 lcms2
++            )
++            foreach(slib ${systemLibs})
++                extend_gn_list(gnArgArg
++                    ARGS use_system_${slib}
++                    CONDITION QT_FEATURE_webengine_system_${slib}
++                )
++            endforeach()
++            extend_gn_list(gnArgArg
++                ARGS use_system_libxslt
++                CONDITION QT_FEATURE_webengine_system_libxml
++            )
++            extend_gn_list(gnArgArg
++                ARGS icu_use_data_file
++                CONDITION NOT QT_FEATURE_webengine_system_icu
++            )
++            extend_gn_list(gnArgArg
++                ARGS use_system_zlib use_system_minizip
++                CONDITION QT_FEATURE_webengine_system_zlib AND QT_FEATURE_webengine_system_minizip
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_zlib
++                CONDITION QT_FEATURE_webengine_system_zlib
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_libpng skia_use_system_libpng
++                CONDITION QT_FEATURE_webengine_system_libpng
++            )
++
++            if(QT_FEATURE_webengine_kerberos)
++                list(APPEND gnArgArg
++                     external_gssapi_include_dir="${GSSAPI_INCLUDE_DIRS}/gssapi"
++                )
++            endif()
++
++            if(CMAKE_CROSSCOMPILING AND cpu STREQUAL "arm")
++                check_thumb(armThumb)
++                if(NOT armThumb AND NOT QT_FEATURE_system_ffmpeg)
++                    list(APPEND gnArgArg media_use_ffmpeg=false use_webaudio_ffmpeg=false)
++                endif()
++            endif()
+         endif()
+ 
+         if(NOT CLANG)
+diff --git a/src/pdf/CMakeLists.txt b/src/pdf/CMakeLists.txt
+index ed2da10..5ebca2b 100644
+--- a/src/pdf/CMakeLists.txt
++++ b/src/pdf/CMakeLists.txt
+@@ -123,6 +123,18 @@ foreach(arch ${archs})
+         endif()
+         if(MACOS)
+             list(APPEND gnArgArg angle_enable_vulkan=false)
++            extend_gn_list(gnArgArg
++                ARGS use_system_icu
++                CONDITION QT_FEATURE_webengine_system_icu
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_zlib
++                CONDITION QT_FEATURE_webengine_system_zlib
++            )
++            extend_gn_list(gnArgArg
++                ARGS pdfium_use_system_libpng
++                CONDITION QT_FEATURE_webengine_system_libpng
++            )
+         endif()
+         if(IOS)
+             extend_gn_list(gnArgArg
+--- a/src/3rdparty/chromium/build/config/linux/pkg-config.py
++++ b/src/3rdparty/chromium/build/config/linux/pkg-config.py
+@@ -109,7 +109,7 @@ def main():
+   # If this is run on non-Linux platforms, just return nothing and indicate
+   # success. This allows us to "kind of emulate" a Linux build from other
+   # platforms.
+-  if "linux" not in sys.platform:
++  if "darwin" not in sys.platform:
+     print("[[],[],[],[],[]]")
+     return 0
+ 
+@@ -129,6 +129,7 @@ def main():
+   parser.add_option('--version-as-components', action='store_true',
+                     dest='version_as_components')
+   (options, args) = parser.parse_args()
++  options.sysroot = None
+ 
+   # Make a list of regular expressions to strip out.
+   strip_out = []
