@@ -63,11 +63,18 @@ class Clang < Formula
     system "cmake", "--install", "build", "--strip"
     system "gzip", *Dir[man1/"*"]
 
+    (prefix/"etc/clang/macOS.options").write <<~EOS
+      -Wall -Wextra
+      -L #{HOMEBREW_PREFIX}/lib -I #{HOMEBREW_PREFIX}/include
+      -F #{HOMEBREW_PREFIX}/Frameworks
+    EOS
     (prefix/"etc/clang/clang.cfg").write <<~EOS
       -std=c17
+      @macOS.options
     EOS
     (prefix/"etc/clang/clang++.cfg").write <<~EOS
       -std=c++20
+      @macOS.options
     EOS
   end
 
