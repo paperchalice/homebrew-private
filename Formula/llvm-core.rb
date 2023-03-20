@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/llvm-project-15.0.6.src.tar.xz"
-  sha256 "9d53ad04dc60cb7b30e810faf64c5ab8157dadef46c8766f67f286238256ff92"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/llvm-project-16.0.0.src.tar.xz"
+  sha256 "9a56d906a2c81f16f06efc493a646d497c53c2f4f28f0cb1f3c8da7f74350254"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -113,7 +113,7 @@ class LlvmCore < Formula
     %w[ftdetect ftplugin indent syntax].each do |dir|
       (share/"vim/vimfiles"/dir).install Dir["llvm/utils/vim/#{dir}/*.vim"]
     end
-    system "gzip", *Dir[man1/"*"]
+    Utils::Gzip.compress(*Dir[man1/"*"])
   end
 
   test do
