@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/llvm-project-15.0.6.src.tar.xz"
-  sha256 "9d53ad04dc60cb7b30e810faf64c5ab8157dadef46c8766f67f286238256ff92"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/llvm-project-16.0.0.src.tar.xz"
+  sha256 "9a56d906a2c81f16f06efc493a646d497c53c2f4f28f0cb1f3c8da7f74350254"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -18,21 +18,19 @@ class Clang < Formula
 
   depends_on "llvm-core"
 
-  uses_from_macos "gzip" => :build
   uses_from_macos "libxml2"
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/clang.diff"
-    sha256 "ef5cd9aeb1aa261c6ae60fe82226dcdf9d924b2e8657e41ab0e75d2764ca3a8b"
+    sha256 "c9dded641e078a22695d565e57084beeee925ec48a5e09b826b1cf4eb0ef0f9f"
   end
 
   def install
     py_ver = Language::Python.major_minor_version("python3")
-    # CLANG_RESOURCE_DIR=../lib/clang/current
+    default_sysroot = MacOS.sdk_path.sub(/\d+/, "")
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
       CMAKE_CXX_STANDARD=17
-      CMAKE_STRIP=/usr/bin/strip
 
       CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
       CLANG_CONFIG_FILE_USER_DIR=~/.config/clang
@@ -42,9 +40,8 @@ class Clang < Formula
       CLANG_DEFAULT_UNWINDLIB=libunwind
       CLANG_LINK_CLANG_DYLIB=OFF
       CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
-      DEFAULT_SYSROOT=#{MacOS.sdk_path}
+      DEFAULT_SYSROOT=#{default_sysroot}
       GCC_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
-      CLANGD_ENABLE_REMOTE=ON
 
       LLVM_BUILD_DOCS=ON
       LLVM_INCLUDE_DOCS=ON
@@ -61,7 +58,7 @@ class Clang < Formula
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
-    system "gzip", *Dir[man1/"*"]
+    Utils::Gzip.compress(*Dir[man1/"*"])
 
     (prefix/"etc/clang/macOS.options").write <<~EOS
       -Wall -Wextra
