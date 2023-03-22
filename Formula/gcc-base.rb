@@ -61,6 +61,7 @@ class GccBase < Formula
 
     pkgversion = "Homebrew GCC #{pkg_version}"
     triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}"
+    default_sysroot = MacOS.sdk_path.sub(/\d+/, "")
 
     args = %W[
       --build=#{triple}
@@ -86,7 +87,7 @@ class GccBase < Formula
       --with-zstd=#{Formula["zstd"].opt_prefix}
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
-      --with-sysroot=#{MacOS.sdk_path}
+      --with-sysroot=#{default_sysroot}
     ]
 
     mkdir "build" do
