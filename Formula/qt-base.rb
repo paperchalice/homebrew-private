@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.2/submodules/qtbase-everywhere-src-6.4.2.tar.xz"
-  sha256 "a88bc6cedbb34878a49a622baa79cace78cfbad4f95fdbd3656ddb21c705525d"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtbase-everywhere-src-6.5.0.tar.xz"
+  sha256 "fde1aa7b4fbe64ec1b4fc576a57f4688ad1453d2fab59cbadd948a10a6eaf5ef"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -24,7 +24,7 @@ class QtBase < Formula
 
   depends_on "cmake"      => [:build, :test]
   depends_on "molten-vk"  => [:build, :test]
-  depends_on "ninja"      => :build
+  # TODO: depends_on "ninja"      => :build
   depends_on "openssl"    => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
@@ -48,6 +48,7 @@ class QtBase < Formula
   depends_on "md4c"
   depends_on "mesa"
   depends_on "pcre2"
+  depends_on "xcb-util-cursor"
   depends_on "xcb-util-image"
   depends_on "xcb-util-keysyms"
   depends_on "xcb-util-renderutil"
@@ -100,14 +101,12 @@ class QtBase < Formula
       FEATURE_xcb=ON
     ].map { |o| "-D #{o}" } + %w[
       -S .
-      -G Ninja
     ]
 
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
 
-    rm bin/"qt-cmake-private-install.cmake"
     inreplace lib/"cmake/Qt6/qt.toolchain.cmake", "#{Superenv.shims_path}/", ""
 
     %w[qmake qtpaths].each do |x|
