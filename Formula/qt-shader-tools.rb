@@ -1,8 +1,8 @@
 class QtShaderTools < Formula
   desc "Provide the producer functionality for the shader pipeline"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtshadertools-everywhere-src-6.4.0.tar.xz"
-  sha256 "dbd6a5f00e8178cd2fea7e84c4eef3818de5287d34e20a68383929c754ae3b90"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtshadertools-everywhere-src-6.5.0.tar.xz"
+  sha256 "86618d037f3071f1f7ac5eb7ab76ae4e6f51cfddded0a402bb9aa7f3f79f5775"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
 
@@ -16,16 +16,16 @@ class QtShaderTools < Formula
     sha256 cellar: :any, monterey: "60b3cc16c41466b0d2bcca978fd7fc7ab9b80b71d7fe62ee7553546d1e5bbeaa"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake"   => [:build, :test]
+  depends_on "ninja"   => :build
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
 
   def install
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -D CMAKE_STAGING_PREFIX=#{prefix}
-
+      -G Ninja
       -S .
     ]
     system "cmake", *cmake_args
