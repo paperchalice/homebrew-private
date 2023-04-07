@@ -56,6 +56,8 @@ jobs:
 
       - run: brew test-bot --only-formulae --skip-dependents
         if: github.event_name == 'pull_request'
+        env:
+          HOMEBREW_TEMP: "$HOME"
 
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
