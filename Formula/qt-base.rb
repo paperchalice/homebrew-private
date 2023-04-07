@@ -24,7 +24,7 @@ class QtBase < Formula
 
   depends_on "cmake"      => [:build, :test]
   depends_on "molten-vk"  => [:build, :test]
-  # TODO: depends_on "ninja"      => :build
+  depends_on "ninja"      => :build
   depends_on "openssl"    => :build
   depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
@@ -101,6 +101,7 @@ class QtBase < Formula
       FEATURE_xcb=ON
     ].map { |o| "-D #{o}" } + %w[
       -S .
+      -G Ninja
     ]
 
     system "cmake", *cmake_args
