@@ -1,8 +1,8 @@
 class QtDeclarative < Formula
   desc "Qt Quick2"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtdeclarative-everywhere-src-6.4.0.tar.xz"
-  sha256 "3434e72fccfa0c929c326790723d05c155f5067746b1ab05cfd7a9ba632c4383"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtdeclarative-everywhere-src-6.5.0.tar.xz"
+  sha256 "f7d631cd8ebc1491dad0f30f1b5326ae812bee4ad706e61157816a82bf588c97"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtdeclarative.git", branch: "dev"
 
@@ -16,12 +16,12 @@ class QtDeclarative < Formula
     sha256 cellar: :any, monterey: "0534398164dfa01aaede8f74b1f0ce63118cdfbbcd28b85c90b8135b6eaa4a96"
   end
 
-  depends_on "cmake"           => [:build, :test]
-  depends_on "perl"            => :build
-  depends_on "pkgconf"         => :build
-  depends_on "python"          => :build
+  depends_on "cmake" => [:build, :test]
+  depends_on "ninja" => :build
+  depends_on "pkgconf" => :build
+  depends_on "python" => :build
   depends_on "qt-shader-tools" => :build
-  depends_on "vulkan-headers"  => [:build, :test]
+  depends_on "vulkan-headers" => [:build, :test]
 
   depends_on "qt-base"
 
@@ -31,6 +31,7 @@ class QtDeclarative < Formula
 
       -D Python_ROOT_DIR=#{Formula["python"].prefix}
 
+      -G Ninja
       -S .
     ]
     system "cmake", *cmake_args
