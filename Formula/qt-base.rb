@@ -26,7 +26,6 @@ class QtBase < Formula
   depends_on "molten-vk"  => [:build, :test]
   depends_on "ninja"      => :build
   depends_on "openssl"    => :build
-  depends_on "perl"       => :build
   depends_on "pkgconf"    => :build
   depends_on "vulkan-headers" => [:build, :test]
   depends_on "vulkan-loader" => :test
