@@ -46,7 +46,6 @@ jobs:
           git pull
           git rebase master
           popd
-          sudo xcode-select -switch /Applications/Xcode_14.1.app/Contents/Developer
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
         run: |
