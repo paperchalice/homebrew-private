@@ -1,8 +1,8 @@
 class QtPositioning < Formula
   desc "Positioning information via QML and C++ interfaces"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtpositioning-everywhere-src-6.3.0.tar.xz"
-  sha256 "e9ed50f6b245a346db34d625d0012774ef0ec8e7fd65037127ec26758708236e"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtpositioning-everywhere-src-6.5.0.tar.xz"
+  sha256 "0da7121ebfd9d2ba985ab1f2c8a3af70027c35732177ec0fc72ff7e82835c886"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtpositioning.git", branch: "dev"
 
@@ -12,9 +12,8 @@ class QtPositioning < Formula
     sha256 cellar: :any, monterey: "fa6261686ce1cf80579e54f7a23e0a2c1a961131b453b259f1a6f53e44dca7e0"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake" => [:build, :test]
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"
