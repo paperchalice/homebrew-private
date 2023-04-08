@@ -5,6 +5,11 @@ class QtQuickEffectMaker < Formula
   sha256 "4b32c672cad0f7890f56a59486bd79cf8fa4ad208fb0f7c25e14e0aa2fb29cd7"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-quick-effect-maker-6.5.0"
+    sha256 cellar: :any, monterey: "ea96faab71be443cd046103df1619fbec4d3955d3058ac18cd6c26b64e1740ec"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :build
