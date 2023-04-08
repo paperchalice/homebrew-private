@@ -1,8 +1,8 @@
 class QtSerialPort < Formula
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qtserialport-everywhere-src-6.3.0.tar.xz"
-  sha256 "eebd6934d48cc044b8c87795a4fd91bb81f7195d4b5a2ddb12802f343d5db64f"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtserialport-everywhere-src-6.5.0.tar.xz"
+  sha256 "9209a9f5978a4adf3a150582270432fe3b635d05513ad1a57bff5ca4954a4dff"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtserialport.git", branch: "dev"
 
@@ -11,9 +11,9 @@ class QtSerialPort < Formula
     sha256 cellar: :any, monterey: "490af1483b2c8f29e1294bab96073d61dc9094a7429a17c4d938a598fb65d7ac"
   end
 
-  depends_on "cmake"      => [:build, :test]
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake" => [:build, :test]
+  depends_on "perl" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
 
