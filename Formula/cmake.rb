@@ -8,8 +8,8 @@ class Cmake < Formula
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.25.0"
-    sha256 cellar: :any, monterey: "e3cd4b44b74eb6bb678ad69e0869f20116fb117b9d2a8ff8a53dfe97a881a4ff"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.25.2"
+    sha256 cellar: :any, monterey: "1bd00d83a0c9f5a1c0af32d7e5721396a992ae5925d1eb1cae7a96d1cf53e30e"
   end
 
   depends_on "pkgconf" => :build
