@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/llvm-project-16.0.0.src.tar.xz"
-  sha256 "9a56d906a2c81f16f06efc493a646d497c53c2f4f28f0cb1f3c8da7f74350254"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.2/llvm-project-16.0.2.src.tar.xz"
+  sha256 "6d8acae041ccd34abe144cda6eaa76210e1491f286574815b7261b3f2e58734c"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
