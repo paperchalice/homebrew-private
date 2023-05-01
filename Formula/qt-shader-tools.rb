@@ -11,11 +11,6 @@ class QtShaderTools < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.5.0"
-    sha256 cellar: :any, monterey: "ea58d5e3f4e3a64227cf4401dc25bcd6086eb4822d8987b01ad60d9db09ce49c"
-  end
-
   depends_on "cmake"   => [:build, :test]
   depends_on "ninja"   => :build
   depends_on "pkgconf" => :build
