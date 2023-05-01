@@ -1,8 +1,8 @@
 class Qt3d < Formula
   desc "3D Lib"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.3/6.3.0/submodules/qt3d-everywhere-src-6.3.0.tar.xz"
-  sha256 "74e762380dad34887878b9124dbfb981d5cf4b8b807281ff8bff311145b54de1"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qt3d-everywhere-src-6.5.0.tar.xz"
+  sha256 "20b250023244f21dfbec5c007bac805d4494fa463a6dd27538afb1a81b230816"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qt3d.git", branch: "dev"
 
@@ -19,6 +19,7 @@ class Qt3d < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "perl"  => :build
+  depends_on "vulkan-loader" => [:build, :test]
 
   depends_on "assimp"
   depends_on "qt-base"
@@ -32,6 +33,7 @@ class Qt3d < Formula
       -D FEATURE_qt3d_simd_avx2=ON
       -D FEATURE_qt3d_system_assimp=ON
     ]
+
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
