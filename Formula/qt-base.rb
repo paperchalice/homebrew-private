@@ -17,11 +17,6 @@ class QtBase < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.5.0"
-    sha256 monterey: "e2463741830ae3211083402714bfa1fabba6b84f70b3d5475e3f1f61b980e3e9"
-  end
-
   depends_on "cmake"      => [:build, :test]
   depends_on "molten-vk"  => [:build, :test]
   depends_on "ninja"      => :build
