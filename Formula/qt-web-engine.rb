@@ -3,8 +3,8 @@ class QtWebEngine < Formula
 
   desc "Qt Quick web support"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.2/submodules/qtwebengine-everywhere-src-6.4.2.tar.xz"
-  sha256 "ffa945518d1cc8d9ee73523e8d9c2090844f5a2d9c7eac05c4ad079472a119c9"
+  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtwebengine-everywhere-src-6.5.0.tar.xz"
+  sha256 "2a10da34a71b307e9ff11ec086455dd20b83d5b0ee6bda499c4ba9221e306f07"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebengine.git", branch: "dev"
 
@@ -24,8 +24,13 @@ class QtWebEngine < Formula
   depends_on "python"  => :build
   depends_on "six"     => :build
 
-  depends_on "ffmpeg"
+  depends_on "abseil"
+  depends_on "brotli"
+  depends_on "ffmpeg@4"
+  depends_on "jsoncpp"
+  depends_on "libavif"
   depends_on "minizip"
+  depends_on "openh264"
   depends_on "qt"
   depends_on "re2"
   depends_on "snappy"
@@ -34,6 +39,7 @@ class QtWebEngine < Formula
   # TODO: depends_on "qt-positioning"
   # TODO: depends_on "qt-tools"
   # TODO: depends_on "qt-web-channel"
+  depends_on "woff2"
 
   uses_from_macos "bison" => :build
   uses_from_macos "flex"  => :build
@@ -83,12 +89,6 @@ class QtWebEngine < Formula
 
     inreplace "src/3rdparty/chromium/build/toolchain/apple/toolchain.gni",
         'rebase_path("$clang_base_path/bin/", root_build_dir)', '""'
-    inreplace "src/3rdparty/gn/src/base/files/file_util_posix.cc",
-              "FilePath(full_path)", "FilePath(input)"
-    %w[
-      cmake/Gn.cmake
-      src/gn/CMakeLists.txt
-    ].each { |s| inreplace s, "REALPATH", "ABSOLUTE" }
 
     cd "src/3rdparty/chromium" do
       inreplace "third_party/zlib/zconf.h", "!defined(CHROMIUM_ZLIB_NO_CHROMECONF)", "0"
@@ -99,8 +99,39 @@ class QtWebEngine < Formula
     end
 
     cd "src/3rdparty/chromium/build/linux/unbundle" do
-      # system python, "./replace_gn_files.py", "--system-libraries", "freetype"
-      system "echo"
+      # absl_algorithm
+      # absl_base
+      # absl_cleanup
+      # absl_container
+      # absl_debugging
+      # absl_flags
+      # absl_functional
+      # absl_hash
+      # absl_log
+      # absl_log_internal
+      # absl_memory
+      # absl_meta
+      # absl_numeric
+      # absl_random
+      # absl_status
+      # absl_strings
+      # absl_synchronization
+      # absl_time
+      # absl_types
+      # absl_utility
+      syslibs = %w[
+        brotli
+        crc32c
+        dav1d
+        double-conversion
+        flac
+        jsoncpp
+        libaom
+        libavif
+        openh264
+        woff2
+      ]
+      system python, "./replace_gn_files.py", "--system-libraries", *syslibs
     end
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
