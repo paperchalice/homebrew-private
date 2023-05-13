@@ -119,13 +119,13 @@ class QtWebEngine < Formula
       # absl_time
       # absl_types
       # absl_utility
+      # jsoncpp
       syslibs = %w[
         brotli
         crc32c
         dav1d
         double-conversion
         flac
-        jsoncpp
         libaom
         libavif
         openh264
