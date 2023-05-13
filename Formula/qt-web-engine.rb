@@ -196,7 +196,7 @@ index 61bf707..a3bbb78 100644
 +                is_cfi=false
 +                use_glib=false
 +                use_bluez=false
-+                use_vaapi=false
++                use_vaapi=false custom_toolchain="//build/toolchain/linux/unbundle:default" host_toolchain="//build/toolchain/linux/unbundle:default"
 +            )
 +            set(systemLibs libjpeg libpng freetype harfbuzz libevent libwebp libxml
 +                opus snappy libvpx icu ffmpeg re2 lcms2
