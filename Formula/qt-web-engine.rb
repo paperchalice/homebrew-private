@@ -131,6 +131,7 @@ class QtWebEngine < Formula
         openh264
         woff2
       ]
+      inreplace "./brotli.gn", "/usr/bin", HOMEBREW_PREFIX
       system python, "./replace_gn_files.py", "--system-libraries", *syslibs
     end
 
