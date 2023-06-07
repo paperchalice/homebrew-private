@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.3/llvm-project-16.0.3.src.tar.xz"
-  sha256 "3b12e35332e10cf650578ae18247b91b04926d5427e1a6ae9a51d170a47cfbb2"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.5/llvm-project-16.0.5.src.tar.xz"
+  sha256 "37f540124b9cfd4680666e649f557077f9937c9178489cea285a672e714b2863"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -21,6 +21,7 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
+  depends_on "ncurses"
   depends_on "zstd"
 
   depends_on "libtensorflow" => :optional
@@ -30,12 +31,11 @@ class LlvmCore < Formula
   uses_from_macos "libedit"
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
-  uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
   resource "cpp-httplib" do
-    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.11.1.tar.gz"
-    sha256 "1ce2f0393ba779ec34885c5cd937141b4b5b730e2bc2efc34eb8554289c24d61"
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.12.5.tar.gz"
+    sha256 "b488f3fa9c6bf35608c3d9a5b69be52e016bbf2fbfe67e5ee684eadb2655493e"
   end
 
   patch do
@@ -71,6 +71,7 @@ class LlvmCore < Formula
       BUILD_SHARED_LIBS=ON
 
       httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
+      LLVM_ENABLE_DUMP=ON
       LLVM_ENABLE_CURL=ON
       LLVM_ENABLE_EH=ON
       LLVM_ENABLE_FFI=ON
