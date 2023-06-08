@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/llvm-project-16.0.0.src.tar.xz"
-  sha256 "9a56d906a2c81f16f06efc493a646d497c53c2f4f28f0cb1f3c8da7f74350254"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.5/llvm-project-16.0.5.src.tar.xz"
+  sha256 "37f540124b9cfd4680666e649f557077f9937c9178489cea285a672e714b2863"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -30,7 +30,6 @@ class Clang < Formula
     default_sysroot = MacOS.sdk_path.sub(/\d+/, "")
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
-      CMAKE_CXX_STANDARD=17
 
       CLANG_CONFIG_FILE_SYSTEM_DIR=#{etc}/clang
       CLANG_CONFIG_FILE_USER_DIR=~/.config/clang
@@ -61,7 +60,8 @@ class Clang < Formula
     Utils::Gzip.compress(*Dir[man1/"*"])
 
     (prefix/"etc/clang/macOS.options").write <<~EOS
-      -Wall -Wextra
+      -Wall -Wextra -march=skylake
+      -mmacosx-version-min=#{MacOS.version}.4
       -L #{HOMEBREW_PREFIX}/lib -I #{HOMEBREW_PREFIX}/include
       -F #{HOMEBREW_PREFIX}/Frameworks
     EOS
@@ -71,6 +71,13 @@ class Clang < Formula
     EOS
     (prefix/"etc/clang/clang++.cfg").write <<~EOS
       -std=c++20
+      @macOS.options
+    EOS
+    (prefix/"etc/clang/clang-cl.cfg").write <<~EOS
+      /std:c++latest /Ehsc Zc:__cplusplus
+    EOS
+    (prefix/"etc/clang/clang-cpp.cfg").write <<~EOS
+      -std=c17
       @macOS.options
     EOS
   end
