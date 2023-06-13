@@ -1,23 +1,27 @@
 class GccStrap < Formula
   desc "GNU compiler collection"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.xz"
-  sha256 "e549cf9cf3594a00e27b6589d4322d70e0720cdd213f39beb4181e06926230ff"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-13.1.0/gcc-13.1.0.tar.xz"
+  sha256 "61d684f0aa5e76ac6585ad8898a2427aade8979ed5e7f85492286c4dfc13ee86"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-strap-12.2.0"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-12.2.0"
     rebuild 1
-    sha256 ventura: "9c7e18e4f9b681bbb76b0f17b65a0ea235093f80c74d65b13b7b65ea1fcd733b"
+    sha256 monterey: "b2ac6bfc13894e47b52f50b63cf5277a5830e88cc147a1ea76f529e2837b5a7a"
   end
 
   keg_only "bootstrap formula"
 
+  depends_on "doxygen"  => :build
+  depends_on "gcc-boot" => :build
+  depends_on "gettext"  => :build
+  depends_on "python"   => :build
+  depends_on "texinfo"  => :build
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
-
-  depends_on "gcc-boot" => :build
 
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
@@ -29,26 +33,37 @@ class GccStrap < Formula
     ENV.delete "LD"
 
     triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}"
-    languages = %w[ada c c++ d objc obj-c++ fortran]
+    languages = %w[ada c c++ d objc obj-c++ fortran jit lto m2]
     sr = MacOS.sdk_path.to_str.tr "0-9", ""
 
     configure_args = %W[
       --build=#{triple}
       --prefix=#{prefix}
+      --disable-bootstrap
       --disable-multilib
       --enable-checking=release
       --enable-libphobos
       --enable-languages=#{languages.join(",")}
       --with-gcc-major-version-only
       --with-sysroot=#{sr}
+      --with-arch=x86-64
+      --with-tune=generic
     ]
 
     system "./contrib/download_prerequisites"
     mkdir "build" do
       system "../configure", *configure_args
       system "make"
-      system "make", "install"
+      system "make", "install", "-j", "1"
+      system "make", "-C", "gcc", "install-man", "install-info", "-j", "1"
+
+      # make libstdc++ documentation
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-man-doxygen"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
+      system "make", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
     end
+    rm_rf man3/"stdheader.dSYM"
+    [info, man1, man3, man7].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
     MachO::Tools.add_rpath "#{lib}/gcc/#{triple}/#{version.major}/adalib/#{shared_library "libgnarl"}",
                            "@loader_path"
   end
