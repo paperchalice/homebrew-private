@@ -61,6 +61,7 @@ class GccBoot < Formula
       system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
       system "make", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
     end
+    rm_rf man3/"stdheader.dSYM"
     [info, man1, man3, man7].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
     MachO::Tools.add_rpath "#{lib}/gcc/#{triple}/#{version.major}/adalib/#{shared_library "libgnarl"}",
                            "@loader_path"
