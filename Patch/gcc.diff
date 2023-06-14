@@ -59,3 +59,14 @@
  	    str = concat (sysroot, xstrdup (framework_defaults [i]), NULL);
  	  else
  	    str = xstrdup (framework_defaults[i]);
+--- a/gcc/config/darwin.h
++++ b/gcc/config/darwin.h
+@@ -460,7 +460,8 @@ extern GTY(()) int darwin_ms_struct;
+      %:version-compare(< 10.5 mmacosx-version-min= -multiply_defined) \
+      %:version-compare(< 10.5 mmacosx-version-min= suppress) }} \
+    %{sectalign*} %{sectcreate*} %{sectobjectsymbols*}  %{sectorder*} \
+-   %{segaddr*} %{segcreate*} %{segprot*} "
++   %{segaddr*} %{segcreate*} %{segprot*} \
++   -L/usr/local/lib "
+
+ /* Machine dependent libraries.  */
