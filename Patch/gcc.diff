@@ -67,6 +67,6 @@
     %{sectalign*} %{sectcreate*} %{sectobjectsymbols*}  %{sectorder*} \
 -   %{segaddr*} %{segcreate*} %{segprot*} "
 +   %{segaddr*} %{segcreate*} %{segprot*} \
-+   -L/usr/local/lib "
++   -L/usr/local/lib -F/usr/local/Frameworks "
 
  /* Machine dependent libraries.  */
