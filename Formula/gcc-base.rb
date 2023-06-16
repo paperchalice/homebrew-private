@@ -116,7 +116,7 @@ class GccBase < Formula
       %w[cc1 collect2 lto1].each do |t|
         (lib/"gcc"/triple/version_suffix).install "gcc/#{t}"
       end
-      %w[fortran dc ++].each { |m| rm_rf man1/"g#{m}.1" }
+      %w[fortran dc ++ m2].each { |m| rm_rf man1/"g#{m}.1" }
       %w[fortran nat-style nat_rm nat_ugn dc].each do |i|
         rm_rf info/"g#{i}.info"
       end
