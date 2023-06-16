@@ -6,6 +6,11 @@ class Gm2 < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gm2-13.1.0"
+    sha256 cellar: :any, ventura: "412759a9be4a604507117bda3db1be6bc5a15e2d28be485db92bbd4e8943db06"
+  end
+
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
