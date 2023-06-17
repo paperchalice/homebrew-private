@@ -70,3 +70,21 @@
 +   -L/usr/local/lib -F/usr/local/Frameworks "
 
  /* Machine dependent libraries.  */
+--- a/gcc/plugin.cc
++++ b/gcc/plugin.cc
+@@ -1013,15 +1013,10 @@ plugin_default_version_check (struct plugin_gcc_version *gcc_version,
+ 
+   if (strcmp (gcc_version->basever, plugin_version->basever))
+     return false;
+-  if (strcmp (gcc_version->datestamp, plugin_version->datestamp))
+-    return false;
+   if (strcmp (gcc_version->devphase, plugin_version->devphase))
+     return false;
+   if (strcmp (gcc_version->revision, plugin_version->revision))
+     return false;
+-  if (strcmp (gcc_version->configuration_arguments,
+-	      plugin_version->configuration_arguments))
+-    return false;
+   return true;
+ }
+ 
