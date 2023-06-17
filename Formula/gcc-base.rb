@@ -11,18 +11,14 @@ class GccBase < Formula
     regex(%r{href=.*?gcc[._-]v?(\d+(?:\.\d+)+)(?:/?["' >]|\.t)}i)
   end
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-base-13.1.0"
-    sha256 ventura: "6d6c5aba1d84c32ff8efd6e944c7b90f9e22dcd0d7e1c0d93aa30f1281f913db"
-  end
-
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
 
+  depends_on "bdw-gc" => :build
   depends_on "gcc-strap" => :build
-  depends_on "make"      => :build
-  depends_on "python"    => :build
+  depends_on "make" => :build
+  depends_on "python"  => :build
 
   depends_on "gettext"
   depends_on "gmp"
@@ -31,7 +27,6 @@ class GccBase < Formula
   depends_on "mpfr"
   depends_on "zstd"
 
-  uses_from_macos "gzip" => :build
   uses_from_macos "libiconv"
   uses_from_macos "zlib"
 
@@ -40,7 +35,7 @@ class GccBase < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/gcc.diff"
-    sha256 "187c0cff0975d675adeff130ee25d73c09006fce6edd9836d511fdf82cf90230"
+    sha256 "62747de482fece5cc4655d742904adc79425ee323b1bf7607cf2e6b81368251d"
   end
 
   def version_suffix
@@ -77,6 +72,7 @@ class GccBase < Formula
       --enable-languages=#{languages.join(",")}
       --enable-nls
       --enable-shared
+      --enable-objc-gc
       --libexecdir=#{HOMEBREW_PREFIX}/lib
       --with-gcc-major-version-only
       --with-gettext=#{Formula["gettext"].opt_prefix}
@@ -101,11 +97,12 @@ class GccBase < Formula
 
       %w[
         cpp driver gcc-ar mkheaders
-        headers plugin lto-wrapper
+        headers gengtype lto-wrapper
         man info po
       ].each do |t|
         system "make", "-C", "gcc", "DESTDIR=#{instdir}", "install-#{t}"
       end
+      system "make", "-C", "gcc", "DESTDIR=#{instdir}", "c.install-plugin"
       system "make", "DESTDIR=#{instdir}", "install-fixincludes"
       system "make", "DESTDIR=#{instdir}", "install-libcc1"
       %w[atomic gcc gomp itm quadmath ssp].each do |l|
