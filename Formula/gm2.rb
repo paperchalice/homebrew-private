@@ -20,6 +20,7 @@ class Gm2 < Formula
   depends_on "make" => :build
   depends_on "python" => :build
 
+  depends_on "g++"
   depends_on "gcc-base"
   depends_on "gmp"
   depends_on "isl"
