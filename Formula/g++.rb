@@ -1,8 +1,8 @@
 class Gxx < Formula
   desc "GNU C++ compiler"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.xz"
-  sha256 "e549cf9cf3594a00e27b6589d4322d70e0720cdd213f39beb4181e06926230ff"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-13.1.0/gcc-13.1.0.tar.xz"
+  sha256 "61d684f0aa5e76ac6585ad8898a2427aade8979ed5e7f85492286c4dfc13ee86"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
@@ -22,7 +22,7 @@ class Gxx < Formula
 
   depends_on "doxygen" => :build
   depends_on "gettext" => :build
-  depends_on "python"  => :build
+  depends_on "python" => :build
 
   depends_on "gcc-base"
   depends_on "gmp"
@@ -31,7 +31,6 @@ class Gxx < Formula
   depends_on "mpfr"
   depends_on "zstd"
 
-  uses_from_macos "gzip" => :build
   uses_from_macos "libiconv"
   uses_from_macos "zlib"
 
@@ -44,7 +43,7 @@ class Gxx < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/gcc.diff"
-    sha256 "691af73554281887a941ea145ed2ddb89be1e352020949c0c3d2ca3a30fc75a1"
+    sha256 "62747de482fece5cc4655d742904adc79425ee323b1bf7607cf2e6b81368251d"
   end
 
   def version_suffix
@@ -63,7 +62,8 @@ class Gxx < Formula
     languages = %w[c c++]
 
     pkgversion = "Homebrew GCC #{pkg_version}"
-    triple = "#{Hardware::CPU.arch}-apple-darwin#{OS.kernel_version.major}"
+    triple = "#{Hardware::CPU.arch}-apple-#{OS.kernel_name.downcase}"
+    default_sysroot = MacOS.sdk_path.sub(/\d+/, "")
 
     args = %W[
       --prefix=#{HOMEBREW_PREFIX}
@@ -75,7 +75,6 @@ class Gxx < Formula
       --enable-checking=release
       --enable-languages=#{languages.join(",")}
       --libexecdir=#{HOMEBREW_PREFIX}/lib
-      --with-sysroot=#{MacOS.sdk_path}
       --with-gcc-major-version-only
       --with-gmp=#{Formula["gmp"].opt_prefix}
       --with-mpfr=#{Formula["mpfr"].opt_prefix}
@@ -86,21 +85,24 @@ class Gxx < Formula
       --with-system-zlib
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
+      --with-sysroot=#{default_sysroot}
     ]
 
+    instdir = Pathname.pwd/"instdir"
     mkdir "build" do
       system "../configure", *args
       system "make"
 
       # make documentation
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-man-doxygen"
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
-      system "make", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
-
-      %w[sanitizer stdc++-v3].each do |l|
-        system "make", "-C", "#{triple}/lib#{l}", "prefix=#{prefix}", "install"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "DESTDIR=#{instdir}", "doc-man-doxygen"
+      system "make", "-C", "#{triple}/libstdc++-v3/doc", "DESTDIR=#{instdir}", "doc-install-man"
+      system "make", "-C", "#{triple}/libstdc++-v3/po", "DESTDIR=#{instdir}", "install"
+      # sanitizer is now unsupported on darwin
+      system "make", "-C", "#{triple}/libstdc++-v3", "DESTDIR=#{instdir}", "install"
+      %w[common man info plugin].each do |t|
+        system "make", "-C", "gcc", "DESTDIR=#{instdir}", "c++.install-#{t}"
       end
-      %w[common man info].each { |t| system "make", "-C", "gcc", "prefix=#{prefix}", "c++.install-#{t}" }
+      mv Dir["#{instdir}#{HOMEBREW_PREFIX}/*"], prefix
 
       (lib/"gcc"/triple/version_suffix).install "gcc/cc1plus"
       %W[c++ g++ #{triple}-c++].each do |x|
@@ -110,7 +112,7 @@ class Gxx < Formula
       rm_rf lib/"gcc"/triple/version_suffix/"cc1"
     end
     rm_rf man3/"stdheader.dSYM"
-    [man1, man3].each { |d| system "gzip", *Dir[d/"*"] }
+    [man1, man3].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
   end
 
   test do
