@@ -8,6 +8,11 @@ class Mesa3d < Formula
   license "MIT"
   head "https://gitlab.freedesktop.org/mesa/mesa.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/mesa3d-23.1.2"
+    sha256 ventura: "ade3fdf42205343efef74cbf18212fe16008a0f8b140decba017aef8a019904e"
+  end
+
   depends_on "bindgen" => :build
   depends_on "bison" => :build
   depends_on "cmake" => :build
