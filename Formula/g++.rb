@@ -86,6 +86,8 @@ class Gxx < Formula
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
       --with-sysroot=#{default_sysroot}
+      --with-arch=native
+      --with-tune=native
     ]
 
     instdir = Pathname.pwd/"instdir"
