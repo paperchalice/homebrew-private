@@ -38,7 +38,7 @@ class Gm2 < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/gcc.diff"
-    sha256 "187c0cff0975d675adeff130ee25d73c09006fce6edd9836d511fdf82cf90230"
+    sha256 "62747de482fece5cc4655d742904adc79425ee323b1bf7607cf2e6b81368251d"
   end
 
   def version_suffix
@@ -91,9 +91,9 @@ class Gm2 < Formula
       system "../configure", *args
       system "make"
       system "make", "-C", "gcc", "DESTDIR=#{instdir}", "m2.install"
+      system "make", "-C", "gcc", "DESTDIR=#{instdir}", "m2.install-plugin"
       system "make", "-C", "#{triple}/libgm2", "DESTDIR=#{instdir}", "install"
       mv Dir["#{instdir}#{HOMEBREW_PREFIX}/*"], prefix
-      rm man1/"gm2.1"
     end
 
     [man1, info].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
