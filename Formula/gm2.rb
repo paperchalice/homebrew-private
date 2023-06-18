@@ -8,7 +8,8 @@ class Gm2 < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/gm2-13.1.0"
-    sha256 cellar: :any, ventura: "412759a9be4a604507117bda3db1be6bc5a15e2d28be485db92bbd4e8943db06"
+    rebuild 1
+    sha256 cellar: :any, ventura: "17720ef08fe56e1687fdffc5f46e040efc3e7508e657f9e97d852f7c6d8b8593"
   end
 
   # The bottles are built on systems with the CLT installed, and do not work
