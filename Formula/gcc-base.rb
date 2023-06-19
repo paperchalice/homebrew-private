@@ -130,6 +130,7 @@ class GccBase < Formula
       rm bin/x
       bin.install_symlink bin/"#{triple}-#{x}" => x
     end
+    rm_rf Dir[lib/"gcc"/triple/version_suffix/"plugin/libcp1plugin.*"]
     rm bin/"#{triple}-gcc"
     bin.install_symlink bin/"#{triple}-gcc-#{version.major}" => "#{triple}-gcc"
     [man1, man7, info].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
