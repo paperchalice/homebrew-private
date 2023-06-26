@@ -20,15 +20,8 @@ class Cppinsights < Formula
   def install
     if ENV.compiler == :clang && DevelopmentTools.clang_build_version <= 1600
       ENV.llvm_clang
-      ENV["HOMEBREW_INCLUDE_PATHS"] = ENV["HOMEBREW_INCLUDE_PATHS"]
-                                      .split(":")
-                                      .reject { |s| s[Formula["llvm"].opt_include.to_s] }
-                                      .join(":")
-      ENV["HOMEBREW_LIBRARY_PATHS"] = ENV["HOMEBREW_LIBRARY_PATHS"]
-                                      .split(":")
-                                      .reject { |s| s[Formula["llvm"].opt_lib.to_s] }
-                                      .join(":")
-      system "echo", ENV["HOMEBREW_INCLUDE_PATHS"]
+      ENV.delete "HOMEBREW_INCLUDE_PATHS"
+      ENV.delete "HOMEBREW_LIBRARY_PATHS"
     end
     system "echo", ENV["HOMEBREW_INCLUDE_PATHS"]
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
