@@ -53,7 +53,7 @@ jobs:
           sed -i '' 's/uses_from_macos "zlib"/keg_only "foo"/g' Formula/qt.rb
           popd
 
-      - run: brew test-bot --only-formulae --skip-dependents
+      - run: brew test-bot --only-formulae --skip-dependents --verbose
         if: github.event_name == 'pull_request'
         env:
           HOMEBREW_TEMP: "/Users/runner/work/homebrew-private/build_farm"
