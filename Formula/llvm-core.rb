@@ -106,8 +106,6 @@ class LlvmCore < Formula
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
 
-    site_package = Language::Python.site_packages("python3")
-    (prefix/site_package).install "llvm/bindings/python/llvm"
     elisp.install Dir["llvm/utils/emacs/*.el"]
     # Install Vim plugins
     %w[ftdetect ftplugin indent syntax].each do |dir|
