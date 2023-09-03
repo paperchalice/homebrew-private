@@ -16,6 +16,7 @@ class QtMultimedia < Formula
   depends_on "pkgconf"    => :build
   depends_on "vulkan-headers" => [:build, :test]
 
+  depends_on "ffmpeg"
   depends_on "qt-base"
   depends_on "qt-declarative"
   depends_on "qt-shader-tools"
