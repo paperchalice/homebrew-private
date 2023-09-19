@@ -151,7 +151,7 @@ class QtBase < Formula
         <value type="int">1</value>
       </data>
       </qtcreator>
-    XM
+    XML
   end
 
   test do
