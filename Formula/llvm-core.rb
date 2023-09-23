@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.5/llvm-project-16.0.5.src.tar.xz"
-  sha256 "37f540124b9cfd4680666e649f557077f9937c9178489cea285a672e714b2863"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.1/llvm-project-17.0.1.src.tar.xz"
+  sha256 "b0e42aafc01ece2ca2b42e3526f54bebc4b1f1dc8de6e34f46a0446a13e882b9"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -22,6 +22,7 @@ class LlvmCore < Formula
   depends_on "sphinx-doc" => :build
 
   depends_on "ncurses"
+  depends_on "openssl"
   depends_on "zstd"
 
   depends_on "libtensorflow" => :optional
@@ -34,14 +35,11 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   resource "cpp-httplib" do
-    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.12.5.tar.gz"
-    sha256 "b488f3fa9c6bf35608c3d9a5b69be52e016bbf2fbfe67e5ee684eadb2655493e"
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.14.0.tar.gz"
+    sha256 "3a92248ef8cf2c32ad07f910b8e3052ff2427022b2adb871cf326fb620d2438e"
   end
 
-  patch do
-    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/llvm-core.diff"
-    sha256 "f57595945e7c7ae9aa8c27bc80b0c1ab7c28502800b9d51c00cae0f2877cef61"
-  end
+  patch :DATA
 
   def install
     resource("cpp-httplib").stage do
@@ -69,6 +67,7 @@ class LlvmCore < Formula
 
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
+      CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}.0
 
       httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
       LLVM_ENABLE_DUMP=ON
@@ -155,3 +154,25 @@ class LlvmCore < Formula
     system "./test"
   end
 end
+
+__END__
+--- a/llvm/lib/Support/Unix/Path.inc
++++ b/llvm/lib/Support/Unix/Path.inc
+@@ -199,8 +199,15 @@ std::string getMainExecutable(const char *argv0, void *MainAddr) {
+   uint32_t size = sizeof(exe_path);
+   if (_NSGetExecutablePath(exe_path, &size) == 0) {
+     char link_path[PATH_MAX];
+-    if (realpath(exe_path, link_path))
+-      return link_path;
++    if (realpath(exe_path, link_path)) {
++      SmallString<128> MainExe(link_path);
++      StringRef Bin = sys::path::parent_path(MainExe);
++      StringRef Prefix = sys::path::parent_path(Bin);
++      if (Prefix.startswith("/usr/local/Cellar/")) {
++        sys::path::replace_path_prefix(MainExe, Prefix, "/usr/local");
++        return (std::string)MainExe;
++      }
++    }
+   }
+ #elif defined(__FreeBSD__)
+   // On FreeBSD if the exec path specified in ELF auxiliary vectors is
