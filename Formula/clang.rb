@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.5/llvm-project-16.0.5.src.tar.xz"
-  sha256 "37f540124b9cfd4680666e649f557077f9937c9178489cea285a672e714b2863"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.1/llvm-project-17.0.1.src.tar.xz"
+  sha256 "b0e42aafc01ece2ca2b42e3526f54bebc4b1f1dc8de6e34f46a0446a13e882b9"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -20,10 +20,7 @@ class Clang < Formula
 
   uses_from_macos "libxml2"
 
-  patch do
-    url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/clang.diff"
-    sha256 "c9dded641e078a22695d565e57084beeee925ec48a5e09b826b1cf4eb0ef0f9f"
-  end
+  patch :DATA
 
   def install
     py_ver = Language::Python.major_minor_version("python3")
@@ -40,10 +37,10 @@ class Clang < Formula
       CLANG_LINK_CLANG_DYLIB=OFF
       CLANG_PYTHON_BINDINGS_VERSIONS=#{py_ver}
       DEFAULT_SYSROOT=#{default_sysroot}
-      GCC_INSTALL_PREFIX=#{HOMEBREW_PREFIX}
 
       LLVM_BUILD_DOCS=ON
       LLVM_INCLUDE_DOCS=ON
+      LLVM_INCLUDE_TESTS=OFF
       LLVM_ENABLE_SPHINX=ON
       LLVM_INSTALL_UTILS=ON=ON
       SPHINX_WARNINGS_AS_ERRORS=OFF
@@ -95,3 +92,12 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
+
+__END__
+--- a/clang/tools/clang-shlib/CMakeLists.txt
++++ b/clang/tools/clang-shlib/CMakeLists.txt
+@@ -1,3 +1,4 @@
++return()
+ # Building libclang-cpp.so fails if LLVM_ENABLE_PIC=Off
+ if (NOT LLVM_ENABLE_PIC)
+   return()
