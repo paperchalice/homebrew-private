@@ -19,8 +19,6 @@ class Libcxxabi < Formula
       -S runtimes
       -B build
     ]
-
-    system "cmake", *cmake_args
     build_args = %w[
       --build
       build
@@ -28,6 +26,8 @@ class Libcxxabi < Formula
       install-cxxabi-stripped
       install-cxxabi-headers-stripped
     ]
+
+    system "cmake", *cmake_args
     system "cmake", *build_args
   end
 
