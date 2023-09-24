@@ -1,8 +1,8 @@
 class GccBoot < Formula
   desc "GNU compiler collection"
   homepage "https://gcc.gnu.org/"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-13.1.0/gcc-13.1.0.tar.xz"
-  sha256 "61d684f0aa5e76ac6585ad8898a2427aade8979ed5e7f85492286c4dfc13ee86"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz"
+  sha256 "e275e76442a6067341a27f04c5c6b83d8613144004c0413528863dc6b5c743da"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
@@ -15,6 +15,7 @@ class GccBoot < Formula
   depends_on "doxygen"   => :build
   depends_on "gcc-strap" => :build
   depends_on "gettext"   => :build
+  depends_on "make"      => :build
   depends_on "python"    => :build
   depends_on "texinfo"   => :build
 
@@ -52,14 +53,14 @@ class GccBoot < Formula
     system "./contrib/download_prerequisites"
     mkdir "build" do
       system "../configure", *configure_args
-      system "make"
-      system "make", "install", "-j", "1"
-      system "make", "-C", "gcc", "install-man", "install-info", "-j", "1"
+      system "gmake"
+      system "gmake", "install", "-j", "1"
+      system "gmake", "-C", "gcc", "install-man", "install-info", "-j", "1"
 
       # make libstdc++ documentation
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-man-doxygen"
-      system "make", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
-      system "make", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
+      system "gmake", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-man-doxygen"
+      system "gmake", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
+      system "gmake", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
     end
     rm_rf man3/"stdheader.dSYM"
     [info, man1, man3, man7].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
