@@ -5,6 +5,12 @@ class Libcxxabi < Formula
   sha256 "b0e42aafc01ece2ca2b42e3526f54bebc4b1f1dc8de6e34f46a0446a13e882b9"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++abi-17.0.1"
+    rebuild 1
+    sha256 cellar: :any, ventura: "c1b1e47b9afac57aa3ee5e10e843d3693a872a3e4b8fd4145f55951ab0b3999b"
+  end
+
   depends_on "cmake" => :build
 
   def install
