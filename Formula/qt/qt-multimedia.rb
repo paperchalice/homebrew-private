@@ -22,8 +22,6 @@ class QtMultimedia < Formula
   depends_on "qt-shader-tools"
 
   def install
-    ENV.permit_arch_flags
-    ENV.runtime_cpu_detection
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       -DCMAKE_STAGING_PREFIX=#{prefix}
 
