@@ -6,6 +6,11 @@ class QtGraphs < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtgraphs.git", branch: "dev"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-graphs-6.6.0"
+    sha256 cellar: :any, ventura: "2d0afc943f5b0bffc2606d12f3d5f32204d195ce05f7e9b6d48a5dfd5d10ab90"
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :build
