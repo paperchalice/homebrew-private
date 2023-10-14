@@ -62,7 +62,7 @@ class QtBase < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/qt-base.diff"
-    sha256 "45ddb83062e3fc95aadb49be920620db7cc0860ecc18353d9bf549c2689e7406"
+    sha256 "cc9c1295190e11ee10794d40c4a563e85c9fa7775d30a4f5526550ce94a9a894"
   end
 
   def install
