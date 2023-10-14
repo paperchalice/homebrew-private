@@ -1,8 +1,8 @@
 class QtQuick3d < Formula
   desc "New module and API for defining 3D content in Qt Quick"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtquick3d-everywhere-src-6.5.0.tar.xz"
-  sha256 "9b590429ca98b5cc8cec4df2efa3775e9f11ed8260d123e95f3c0fc37f3772a5"
+  url "https://download.qt.io/official_releases/qt/6.6/6.6.0/submodules/qtquick3d-everywhere-src-6.6.0.tar.xz"
+  sha256 "37ab3eb394e49d6c2b03c4da0c7f782c255dff294e73946369dd2e059a837aba"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtquick3d.git", branch: "dev"
 
@@ -22,8 +22,6 @@ class QtQuick3d < Formula
   depends_on "vulkan-headers" => [:build, :test]
 
   depends_on "assimp"
-  depends_on "qt-base"
-  depends_on "qt-declarative"
   depends_on "qt-quick-timeline"
   depends_on "qt-shader-tools"
 
