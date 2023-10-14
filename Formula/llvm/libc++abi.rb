@@ -32,14 +32,21 @@ class Libcxxabi < Formula
   end
 
   test do
-    (testpath/"test.c").write <<~EOS
-      void __cxa_end_catch();
+    (testpath/"test.c").write <<~C
+      #include <stdio.h>
+      #include <stdlib.h>
+      
+      char *__cxa_demangle(const char *mangled_name, char *output_buffer, size_t *length, int *status);
+      
       int main(void) {
-        __cxa_end_catch();
+        char mangled_name[] = "FvvE";
+        int status;
+        char *buffer = __cxa_demangle(mangled_name, NULL, NULL, &status);
+        puts(buffer);
         return 0;
       }
-    EOS
+    C
     system ENV.cc, "test.c", "-L#{lib}", "-lc++abi"
-    assert_includes MachO::Tools.dylibs("a.out"), "#{opt_lib}/libc++abi.1.dylib"
+    assert_match "void ()", shell_output("./a.out")
   end
 end
