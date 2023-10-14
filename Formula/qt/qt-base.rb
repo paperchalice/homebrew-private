@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.5/6.5.0/submodules/qtbase-everywhere-src-6.5.0.tar.xz"
-  sha256 "fde1aa7b4fbe64ec1b4fc576a57f4688ad1453d2fab59cbadd948a10a6eaf5ef"
+  url "https://download.qt.io/official_releases/qt/6.6/6.6.0/submodules/qtbase-everywhere-src-6.6.0.tar.xz"
+  sha256 "039d53312acb5897a9054bd38c9ccbdab72500b71fdccdb3f4f0844b0dd39e0e"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -34,7 +34,6 @@ class QtBase < Formula
   depends_on "brotli"
   depends_on "dbus"
   depends_on "double-conversion"
-  depends_on "fontconfig"
   depends_on "freetype"
   depends_on "glib"
   depends_on "harfbuzz"
@@ -42,17 +41,9 @@ class QtBase < Formula
   depends_on "jpeg-turbo"
   depends_on "libb2"
   depends_on "libpng"
-  depends_on "libsm"
-  depends_on "libxcb"
-  depends_on "libxkbcommon"
   depends_on "md4c"
   depends_on "mesa"
   depends_on "pcre2"
-  depends_on "xcb-util-cursor"
-  depends_on "xcb-util-image"
-  depends_on "xcb-util-keysyms"
-  depends_on "xcb-util-renderutil"
-  depends_on "xcb-util-wm"
   depends_on "zstd"
 
   uses_from_macos "cups"
@@ -66,9 +57,7 @@ class QtBase < Formula
   end
 
   def install
-    ENV.permit_arch_flags
-    inreplace "src/gui/CMakeLists.txt", "AND NOT APPLE", ""
-    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX, find_framework: "FIRST") + %W[
       BUILD_WITH_PCH=OFF
       CMAKE_STAGING_PREFIX=#{prefix}
       CMAKE_SYSROOT=#{MacOS.sdk_path}
@@ -94,11 +83,8 @@ class QtBase < Formula
       FEATURE_sql_psql=OFF
       FEATURE_sql_mysql=OFF
       FEATURE_ssl=ON
-      FEATURE_fontconfig=ON
       FEATURE_system_harfbuzz=ON
       FEATURE_system_sqlite=ON
-      FEATURE_system_xcb_xinput=ON
-      FEATURE_xcb=ON
     ].map { |o| "-D #{o}" } + %w[
       -S .
       -G Ninja
