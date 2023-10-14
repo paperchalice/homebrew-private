@@ -1,8 +1,8 @@
 class QtQuickTimeline < Formula
   desc "Module for keyframe-based timeline construction"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.4/6.4.0/submodules/qtquicktimeline-everywhere-src-6.4.0.tar.xz"
-  sha256 "70e8a28b5310c42a8d50d949b55c1d7238cf52ea778f9bb2e254835a0e054f57"
+  url "https://download.qt.io/official_releases/qt/6.6/6.6.0/submodules/qtquicktimeline-everywhere-src-6.6.0.tar.xz"
+  sha256 "079e51d4572aed992731628b269f9c3f9c61a6c379bae6c354c949a6d89bb590"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -22,9 +22,8 @@ class QtQuickTimeline < Formula
     sha256 cellar: :any, monterey: "41063cb129d28b5ad22628c8da2df2687e9370d04ccfe29733617cffe3f34450"
   end
 
-  depends_on "cmake"      => :build
-  depends_on "perl"       => :build
-  depends_on "pkgconf"    => :build
+  depends_on "cmake" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "qt-base"
   depends_on "qt-declarative"
