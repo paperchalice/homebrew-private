@@ -55,6 +55,8 @@ class Clang < Formula
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
     Utils::Gzip.compress(*Dir[man1/"*"])
+    elisp.install Dir[pkgshare/"*.el"]
+    bash_completion.install pkgshare/"bash-autocomplete.sh" => "clang-completion.sh"
 
     (prefix/"etc/clang/macOS.options").write <<~EOS
       -Wall -Wextra
