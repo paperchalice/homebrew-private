@@ -62,7 +62,7 @@ class Clang < Formula
       -L #{HOMEBREW_PREFIX}/lib -I #{HOMEBREW_PREFIX}/include
       -F #{HOMEBREW_PREFIX}/Frameworks
     EOS
-    ("#{Hardware::CPU.arch}-apple-darwin22.6.0-clang.cfg").write <<~EOS
+    ("#{Hardware::CPU.arch}-apple-darwin#{MacOS.version}-clang.cfg").write <<~EOS
       -march=skylake
     EOS
     (prefix/"etc/clang/clang.cfg").write <<~EOS
