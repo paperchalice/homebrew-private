@@ -72,7 +72,6 @@ class QtBase < Formula
       INSTALL_MKSPECSDIR=share/qt/mkspecs
       INSTALL_TESTSDIR=share/qt/tests
 
-      QT_FIND_ALL_PACKAGES_ALWAYS=ON
       FEATURE_optimize_size=ON
       FEATURE_pkg_config=ON
       FEATURE_reduce_exports=ON
