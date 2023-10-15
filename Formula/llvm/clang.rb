@@ -57,10 +57,13 @@ class Clang < Formula
     Utils::Gzip.compress(*Dir[man1/"*"])
 
     (prefix/"etc/clang/macOS.options").write <<~EOS
-      -Wall -Wextra -march=skylake
+      -Wall -Wextra
       -mmacosx-version-min=#{MacOS.version}.4
       -L #{HOMEBREW_PREFIX}/lib -I #{HOMEBREW_PREFIX}/include
       -F #{HOMEBREW_PREFIX}/Frameworks
+    EOS
+    ("#{Hardware::CPU.arch}-apple-darwin22.6.0-clang.cfg").write <<~EOS
+      -march=skylake
     EOS
     (prefix/"etc/clang/clang.cfg").write <<~EOS
       -std=c17
