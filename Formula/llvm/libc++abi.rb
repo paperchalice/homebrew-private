@@ -35,9 +35,9 @@ class Libcxxabi < Formula
     (testpath/"test.c").write <<~C
       #include <stdio.h>
       #include <stdlib.h>
-      
+
       char *__cxa_demangle(const char *mangled_name, char *output_buffer, size_t *length, int *status);
-      
+
       int main(void) {
         char mangled_name[] = "FvvE";
         int status;
