@@ -7,9 +7,9 @@ class QtShaderTools < Formula
   head "https://code.qt.io/qt/qtshadertools.git", branch: "dev"
 
   livecheck do
-    url :head
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    formula "qt"
   end
+   
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-shader-tools-6.6.0"

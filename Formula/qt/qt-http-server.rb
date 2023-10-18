@@ -11,6 +11,10 @@ class QtHttpServer < Formula
     "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
   ]
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-http-server-6.4.0"
     sha256 cellar: :any, monterey: "12f710c539ff9d2087da6672f219350b26407da2e9f83f24c13c87dc114689f1"

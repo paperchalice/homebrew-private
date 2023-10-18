@@ -11,6 +11,10 @@ class QtSpeech < Formula
     "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" },
   ]
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-speech-6.4.0"
     sha256 cellar: :any, monterey: "aec1fc2eca0f596f1c0b73a4c560d7126409a768e341d3b3e768765a777e997c"

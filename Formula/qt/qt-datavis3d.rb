@@ -6,6 +6,10 @@ class QtDatavis3d < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtdatavis3d.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-datavis3d-6.3.0"
     sha256 cellar: :any, monterey: "d3c6eb875e1325fefdee56d8423e59d1a9a0c3e222ebcd82436288e619597486"

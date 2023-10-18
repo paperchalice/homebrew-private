@@ -6,6 +6,10 @@ class QtTools < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttools.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-tools-6.3.0"
     sha256 cellar: :any, monterey: "7a247424d5ba8f7a89818a9b242b8262f690a821f31fc056dd638d62c07c9b1a"

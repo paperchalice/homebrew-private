@@ -6,6 +6,10 @@ class QtMultimedia < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtmultimedia.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-multimedia-6.4.0"
     sha256 cellar: :any, monterey: "bc41883652834445c2f24f96158312b37d1538335263c36bec2dc52f029fa778"

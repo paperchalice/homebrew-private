@@ -6,6 +6,10 @@ class QtPositioning < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtpositioning.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-positioning-6.5.0"
     sha256 cellar: :any, monterey: "ed50dc11474df3fed2fe5c20d896ea069e275d0940104a3360534949ef2e0861"

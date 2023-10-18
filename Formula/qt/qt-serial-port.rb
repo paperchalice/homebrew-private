@@ -6,6 +6,10 @@ class QtSerialPort < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtserialport.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-serial-port-6.5.0"
     sha256 cellar: :any, monterey: "3f957af0781395bd30616d09ddd5c10db6132c9b2d6b67416302e5977e12675c"

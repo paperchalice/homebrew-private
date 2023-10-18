@@ -6,6 +6,10 @@ class QtTranslations < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qttranslations.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-translations-6.3.0"
     sha256 cellar: :any_skip_relocation, monterey: "fa35504e5dee27bf686f0acebd538cf35ee6d2fc815971b89b6074b99dd72f8a"

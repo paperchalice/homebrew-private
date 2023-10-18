@@ -5,6 +5,10 @@ class QtCoap < Formula
   sha256 "9b3780860d124afce20ca6cc4a52cafe379288676f5f9e4050adb03c873320ca"
   license "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" }
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-coap-6.4.0"
     sha256 cellar: :any, monterey: "3f583f57b2f83f3bb70a0098804bfaf51e0465649d28e256a9eb0a7e037be673"

@@ -7,6 +7,10 @@ class QtSvg < Formula
   head "https://code.qt.io/qt/qtsvg.git", branch: "dev"
 
   livecheck do
+    formula "qt"
+  end
+
+  livecheck do
     url :head
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end

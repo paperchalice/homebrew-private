@@ -12,6 +12,10 @@ class QtWebSockets < Formula
   ]
   head "https://code.qt.io/qt/qtwebsockets.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-sockets-6.4.0"
     sha256 cellar: :any, monterey: "c16235c3be5a3bbdcef0df9c4cbdd29098a6233a06e34569d4b96f363fde3e9e"

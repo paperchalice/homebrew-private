@@ -6,6 +6,10 @@ class QtWebChannel < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtwebchannel.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-web-channel-6.3.0"
     sha256 cellar: :any, monterey: "e7eda4564daff1ad884d35eb6acd18925899007d0a9c394138829979f4e07b49"

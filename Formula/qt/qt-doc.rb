@@ -5,6 +5,10 @@ class QtDoc < Formula
   sha256 "cd2789cade3e865690f3c18df58ffbff8af74cc5f01faae50634c12eb52dd85b"
   license "GFDL-1.3-only"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-doc-6.3.0"
     sha256 cellar: :any_skip_relocation, monterey: "3a0f52dac2a4b84fefb070b65dbb30d74d8a3f00cbdfc2851ad68efd6704280c"

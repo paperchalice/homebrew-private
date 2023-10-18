@@ -13,8 +13,7 @@ class QtBase < Formula
   head "https://code.qt.io/qt/qtbase.git", branch: "dev"
 
   livecheck do
-    url :head
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    formula "qt"
   end
 
   bottle do

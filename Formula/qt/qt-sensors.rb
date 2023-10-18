@@ -6,6 +6,10 @@ class QtSensors < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtsensors.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-sensors-6.3.0"
     sha256 cellar: :any, monterey: "30c8e097130a96be31c481ae0527ab27260ba25db7456f6c94da1ecbf4bdf4f5"

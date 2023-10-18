@@ -6,6 +6,10 @@ class QtRemoteObjects < Formula
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
   head "https://code.qt.io/qt/qtremoteobjects.git", branch: "dev"
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-remote-objects-6.3.0"
     sha256 cellar: :any, monterey: "3e53c3b0596b1be934688344ea194f3c55323687648b7f16eb883d4ffdb4de92"

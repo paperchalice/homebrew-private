@@ -5,6 +5,10 @@ class QtLocation < Formula
   sha256 "0ebfa7504958af45f7311e1a3d4f7a4eb395d937705f1e5475652c5f5a28c30c"
   license all_of: ["GFDL-1.3-only", "GPL-2.0-only", "GPL-3.0-only", "LGPL-2.1-only", "LGPL-3.0-only"]
 
+  livecheck do
+    formula "qt"
+  end
+
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-location-6.5.0"
     sha256 cellar: :any, monterey: "497f203d7a674f8658948dedb818d9fbabcea18df33030aeacc8dc3c1d4ab884"
