@@ -19,7 +19,6 @@ class Lldb < Formula
   depends_on "llvm-core"
   depends_on "lua"
   depends_on "python"
-  depends_on "six"
   depends_on "xz"
 
   uses_from_macos "libedit"
