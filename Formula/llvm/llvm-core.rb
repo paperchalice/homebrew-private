@@ -67,7 +67,6 @@ class LlvmCore < Formula
 
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
-      CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}.0
 
       httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
       LLVM_ENABLE_DUMP=ON

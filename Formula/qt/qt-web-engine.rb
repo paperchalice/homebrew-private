@@ -108,8 +108,8 @@ class QtWebEngine < Formula
     end
 
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
-      -D CMAKE_OSX_DEPLOYMENT_TARGET=#{MacOS.version}.0
       -D CMAKE_STAGING_PREFIX=#{prefix}
+      -D CMAKE_OSX_DEPLOYMENT_TARGET=13.0
 
       -D FEATURE_webengine_system_ffmpeg=ON
       -D FEATURE_webengine_system_icu=ON
@@ -129,6 +129,7 @@ class QtWebEngine < Formula
       -S .
       -G Ninja
     ]
+
     system "cmake", *cmake_args
     system "cmake", "--build", "."
     system "cmake", "--install", ".", "--strip"
