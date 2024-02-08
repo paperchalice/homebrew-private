@@ -14,7 +14,7 @@ module Homebrew
     end
 
     llvm.lib.children.each do |f|
-      zap = %w[MLIR, mlir, lldb, omp, unwind]
+      zap = %w[MLIR mlir lldb omp unwind]
       rm_rf f unless f.to_s.end_with? "dylib"
       rm_rf f if zap.any? { |z| f.to_s.include? z }
     end
