@@ -3,6 +3,7 @@ class Beforelight < Formula
   homepage "https://gitlab.freedesktop.org/xorg/app/beforelight"
   url "https://xorg.freedesktop.org/releases/individual/app/beforelight-1.0.6.tar.xz"
   sha256 "53f0bf085b7272ebbf626d1b9b0ad320d1a07bc1fe7f3ae260c86a71a857ad28"
+  license "X11"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/beforelight-1.0.6"
