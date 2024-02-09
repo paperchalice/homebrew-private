@@ -5,6 +5,11 @@ class Xeyes < Formula
   sha256 "0950c600bf33447e169a539ee6655ef9f36d6cebf2c1be67f7ab55dacb753023"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xeyes-1.3.0"
+    sha256 cellar: :any, ventura: "1e406e7336f9a4f7667f517c6461d0a82843bbb8d4d54cd2efc941945e772ba1"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "xorgproto" => :build
 
