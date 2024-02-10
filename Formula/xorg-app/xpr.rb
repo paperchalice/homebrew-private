@@ -5,6 +5,11 @@ class Xpr < Formula
   sha256 "a0bbb11475366622632440b1c6f16d19964b4516483232fe5f46c169528557c5"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xpr-1.1.0"
+    sha256 cellar: :any, ventura: "1c42cc9683251ca4e20d99d03686bd414d54c81ce0d4b118fd14b5abfa9a05d4"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "xorgproto" => :build
   depends_on "xorg-server" => :test
