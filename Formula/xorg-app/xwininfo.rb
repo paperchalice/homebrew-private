@@ -5,6 +5,11 @@ class Xwininfo < Formula
   sha256 "3518897c17448df9ba99ad6d9bb1ca0f17bc0ed7c0fd61281b34ceed29a9253f"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/xwininfo-1.1.6"
+    sha256 cellar: :any, ventura: "18ae07a81bbb94050a7ec58746e4fdd3f5256f514641c4aae4ca0c1dcf40779a"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "xorgproto" => :build
 
