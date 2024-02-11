@@ -5,6 +5,11 @@ class FontBhLucidatypewriter100dpi < Formula
   sha256 "76ec09eda4094a29d47b91cf59c3eba229c8f7d1ca6bae2abbb3f925e33de8f2"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-lucidatypewriter-100dpi-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "795382b09e870e0738d06675a1657d829f6fddf8ab8078c332e9f3c377dc0cf3"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
