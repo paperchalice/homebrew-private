@@ -3,6 +3,7 @@ class FontAdobe75dpi < Formula
   homepage "https://gitlab.freedesktop.org/xorg/font/adobe-75dpi"
   url "https://xorg.freedesktop.org/releases/individual/font/font-adobe-75dpi-1.0.4.tar.xz"
   sha256 "1281a62dbeded169e495cae1a5b487e1f336f2b4d971d92911c59c103999b911"
+  license "MIT"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-adobe-75dpi-1.0.4"
