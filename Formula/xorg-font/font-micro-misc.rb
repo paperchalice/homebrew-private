@@ -5,6 +5,11 @@ class FontMicroMisc < Formula
   sha256 "2ee0b9d6bd7ae849aff1bd82efab44a1b6b368fbb5e11d12ff7f015a3df6f943"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-micro-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "0a5bfe05e11d61e0b4617520ce4cb2a4d814b3efe7ad5d3be5670c2395e7dc3e"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
