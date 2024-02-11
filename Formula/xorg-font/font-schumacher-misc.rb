@@ -1,8 +1,8 @@
 class FontSchumacherMisc < Formula
   desc "X.Org Fonts: font schumacher misc"
   homepage "https://gitlab.freedesktop.org/xorg/font/schumacher-misc"
-  url "https://xorg.freedesktop.org/releases/individual/font/font-schumacher-misc-1.0.0.tar.xz"
-  sha256 "463c67beb6dd62ef97d85898cd935b68dfee8854dd8c2098914c96ce2e688758"
+  url "https://xorg.freedesktop.org/releases/individual/font/font-schumacher-misc-1.1.3.tar.xz"
+  sha256 "8b849f0cdb1e55a34cc3dd8b0fb37443fabbc224d5ba44085569581244a68070"
   license "MIT"
 
   depends_on "bdftopcf" => :build
@@ -21,6 +21,7 @@ class FontSchumacherMisc < Formula
 
     system "./configure", *configure_args
     inreplace "Makefile", "$(MKFONTDIR)", "@echo"
+    inreplace "Makefile", "$(MKFONTSCALE)", "@echo", false
     system "make", "install"
   end
 

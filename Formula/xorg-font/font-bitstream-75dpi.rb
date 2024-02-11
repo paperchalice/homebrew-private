@@ -26,6 +26,7 @@ class FontBitstream75dpi < Formula
 
     system "./configure", *configure_args
     inreplace "Makefile", "$(MKFONTDIR)", "@echo"
+    inreplace "Makefile", "$(MKFONTSCALE)", "@echo", false
     system "make", "install"
   end
 
