@@ -5,6 +5,11 @@ class FontMiscMeltho < Formula
   sha256 "63be5ec17078898f263c24096a68b43ae5b06b88852e42549afa03d124d65219"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-misc-meltho-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "fb1adb37e8766ce74fd10dfccadf6594d15e77643278425a1f916e867ed7933c"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
