@@ -5,6 +5,11 @@ class FontSonyMisc < Formula
   sha256 "e6b09f823fccb06e0bd0b2062283b6514153323bd8a7486e9c2e3f55ab84946b"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-sony-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "e89855d6f92a1647bdd556fe2067e218f88cac63f20789504548deb7027ac8d2"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
