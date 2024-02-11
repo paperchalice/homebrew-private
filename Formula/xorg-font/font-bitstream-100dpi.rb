@@ -5,6 +5,11 @@ class FontBitstream100dpi < Formula
   sha256 "2d1cc682efe4f7ebdf5fbd88961d8ca32b2729968728633dea20a1627690c1a7"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bitstream-100dpi-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "a9f65765d59630c253e4cb1a214b69ee81d8294d17758936e9996ac44563d2b4"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
