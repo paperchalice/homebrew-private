@@ -5,6 +5,11 @@ class FontScreenCyrillic < Formula
   sha256 "8f758bb8cd580c7e655487d1d0db69d319acae54d932b295d96d9d9b83fde5c0"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-screen-cyrillic-1.0.5"
+    sha256 cellar: :any_skip_relocation, ventura: "f9cee3739d6b61517d1c907a3d9e939fbfa9fae0e0a7282e2d4a7a63bf243d90"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
