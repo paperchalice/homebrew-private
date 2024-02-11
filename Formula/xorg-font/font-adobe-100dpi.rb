@@ -5,6 +5,11 @@ class FontAdobe100dpi < Formula
   sha256 "b67aff445e056328d53f9732d39884f55dd8d303fc25af3dbba33a8ba35a9ccf"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-adobe-100dpi-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "d3951305dfcace1543b800a95099fa505f64e42b792e6716964010a7ab9098f8"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
