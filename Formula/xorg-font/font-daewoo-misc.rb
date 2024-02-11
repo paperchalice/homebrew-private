@@ -5,6 +5,11 @@ class FontDaewooMisc < Formula
   sha256 "f63c8b3dc8f30098cb868b7db2c2c0c8b5b3fd2cefd044035697a43d4c7a4f31"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-daewoo-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "1d62193c2f05b0c07bcf6562bfd7e23f5e78f5dea27f8344c5c0767b8990bf86"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
