@@ -5,6 +5,11 @@ class FontBh100dpi < Formula
   sha256 "fd8f5efe8491faabdd2744808d3d4eafdae5c83e617017c7fddd2716d049ab1e"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-100dpi-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "316936d5a31005249a3561f1add21e1bf4c3f034bdcba961659ef749f40d1ad6"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
