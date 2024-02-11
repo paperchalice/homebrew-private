@@ -5,6 +5,11 @@ class FontSunMisc < Formula
   sha256 "dd84dd116d927affa4fa0fa29727b3ecfc0f064238817c0a1e552a0ac384db9f"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-sun-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "d6389d7c7de98e1e31007428d1b9b89f246e8f487e36ab09598a0156fd77abff"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
