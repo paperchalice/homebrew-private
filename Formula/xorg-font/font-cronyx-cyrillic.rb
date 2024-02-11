@@ -5,6 +5,11 @@ class FontCronyxCyrillic < Formula
   sha256 "dc0781ce0dcbffdbf6aae1a00173a13403f92b0de925bca5a9e117e4e2d6b789"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-cronyx-cyrillic-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "d66af4560ebc5bb1357ee6fe0ab9b5fd6fd0301995c22a5e4e40dc702aabf046"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
