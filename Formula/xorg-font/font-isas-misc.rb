@@ -5,6 +5,11 @@ class FontIsasMisc < Formula
   sha256 "47e595bbe6da444b9f6fcaa26539abc7ba1989e23afa6cdc49e22e484cc438fc"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-isas-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "4b6d67055d24c7fe986416623c545d88cd39f777430f2b76c426e28cf65a7816"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
