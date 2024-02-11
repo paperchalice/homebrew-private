@@ -5,6 +5,11 @@ class FontDecMisc < Formula
   sha256 "82d968201d8ff8bec0e51dccd781bb4d4ebf17e11004944279bdc0201e161af7"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-dec-misc-1.0.4"
+    sha256 cellar: :any_skip_relocation, ventura: "e467d7072c25332d53948cb477968fae477fa7ca549fbf9b37505eb4671462ea"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
