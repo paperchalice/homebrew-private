@@ -7,7 +7,8 @@ class FontBhLucidatypewriter75dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-lucidatypewriter-75dpi-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "f18318520ef5b3dc14b4e04aa82c2b1dc407ab2c8a09b8593431d41b1d98e3a4"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "c952e186a79453cf1ef0a089cdd6929757e6a9d30394966ac60e3e34fef11c5d"
   end
 
   depends_on "bdftopcf" => :build
