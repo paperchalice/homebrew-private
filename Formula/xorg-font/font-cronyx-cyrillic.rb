@@ -7,7 +7,8 @@ class FontCronyxCyrillic < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-cronyx-cyrillic-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "d66af4560ebc5bb1357ee6fe0ab9b5fd6fd0301995c22a5e4e40dc702aabf046"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "449f23380ca301bfcc3822822224877f42684a0cbbdc6937d653dd99ad17538d"
   end
 
   depends_on "bdftopcf" => :build
