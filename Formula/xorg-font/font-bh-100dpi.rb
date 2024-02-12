@@ -7,7 +7,8 @@ class FontBh100dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-100dpi-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "316936d5a31005249a3561f1add21e1bf4c3f034bdcba961659ef749f40d1ad6"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "68db856b610dd4f114e6f66672ceed14048e97d7248d04cea740bc511c8ecb26"
   end
 
   depends_on "bdftopcf" => :build
