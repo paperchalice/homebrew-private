@@ -7,7 +7,8 @@ class FontDecMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-dec-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "e467d7072c25332d53948cb477968fae477fa7ca549fbf9b37505eb4671462ea"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "9300fc4f2c348c8b1313c321347c4718ceed95d702a6ad3f7c4f564505ed6cf5"
   end
 
   depends_on "bdftopcf" => :build
