@@ -7,7 +7,8 @@ class FontMicroMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-micro-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "0a5bfe05e11d61e0b4617520ce4cb2a4d814b3efe7ad5d3be5670c2395e7dc3e"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "e4871c0c44ab20052570563774f128a5e915032105cb5a79550be6aff6f62b34"
   end
 
   depends_on "bdftopcf" => :build
