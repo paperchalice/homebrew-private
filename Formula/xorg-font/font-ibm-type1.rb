@@ -5,6 +5,12 @@ class FontIbmType1 < Formula
   sha256 "c4395e95ba46d40c4ad1737e91cac20c0ab75411329b60db5d99fed92b60ce7f"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-ibm-type1-1.0.4"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "5097641e8601c44a89b271b65f6a19790ec440807f923c9e3983556ae0d7a3b9"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
