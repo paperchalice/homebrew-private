@@ -5,6 +5,12 @@ class FontBitstreamType1 < Formula
   sha256 "de2f238b4cd72db4228a0ba67829d76a2b7c039e22993d66a722ee385248c628"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bitstream-type1-1.0.4"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "fc3e62bdc009330d8195e6ad80f57ba9bdf5a6069a24c556063fe9ff0ace9555"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
