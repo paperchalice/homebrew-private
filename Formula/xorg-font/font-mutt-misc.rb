@@ -7,7 +7,8 @@ class FontMuttMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-mutt-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "f8d082aeb6f1186a54c37830cde687f90b67c079a0d6bebb0f503fc843b25d51"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "a570ead3ca0e423e02b9ae70f0580d01cf0dab9070151147d35bdbae87548a59"
   end
 
   depends_on "bdftopcf" => :build
