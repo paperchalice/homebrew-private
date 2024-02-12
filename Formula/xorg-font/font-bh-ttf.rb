@@ -7,7 +7,8 @@ class FontBhTtf < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-ttf-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "72173877846c786ae268e19bb989aa970f6cbffc4f1f856e2b59bfc1021f13c7"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "cc782318985c52a32f57f4cbe5ab70b37db4ac2080e22ee3da43578cd821937a"
   end
 
   depends_on "bdftopcf" => :build
