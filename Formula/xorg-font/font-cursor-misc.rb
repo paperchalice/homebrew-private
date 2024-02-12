@@ -7,7 +7,8 @@ class FontCursorMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-cursor-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "f3e47f430bb8f9f9ab8267a22516de9d8d723d9edbd2946ed0a584093730e8ea"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "8bec69f2b75932fda2351870eeff11f75ac853583b37223edd72769526d96af4"
   end
 
   depends_on "bdftopcf" => :build
