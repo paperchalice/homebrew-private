@@ -7,7 +7,8 @@ class FontAdobeUtopia100dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-adobe-utopia-100dpi-1.0.5"
-    sha256 cellar: :any_skip_relocation, ventura: "24e8630a1259606952e3dd51b38779d2f43696a5775e3fa36459449a8c926d31"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "71382c568b54463ade4f42eb3e5d8bb7c7dc1b2dd8ee73ebe92985381616c315"
   end
 
   depends_on "bdftopcf" => :build
