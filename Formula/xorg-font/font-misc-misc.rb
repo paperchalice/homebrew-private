@@ -1,8 +1,8 @@
 class FontMiscMisc < Formula
   desc "X.Org Fonts: font misc misc"
   homepage "https://gitlab.freedesktop.org/xorg/font/misc-misc"
-  url "https://xorg.freedesktop.org/releases/individual/font/font-misc-misc-1.0.0.tar.xz"
-  sha256 "463c67beb6dd62ef97d85898cd935b68dfee8854dd8c2098914c96ce2e688758"
+  url "https://xorg.freedesktop.org/releases/individual/font/font-misc-misc-1.1.3.tar.xz"
+  sha256 "79abe361f58bb21ade9f565898e486300ce1cc621d5285bec26e14b6a8618fed"
   license "MIT"
 
   depends_on "bdftopcf" => :build
