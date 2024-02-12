@@ -7,7 +7,8 @@ class FontMiscCyrillic < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-misc-cyrillic-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "961cf4cb1e606c686d1849f8ae7434d2d1e1ae8303a6decc1cfc6db09a09a947"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "8280e82ab5d18f09252cf174b92f81d791236b121c3fe19ea89c107994197bbb"
   end
 
   depends_on "bdftopcf" => :build
