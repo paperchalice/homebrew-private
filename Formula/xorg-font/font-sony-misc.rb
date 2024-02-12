@@ -7,7 +7,8 @@ class FontSonyMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-sony-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "e89855d6f92a1647bdd556fe2067e218f88cac63f20789504548deb7027ac8d2"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "214f7ee8e3f87e40300977fc632439c6f5d3b1abe49114c91b33f5fa1f29b1e4"
   end
 
   depends_on "bdftopcf" => :build
