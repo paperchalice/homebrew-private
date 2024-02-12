@@ -7,7 +7,8 @@ class FontDaewooMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-daewoo-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "1d62193c2f05b0c07bcf6562bfd7e23f5e78f5dea27f8344c5c0767b8990bf86"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "8608d883fe933b8e359296afaf4fba165599eab47a4c48705cca240e7ca2901b"
   end
 
   depends_on "bdftopcf" => :build
