@@ -7,7 +7,8 @@ class FontScreenCyrillic < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-screen-cyrillic-1.0.5"
-    sha256 cellar: :any_skip_relocation, ventura: "f9cee3739d6b61517d1c907a3d9e939fbfa9fae0e0a7282e2d4a7a63bf243d90"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "5e5f3d6abd57ea9759b4f07389104368261f32a4132c28e23a28c254c646f23b"
   end
 
   depends_on "bdftopcf" => :build
