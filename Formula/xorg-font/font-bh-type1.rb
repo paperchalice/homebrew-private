@@ -5,6 +5,12 @@ class FontBhType1 < Formula
   sha256 "19dec3ec06abde6bedd10094579e928be0f0fc3bdb4fbe93f4c69cce406d72a6"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bh-type1-1.0.4"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "0c68048d9ac03782338493081f3c3ff51be26a9e503a21a0c7845842454d57d3"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
