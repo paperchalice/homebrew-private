@@ -7,8 +7,8 @@ class FontAdobe75dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-adobe-75dpi-1.0.4"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, ventura: "259d30faf00ca67c279b121ac4351df699db883099d12ce2f7f9bd822442594c"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, ventura: "0a591b585dff1440dc976977a882c7f348ed42f5040360620ac213a9e673698e"
   end
 
   depends_on "bdftopcf" => :build
