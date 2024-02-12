@@ -7,7 +7,8 @@ class FontIsasMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-isas-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "4b6d67055d24c7fe986416623c545d88cd39f777430f2b76c426e28cf65a7816"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "9147b6e18e16e4739247486b2f20a890f5f037b0350b149ca973327b55bd8f4a"
   end
 
   depends_on "bdftopcf" => :build
