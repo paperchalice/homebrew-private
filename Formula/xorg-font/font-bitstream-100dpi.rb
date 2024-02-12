@@ -7,7 +7,8 @@ class FontBitstream100dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-bitstream-100dpi-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "a9f65765d59630c253e4cb1a214b69ee81d8294d17758936e9996ac44563d2b4"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "fd83124b184e42c6de4868c1f396ddb6a2cf1fd627c7b2e47044e0fe4d89f8e7"
   end
 
   depends_on "bdftopcf" => :build
