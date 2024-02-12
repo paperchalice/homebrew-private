@@ -7,7 +7,8 @@ class FontMiscMeltho < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-misc-meltho-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "fb1adb37e8766ce74fd10dfccadf6594d15e77643278425a1f916e867ed7933c"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "cbf8a87089e3f8d9874914afcbd312c9d814b16a56d45d89db1b2a08824aeaf2"
   end
 
   depends_on "bdftopcf" => :build
