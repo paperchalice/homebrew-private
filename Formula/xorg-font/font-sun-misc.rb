@@ -7,7 +7,8 @@ class FontSunMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-sun-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "d6389d7c7de98e1e31007428d1b9b89f246e8f487e36ab09598a0156fd77abff"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "5167bd4770104831ecfb543305bf80c4862c243016d16f42e884ee4763c3ac2c"
   end
 
   depends_on "bdftopcf" => :build
