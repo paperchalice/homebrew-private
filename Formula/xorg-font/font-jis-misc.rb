@@ -7,7 +7,8 @@ class FontJisMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-jis-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "5ae66f5656f47d1bcabc7cc07cfed626dbccaf7f4731cac473669985aac86590"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "d355a93bf4225a215f067a39e1885eeec7a93419f75957a89560fb369a15ab56"
   end
 
   depends_on "bdftopcf" => :build
