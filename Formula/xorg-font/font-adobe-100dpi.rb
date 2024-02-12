@@ -7,7 +7,8 @@ class FontAdobe100dpi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-adobe-100dpi-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "d3951305dfcace1543b800a95099fa505f64e42b792e6716964010a7ab9098f8"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "a6ce87250820ba22444e7aca7b9d76f91c58eae47b4c64ecc2799826c29a1516"
   end
 
   depends_on "bdftopcf" => :build
