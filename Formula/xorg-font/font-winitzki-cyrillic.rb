@@ -7,7 +7,8 @@ class FontWinitzkiCyrillic < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-winitzki-cyrillic-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "699f0d2da8bbcfbb2490738c0ddceabd77810c324c6d2db90cc857afc9b1c60d"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "0b05e887e93fce313872085391ce303004f1df030c8781f67ac15eab2aae224e"
   end
 
   depends_on "bdftopcf" => :build
