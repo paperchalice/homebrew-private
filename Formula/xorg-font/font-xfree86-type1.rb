@@ -5,6 +5,12 @@ class FontXfree86Type1 < Formula
   sha256 "a93c2c788a5ea1c002af7c8662cf9d9821fb1df51b8d2b2c5e0026dfdfea4837"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-xfree86-type1-1.0.5"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "c7cf715c33a655f6fc0ed9ad6febb2fa6fe26592c3661396d69593dc2b9e1d88"
+  end
+
   depends_on "bdftopcf" => :build
   depends_on "font-util" => :build
   depends_on "fontconfig" => :build
