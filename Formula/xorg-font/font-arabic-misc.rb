@@ -7,7 +7,8 @@ class FontArabicMisc < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/font-arabic-misc-1.0.4"
-    sha256 cellar: :any_skip_relocation, ventura: "cec4bcbaad67efb0d756158f971ed29e0003844c7e6a68b9b585b4fd0bd01c5b"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, ventura: "0af849f2981790428131361400f303512728bb66bbd7fa7d0ddedd775141fb91"
   end
 
   depends_on "bdftopcf" => :build
