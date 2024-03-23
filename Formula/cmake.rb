@@ -1,9 +1,9 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-3.25.2.tar.gz"
-  sha256 "c026f22cb931dd532f648f087d587f07a1843c6e66a3dfca4fb0ea21944ed33c"
+  url "https://github.com/Kitware/CMake/releases/download/v3.29.0/cmake-3.29.0.tar.gz"
+  mirror "http://fresh-center.net/linux/misc/cmake-3.29.0.tar.gz"
+  sha256 "a0669630aae7baa4a8228048bf30b622f9e9fd8ee8cedb941754e9e38686c778"
   license "BSD-3-Clause"
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
@@ -12,9 +12,12 @@ class Cmake < Formula
     sha256 cellar: :any, monterey: "1bd00d83a0c9f5a1c0af32d7e5721396a992ae5925d1eb1cae7a96d1cf53e30e"
   end
 
+  depends_on "nlohmann-json" => :build
   depends_on "pkgconf" => :build
+  depends_on xcode: :build
 
   # nghttp2 is for curl
+  depends_on "cppdap"
   depends_on "jsoncpp"
   depends_on "libarchive"
   depends_on "libuv"
@@ -45,6 +48,7 @@ class Cmake < Formula
       --qt-gui
 
       --
+      -D CMAKE_CXX_STANDARD=17
       -D CMAKE_USE_SYSTEM_LIBRARIES=ON
       -D CMake_INSTALL_EMACS_DIR=#{elisp.relative_path_from prefix}
       -D CMake_BUILD_LTO=ON
