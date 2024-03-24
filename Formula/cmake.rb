@@ -48,7 +48,6 @@ class Cmake < Formula
       --qt-gui
 
       --
-      -D CMAKE_CXX_STANDARD=17
       -D CMAKE_USE_SYSTEM_LIBRARIES=ON
       -D CMake_INSTALL_EMACS_DIR=#{elisp.relative_path_from prefix}
       -D CMake_BUILD_LTO=ON
