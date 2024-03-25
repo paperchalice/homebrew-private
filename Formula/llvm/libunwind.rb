@@ -1,9 +1,8 @@
 class Libunwind < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.0",
-    revision: "329fda39c507e8740978d10458451dcdb21563be"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
+  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -20,9 +19,15 @@ class Libunwind < Formula
       -S runtimes
       -B build
     ]
+    build_args = %w[
+      --build
+      build
+      --target
+      install-unwind-stripped
+    ]
 
     system "cmake", *cmake_args
-    system "cmake", "--build", "build", "--target", "install-unwind"
+    system "cmake", *build_args
   end
 
   test do
