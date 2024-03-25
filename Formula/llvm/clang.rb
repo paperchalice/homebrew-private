@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.2/llvm-project-17.0.2.src.tar.xz"
-  sha256 "351562b14d42fcefcbf00cc1f327680a1062bbbf67a1e1ca6acb64c473b06394"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
+  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -21,6 +21,11 @@ class Clang < Formula
   uses_from_macos "libxml2"
 
   patch :DATA
+
+  patch do
+    url "https://github.com/llvm/llvm-project/commit/7d55a3ba92368be55b392c20d623fde6ac82d86d.patch?full_index=1"
+    sha256 "e333769f9150482c357fcd45914b959543d29bfe86406f10f9c5d054bd269878"
+  end
 
   def install
     py_ver = Language::Python.major_minor_version("python3")
