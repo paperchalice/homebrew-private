@@ -1,9 +1,8 @@
 class Lld < Formula
   desc "LLVM Linker"
   homepage "https://lld.llvm.org/"
-  url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.6",
-    revision: "f28c006a5895fc0e329fe15fead81e37457cb1d1"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
+  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -15,15 +14,9 @@ class Lld < Formula
 
   depends_on "llvm-core"
 
-  patch do
-    url "https://github.com/llvm/llvm-project/commit/94e0f8e.patch?full_index=1"
-    sha256 "4d1c0ad421e060f3557aadc5be94e8b1dcd80ebf62973bd5664e1f5b2de84ef4"
-  end
-
   def install
     args = std_cmake_args+ %w[
       -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_CXX_STANDARD=17
 
       -S lld
       -B build
