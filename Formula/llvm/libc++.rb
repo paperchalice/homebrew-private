@@ -7,7 +7,8 @@ class Libcxx < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++-18.1.2"
-    sha256 cellar: :any, ventura: "608c5fb496a19173f78d22f66888513587587a2b9ea63caf41dd205ac302904d"
+    rebuild 1
+    sha256 cellar: :any, ventura: "4da59e6cdfd5ffeda34a5dbda4ab2823121d04c81e943f7e3d36afaa2cf3c151"
   end
 
   depends_on "cmake" => :build
