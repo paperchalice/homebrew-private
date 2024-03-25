@@ -7,7 +7,8 @@ class Libcxxabi < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++abi-18.1.2"
-    sha256 cellar: :any, ventura: "31fec0bc98dc7dea291a1f70d2d49ec60e0564cc9d28459eea4b5a447fcd8a15"
+    rebuild 1
+    sha256 cellar: :any, ventura: "c37ae0ac7d777927dae5f31bdcc481639630423f0de4a7527458b20ebb94adc0"
   end
 
   depends_on "cmake" => :build
