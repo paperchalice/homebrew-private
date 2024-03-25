@@ -6,8 +6,8 @@ class Libunwind < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-14.0.0"
-    sha256 cellar: :any, monterey: "c3741636fab010f80d195271c133e58aa762999d9d4f02e353c376b8b063a882"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-18.1.2"
+    sha256 cellar: :any, ventura: "f72b047bb43d13ea42a133945eaab8ec2bf5802ca5a7094b93105d28cb333f32"
   end
 
   depends_on "cmake" => :build
