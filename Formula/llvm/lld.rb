@@ -17,6 +17,7 @@ class Lld < Formula
   def install
     args = std_cmake_args+ %w[
       -D BUILD_SHARED_LIBS=ON
+      -D LLVM_USE_SYMLINKS=ON
 
       -S lld
       -B build
