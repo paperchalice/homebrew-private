@@ -77,7 +77,7 @@ class Clang < Formula
       @macOS.options
     EOS
     (prefix/"etc/clang/clang++.cfg").write <<~EOS
-      -std=c++20
+      -std=c++23
       @macOS.options
     EOS
     (prefix/"etc/clang/clang-cl.cfg").write <<~EOS
