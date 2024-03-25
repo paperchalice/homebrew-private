@@ -1,8 +1,8 @@
 class Mlir < Formula
   desc "Multi-Level Intermediate Representation"
   homepage "https://mlir.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/llvm-project-16.0.0.src.tar.xz"
-  sha256 "9a56d906a2c81f16f06efc493a646d497c53c2f4f28f0cb1f3c8da7f74350254"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
+  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -11,7 +11,6 @@ class Mlir < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "llvm" => :build
 
   depends_on "llvm-core"
   depends_on "numpy"
@@ -21,13 +20,11 @@ class Mlir < Formula
   def install
     cmake_args = std_cmake_args+ %W[
       -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_CXX_FLAGS=-fuse-ld=lld
       -D Python3_ROOT_DIR=#{Formula["python"].prefix}
       -D Python3_FIND_FRAMEWORK=OFF
 
       -D LLVM_BUILD_TOOLS=ON
       -D LLVM_BUILD_UTILS=ON
-      -D LLVM_DIR=#{Formula["llvm-core"].lib}/cmake/llvm
       -D MLIR_ENABLE_BINDINGS_PYTHON=ON
 
       -S mlir
