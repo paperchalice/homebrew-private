@@ -20,6 +20,7 @@ class Mlir < Formula
   def install
     cmake_args = std_cmake_args+ %W[
       -D BUILD_SHARED_LIBS=ON
+      -D MLIR_INSTALL_AGGREGATE_OBJECTS=OFF
       -D Python3_ROOT_DIR=#{Formula["python"].prefix}
       -D Python3_FIND_FRAMEWORK=OFF
 
@@ -39,7 +40,6 @@ class Mlir < Formula
     site_package = Language::Python.site_packages "python3"
     (prefix/site_package).install prefix/"python_packages/mlir_core/mlir"
     rm_rf prefix/"python_packages"
-    rm_rf Dir[lib/"objects-*"]
   end
 
   test do
