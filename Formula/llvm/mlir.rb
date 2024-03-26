@@ -7,7 +7,8 @@ class Mlir < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/mlir-18.1.2"
-    sha256 cellar: :any, ventura: "fda26cec7ec24a38bffeb111c214fdb12543825ff22291e6241dae740d2c2306"
+    rebuild 1
+    sha256 cellar: :any, ventura: "09a2f6e8fabcd5cdc3890bbfd075794c1809765a1e7b1cc78e3db0cc6387c465"
   end
 
   depends_on "cmake" => :build
