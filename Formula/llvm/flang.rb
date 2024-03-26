@@ -1,9 +1,8 @@
 class Flang < Formula
   desc "Fortran front end for LLVM"
   homepage "https://flang.llvm.org"
-  url "https://github.com/llvm/llvm-project.git",
-    tag:      "llvmorg-14.0.0",
-    revision: "329fda39c507e8740978d10458451dcdb21563be"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
+  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git"
 
@@ -22,14 +21,37 @@ class Flang < Formula
   uses_from_macos "libxml2"
   uses_from_macos "zlib"
 
+  resource "cpp-httplib" do
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.14.0.tar.gz"
+    sha256 "3a92248ef8cf2c32ad07f910b8e3052ff2427022b2adb871cf326fb620d2438e"
+  end
+
+  patch do
+    url "https://github.com/llvm/llvm-project/commit/7d55a3ba92368be55b392c20d623fde6ac82d86d.patch?full_index=1"
+    sha256 "e333769f9150482c357fcd45914b959543d29bfe86406f10f9c5d054bd269878"
+  end
+
   def install
+    resource("cpp-httplib").stage do
+      cpp_httplib_cmake_args = %W[
+        -D CMAKE_INSTALL_PREFIX=#{buildpath}/cpp-httplib
+        -D CMAKE_BUILD_TYPE=MinSizeRel
+        -S .
+        -B build
+      ]
+      system "cmake", *cpp_httplib_cmake_args
+      system "cmake", "--build", "build"
+      system "cmake", "--install", "build"
+    end
+
     cmake_args = std_cmake_args + %W[
       -D BUILD_SHARED_LIBS=ON
-      -D CMAKE_CXX_STANDARD=17
 
       -D CLANG_DIR=#{Formula["clang"].lib}/cmake/clang
+      -D httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
       -D LLVM_BUILD_DOCS=OFF
       -D LLVM_INCLUDE_DOCS=ON
+      -D FLANG_INCLUDE_TESTS=OFF
       -D LLVM_ENABLE_SPHINX=ON
       -D MLIR_TABLEGEN_EXE=#{Formula["mlir"].bin}/mlir-tblgen
       -D SPHINX_WARNINGS_AS_ERRORS=OFF
@@ -43,6 +65,7 @@ class Flang < Formula
     system "cmake", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build", "--strip"
+    Utils::Gzip.compress(*Dir[man1/"*"])
   end
 
   test do
