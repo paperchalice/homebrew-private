@@ -20,14 +20,13 @@ class Clang < Formula
 
   uses_from_macos "libxml2"
 
-  patch :DATA
-
   patch do
     url "https://github.com/llvm/llvm-project/commit/7d55a3ba92368be55b392c20d623fde6ac82d86d.patch?full_index=1"
     sha256 "e333769f9150482c357fcd45914b959543d29bfe86406f10f9c5d054bd269878"
   end
 
   def install
+    inreplace "clang/tools/clang-shlib/CMakeLists.txt", "NOT LLVM_ENABLE_PIC", "TRUE"
     py_ver = Language::Python.major_minor_version("python3")
     default_sysroot = MacOS.sdk_path.sub(/\d+/, "")
     cmake_args = std_cmake_args + %W[
@@ -73,7 +72,7 @@ class Clang < Formula
       -march=skylake
     EOS
     (prefix/"etc/clang/clang.cfg").write <<~EOS
-      -std=c17
+      -std=c23
       @macOS.options
     EOS
     (prefix/"etc/clang/clang++.cfg").write <<~EOS
@@ -84,7 +83,7 @@ class Clang < Formula
       /std:c++latest /Ehsc Zc:__cplusplus
     EOS
     (prefix/"etc/clang/clang-cpp.cfg").write <<~EOS
-      -std=c17
+      -std=c23
       @macOS.options
     EOS
   end
@@ -102,12 +101,3 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
-
-__END__
---- a/clang/tools/clang-shlib/CMakeLists.txt
-+++ b/clang/tools/clang-shlib/CMakeLists.txt
-@@ -1,3 +1,4 @@
-+return()
- # Building libclang-cpp.so fails if LLVM_ENABLE_PIC=Off
- if (NOT LLVM_ENABLE_PIC)
-   return()
