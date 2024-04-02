@@ -174,8 +174,8 @@ __END__
 +      StringRef Prefix = sys::path::parent_path(Bin);
 +      if (Prefix.startswith("/usr/local/Cellar/")) {
 +        sys::path::replace_path_prefix(MainExe, Prefix, "/usr/local");
-+        return (std::string)MainExe;
 +      }
++      return (std::string)MainExe;
 +    }
    }
  #elif defined(__FreeBSD__)
