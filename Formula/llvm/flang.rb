@@ -22,8 +22,8 @@ class Flang < Formula
   uses_from_macos "zlib"
 
   resource "cpp-httplib" do
-    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.14.0.tar.gz"
-    sha256 "3a92248ef8cf2c32ad07f910b8e3052ff2427022b2adb871cf326fb620d2438e"
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.15.3.tar.gz"
+    sha256 "2121bbf38871bb2aafb5f7f2b9b94705366170909f434428352187cb0216124e"
   end
 
   patch do
