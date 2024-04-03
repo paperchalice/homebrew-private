@@ -8,7 +8,7 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os: [macos-14]
+        os: [macos-14-large]
     timeout-minutes: 720
     runs-on: ${{ matrix.os }}
     steps:
