@@ -7,8 +7,9 @@ class Flang < Formula
   head "https://github.com/llvm/llvm-project.git"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/flang-14.0.0"
-    sha256 cellar: :any, monterey: "0db27f8410f635e9208072dcb553e87ec8a0209a96ee2fa396a068387271e391"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/flang-18.1.2"
+    rebuild 1
+    sha256 cellar: :any, ventura: "a23314ea8af9142d5085657050916714c560025920d359e13944935472b2dfe2"
   end
 
   depends_on "cmake"       => :build
