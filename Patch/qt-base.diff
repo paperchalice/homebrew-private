@@ -10,16 +10,3 @@
  #elif QT_CONFIG(dlopen)
      Q_UNUSED(usageMode);
      Dl_info info;
---- a/cmake/FindWrapOpenGL.cmake
-+++ b/cmake/FindWrapOpenGL.cmake
-@@ -33,6 +33,10 @@ if (OpenGL_FOUND)
-             set(__opengl_fw_path "-framework OpenGL")
-         endif()
- 
-+        if(OPENGL_gl_LIBRARY MATCHES dylib)
-+            set(__opengl_fw_path OpenGL::GL)
-+        endif()
-+
-         find_library(WrapOpenGL_AGL NAMES AGL)
-         if(WrapOpenGL_AGL)
-             set(__opengl_agl_fw_path "${WrapOpenGL_AGL}")

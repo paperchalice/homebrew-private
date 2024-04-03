@@ -51,10 +51,11 @@ class QtBase < Formula
 
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/qt-base.diff"
-    sha256 "cc9c1295190e11ee10794d40c4a563e85c9fa7775d30a4f5526550ce94a9a894"
+    sha256 "ca08d700b5e8d658081565226ab763b9ad8ed7960a3beadfd12d89e5a3caadd7"
   end
 
   def install
+    inreplace "cmake/FindWrapOpenGL.cmake", "if(APPLE)", "if(OFF)"
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX, find_framework: "FIRST") + %W[
       BUILD_WITH_PCH=OFF
       CMAKE_STAGING_PREFIX=#{prefix}
