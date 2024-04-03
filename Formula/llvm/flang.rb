@@ -70,6 +70,12 @@ class Flang < Formula
   end
 
   test do
-    system "echo"
+    (testpath/"test.f90").write <<~EOS
+      program hello
+        print *, 'Hello, World!'
+      end program hello
+    EOS
+    system bin/"flang-new", "test.f90"
+    assert_match "Hello, World!", shell_output("./a.out")
   end
 end
