@@ -10,6 +10,11 @@ class Arm64AppleDarwinBinutils < Formula
     formula "binutils"
   end
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/arm64-apple-darwin-binutils-2.42"
+    sha256 ventura: "f65597c4f9718b231ea5e3439b0d1a554467947e1cb927dde52310206df1a927"
+  end
+
   depends_on "pkg-config" => :build
   depends_on "zstd"
 
