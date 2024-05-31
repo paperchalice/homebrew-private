@@ -6,8 +6,8 @@ class Arm64AppleDarwinGcc < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/gcc-boot-14.1.0"
-    sha256 ventura: "4775fb895ade05fcf3996e47fd3619f4e8b4f987c08b7444a59fe2aff6db6358"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/arm64-apple-darwin-gcc-14.1.0"
+    sha256 ventura: "30b0a6ed70c0faabc9c0026a5508edd23e1382de15e7df7ddca68454e1e2d68f"
   end
 
   keg_only "bootstrap formula"
