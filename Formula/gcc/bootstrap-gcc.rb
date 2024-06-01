@@ -5,6 +5,11 @@ class BootstrapGcc < Formula
   sha256 "e283c654987afe3de9d8080bc0bd79534b5ca0d681a73a11ff2b5d3767426840"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/bootstrap-gcc-14.1.0"
+    sha256 cellar: :any_skip_relocation, ventura: "5eda04ad565adc2ac872f4e11ec87aacbee2f12b00b43fd6df422b3958000a7a"
+  end
+
   keg_only "bootstrap formula"
 
   depends_on "arm64-apple-darwin-gcc" => :build
