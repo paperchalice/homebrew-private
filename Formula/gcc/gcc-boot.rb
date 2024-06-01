@@ -28,6 +28,7 @@ class GccBoot < Formula
   # GCC bootstraps itself, so it is OK to have an incompatible C++ stdlib
   cxxstdlib_check :skip
 
+  # Bootstrap seed: https://github.com/paperchalice/homebrew-private/releases/download/bootstrap-gcc-14.1.0/bootstrap-gcc-14.1.0.ventura.bottle.tar.gz
   def install
     ENV.prepend_path "PATH", Formula["gcc-strap"].bin
     ENV.delete "CC"
