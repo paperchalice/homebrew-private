@@ -102,6 +102,10 @@ class BootstrapGcc < Formula
     rm libstdcxx
     cp cross.prefix/"#{target}/lib"/shared_library("libstdc++", "6"), libstdcxx
     MachO::Tools.change_dylib_id libstdcxx.to_s, libstdcxx.to_s
+
+    system "tar", "-cJf", "gcc.tar.xz", "-C", prefix, "."
+    rm_rf prefix
+    prefix.install "gcc.tar.xz"
   end
 
   test do
