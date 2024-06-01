@@ -56,7 +56,7 @@ class QtBase < Formula
 
   def install
     inreplace "cmake/FindWrapOpenGL.cmake", "if(APPLE)", "if(OFF)"
-    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX, find_framework: "FIRST") + %W[
+    cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       BUILD_WITH_PCH=OFF
       CMAKE_STAGING_PREFIX=#{prefix}
       CMAKE_SYSROOT=#{MacOS.sdk_path}
