@@ -1,8 +1,8 @@
 class QtBase < Formula
   desc "Base components of Qt framework (Core, Gui, Widgets, Network, ...)"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.7/6.7.0/submodules/qtbase-everywhere-src-6.7.0.tar.xz"
-  sha256 "11b2e29e2e52fb0e3b453ea13bbe51a10fdff36e1c192d8868c5a40233b8b254"
+  url "https://download.qt.io/official_releases/qt/6.7/6.7.2/submodules/qtbase-everywhere-src-6.7.2.tar.xz"
+  sha256 "c5f22a5e10fb162895ded7de0963328e7307611c688487b5d152c9ee64767599"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -52,6 +52,11 @@ class QtBase < Formula
   patch do
     url "https://github.com/paperchalice/homebrew-private/raw/main/Patch/qt-base.diff"
     sha256 "d554fc02a51fc14879fa6419bc376668a4999cd794b0000bf8898ec6b9e53582"
+  end
+
+  patch do
+    url "https://download.qt.io/official_releases/qt/6.7/CVE-2024-39936-qtbase-6.7.patch"
+    sha256 "fb23b0dfd37a9008726fee97b30fd342681943db0e4c759f5f21f01d61b9975d"
   end
 
   def install
