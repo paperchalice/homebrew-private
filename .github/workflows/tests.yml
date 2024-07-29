@@ -37,7 +37,7 @@ jobs:
 
       - name: Use my fork Homebrew
         run: |
-          pushd $(brew --repo)
+          pushd "$(brew --repo)"
           git config pull.rebase true
           git remote add me https://github.com/paperchalice/brew.git
           git fetch me
@@ -50,7 +50,7 @@ jobs:
       - name: mark qt keg only
         if: contains(github.event.pull_request.labels.*.name, 'webengine')
         run: |
-          pushd $(brew --repo)/Library/Taps/homebrew/homebrew-core
+          pushd "$(brew --repo homebrew/core)"
           sed -i '' 's/uses_from_macos "zlib"/keg_only "foo"/g' Formula/qt.rb
           popd
 
