@@ -17,8 +17,8 @@ class QtBase < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.7.0"
-    sha256 ventura: "b8058e49a6e4d48b83202de69bf795d30e7b2a792ccbff677e07349abed01312"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/qt-base-6.7.2"
+    sha256 ventura: "7932ce9cebdb3c359dd57d0765a7941afe7a1150ed5868a830196ceb9fad6ba6"
   end
 
   depends_on "cmake"      => [:build, :test]
