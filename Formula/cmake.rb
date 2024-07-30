@@ -1,9 +1,9 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v3.29.0/cmake-3.29.0.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-3.29.0.tar.gz"
-  sha256 "a0669630aae7baa4a8228048bf30b622f9e9fd8ee8cedb941754e9e38686c778"
+  url "https://github.com/Kitware/CMake/releases/download/v3.30.1/cmake-3.30.1.tar.gz"
+  mirror "http://fresh-center.net/linux/misc/cmake-3.30.1.tar.gz"
+  sha256 "df9b3c53e3ce84c3c1b7c253e5ceff7d8d1f084ff0673d048f260e04ccb346e1"
   license "BSD-3-Clause"
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
@@ -18,6 +18,7 @@ class Cmake < Formula
 
   # nghttp2 is for curl
   depends_on "cppdap"
+  depends_on "expat"
   depends_on "jsoncpp"
   depends_on "libarchive"
   depends_on "libuv"
@@ -28,7 +29,6 @@ class Cmake < Formula
 
   uses_from_macos "bzip2"
   uses_from_macos "curl"
-  uses_from_macos "expat"
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
