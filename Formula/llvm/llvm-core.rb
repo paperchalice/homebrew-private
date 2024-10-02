@@ -1,8 +1,8 @@
 class LlvmCore < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.3/llvm-project-18.1.3.src.tar.xz"
-  sha256 "2929f62d69dec0379e529eb632c40e15191e36f3bd58c2cb2df0413a0dc48651"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.1/llvm-project-19.1.1.src.tar.xz"
+  sha256 "d40e933e2a208ee142898f85d886423a217e991abbcd42dd8211f507c93e1266"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   livecheck do
@@ -35,16 +35,11 @@ class LlvmCore < Formula
   uses_from_macos "zlib"
 
   resource "cpp-httplib" do
-    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.15.3.tar.gz"
-    sha256 "2121bbf38871bb2aafb5f7f2b9b94705366170909f434428352187cb0216124e"
+    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.18.0.tar.gz"
+    sha256 "6ed5894bbbc4a34a0f4c5e962672d0003d2ea099bbadacc66f6dee2b213ff394"
   end
 
   patch :DATA
-
-  patch do
-    url "https://github.com/llvm/llvm-project/commit/7d55a3ba92368be55b392c20d623fde6ac82d86d.patch?full_index=1"
-    sha256 "e333769f9150482c357fcd45914b959543d29bfe86406f10f9c5d054bd269878"
-  end
 
   def install
     resource("cpp-httplib").stage do
@@ -172,7 +167,7 @@ __END__
 +      SmallString<128> MainExe(link_path);
 +      StringRef Bin = sys::path::parent_path(MainExe);
 +      StringRef Prefix = sys::path::parent_path(Bin);
-+      if (Prefix.startswith("/usr/local/Cellar/")) {
++      if (Prefix.starts_with("/usr/local/Cellar/")) {
 +        sys::path::replace_path_prefix(MainExe, Prefix, "/usr/local");
 +      }
 +      return (std::string)MainExe;
