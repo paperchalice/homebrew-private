@@ -11,8 +11,8 @@ class LlvmCore < Formula
   end
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-18.1.3"
-    sha256 ventura: "7bc438f7a485f3f741dade3b0441fe0f174671f96829507a0318a5f249118835"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/llvm-core-19.1.1"
+    sha256 ventura: "4db00aead8e40d96af90fd60b108627b1bb0e3c14f7380131fc1d954253ec915"
   end
 
   depends_on "cmake"      => [:build, :test]
