@@ -24,8 +24,8 @@ class BoostTest < Formula
 
     %w[config].each do |d|
       f = Formula["boost-#{d}"]
-      f.lib.glob("cmake/*").each { |c| rm_rf "stage/lib/cmake/#{c.basename}" }
-      f.lib.glob("lib*").each { |l| rm_rf "stage/lib/#{l.basename}" }
+      f.lib.glob("cmake/*").each { |c| rm_r "stage/lib/cmake/#{c.basename}" }
+      f.lib.glob("lib*").each { |l| rm_r "stage/lib/#{l.basename}" }
     end
 
     prefix.install "stage/lib"

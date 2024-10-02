@@ -10,13 +10,13 @@ module Homebrew
     llvm = Formula["llvm"]
 
     llvm.prefix.children.each do |f|
-      rm_rf f unless f.to_s.end_with? "lib"
+      rm_r f unless f.to_s.end_with? "lib"
     end
 
     llvm.lib.children.each do |f|
       zap = %w[MLIR mlir lldb omp unwind]
-      rm_rf f unless f.to_s.end_with? "dylib"
-      rm_rf f if zap.any? { |z| f.to_s.include? z }
+      rm_r f unless f.to_s.end_with? "dylib"
+      rm_r f if zap.any? { |z| f.to_s.include? z }
     end
   end
 end

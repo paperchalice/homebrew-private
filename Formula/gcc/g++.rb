@@ -111,9 +111,9 @@ class Gxx < Formula
         rm bin/x
         bin.install_symlink bin/"#{triple}-g++" => x
       end
-      rm_rf lib/"gcc"/triple/version_suffix/"cc1"
+      rm_r lib/"gcc"/triple/version_suffix/"cc1"
     end
-    rm_rf man3/"stdheader.dSYM"
+    rm_r man3/"stdheader.dSYM"
     [man1, man3].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
   end
 

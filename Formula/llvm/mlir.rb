@@ -36,10 +36,10 @@ class Mlir < Formula
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
 
-    rm_rf prefix/"src"
+    rm_r prefix/"src"
     site_package = Language::Python.site_packages "python3"
     (prefix/site_package).install prefix/"python_packages/mlir_core/mlir"
-    rm_rf prefix/"python_packages"
+    rm_r prefix/"python_packages"
   end
 
   test do

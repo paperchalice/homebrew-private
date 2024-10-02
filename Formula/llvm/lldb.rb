@@ -63,7 +63,7 @@ class Lldb < Formula
     clangf = Formula["clang"]
     (prefix/site_package).install_symlink lldb_framework/"Resources/Python/lldb"
     %w[darwin-debug lldb-argdumper debugserver].each { |x| bin.install_symlink lldb_framework/"Resources"/x }
-    rm_rf lldb_framework/"Resources/Clang/include"
+    rm_r lldb_framework/"Resources/Clang/include"
     headers = clangf.lib/"clang/#{clangf.version}/include"
     (lldb_framework/"Resources/Clang").install_symlink headers
   end

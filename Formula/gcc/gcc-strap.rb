@@ -66,7 +66,7 @@ class GccStrap < Formula
       system "gmake", "-C", "#{triple}/libstdc++-v3/doc", "prefix=#{prefix}", "doc-install-man"
       system "gmake", "-C", "#{triple}/libstdc++-v3/po", "prefix=#{prefix}", "install"
     end
-    rm_rf man3/"stdheader.dSYM"
+    rm_r man3/"stdheader.dSYM"
     [info, man1, man3, man7].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
 
     gcc_s = (Formula["gcc-boot"].lib/shared_library("libgcc_s", "1.1")).to_s

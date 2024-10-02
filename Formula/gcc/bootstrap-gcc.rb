@@ -109,7 +109,7 @@ class BootstrapGcc < Formula
     MachO::Tools.change_dylib_id libstdcxx.to_s, libstdcxx.to_s
 
     system "tar", "-cJf", "gcc.tar.xz", "-C", prefix, "."
-    rm_rf prefix
+    rm_r prefix
     prefix.install "gcc.tar.xz"
   end
 

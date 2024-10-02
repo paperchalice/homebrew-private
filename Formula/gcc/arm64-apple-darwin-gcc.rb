@@ -85,7 +85,7 @@ class Arm64AppleDarwinGcc < Formula
       system "gmake"
       system "gmake", "install", "-j", "1"
     end
-    rm_rf man3/"stdheader.dSYM"
+    rm_r man3/"stdheader.dSYM"
     [info, man1, man3, man7].each { |d| Utils::Gzip.compress(*Dir[d/"*"]) }
   end
 

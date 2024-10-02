@@ -91,7 +91,7 @@ class Gfortran < Formula
         system "make", "-C", "gcc", "prefix=#{prefix}", "fortran.install-#{t}"
       end
       (lib/"gcc"/triple/version_suffix).install "gcc/f951"
-      rm_rf lib.glob("libquadmath*")
+      rm_r lib.glob("libquadmath*")
     end
 
     rm bin/"gfortran"
