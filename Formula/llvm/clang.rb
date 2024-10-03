@@ -1,8 +1,8 @@
 class Clang < Formula
   desc "C language family frontend for LLVM"
   homepage "https://clang.llvm.org"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.3/llvm-project-18.1.3.src.tar.xz"
-  sha256 "2929f62d69dec0379e529eb632c40e15191e36f3bd58c2cb2df0413a0dc48651"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.1/llvm-project-19.1.1.src.tar.xz"
+  sha256 "d40e933e2a208ee142898f85d886423a217e991abbcd42dd8211f507c93e1266"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -19,11 +19,6 @@ class Clang < Formula
   depends_on "llvm-core"
 
   uses_from_macos "libxml2"
-
-  patch do
-    url "https://github.com/llvm/llvm-project/commit/7d55a3ba92368be55b392c20d623fde6ac82d86d.patch?full_index=1"
-    sha256 "e333769f9150482c357fcd45914b959543d29bfe86406f10f9c5d054bd269878"
-  end
 
   def install
     inreplace "clang/tools/clang-shlib/CMakeLists.txt", "NOT LLVM_ENABLE_PIC", "TRUE"
