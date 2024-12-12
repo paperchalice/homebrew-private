@@ -57,7 +57,7 @@ class Cmake < Formula
     system "make"
     system "make", "install"
 
-    deprecated_modules = %w[
+    %w[
       AddFileDependencies
       CMakeDetermineVSServicePack
       CMakeExpandImportedTargets
