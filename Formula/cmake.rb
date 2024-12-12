@@ -87,7 +87,7 @@ class Cmake < Formula
       FindUnixCommands
       FindVTK
       FindwxWindows
-    ].each { |m| rm pkgshare/"Modules/#{m}.cmake"  }
+    ].each { |m| rm pkgshare/"Modules/#{m}.cmake" }
 
     libexec.install prefix/"CMake.app"
     %w[bin share].each do |p|
