@@ -57,6 +57,38 @@ class Cmake < Formula
     system "make"
     system "make", "install"
 
+    deprecated_modules = %w[
+      AddFileDependencies
+      CMakeDetermineVSServicePack
+      CMakeExpandImportedTargets
+      CMakeFindFrameworks
+      CMakeForceCompiler
+      CMakeParseArguments
+      Dart
+      Documentation
+      GetPrerequisites
+      MacroAddFileDependencies
+      TestBigEndian
+      TestCXXAcceptsFlag
+      UseJavaClassFilelist
+      UseJavaSymlinks
+      UsePkgConfig
+      Use_wxWindows
+      WriteBasicConfigVersionFile
+      WriteCompilerDetectionHeader
+
+      FindBoost
+      FindCUDA
+      FindDart
+      FindITK
+      FindPythonInterp
+      FindPythonLibs
+      FindQt
+      FindUnixCommands
+      FindVTK
+      FindwxWindows
+    ].each { |m| rm pkgshare/"Modules/#{m}.cmake"  }
+
     libexec.install prefix/"CMake.app"
     %w[bin share].each do |p|
       prefix.install libexec/"CMake.app/contents"/p
