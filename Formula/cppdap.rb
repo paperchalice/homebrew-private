@@ -1,8 +1,10 @@
 class Cppdap < Formula
   desc "C++ library for the Debug Adapter Protocol"
   homepage "https://github.com/google/cppdap"
-  url "https://github.com/google/cppdap/archive/refs/tags/dap-1.58.0-a.tar.gz"
-  sha256 "5d35ca5db78570b6bef698e3365f79bd82a4f78e8393546387f78d7bdb2a2a08"
+  url "https://github.com/google/cppdap/archive/c69444ed76f7468b232ac4f989cb8f2bdc100185.tar.gz"
+  version "1.65.0"
+  sha256 "f73953fe9c9557b6ce893a3ee90bbde5919c96e4f3603d67cdf8ed49da714529"
+  license "Apache-2.0"
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/cppdap-1.58.0"
@@ -16,12 +18,13 @@ class Cppdap < Formula
     cmake_args = std_cmake_args + %w[
       -D CPPDAP_USE_EXTERNAL_NLOHMANN_JSON_PACKAGE=ON
       -D BUILD_SHARED_LIBS=ON
+      -S .
+      -B build
     ]
-    inreplace "CMakeLists.txt", "STATIC", ""
 
     system "cmake", *cmake_args
-    system "make"
-    system "make", "install"
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
