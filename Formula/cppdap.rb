@@ -7,8 +7,8 @@ class Cppdap < Formula
   license "Apache-2.0"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cppdap-1.58.0"
-    sha256 cellar: :any, ventura: "841301c9212f99e00b7e1072ad93b3315142ed97dfb929180f1019b4e47de344"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cppdap-1.65.0"
+    sha256 cellar: :any, ventura: "5592b92060106b3d5fc9f906105d0e2df709e7c6c371c2c8db174284dc2e7073"
   end
 
   depends_on "cmake" => :build
