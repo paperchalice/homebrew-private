@@ -21,6 +21,7 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
+  depends_on "httplib"
   depends_on "ncurses"
   depends_on "openssl"
   depends_on "zstd"
@@ -34,26 +35,9 @@ class LlvmCore < Formula
   uses_from_macos "libxml2"
   uses_from_macos "zlib"
 
-  resource "cpp-httplib" do
-    url "https://github.com/yhirose/cpp-httplib/archive/refs/tags/v0.18.0.tar.gz"
-    sha256 "6ed5894bbbc4a34a0f4c5e962672d0003d2ea099bbadacc66f6dee2b213ff394"
-  end
-
   patch :DATA
 
   def install
-    resource("cpp-httplib").stage do
-      cpp_httplib_cmake_args = %W[
-        -D CMAKE_INSTALL_PREFIX=#{buildpath}/cpp-httplib
-        -D CMAKE_BUILD_TYPE=MinSizeRel
-        -S .
-        -B build
-      ]
-      system "cmake", *cpp_httplib_cmake_args
-      system "cmake", "--build", "build"
-      system "cmake", "--install", "build"
-    end
-
     inreplace "llvm/cmake/modules/AddOCaml.cmake" do |s|
       s.gsub! "${CMAKE_SHARED_LIBRARY_SUFFIX}", ".so"
       s.gsub! "stdc++", "c++"
@@ -68,7 +52,6 @@ class LlvmCore < Formula
     cmake_args = std_cmake_args + %W[
       BUILD_SHARED_LIBS=ON
 
-      httplib_DIR=#{buildpath}/cpp-httplib/lib/cmake/httplib
       LLVM_ENABLE_DUMP=ON
       LLVM_ENABLE_CURL=ON
       LLVM_ENABLE_EH=ON
