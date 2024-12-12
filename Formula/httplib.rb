@@ -5,6 +5,11 @@ class Httplib < Formula
   sha256 "405abd8170f2a446fc8612ac635d0db5947c0d2e156e32603403a4496255ff00"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/httplib-0.18.1"
+    sha256 cellar: :any, ventura: "307776edcc0be6beb1cddb0ec81a6865be76d37ed483f208c7d386c815eebbdf"
+  end
+
   depends_on "cmake" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
