@@ -70,8 +70,6 @@ class Cmake < Formula
       MacroAddFileDependencies
       TestBigEndian
       TestCXXAcceptsFlag
-      UseJavaClassFilelist
-      UseJavaSymlinks
       UsePkgConfig
       Use_wxWindows
       WriteBasicConfigVersionFile
