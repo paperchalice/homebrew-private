@@ -8,8 +8,8 @@ class Cmake < Formula
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.30.1"
-    sha256 cellar: :any, ventura: "1682f0451a363dfa9578fe9f39ed221f28870601509a73ee9d7180bb9fccea8e"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.31.2"
+    sha256 cellar: :any, ventura: "77797e963af457df519c298d531dd093dac3898cbcb5e88e2252bda0464cde53"
   end
 
   depends_on "nlohmann-json" => :build
