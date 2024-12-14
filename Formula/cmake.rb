@@ -1,9 +1,9 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v3.30.1/cmake-3.30.1.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-3.30.1.tar.gz"
-  sha256 "df9b3c53e3ce84c3c1b7c253e5ceff7d8d1f084ff0673d048f260e04ccb346e1"
+  url "https://github.com/Kitware/CMake/releases/download/v3.31.2/cmake-3.31.2.tar.gz"
+  mirror "http://fresh-center.net/linux/misc/cmake-3.31.2.tar.gz"
+  sha256 "42abb3f48f37dbd739cdfeb19d3712db0c5935ed5c2aef6c340f9ae9114238a2"
   license "BSD-3-Clause"
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
 
@@ -57,6 +57,19 @@ class Cmake < Formula
     system "make"
     system "make", "install"
 
+    libexec.install prefix/"CMake.app"
+    %w[bin share].each do |p|
+      prefix.install libexec/"CMake.app/contents"/p
+      (libexec/"CMake.app/Contents/").install_symlink prefix/p
+    end
+    rm bin/"cmake-gui"
+    prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
+    bin.install prefix/"CMake" => "cmake-gui"
+    (bin/"cmake-app").write <<~SH
+      #! /bin/sh
+      open #{opt_libexec}/CMake.app
+    SH
+
     %w[
       AddFileDependencies
       CMakeDetermineVSServicePack
@@ -78,27 +91,12 @@ class Cmake < Formula
       FindBoost
       FindCUDA
       FindDart
-      FindITK
       FindPythonInterp
       FindPythonLibs
       FindQt
       FindUnixCommands
-      FindVTK
       FindwxWindows
     ].each { |m| rm pkgshare/"Modules/#{m}.cmake" }
-
-    libexec.install prefix/"CMake.app"
-    %w[bin share].each do |p|
-      prefix.install libexec/"CMake.app/contents"/p
-      (libexec/"CMake.app/Contents/").install_symlink prefix/p
-    end
-    rm bin/"cmake-gui"
-    prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
-    bin.install prefix/"CMake" => "cmake-gui"
-    (bin/"cmake-app").write <<~SH
-      #! /bin/sh
-      open #{opt_libexec}/CMake.app
-    SH
   end
 
   test do
