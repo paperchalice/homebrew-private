@@ -85,7 +85,6 @@ class Cmake < Formula
       TestCXXAcceptsFlag
       UsePkgConfig
       Use_wxWindows
-      WriteBasicConfigVersionFile
       WriteCompilerDetectionHeader
 
       FindBoost
