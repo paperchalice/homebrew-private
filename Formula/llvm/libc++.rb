@@ -16,6 +16,12 @@ class Libcxx < Formula
   depends_on "libc++abi"
 
   def install
+    inreplace "libcxx/src/experimental/tzdb.cpp" do |s|
+      tzdb = Formula["tzdb"]
+      s.gsub! "__linux__", "__APPLE__"
+      s.gsub! "/usr/share/zoneinfo/", "#{tzdb.share}/zoneinfo/"
+    end
+
     libunwind = Formula["paperchalice/private/libunwind"]
     libcxxabi = Formula["libc++"]
     rpaths = [libunwind.opt_lib, libcxxabi.opt_lib]
@@ -23,6 +29,8 @@ class Libcxx < Formula
       -D CMAKE_INSTALL_RPATH=#{rpaths.join(";")}
       -D LLVM_ENABLE_RUNTIMES=libcxx;libcxxabi;libunwind
       -D LIBCXX_INSTALL_MODULES=ON
+      -D LIBCXX_ENABLE_TIME_ZONE_DATABASE=ON
+      -D LIBCXX_ABI_UNSTABLE=ON
 
       -S runtimes
       -B build
