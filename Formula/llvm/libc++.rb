@@ -1,8 +1,8 @@
 class Libcxx < Formula
   desc "LLVM C++ standard library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
-  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.5/llvm-project-19.1.5.src.tar.xz"
+  sha256 "bd8445f554aae33d50d3212a15e993a667c0ad1b694ac1977f3463db3338e542"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -11,9 +11,11 @@ class Libcxx < Formula
     sha256 cellar: :any, ventura: "4da59e6cdfd5ffeda34a5dbda4ab2823121d04c81e943f7e3d36afaa2cf3c151"
   end
 
+  depends_on "clang" => :build
   depends_on "cmake" => :build
 
   depends_on "libc++abi"
+  depends_on "paperchalice/private/libunwind"
 
   def install
     inreplace "libcxx/src/experimental/tzdb.cpp" do |s|
@@ -22,9 +24,13 @@ class Libcxx < Formula
       s.gsub! "/usr/share/zoneinfo/", "#{tzdb.share}/zoneinfo/"
     end
 
+    clang = Formula["clang"]
+    ENV["CC"] = clang.bin/"clang"
+    ENV["CXX"] = clang.bin/"clang++"
+
     libunwind = Formula["paperchalice/private/libunwind"]
-    libcxxabi = Formula["libc++"]
-    rpaths = [libunwind.opt_lib, libcxxabi.opt_lib]
+    libcxxabi = Formula["libc++abi"]
+    rpaths = [rpath, libunwind.opt_lib, libcxxabi.opt_lib]
     cmake_args = std_cmake_args+ %W[
       -D CMAKE_INSTALL_RPATH=#{rpaths.join(";")}
       -D LLVM_ENABLE_RUNTIMES=libcxx;libcxxabi;libunwind
@@ -38,10 +44,6 @@ class Libcxx < Formula
 
     system "cmake", *cmake_args
     system "cmake", "--build", "build", "--target", "install-cxx-stripped"
-
-    MachO::Tools.change_install_name "#{lib}/#{shared_library "libc++"}",
-                                     "@rpath/#{shared_library "libc++abi", 1}",
-                                     "#{Formula["libc++abi"].lib}/#{shared_library "libc++abi", 1}"
   end
 
   test do
@@ -63,6 +65,5 @@ class Libcxx < Formula
       -L#{lib}
     ]
     system ENV.cxx, "main.cpp", *args
-    assert_includes MachO::Tools.dylibs("a.out"), "#{opt_lib}/libc++.1.dylib"
   end
 end
