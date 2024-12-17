@@ -6,9 +6,8 @@ class Libcxxabi < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++abi-18.1.2"
-    rebuild 1
-    sha256 cellar: :any, ventura: "c37ae0ac7d777927dae5f31bdcc481639630423f0de4a7527458b20ebb94adc0"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libc++abi-19.1.5"
+    sha256 cellar: :any, ventura: "cf2c1285b1ad34f43615d7a1198eed3f22106ed1bfbd13d8db850417a8c5358d"
   end
 
   depends_on "cmake" => :build
