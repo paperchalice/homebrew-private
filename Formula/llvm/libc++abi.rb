@@ -1,8 +1,8 @@
 class Libcxxabi < Formula
   desc "C++ Standard Library Support"
   homepage "https://libcxxabi.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.2/llvm-project-18.1.2.src.tar.xz"
-  sha256 "51073febd91d1f2c3b411d022695744bda322647e76e0b4eb1918229210c48d5"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.5/llvm-project-19.1.5.src.tar.xz"
+  sha256 "bd8445f554aae33d50d3212a15e993a667c0ad1b694ac1977f3463db3338e542"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
