@@ -36,6 +36,11 @@ class Cmake < Formula
     depends_on "openssl@1.1"
   end
 
+  patch do
+    url "https://github.com/paperchalice/CMake/commit/b5f9c129dfad77ef4adfaccaf414ee5e728a91c7.patch?full_index=1"
+    sha256 "e053a8e808948f963016612b37a9f9fa823924076094c4b87fe064518b6a14d5"
+  end
+
   def install
     bootstrap_args = %W[
       --prefix=#{prefix}
@@ -49,27 +54,35 @@ class Cmake < Formula
 
       --
       -D CMAKE_USE_SYSTEM_LIBRARIES=ON
+      -D CMake_ENABLE_DRIVER=ON
       -D CMake_INSTALL_EMACS_DIR=#{elisp.relative_path_from prefix}
       -D CMake_BUILD_LTO=ON
     ]
 
     system "./bootstrap", *bootstrap_args
     system "make"
+    cp "./bin/CMake.app/Contents/MacOS/CMake", "./bin/cmake"
+    ENV.append_path "PATH", Pathname.pwd/"bin"
     system "make", "install"
 
     libexec.install prefix/"CMake.app"
     %w[bin share].each do |p|
-      prefix.install libexec/"CMake.app/contents"/p
+      prefix.install libexec/"CMake.app/Contents"/p
       (libexec/"CMake.app/Contents/").install_symlink prefix/p
     end
-    rm bin/"cmake-gui"
-    prefix.write_exec_script libexec/"CMake.app/Contents/MacOS/CMake"
-    bin.install prefix/"CMake" => "cmake-gui"
+    bin.write_exec_script opt_libexec/"CMake.app/Contents/MacOS/cmake-gui"
+    rm libexec/"CMake.app/Contents/MacOS/cmake-driver"
+    rm libexec/"CMake.app/Contents/MacOS/cmake-gui"
+    (libexec/"CMake.app/Contents/MacOS/cmake-gui").write <<~SH
+      #! /bin/sh
+      exec #{opt_bin}/cmake-driver --mode=cmake-gui
+    SH
     (bin/"cmake-app").write <<~SH
       #! /bin/sh
       open #{opt_libexec}/CMake.app
     SH
 
+    # TODO: MacroAddFileDependencies, after GetPrerequisites
     %w[
       AddFileDependencies
       CMakeDetermineVSServicePack
@@ -80,7 +93,6 @@ class Cmake < Formula
       Dart
       Documentation
       GetPrerequisites
-      MacroAddFileDependencies
       TestBigEndian
       TestCXXAcceptsFlag
       UsePkgConfig
