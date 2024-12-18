@@ -56,12 +56,6 @@ class QtBase < Formula
 
   def install
     inreplace "cmake/FindWrapOpenGL.cmake", "DIRECTORY", "ABSOLUTE"
-    inreplace "src/dbus/Qt6DBusMacros.cmake" do |s|
-      s.gsub "include(MacroAddFileDependencies)\n", ""
-      s.gsub 'macro_add_file_dependencies("${_impl}" "${_moc}")',
-        'set_property(SOURCE "${_impl}" APPEND PROPERTY OBJECT_DEPENDS "${_moc}")'
-    end
-
     cmake_args = std_cmake_args(install_prefix: HOMEBREW_PREFIX) + %W[
       BUILD_WITH_PCH=OFF
       CMAKE_STAGING_PREFIX=#{prefix}
