@@ -9,7 +9,8 @@ class Cmake < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/cmake-3.31.2"
-    sha256 cellar: :any, ventura: "77797e963af457df519c298d531dd093dac3898cbcb5e88e2252bda0464cde53"
+    rebuild 1
+    sha256 cellar: :any, ventura: "d2878b1ba385296f05c642aab890608b4e8e58af13cfce376109f7070b1cbe0c"
   end
 
   depends_on "nlohmann-json" => :build
