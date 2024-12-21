@@ -50,6 +50,10 @@ class Cmake < Formula
       --docdir=/share/doc/cmake
       --mandir=/share/man
 
+      --bootstrap-system-libuv
+      --bootstrap-system-jsoncpp
+      --bootstrap-system-librhash
+
       --system-libs
       --qt-gui
 
