@@ -75,13 +75,6 @@ class Clang < Formula
       -std=c++23
       @macOS.options
     EOS
-    (prefix/"etc/clang/clang-cl.cfg").write <<~EOS
-      /std:c++latest /Ehsc Zc:__cplusplus
-    EOS
-    (prefix/"etc/clang/clang-cpp.cfg").write <<~EOS
-      -std=c23
-      @macOS.options
-    EOS
   end
 
   test do
