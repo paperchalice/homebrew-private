@@ -7,7 +7,8 @@ class Clang < Formula
 
   bottle do
     root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-19.1.7"
-    sha256 ventura: "fd5dd920a6580e74a85f10871dc09b8ab621bc8146d99d0fa1541231a02e8b4f"
+    rebuild 1
+    sha256 ventura: "0b3efea99a2bc2779fc3ff07b69fd2a5ea2ad9ed900e16fbadbd911c9032063f"
   end
 
   pour_bottle? only_if: :clt_installed
