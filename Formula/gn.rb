@@ -45,8 +45,7 @@ class Gn < Formula
     cd testpath
     out = testpath/"out"
     system bin/"gn", "gen", out
-    assert_predicate out/"build.ninja", :exist?,
-      "Check we actually generated a build.ninja file"
+    assert_path_exists out/"build.ninja"
 
     system bin/"gn", "--version"
   end

@@ -31,6 +31,6 @@ class QtTranslations < Formula
   end
 
   test do
-    assert_predicate share/"qt/translations", :exist?
+    assert_path_exists share/"qt/translations"
   end
 end

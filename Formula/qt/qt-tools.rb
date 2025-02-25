@@ -67,6 +67,6 @@ class QtTools < Formula
       imagedirs   = .
     EOS
     system bin/"qdoc", testpath/"test.qdocconf"
-    assert_predicate testpath/"html/test.index", :exist?
+    assert_path_exists testpath/"html/test.index"
   end
 end

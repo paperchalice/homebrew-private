@@ -56,6 +56,6 @@ class QtDoc < Formula
   end
 
   test do
-    assert_predicate share/"doc/qt", :exist?
+    assert_path_exists share/"doc/qt"
   end
 end

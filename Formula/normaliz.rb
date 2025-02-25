@@ -33,6 +33,6 @@ class Normaliz < Formula
       2 1
     EOS
     system bin/"normaliz", "2cone.in"
-    assert_predicate testpath/"2cone.out", :exist?
+    assert_path_exists testpath/"2cone.out"
   end
 end
