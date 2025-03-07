@@ -6,8 +6,8 @@ class Unwind < Formula
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/libunwind-19.1.5"
-    sha256 cellar: :any, ventura: "79ec42cac9478ffd55fa00416ab05c15a8da17a2512e19fd819dc5cd66e7e410"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/unwind-20.1.0"
+    sha256 cellar: :any, ventura: "5e1f16aa6603ba61535e78d78b86744bef4cb452ec1b9a854c22b2182af763f7"
   end
 
   depends_on "cmake" => :build
