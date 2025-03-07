@@ -5,11 +5,6 @@ class Clang < Formula
   sha256 "4579051e3c255fb4bb795d54324f5a7f3ef79bd9181e44293d7ee9a7f62aad9a"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
-  bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-20.1.0"
-    sha256 ventura: "cc2fbaacc5db4bd7c2e4727d20a0905ec75364851f92f0adf8271ad57f060f41"
-  end
-
   pour_bottle? only_if: :clt_installed
 
   depends_on "cmake"       => :build
@@ -117,7 +112,7 @@ diff --git a/clang/lib/Driver/Driver.cpp b/clang/lib/Driver/Driver.cpp
 +  std::string StrR2 = std::string(R2);
 +  std::filesystem::path PR2 = std::filesystem::path(StrR2).lexically_normal();
 +  if (llvm::sys::fs::exists(Twine(PR2.string())))
-+    return StrR2;
++    return PR2.string();
  
    return std::string(Name);
  }
