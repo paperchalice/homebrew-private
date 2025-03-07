@@ -21,6 +21,7 @@ class LlvmCore < Formula
   depends_on "python"     => :build
   depends_on "sphinx-doc" => :build
 
+  depends_on "brotli"
   depends_on "httplib"
   depends_on "ncurses"
   depends_on "openssl"
