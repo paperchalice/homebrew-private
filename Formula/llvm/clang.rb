@@ -20,6 +20,8 @@ class Clang < Formula
 
   uses_from_macos "libxml2"
 
+  patch :DATA
+
   def install
     inreplace "clang/tools/clang-shlib/CMakeLists.txt", "NOT LLVM_ENABLE_PIC", "TRUE"
     py_ver = Language::Python.major_minor_version("python3")
@@ -90,3 +92,33 @@ class Clang < Formula
     assert_match "Hello World!", shell_output("./a.out")
   end
 end
+
+__END__
+diff --git a/clang/lib/Driver/Driver.cpp b/clang/lib/Driver/Driver.cpp
+--- a/clang/lib/Driver/Driver.cpp
++++ b/clang/lib/Driver/Driver.cpp
+@@ -95,8 +95,9 @@
+ #include "llvm/Support/raw_ostream.h"
+ #include "llvm/TargetParser/Host.h"
+ #include "llvm/TargetParser/RISCVISAInfo.h"
+ #include <cstdlib> // ::getenv
++#include <filesystem>
+ #include <map>
+ #include <memory>
+ #include <optional>
+ #include <set>
+@@ -6432,10 +6433,12 @@
+     return *P;
+ 
+   SmallString<128> R2(ResourceDir);
+   llvm::sys::path::append(R2, "..", "..", Name);
+-  if (llvm::sys::fs::exists(Twine(R2)))
+-    return std::string(R2);
++  std::string StrR2 = std::string(R2);
++  std::filesystem::path PR2 = std::filesystem::path(StrR2).lexically_normal();
++  if (llvm::sys::fs::exists(Twine(PR2.string())))
++    return StrR2;
+ 
+   return std::string(Name);
+ }
+ 
