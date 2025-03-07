@@ -1,8 +1,8 @@
 class Unwind < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.5/llvm-project-19.1.5.src.tar.xz"
-  sha256 "bd8445f554aae33d50d3212a15e993a667c0ad1b694ac1977f3463db3338e542"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/llvm-project-20.1.0.src.tar.xz"
+  sha256 "4579051e3c255fb4bb795d54324f5a7f3ef79bd9181e44293d7ee9a7f62aad9a"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
