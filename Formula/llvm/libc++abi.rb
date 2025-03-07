@@ -12,10 +12,10 @@ class Libcxxabi < Formula
 
   depends_on "cmake" => :build
 
-  depends_on "paperchalice/private/libunwind"
+  depends_on "unwind"
 
   def install
-    libunwind = Formula["paperchalice/private/libunwind"]
+    libunwind = Formula["unwind"]
     cmake_args = std_cmake_args+ %W[
       -D CMAKE_INSTALL_RPATH=#{libunwind.opt_lib}
       -D LLVM_ENABLE_RUNTIMES=libcxx;libcxxabi;libunwind

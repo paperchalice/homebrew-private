@@ -14,7 +14,7 @@ class Libcxx < Formula
   depends_on "cmake" => :build
 
   depends_on "libc++abi"
-  depends_on "paperchalice/private/libunwind"
+  depends_on "unwind"
 
   def install
     inreplace "libcxx/src/experimental/tzdb.cpp" do |s|
@@ -27,7 +27,7 @@ class Libcxx < Formula
     ENV["CC"] = clang.bin/"clang"
     ENV["CXX"] = clang.bin/"clang++"
 
-    libunwind = Formula["paperchalice/private/libunwind"]
+    libunwind = Formula["unwind"]
     libcxxabi = Formula["libc++abi"]
     rpaths = [rpath, libunwind.opt_lib, libcxxabi.opt_lib]
     cmake_args = std_cmake_args+ %W[

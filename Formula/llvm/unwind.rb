@@ -1,4 +1,4 @@
-class Libunwind < Formula
+class Unwind < Formula
   desc "LLVM unwinding library"
   homepage "https://libcxx.llvm.org/"
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.5/llvm-project-19.1.5.src.tar.xz"
