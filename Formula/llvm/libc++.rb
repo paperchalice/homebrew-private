@@ -1,8 +1,8 @@
 class Libcxx < Formula
   desc "LLVM C++ standard library"
   homepage "https://libcxx.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.5/llvm-project-19.1.5.src.tar.xz"
-  sha256 "bd8445f554aae33d50d3212a15e993a667c0ad1b694ac1977f3463db3338e542"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/llvm-project-20.1.0.src.tar.xz"
+  sha256 "4579051e3c255fb4bb795d54324f5a7f3ef79bd9181e44293d7ee9a7f62aad9a"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
   bottle do
@@ -22,7 +22,6 @@ class Libcxx < Formula
       s.gsub! "__linux__", "__APPLE__"
       s.gsub! "/usr/share/zoneinfo/", "#{tzdb.share}/zoneinfo/"
     end
-
     clang = Formula["clang"]
     ENV["CC"] = clang.bin/"clang"
     ENV["CXX"] = clang.bin/"clang++"
@@ -35,7 +34,6 @@ class Libcxx < Formula
       -D LLVM_ENABLE_RUNTIMES=libcxx;libcxxabi;libunwind
       -D LIBCXX_INSTALL_MODULES=ON
       -D LIBCXX_ENABLE_TIME_ZONE_DATABASE=ON
-      -D LIBCXX_ABI_UNSTABLE=ON
 
       -S runtimes
       -B build
