@@ -5,6 +5,12 @@ class Clang < Formula
   sha256 "4579051e3c255fb4bb795d54324f5a7f3ef79bd9181e44293d7ee9a7f62aad9a"
   license "Apache-2.0" => { with: "LLVM-exception" }
 
+  bottle do
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/clang-20.1.0"
+    rebuild 1
+    sha256 ventura: "a5da446095cbdf193e5d1e79d927af327df73e60b093986db1efc4c3f527588b"
+  end
+
   pour_bottle? only_if: :clt_installed
 
   depends_on "cmake"       => :build
