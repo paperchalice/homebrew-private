@@ -21,6 +21,7 @@ class Clang < Formula
 
   uses_from_macos "libxml2"
 
+  # cherrypick PR 131997
   patch :DATA
 
   def install
