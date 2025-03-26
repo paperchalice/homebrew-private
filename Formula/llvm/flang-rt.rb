@@ -11,7 +11,7 @@ class FlangRt < Formula
   depends_on "llvm-core"
 
   def install
-    cmake_args = std_cmake_args+ %W[
+    cmake_args = std_cmake_args+ %w[
       -D LLVM_ENABLE_RUNTIMES=flang-rt
 
       -S runtimes
