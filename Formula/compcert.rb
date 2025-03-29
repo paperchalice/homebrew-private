@@ -6,8 +6,8 @@ class Compcert < Formula
   license :cannot_represent
 
   bottle do
-    root_url "https://github.com/paperchalice/homebrew-private/releases/download/compcert-3.9"
-    sha256 cellar: :any_skip_relocation, big_sur: "e11fd93a2863bef7bccf64894d73b479d86e561e9de10da33360bdbeff147917"
+    root_url "https://github.com/paperchalice/homebrew-private/releases/download/compcert-3.15"
+    sha256 cellar: :any_skip_relocation, ventura: "17247517400a69e204a20a408a6506010576bcee86e300cd98422353b0f70005"
   end
 
   depends_on "coq"    => :build
