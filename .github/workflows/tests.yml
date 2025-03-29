@@ -41,8 +41,8 @@ jobs:
           git config pull.rebase true
           git remote add me https://github.com/paperchalice/brew.git
           git fetch me
-          git checkout main
-          git branch --set-upstream-to=me/main main
+          git checkout ma
+          git branch --set-upstream-to=me/ma ma
           git pull
           git rebase master
           popd
